@@ -164,7 +164,7 @@ Set the following variables in your `.env` file:
 2. Run tests:
 
    ```bash
-   coverage run --source=prometheus -m pytest -v -s -m "not git"
+   coverage run --source=prometheus -m pytest -v -s
    ```
 
 3. Generate coverage report:
