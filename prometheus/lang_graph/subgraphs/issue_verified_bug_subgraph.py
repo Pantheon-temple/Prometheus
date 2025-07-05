@@ -90,9 +90,7 @@ class IssueVerifiedBugSubgraph:
         update_container_node = UpdateContainerNode(container, git_repo)
 
         # Step 6: Bug test
-        bug_fix_verification_subgraph_node = BugFixVerificationSubgraphNode(
-            base_model, container
-        )
+        bug_fix_verification_subgraph_node = BugFixVerificationSubgraphNode(base_model, container)
 
         # Step 7: Optional full build/test
         build_or_test_branch_node = NoopNode()
@@ -113,7 +111,9 @@ class IssueVerifiedBugSubgraph:
         workflow.add_node("edit_tools", edit_tools)
         workflow.add_node("git_diff_node", git_diff_node)
         workflow.add_node("git_reset_node", git_reset_node)
-        workflow.add_node("reset_issue_bug_analyzer_messages_node", reset_issue_bug_analyzer_messages_node)
+        workflow.add_node(
+            "reset_issue_bug_analyzer_messages_node", reset_issue_bug_analyzer_messages_node
+        )
         workflow.add_node("reset_edit_messages_node", reset_edit_messages_node)
         workflow.add_node("patches_selection_node", patches_selection_node)
         workflow.add_node("update_container_node", update_container_node)
