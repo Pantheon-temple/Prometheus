@@ -119,13 +119,14 @@ I have generated the following patches, now please select the best patch among t
 {patches}
 """
 
-    def __init__(self, model: BaseChatModel, max_retries: int = 2):
+    def __init__(self, model: BaseChatModel, final_patch_name: str, max_retries: int = 2):
         self.max_retries = max_retries
         prompt = ChatPromptTemplate.from_messages(
             [("system", self.SYS_PROMPT), ("human", "{human_prompt}")]
         )
         structured_llm = model.with_structured_output(FinalPatchSelectionStructuredOutput)
         self.model = prompt | structured_llm
+        self.final_patch_name = final_patch_name
         self._logger = logging.getLogger("prometheus.lang_graph.nodes.final_patch_selection_node")
 
     def format_human_message(self, state: Dict):
@@ -149,10 +150,10 @@ I have generated the following patches, now please select the best patch among t
             response = self.model.invoke({"human_prompt": human_prompt})
             self._logger.info(f"FinalPatchSelectionNode response at {try_index} try:\n{response}")
 
-            if response.patch_index >= 0 and response.patch_index < len(state["edit_patches"]):
-                return {"final_patch": state["edit_patches"][response.patch_index]}
+            if 0 <= response.patch_index < len(state["edit_patches"]):
+                return {self.final_patch_name: state["edit_patches"][response.patch_index]}
 
         self._logger.info(
             "FinalPatchSelectionNode failed to select a patch with correct index, defaulting to 0"
         )
-        return {"final_patch": state["edit_patches"][0]}
+        return {self.final_patch_name: state["edit_patches"][0]}
