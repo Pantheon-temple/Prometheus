@@ -139,6 +139,7 @@ class GitRepository:
         Args:
             branch_name: Name of the new branch to create.
             commit_message: Message for the commit.
+            patch: The patch content to apply to the new branch.
         """
         with tempfile.NamedTemporaryFile(mode="w", suffix=".patch") as tmp_file:
             tmp_file.write(patch)
