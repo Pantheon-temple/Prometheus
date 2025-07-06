@@ -79,7 +79,7 @@ class IssueVerifiedBugSubgraph:
         )
 
         # Reset & loop control
-        git_reset_node = GitResetNode(git_repo)
+        git_reset_node = GitResetNode(git_repo, exclude_files_key="reproduced_bug_file")
         reset_issue_bug_analyzer_messages_node = ResetMessagesNode("issue_bug_analyzer_messages")
         reset_edit_messages_node = ResetMessagesNode("edit_messages")
 

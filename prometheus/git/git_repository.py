@@ -120,9 +120,28 @@ class GitRepository:
     def get_working_directory(self) -> Path:
         return Path(self.repo.working_dir).absolute()
 
-    def reset_repository(self):
-        self.repo.git.reset("--hard")
-        self.repo.git.clean("-fd")
+    def reset_repository(self, excluded_files: Optional[Sequence[str]] = None):
+        """
+        Reset all modified and untracked files in the repository,
+        excluding specified files.
+        """
+        # Normalize excluded_files to a set of relative strings
+        if excluded_files is None:
+            excluded_files = set()
+        elif isinstance(excluded_files, (str, Path)):
+            excluded_files = set(excluded_files)
+
+        # 1. Reset modified tracked files
+        modified_files = self.repo.git.diff("--name-only").splitlines()
+        reset_files = [f for f in modified_files if f not in excluded_files]
+        if reset_files:
+            self.repo.git.restore("--staged", "--worktree", "--", *reset_files)
+
+        # 2. Clean untracked files
+        untracked_files = self.repo.git.ls_files("--others", "--exclude-standard").splitlines()
+        clean_files = [f for f in untracked_files if f not in excluded_files]
+        if clean_files:
+            self.repo.git.clean("-fd", "--", *clean_files)
 
     def remove_repository(self):
         if self.repo is not None:
