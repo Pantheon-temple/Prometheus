@@ -133,3 +133,46 @@ def test_remove_repository(git_repo_fixture):  # noqa: F811
 
         mock_rmtree.assert_called_once_with(local_path)
         assert git_repo.repo is None
+
+
+@pytest.mark.skipif(
+    sys.platform.startswith("win"),
+    reason="Test fails on Windows because of cptree in git_repo_fixture",
+)
+@pytest.mark.git
+def test_reset_repository_with_exclusions(git_repo_fixture):  # noqa: F811
+    repo_path = Path(git_repo_fixture.working_dir).absolute()
+    tracked_file = repo_path / "test.c"
+    untracked_file = repo_path / "temp_untracked.txt"
+    excluded_file = repo_path / "keep_me.txt"
+
+    # Create GitRepository instance
+    git_repo = GitRepository(
+        address=str(repo_path),
+        working_directory=Path("/foo/bar"),
+        copy_to_working_dir=False,
+    )
+
+    # Initialize the repository and create a tracked file
+    git_repo.repo.git.add(tracked_file)
+    git_repo.repo.git.commit("-m", "initial commit", "--allow-empty")
+
+    # 1. Modify a tracked file
+    original_content = tracked_file.read_text()
+    tracked_file.write_text("int main() { return 0; }\n")
+
+    # 2. Create untracked and excluded files
+    untracked_file.write_text("This is a temp file")
+    excluded_file.write_text("Don't delete me")
+
+    # 3. Run reset with exclusions
+    rel_excluded_file = str(excluded_file.relative_to(repo_path))
+    git_repo.reset_repository(excluded_files=[rel_excluded_file])
+
+    # 4. Assertions
+    assert tracked_file.read_text() == original_content
+    assert not untracked_file.exists()
+    assert excluded_file.exists()
+
+    # Cleanup
+    excluded_file.unlink(missing_ok=True)

@@ -38,6 +38,7 @@ def test_llm_service_init(mock_custom_chat_openai, mock_chat_anthropic):
         openai_format_api_key="openai-key",
         openai_format_base_url="https://api.openai.com/v1",
         anthropic_api_key="anthropic-key",
+        max_output_tokens=settings.MAX_OUTPUT_TOKENS,
     )
 
     # Verify
@@ -66,6 +67,7 @@ def test_get_openai_format_model(mock_custom_chat_openai):
         model_name="openrouter/model",
         openai_format_api_key="openrouter-key",
         openai_format_base_url="https://openrouter.ai/api/v1",
+        max_output_tokens=settings.MAX_OUTPUT_TOKENS,
     )
 
     # Verify
@@ -81,7 +83,11 @@ def test_get_openai_format_model(mock_custom_chat_openai):
 
 def test_get_model_claude(mock_chat_anthropic):
     # Exercise
-    get_model(model_name="claude-2.1", anthropic_api_key="anthropic-key")
+    get_model(
+        model_name="claude-2.1",
+        anthropic_api_key="anthropic-key",
+        max_output_tokens=settings.MAX_OUTPUT_TOKENS,
+    )
 
     # Verify
     mock_chat_anthropic.assert_called_once_with(
@@ -95,7 +101,11 @@ def test_get_model_claude(mock_chat_anthropic):
 
 def test_get_model_gemini(mock_chat_google):
     # Exercise
-    get_model(model_name="gemini-pro", gemini_api_key="gemini-key")
+    get_model(
+        model_name="gemini-pro",
+        gemini_api_key="gemini-key",
+        max_output_tokens=settings.MAX_OUTPUT_TOKENS,
+    )
 
     # Verify
     mock_chat_google.assert_called_once_with(
