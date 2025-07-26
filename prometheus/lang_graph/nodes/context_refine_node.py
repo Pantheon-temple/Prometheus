@@ -69,9 +69,11 @@ If additional context is needed:
 """
 
     def __init__(self, model: BaseChatModel, kg: KnowledgeGraph):
+        file_tree = kg.get_file_tree().replace("{", "{{").replace("}", "}}")
+        system_prompt = self.SYS_PROMPT.format(file_tree=file_tree)
         prompt = ChatPromptTemplate.from_messages(
             [
-                ("system", self.SYS_PROMPT.format(file_tree=kg.get_file_tree())),
+                ("system", system_prompt),
                 ("human", "{human_prompt}"),
             ]
         )

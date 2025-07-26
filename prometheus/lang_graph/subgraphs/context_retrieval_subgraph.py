@@ -7,10 +7,10 @@ from langgraph.graph import END, StateGraph
 from langgraph.prebuilt import ToolNode, tools_condition
 
 from prometheus.graph.knowledge_graph import KnowledgeGraph
+from prometheus.lang_graph.nodes.context_extraction_node import ContextExtractionNode
 from prometheus.lang_graph.nodes.context_provider_node import ContextProviderNode
 from prometheus.lang_graph.nodes.context_query_message_node import ContextQueryMessageNode
 from prometheus.lang_graph.nodes.context_refine_node import ContextRefineNode
-from prometheus.lang_graph.nodes.context_selection_node import ContextSelectionNode
 from prometheus.lang_graph.nodes.reset_messages_node import ResetMessagesNode
 from prometheus.lang_graph.subgraphs.context_retrieval_state import ContextRetrievalState
 from prometheus.models.context import Context
@@ -69,8 +69,8 @@ class ContextRetrievalSubgraph:
             messages_key="context_provider_messages",
         )
 
-        # Step 4: Select relevant context snippets from the candidates
-        context_selection_node = ContextSelectionNode(model)
+        # Step 4: Extract the Context
+        context_extraction_node = ContextExtractionNode(model, str(kg.get_local_path()))
 
         # Step 5: Reset tool messages to prepare for the next iteration (if needed)
         reset_context_provider_messages_node = ResetMessagesNode("context_provider_messages")
@@ -85,7 +85,7 @@ class ContextRetrievalSubgraph:
         workflow.add_node("context_query_message_node", context_query_message_node)
         workflow.add_node("context_provider_node", context_provider_node)
         workflow.add_node("context_provider_tools", context_provider_tools)
-        workflow.add_node("context_selection_node", context_selection_node)
+        workflow.add_node("context_extraction_node", context_extraction_node)
         workflow.add_node(
             "reset_context_provider_messages_node", reset_context_provider_messages_node
         )
@@ -100,10 +100,10 @@ class ContextRetrievalSubgraph:
         workflow.add_conditional_edges(
             "context_provider_node",
             functools.partial(tools_condition, messages_key="context_provider_messages"),
-            {"tools": "context_provider_tools", END: "context_selection_node"},
+            {"tools": "context_provider_tools", END: "context_extraction_node"},
         )
         workflow.add_edge("context_provider_tools", "context_provider_node")
-        workflow.add_edge("context_selection_node", "reset_context_provider_messages_node")
+        workflow.add_edge("context_extraction_node", "reset_context_provider_messages_node")
         workflow.add_edge("reset_context_provider_messages_node", "context_refine_node")
 
         # If refined_query is non-empty, loop back to provider; else terminate
@@ -129,7 +129,7 @@ class ContextRetrievalSubgraph:
 
         Returns:
             Dict with a single key:
-                - "context" (Sequence[str]): A list of selected context snippets relevant to the query.
+                - "context" (Sequence[Context]): A list of selected context snippets relevant to the query.
         """
         config = {"recursion_limit": recursion_limit}
 

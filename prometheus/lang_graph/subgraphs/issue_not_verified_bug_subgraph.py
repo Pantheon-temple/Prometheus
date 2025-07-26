@@ -123,7 +123,7 @@ class IssueNotVerifiedBugSubgraph:
             "issue_body": issue_body,
             "issue_comments": issue_comments,
             "number_of_candidate_patch": number_of_candidate_patch,
-            "max_refined_query_loop": 3,
+            "max_refined_query_loop": 5,
         }
 
         output_state = self.subgraph.invoke(input_state, config)
