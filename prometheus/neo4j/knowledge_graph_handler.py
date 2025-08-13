@@ -55,7 +55,9 @@ class KnowledgeGraphHandler:
         self._logger.debug(f"Writing {len(file_nodes)} FileNode to neo4j")
         query = """
       UNWIND $file_nodes AS file_node
-      CREATE (a:FileNode {node_id: file_node.node_id, basename: file_node.basename, relative_path: file_node.relative_path})
+      MERGE (a:FileNode {node_id: file_node.node_id})
+      SET a.basename = file_node.basename,
+          a.relative_path = file_node.relative_path
     """
         for i in range(0, len(file_nodes), self.batch_size):
             file_nodes_batch = file_nodes[i : i + self.batch_size]
@@ -66,7 +68,11 @@ class KnowledgeGraphHandler:
         self._logger.debug(f"Writing {len(ast_nodes)} ASTNode to neo4j")
         query = """
       UNWIND $ast_nodes AS ast_node
-      CREATE (a:ASTNode {node_id: ast_node.node_id, start_line: ast_node.start_line, end_line: ast_node.end_line, type: ast_node.type, text: ast_node.text})
+      MERGE (a:ASTNode {node_id: ast_node.node_id})
+      SET a.start_line = ast_node.start_line,
+          a.end_line = ast_node.end_line,
+          a.type = ast_node.type,
+          a.text = ast_node.text
     """
         for i in range(0, len(ast_nodes), self.batch_size):
             ast_nodes_batch = ast_nodes[i : i + self.batch_size]
@@ -77,7 +83,9 @@ class KnowledgeGraphHandler:
         self._logger.debug(f"Writing {len(text_nodes)} TextNode to neo4j")
         query = """
       UNWIND $text_nodes AS text_node
-      CREATE (a:TextNode {node_id: text_node.node_id, text: text_node.text, metadata: text_node.metadata})
+      MERGE (a:TextNode {node_id: text_node.node_id})
+      SET a.text = text_node.text,
+          a.metadata = text_node.metadata
     """
         for i in range(0, len(text_nodes), self.batch_size):
             text_nodes_batch = text_nodes[i : i + self.batch_size]
@@ -92,7 +100,7 @@ class KnowledgeGraphHandler:
       UNWIND $edges AS edge
       MATCH (source:FileNode), (target:FileNode)
       WHERE source.node_id = edge.source.node_id AND target.node_id = edge.target.node_id
-      CREATE (source) -[:HAS_FILE]-> (target)
+      MERGE (source)-[:HAS_FILE]->(target)
     """
         for i in range(0, len(has_file_edges), self.batch_size):
             has_file_edges_batch = has_file_edges[i : i + self.batch_size]
@@ -107,7 +115,7 @@ class KnowledgeGraphHandler:
       UNWIND $edges AS edge
       MATCH (source:FileNode), (target:ASTNode)
       WHERE source.node_id = edge.source.node_id AND target.node_id = edge.target.node_id
-      CREATE (source) -[:HAS_AST]-> (target)
+      MERGE (source)-[:HAS_AST]->(target)
     """
         for i in range(0, len(has_ast_edges), self.batch_size):
             has_ast_edges_batch = has_ast_edges[i : i + self.batch_size]
@@ -122,7 +130,7 @@ class KnowledgeGraphHandler:
       UNWIND $edges AS edge
       MATCH (source:FileNode), (target:TextNode)
       WHERE source.node_id = edge.source.node_id AND target.node_id = edge.target.node_id
-      CREATE (source) -[:HAS_TEXT]-> (target)
+      MERGE (source)-[:HAS_TEXT]->(target)
     """
         for i in range(0, len(has_text_edges), self.batch_size):
             has_text_edges_batch = has_text_edges[i : i + self.batch_size]
@@ -135,7 +143,7 @@ class KnowledgeGraphHandler:
             UNWIND $edges AS edge
             MATCH (source:ASTNode {node_id: edge.source.node_id})
             MATCH (target:ASTNode {node_id: edge.target.node_id})
-            CREATE (source)-[:PARENT_OF]->(target)
+            MERGE (source)-[:PARENT_OF]->(target)
         """
 
         for i in range(0, len(parent_of_edges), self.batch_size):
@@ -159,7 +167,7 @@ class KnowledgeGraphHandler:
       UNWIND $edges AS edge
       MATCH (source:TextNode), (target:TextNode)
       WHERE source.node_id = edge.source.node_id AND target.node_id = edge.target.node_id
-      CREATE (source) -[:NEXT_CHUNK]-> (target)
+      MERGE (source)-[:NEXT_CHUNK]->(target)
     """
         for i in range(0, len(next_chunk_edges), self.batch_size):
             next_chunk_edges_batch = next_chunk_edges[i : i + self.batch_size]
@@ -471,11 +479,11 @@ class KnowledgeGraphHandler:
         Returns:
             int: The next available node id (max id + 1), or 0 if no nodes exist.
         """
-        query = "MATCH (n) RETURN max(id(n)) AS max_id"
+        query = "MATCH (n) RETURN max(n.node_id) AS max_node_id"
         with self.driver.session() as session:
             result = session.run(query)
-            max_id = result.single()["max_id"]
-            return 0 if max_id is None else max_id + 1
+            max_node_id = result.single()["max_node_id"]
+            return 0 if max_node_id is None else max_node_id + 1
 
     def clear_knowledge_graph(self, root_node_id: int):
         """

@@ -1,0 +1,19 @@
+2025-08-13 09:38:39,265 - thread-140487720089152.prometheus.docker.general_container.GeneralContainer - INFO - Created temporary project directory: /tmp/tmpn38a54bj/Prometheus
+2025-08-13 09:38:39,421 - thread-140487720089152.prometheus.lang_graph.nodes.issue_classification_subgraph_node - INFO - Enter IssueClassificationSubgraphNode
+2025-08-13 09:38:39,421 - thread-140487720089152.prometheus.lang_graph.nodes.context_retrieval_subgraph_node - INFO - Enter context retrieval subgraph
+2025-08-13 09:38:46,470 - thread-140487720089152.prometheus.lang_graph.nodes.context_extraction_node - INFO - Starting context extraction process
+2025-08-13 09:39:02,554 - thread-140487720089152.prometheus.lang_graph.nodes.context_extraction_node - ERROR - The file Makefile does not exist.
+2025-08-13 09:39:02,554 - thread-140487720089152.prometheus.lang_graph.nodes.context_extraction_node - ERROR - The file serial_de_bruijn.c does not exist.
+2025-08-13 09:39:02,554 - thread-140487720089152.prometheus.lang_graph.nodes.context_extraction_node - ERROR - The file parallel_de_bruijn.upc does not exist.
+2025-08-13 09:39:02,554 - thread-140487720089152.prometheus.lang_graph.nodes.context_extraction_node - ERROR - The file serial_de_bruijn.c does not exist.
+2025-08-13 09:39:02,554 - thread-140487720089152.prometheus.lang_graph.nodes.context_extraction_node - ERROR - The file serial_de_bruijn.c does not exist.
+2025-08-13 09:39:02,554 - thread-140487720089152.prometheus.lang_graph.nodes.context_extraction_node - ERROR - The file parallel_de_bruijn.upc does not exist.
+2025-08-13 09:39:02,554 - thread-140487720089152.prometheus.lang_graph.nodes.context_extraction_node - INFO - Context extraction complete, returning context []
+2025-08-13 09:39:12,447 - thread-140487720089152.prometheus.lang_graph.nodes.context_extraction_node - INFO - Starting context extraction process
+2025-08-13 09:39:26,517 - thread-140487720089152.prometheus.lang_graph.nodes.context_extraction_node - ERROR - The file Makefile does not exist.
+2025-08-13 09:39:26,517 - thread-140487720089152.prometheus.lang_graph.nodes.context_extraction_node - ERROR - The file serial_de_bruijn.c does not exist.
+2025-08-13 09:39:26,517 - thread-140487720089152.prometheus.lang_graph.nodes.context_extraction_node - ERROR - The file parallel_de_bruijn.upc does not exist.
+2025-08-13 09:39:26,517 - thread-140487720089152.prometheus.lang_graph.nodes.context_extraction_node - ERROR - The file input_parser.c does not exist.
+2025-08-13 09:39:26,517 - thread-140487720089152.prometheus.lang_graph.nodes.context_extraction_node - ERROR - The file output_writer.c does not exist.
+2025-08-13 09:39:26,517 - thread-140487720089152.prometheus.lang_graph.nodes.context_extraction_node - INFO - Context extraction complete, returning context []
+2025-08-13 09:39:34,317 - thread-140487720089152.prometheus.lang_graph.nodes.context_extraction_node - INFO - Starting context extraction process

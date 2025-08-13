@@ -1,0 +1,11 @@
+{"version": 2, "width": 160, "height": 40, "timestamp": 1755080237, "env": {"SHELL": "/bin/bash", "TERM": "tmux-256color"}}
+[0.004124, "o", "\u001b[?2004hroot@9c5133550c34:/app# "]
+[0.97803, "i", "clear\r"]
+[0.978477, "o", "clear\r\n\u001b[?2004l\r"]
+[0.979821, "o", "\u001b[H\u001b[J\u001b[3J"]
+[0.980327, "m", "prometheus_start"]
+[0.980327, "m", "task_complexity: complex"]
+[0.980327, "m", "complex_task_start"]
+[0.980327, "m", "complex_task_complete"]
+[0.980327, "m", "prometheus_complete"]
+[0.980327, "o", "\u001b[?2004hroot@9c5133550c34:/app# "]

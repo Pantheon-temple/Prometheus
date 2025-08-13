@@ -1,0 +1,40 @@
+root@ad407add8448:/app# cd /app; tmux wait -S done
+root@ad407add8448:/app# cbc question.mps solve solu solution.txt; tmux wait -S done
+bash: cbc: command not found
+root@ad407add8448:/app# grep -E "^Objective value:" solution.txt | awk '{print int($3)}' > answer.txt; tmux wait -S done
+grep: solution.txt: No such file or directory
+root@ad407add8448:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

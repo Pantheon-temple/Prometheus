@@ -1,0 +1,50 @@
+Error in PrometheusAgent: {code: Neo.ClientError.Schema.ConstraintValidationFailed} {message: Node(18260) already exists with label `ASTNode` and property `node_id` = 17962}
+Traceback (most recent call last):
+  File "/root/lh/Prometheus/prometheus/bench/prometheus_agent.py", line 623, in perform_task
+    result = self._handle_complex_task(instruction, session, timestamped_markers)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/lh/Prometheus/prometheus/bench/prometheus_agent.py", line 867, in _handle_complex_task
+    kg_root_id = self._build_knowledge_graph_current_dir(current_dir)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/lh/Prometheus/prometheus/bench/prometheus_agent.py", line 947, in _build_knowledge_graph_current_dir
+    return asyncio.run(self.services["kg_service"].build_and_save_knowledge_graph(current_dir))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/root/lh/Prometheus/prometheus/app/services/knowledge_graph_service.py", line 63, in build_and_save_knowledge_graph
+    self.kg_handler.write_knowledge_graph(kg)
+  File "/root/lh/Prometheus/prometheus/neo4j/knowledge_graph_handler.py", line 177, in write_knowledge_graph
+    session.execute_write(self._write_ast_nodes, kg.get_neo4j_ast_nodes())
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/neo4j/_sync/work/session.py", line 757, in execute_write
+    return self._run_transaction(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/neo4j/_sync/work/session.py", line 552, in _run_transaction
+    result = transaction_function(tx, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/lh/Prometheus/prometheus/neo4j/knowledge_graph_handler.py", line 73, in _write_ast_nodes
+    tx.run(query, ast_nodes=ast_nodes_batch)
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/neo4j/_sync/work/transaction.py", line 168, in run
+    result._tx_ready_run(query, parameters)
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/neo4j/_sync/work/result.py", line 131, in _tx_ready_run
+    self._run(query, parameters, None, None, None, None, None, None)
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/neo4j/_sync/work/result.py", line 181, in _run
+    self._attach()
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/neo4j/_sync/work/result.py", line 301, in _attach
+    self._connection.fetch_message()
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/neo4j/_sync/io/_common.py", line 178, in inner
+    func(*args, **kwargs)
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/neo4j/_sync/io/_bolt.py", line 850, in fetch_message
+    res = self._process_message(tag, fields)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/neo4j/_sync/io/_bolt5.py", line 369, in _process_message
+    response.on_failure(summary_metadata or {})
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/neo4j/_sync/io/_common.py", line 245, in on_failure
+    raise Neo4jError.hydrate(**metadata)
+neo4j.exceptions.ConstraintError: {code: Neo.ClientError.Schema.ConstraintValidationFailed} {message: Node(18260) already exists with label `ASTNode` and property `node_id` = 17962}

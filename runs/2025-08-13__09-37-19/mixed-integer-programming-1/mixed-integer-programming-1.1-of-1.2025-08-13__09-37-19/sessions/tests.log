@@ -1,0 +1,327 @@
+[?2004hroot@ad407add8448:/app# asciinema rec --stdin /logs/tests.cast
+[?2004l[0;32masciinema: recording asciicast to /logs/tests.cast[0m
+[0;32masciinema: press <ctrl-d> or type "exit" when you're done[0m
+[?2004hroot@ad407add8448:/app# clear
+[?2004l[H[J[3J[?2004hroot@ad407add8448:/app# bash /tests/run-tests.sh; tmux wait -S done
+[?2004l0% [Working]            Get:1 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+0% [Connecting to archive.ubuntu.com (91.189.91.81)] [1 InRelease 14.2 kB/126 kB 11%]                                                                                     0% [Connecting to archive.ubuntu.com (91.189.91.81)]0% [Connecting to archive.ubuntu.com (91.189.91.81)]                                                    Get:2 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1328 kB]
+0% [Connecting to archive.ubuntu.com (91.189.91.81)] [2 Packages 64.9 kB/1328 kB 5%]                                                                                    0% [Connecting to archive.ubuntu.com (91.189.91.81)]0% [2 Packages store 0 B] [Connecting to archive.ubuntu.com (91.189.91.81)] [Waiting for headers]                                                                                                 Get:3 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [23.0 kB]
+0% [2 Packages store 0 B] [Connecting to archive.ubuntu.com (91.189.91.81)] [3 Packages 0 B/23.0 kB 0%]                                                                                                       0% [2 Packages store 0 B] [Connecting to archive.ubuntu.com (91.189.91.81)]                                                                           Get:4 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1134 kB]
+0% [2 Packages store 0 B] [Connecting to archive.ubuntu.com (91.189.91.81)] [4 Packages 28.7 kB/1134 kB 3%]                                                                                                           0% [2 Packages store 0 B] [Connecting to archive.ubuntu.com (91.189.91.81)] [Waiting for headers]                                                                                                 Get:5 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1982 kB]
+0% [2 Packages store 0 B] [Connecting to archive.ubuntu.com (91.189.91.81)] [5 Packages 8262 B/1982 kB 0%]                                                                                                          0% [2 Packages store 0 B] [Waiting for headers]                                               0% [Waiting for headers]0% [3 Packages store 0 B] [Waiting for headers]                                               0% [Waiting for headers]0% [4 Packages store 0 B] [Waiting for headers]                                               Get:6 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+0% [4 Packages store 0 B] [6 InRelease 5484 B/256 kB 2%]                                                        0% [6 InRelease 14.2 kB/256 kB 6%]0% [5 Packages store 0 B] [6 InRelease 14.2 kB/256 kB 6%]                                                         0% [6 InRelease 14.2 kB/256 kB 6%]                                  0% [Working]0% [Waiting for headers]                        Get:7 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+0% [7 InRelease 2588 B/126 kB 2%]                                 0% [Waiting for headers]0% [Waiting for headers]                        Get:8 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+0% [8 InRelease 2588 B/126 kB 2%]                                 0% [Working]27% [Waiting for headers]                         Get:9 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+27% [9 Packages 2657 B/117 kB 2%]                                 27% [Waiting for headers]                         Get:10 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+27% [10 Packages 2297 B/19.3 MB 0%]27% [9 Packages store 0 B] [10 Packages 2297 B/19.3 MB 0%]                                                          28% [10 Packages 30.9 kB/19.3 MB 0%]59% [10 Packages 12.5 MB/19.3 MB 65%]                                     76% [Waiting for headers]                         Get:11 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+76% [11 Packages 45.6 kB/331 kB 14%]76% [10 Packages store 0 B] [11 Packages 45.6 kB/331 kB 14%]                                                            77% [10 Packages store 0 B]                           Get:12 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+77% [10 Packages store 0 B] [12 Packages 0 B/1808 kB 0%]                                                        82% [10 Packages store 0 B]                           Get:13 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1454 kB]
+82% [10 Packages store 0 B] [13 Packages 0 B/1454 kB 0%]                                                        85% [10 Packages store 0 B] [Waiting for headers]                                                 Get:14 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [45.2 kB]
+85% [10 Packages store 0 B] [14 Packages 45.2 kB/45.2 kB 100%]                                                              85% [10 Packages store 0 B]                           Get:15 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [2092 kB]
+86% [10 Packages store 0 B] [15 Packages 45.1 kB/2092 kB 2%]                                                            Get:16 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1666 kB]
+91% [10 Packages store 0 B] [16 Packages 80.1 kB/1666 kB 5%]                                                            95% [10 Packages store 0 B]                           Get:17 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [48.8 kB]
+95% [10 Packages store 0 B] [17 Packages 20.5 kB/48.8 kB 42%]                                                             95% [10 Packages store 0 B]                           Get:18 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [33.9 kB]
+95% [10 Packages store 0 B] [18 Packages 33.9 kB/33.9 kB 100%]                                                              95% [10 Packages store 0 B]                           96% [Working]96% [11 Packages store 0 B]                           96% [Working]96% [12 Packages store 0 B]                           97% [Working]97% [13 Packages store 0 B]                           97% [Working]97% [14 Packages store 0 B]                           98% [Working]98% [15 Packages store 0 B]                           98% [Working]98% [16 Packages store 0 B]                           99% [Working]99% [17 Packages store 0 B]                           99% [Working]99% [18 Packages store 0 B]                           100% [Working]              Fetched 32.0 MB in 2s (12.8 MB/s)
+Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 5%Reading package lists... 5%Reading package lists... 62%Reading package lists... 62%Reading package lists... 63%Reading package lists... 63%Reading package lists... 64%Reading package lists... 64%Reading package lists... 70%Reading package lists... 70%Reading package lists... 75%Reading package lists... 75%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 88%Reading package lists... 88%Reading package lists... 92%Reading package lists... 92%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 5%Reading package lists... 5%Reading package lists... 62%Reading package lists... 62%Reading package lists... 63%Reading package lists... 63%Reading package lists... 64%Reading package lists... 64%Reading package lists... 70%Reading package lists... 70%Reading package lists... 75%Reading package lists... 75%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 88%Reading package lists... 88%Reading package lists... 92%Reading package lists... 92%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 26%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree... Done
+Reading state information... 0% Reading state information... 4%Reading state information... Done
+The following additional packages will be installed:
+  krb5-locales libbrotli1 libcurl4t64 libgssapi-krb5-2 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-common libldap2 libnghttp2-14 libpsl5t64
+  librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libssh-4 publicsuffix
+Suggested packages:
+  krb5-doc krb5-user libsasl2-modules-gssapi-mit | libsasl2-modules-gssapi-heimdal libsasl2-modules-ldap libsasl2-modules-otp libsasl2-modules-sql
+The following NEW packages will be installed:
+  curl krb5-locales libbrotli1 libcurl4t64 libgssapi-krb5-2 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-common libldap2 libnghttp2-14
+  libpsl5t64 librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libssh-4 publicsuffix
+0 upgraded, 19 newly installed, 0 to remove and 29 not upgraded.
+Need to get 2405 kB of archives.
+After this operation, 6886 kB of additional disk space will be used.
+0% [Working]            Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 krb5-locales all 1.20.1-6ubuntu2.6 [14.8 kB]
+0% [1 krb5-locales 1158 B/14.8 kB 8%]                                     2% [Working]            Get:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libkrb5support0 amd64 1.20.1-6ubuntu2.6 [34.4 kB]
+2% [2 libkrb5support0 8398 B/34.4 kB 24%]                                         4% [Waiting for headers]                        Get:3 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libk5crypto3 amd64 1.20.1-6ubuntu2.6 [82.0 kB]
+4% [3 libk5crypto3 7017 B/82.0 kB 9%]                                     8% [Waiting for headers]                        Get:4 http://archive.ubuntu.com/ubuntu noble/main amd64 libkeyutils1 amd64 1.6.3-3build1 [9490 B]
+8% [4 libkeyutils1 9490 B/9490 B 100%]                                      9% [Working]            Get:5 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libkrb5-3 amd64 1.20.1-6ubuntu2.6 [348 kB]
+9% [5 libkrb5-3 1856 B/348 kB 1%]                                 21% [Waiting for headers]                         Get:6 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libgssapi-krb5-2 amd64 1.20.1-6ubuntu2.6 [143 kB]
+23% [6 libgssapi-krb5-2 34.4 kB/143 kB 24%]                                           27% [Waiting for headers]                         Get:7 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libnghttp2-14 amd64 1.59.0-1ubuntu0.2 [74.3 kB]
+28% [7 libnghttp2-14 22.1 kB/74.3 kB 30%]                                         31% [Working]             Get:8 http://archive.ubuntu.com/ubuntu noble/main amd64 libpsl5t64 amd64 0.21.2-1.1build1 [57.1 kB]
+31% [8 libpsl5t64 12.3 kB/57.1 kB 22%]                                      34% [Working]             Get:9 http://archive.ubuntu.com/ubuntu noble/main amd64 publicsuffix all 20231001.0357-0.1 [129 kB]
+34% [9 publicsuffix 20.1 kB/129 kB 16%]                                       39% [Working]             Get:10 http://archive.ubuntu.com/ubuntu noble/main amd64 libbrotli1 amd64 1.1.0-2build2 [331 kB]
+40% [10 libbrotli1 16.4 kB/331 kB 5%]                                     51% [Working]             Get:11 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libsasl2-modules-db amd64 2.1.28+dfsg1-5ubuntu3.1 [20.4 kB]
+51% [11 libsasl2-modules-db 8192 B/20.4 kB 40%]                                               53% [Waiting for headers]                         Get:12 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libsasl2-2 amd64 2.1.28+dfsg1-5ubuntu3.1 [53.2 kB]
+55% [12 libsasl2-2 52.7 kB/53.2 kB 99%]                                       56% [Waiting for headers]                         Get:13 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libldap2 amd64 2.6.7+dfsg-1~exp1ubuntu8.2 [196 kB]
+56% [13 libldap2 11.1 kB/196 kB 6%]                                   63% [Working]             Get:14 http://archive.ubuntu.com/ubuntu noble/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-2build7 [56.3 kB]
+64% [14 librtmp1 11.6 kB/56.3 kB 21%]                                     66% [Working]             Get:15 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libssh-4 amd64 0.10.6-2ubuntu0.1 [188 kB]
+67% [15 libssh-4 20.5 kB/188 kB 11%]                                    74% [Working]             Get:16 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcurl4t64 amd64 8.5.0-2ubuntu10.6 [341 kB]
+74% [16 libcurl4t64 4052 B/341 kB 1%]                                     86% [Working]             Get:17 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 curl amd64 8.5.0-2ubuntu10.6 [226 kB]
+86% [17 curl 14.8 kB/226 kB 7%]                               95% [Working]             Get:18 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libldap-common all 2.6.7+dfsg-1~exp1ubuntu8.2 [31.7 kB]
+95% [18 libldap-common 22.6 kB/31.7 kB 71%]                                           97% [Waiting for headers]                         Get:19 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libsasl2-modules amd64 2.1.28+dfsg1-5ubuntu3.1 [69.9 kB]
+98% [19 libsasl2-modules 45.1 kB/69.9 kB 64%]                                             100% [Working]              Fetched 2405 kB in 0s (41.0 MB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package krb5-locales.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6337 files and directories currently installed.)
+Preparing to unpack .../00-krb5-locales_1.20.1-6ubuntu2.6_all.deb ...
+Unpacking krb5-locales (1.20.1-6ubuntu2.6) ...
+Selecting previously unselected package libkrb5support0:amd64.
+Preparing to unpack .../01-libkrb5support0_1.20.1-6ubuntu2.6_amd64.deb ...
+Unpacking libkrb5support0:amd64 (1.20.1-6ubuntu2.6) ...
+Selecting previously unselected package libk5crypto3:amd64.
+Preparing to unpack .../02-libk5crypto3_1.20.1-6ubuntu2.6_amd64.deb ...
+Unpacking libk5crypto3:amd64 (1.20.1-6ubuntu2.6) ...
+Selecting previously unselected package libkeyutils1:amd64.
+Preparing to unpack .../03-libkeyutils1_1.6.3-3build1_amd64.deb ...
+Unpacking libkeyutils1:amd64 (1.6.3-3build1) ...
+Selecting previously unselected package libkrb5-3:amd64.
+Preparing to unpack .../04-libkrb5-3_1.20.1-6ubuntu2.6_amd64.deb ...
+Unpacking libkrb5-3:amd64 (1.20.1-6ubuntu2.6) ...
+Selecting previously unselected package libgssapi-krb5-2:amd64.
+Preparing to unpack .../05-libgssapi-krb5-2_1.20.1-6ubuntu2.6_amd64.deb ...
+Unpacking libgssapi-krb5-2:amd64 (1.20.1-6ubuntu2.6) ...
+Selecting previously unselected package libnghttp2-14:amd64.
+Preparing to unpack .../06-libnghttp2-14_1.59.0-1ubuntu0.2_amd64.deb ...
+Unpacking libnghttp2-14:amd64 (1.59.0-1ubuntu0.2) ...
+Selecting previously unselected package libpsl5t64:amd64.
+Preparing to unpack .../07-libpsl5t64_0.21.2-1.1build1_amd64.deb ...
+Unpacking libpsl5t64:amd64 (0.21.2-1.1build1) ...
+Selecting previously unselected package publicsuffix.
+Preparing to unpack .../08-publicsuffix_20231001.0357-0.1_all.deb ...
+Unpacking publicsuffix (20231001.0357-0.1) ...
+Selecting previously unselected package libbrotli1:amd64.
+Preparing to unpack .../09-libbrotli1_1.1.0-2build2_amd64.deb ...
+Unpacking libbrotli1:amd64 (1.1.0-2build2) ...
+Selecting previously unselected package libsasl2-modules-db:amd64.
+Preparing to unpack .../10-libsasl2-modules-db_2.1.28+dfsg1-5ubuntu3.1_amd64.deb ...
+Unpacking libsasl2-modules-db:amd64 (2.1.28+dfsg1-5ubuntu3.1) ...
+Selecting previously unselected package libsasl2-2:amd64.
+Preparing to unpack .../11-libsasl2-2_2.1.28+dfsg1-5ubuntu3.1_amd64.deb ...
+Unpacking libsasl2-2:amd64 (2.1.28+dfsg1-5ubuntu3.1) ...
+Selecting previously unselected package libldap2:amd64.
+Preparing to unpack .../12-libldap2_2.6.7+dfsg-1~exp1ubuntu8.2_amd64.deb ...
+Unpacking libldap2:amd64 (2.6.7+dfsg-1~exp1ubuntu8.2) ...
+Selecting previously unselected package librtmp1:amd64.
+Preparing to unpack .../13-librtmp1_2.4+20151223.gitfa8646d.1-2build7_amd64.deb ...
+Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2build7) ...
+Selecting previously unselected package libssh-4:amd64.
+Preparing to unpack .../14-libssh-4_0.10.6-2ubuntu0.1_amd64.deb ...
+Unpacking libssh-4:amd64 (0.10.6-2ubuntu0.1) ...
+Selecting previously unselected package libcurl4t64:amd64.
+Preparing to unpack .../15-libcurl4t64_8.5.0-2ubuntu10.6_amd64.deb ...
+Unpacking libcurl4t64:amd64 (8.5.0-2ubuntu10.6) ...
+Selecting previously unselected package curl.
+Preparing to unpack .../16-curl_8.5.0-2ubuntu10.6_amd64.deb ...
+Unpacking curl (8.5.0-2ubuntu10.6) ...
+Selecting previously unselected package libldap-common.
+Preparing to unpack .../17-libldap-common_2.6.7+dfsg-1~exp1ubuntu8.2_all.deb ...
+Unpacking libldap-common (2.6.7+dfsg-1~exp1ubuntu8.2) ...
+Selecting previously unselected package libsasl2-modules:amd64.
+Preparing to unpack .../18-libsasl2-modules_2.1.28+dfsg1-5ubuntu3.1_amd64.deb ...
+Unpacking libsasl2-modules:amd64 (2.1.28+dfsg1-5ubuntu3.1) ...
+Setting up libkeyutils1:amd64 (1.6.3-3build1) ...
+Setting up libbrotli1:amd64 (1.1.0-2build2) ...
+Setting up libsasl2-modules:amd64 (2.1.28+dfsg1-5ubuntu3.1) ...
+Setting up libpsl5t64:amd64 (0.21.2-1.1build1) ...
+Setting up libnghttp2-14:amd64 (1.59.0-1ubuntu0.2) ...
+Setting up krb5-locales (1.20.1-6ubuntu2.6) ...
+Setting up libldap-common (2.6.7+dfsg-1~exp1ubuntu8.2) ...
+Setting up libkrb5support0:amd64 (1.20.1-6ubuntu2.6) ...
+Setting up libsasl2-modules-db:amd64 (2.1.28+dfsg1-5ubuntu3.1) ...
+Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2build7) ...
+Setting up libk5crypto3:amd64 (1.20.1-6ubuntu2.6) ...
+Setting up libsasl2-2:amd64 (2.1.28+dfsg1-5ubuntu3.1) ...
+Setting up libkrb5-3:amd64 (1.20.1-6ubuntu2.6) ...
+Setting up publicsuffix (20231001.0357-0.1) ...
+Setting up libldap2:amd64 (2.6.7+dfsg-1~exp1ubuntu8.2) ...
+Setting up libgssapi-krb5-2:amd64 (1.20.1-6ubuntu2.6) ...
+Setting up libssh-4:amd64 (0.10.6-2ubuntu0.1) ...
+Setting up libcurl4t64:amd64 (8.5.0-2ubuntu10.6) ...
+Setting up curl (8.5.0-2ubuntu10.6) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.4) ...
+downloading uv 0.7.13 x86_64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Initialized project `[36mapp[39m`
+Using CPython 3.12.3 interpreter at: [36m/usr/bin/python3.12[39m
+Creating virtual environment at: [36m.venv[39m
+[37m⠋[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠋[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠋[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mapp==0.1.0                                                                                                                                                    [0m[2K[37m⠙[0m [2mpytest==8.4.1                                                                                                                                                 [0m[2K[37m⠙[0m [2mcolorama==0.4.6                                                                                                                                               [0m[2K[37m⠙[0m [2mcolorama==0.4.6                                                                                                                                               [0m[2K[37m⠙[0m [2miniconfig==2.1.0                                                                                                                                              [0m[2K[37m⠙[0m [2mpackaging==25.0                                                                                                                                               [0m[2K[37m⠙[0m [2mpluggy==1.6.0                                                                                                                                                 [0m[2K[37m⠙[0m [2mpygments==2.19.2                                                                                                                                              [0m[2K[37m⠙[0m [2m                                                                                                                                                              [0m[2K[2mResolved [1m7 packages[0m [2min 110ms[0m[0m
+[37m⠋[0m [2mPreparing packages...[0m (0/0)                                                                                                                                   [2K[37m⠙[0m [2mPreparing packages...[0m (0/0)                                                                                                                                   [2K[37m⠙[0m [2mPreparing packages...[0m (0/5)                                                                                                                                   [2K[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpytest              [0m [32m[2m------------------------------[0m[0m     0 B/356.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpytest              [0m [32m[2m------------------------------[0m[0m     0 B/356.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpytest              [0m [32m[2m------------------------------[0m[0m     0 B/356.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpytest              [0m [32m[2m------------------------------[0m[0m     0 B/356.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpytest              [0m [32m[2m------------------------------[0m[0m     0 B/356.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpytest              [0m [32m[2m------------------------------[0m[0m     0 B/356.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpytest              [0m [32m[2m------------------------------[0m[0m     0 B/356.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m[2m------------------------------[0m[0m     0 B/5.91 KiB
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpytest              [0m [32m[2m------------------------------[0m[0m     0 B/356.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [4A[2K[1B[2K[1B[2K[1B[2K[1B[2K[4A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m[2m------------------------------[0m[0m     0 B/5.91 KiB
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpytest              [0m [32m[2m------------------------------[0m[0m     0 B/356.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [4A[2K[1B[2K[1B[2K[1B[2K[1B[2K[4A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m[2m------------------------------[0m[0m     0 B/5.91 KiB
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpytest              [0m [32m[2m------------------------------[0m[0m     0 B/356.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [4A[2K[1B[2K[1B[2K[1B[2K[1B[2K[4A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m[2m------------------------------[0m[0m     0 B/5.91 KiB
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpytest              [0m [32m[2m------------------------------[0m[0m     0 B/356.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [4A[2K[1B[2K[1B[2K[1B[2K[1B[2K[4A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m[2m------------------------------[0m[0m     0 B/5.91 KiB
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpytest              [0m [32m[2m------------------------------[0m[0m     0 B/356.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [4A[2K[1B[2K[1B[2K[1B[2K[1B[2K[4A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m[2m------------------------------[0m[0m     0 B/5.91 KiB
+[2mpluggy              [0m [32m[2m------------------------------[0m[0m     0 B/20.06 KiB
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpytest              [0m [32m[2m------------------------------[0m[0m     0 B/356.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [5A[2K[1B[2K[1B[2K[1B[2K[1B[2K[1B[2K[5A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m[2m------------------------------[0m[0m     0 B/5.91 KiB
+[2mpluggy              [0m [32m[2m------------------------------[0m[0m     0 B/20.06 KiB
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpytest              [0m [32m[2m------------------------------[0m[0m     0 B/356.91 KiB
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 16.00 KiB/1.17 MiB                                                                                          [5A[2K[1B[2K[1B[2K[1B[2K[1B[2K[1B[2K[5A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m[2m------------------------------[0m[0m     0 B/5.91 KiB
+[2mpluggy              [0m [32m[2m------------------------------[0m[0m     0 B/20.06 KiB
+[2mpackaging           [0m [32m-------[2m-----------------------[0m[0m 14.88 KiB/64.91 KiB
+[2mpytest              [0m [32m[2m------------------------------[0m[0m     0 B/356.91 KiB
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 16.00 KiB/1.17 MiB                                                                                          [5A[2K[1B[2K[1B[2K[1B[2K[1B[2K[1B[2K[5A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpluggy              [0m [32m[2m------------------------------[0m[0m     0 B/20.06 KiB
+[2mpackaging           [0m [32m-------[2m-----------------------[0m[0m 14.88 KiB/64.91 KiB
+[2mpytest              [0m [32m[2m------------------------------[0m[0m     0 B/356.91 KiB
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 16.00 KiB/1.17 MiB                                                                                          [4A[2K[1B[2K[1B[2K[1B[2K[1B[2K[4A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpackaging           [0m [32m---------------[2m---------------[0m[0m 30.88 KiB/64.91 KiB
+[2mpytest              [0m [32m---[2m---------------------------[0m[0m 32.00 KiB/356.91 KiB
+[2mpygments            [0m [32m--[2m----------------------------[0m[0m 78.61 KiB/1.17 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpackaging           [0m [32m------------------------------[2m[0m[0m 62.88 KiB/64.91 KiB
+[2mpytest              [0m [32m-----[2m-------------------------[0m[0m 48.00 KiB/356.91 KiB
+[2mpygments            [0m [32m---[2m---------------------------[0m[0m 105.32 KiB/1.17 MiB                                                                                         [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpytest              [0m [32m------[2m------------------------[0m[0m 62.74 KiB/356.91 KiB
+[2mpygments            [0m [32m----[2m--------------------------[0m[0m 126.61 KiB/1.17 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpytest              [0m [32m--------[2m----------------------[0m[0m 94.74 KiB/356.91 KiB
+[2mpygments            [0m [32m----[2m--------------------------[0m[0m 142.61 KiB/1.17 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠹[0m [2mPreparing packages...[0m (3/5)
+[2mpytest              [0m [32m----------[2m--------------------[0m[0m 110.74 KiB/356.91 KiB
+[2mpygments            [0m [32m-----[2m-------------------------[0m[0m 174.61 KiB/1.17 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠹[0m [2mPreparing packages...[0m (3/5)
+[2mpytest              [0m [32m-----------[2m-------------------[0m[0m 126.74 KiB/356.91 KiB
+[2mpygments            [0m [32m-----[2m-------------------------[0m[0m 174.61 KiB/1.17 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠹[0m [2mPreparing packages...[0m (3/5)
+[2mpytest              [0m [32m-----------[2m-------------------[0m[0m 126.74 KiB/356.91 KiB
+[2mpygments            [0m [32m-----[2m-------------------------[0m[0m 190.50 KiB/1.17 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠹[0m [2mPreparing packages...[0m (3/5)
+[2mpytest              [0m [32m-----------[2m-------------------[0m[0m 126.74 KiB/356.91 KiB
+[2mpygments            [0m [32m-----[2m-------------------------[0m[0m 190.61 KiB/1.17 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠸[0m [2mPreparing packages...[0m (3/5)
+[2mpytest              [0m [32m-----------[2m-------------------[0m[0m 126.74 KiB/356.91 KiB
+[2mpygments            [0m [32m-----[2m-------------------------[0m[0m 190.61 KiB/1.17 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠸[0m [2mPreparing packages...[0m (3/5)
+[2mpytest              [0m [32m------------[2m------------------[0m[0m 142.74 KiB/356.91 KiB
+[2mpygments            [0m [32m-----[2m-------------------------[0m[0m 190.61 KiB/1.17 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠸[0m [2mPreparing packages...[0m (3/5)
+[2mpytest              [0m [32m-----------------------[2m-------[0m[0m 270.74 KiB/356.91 KiB
+[2mpygments            [0m [32m--------[2m----------------------[0m[0m 286.61 KiB/1.17 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠸[0m [2mPreparing packages...[0m (3/5)
+[2mpytest              [0m [32m-----------------------------[2m-[0m[0m 334.74 KiB/356.91 KiB
+[2mpygments            [0m [32m---------[2m---------------------[0m[0m 350.61 KiB/1.17 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠸[0m [2mPreparing packages...[0m (3/5)
+[2mpytest              [0m [32m------------------------------[2m[0m[0m 350.74 KiB/356.91 KiB
+[2mpygments            [0m [32m----------[2m--------------------[0m[0m 366.61 KiB/1.17 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠸[0m [2mPreparing packages...[0m (3/5)
+[2mpygments            [0m [32m----------[2m--------------------[0m[0m 366.61 KiB/1.17 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠼[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m----------[2m--------------------[0m[0m 366.61 KiB/1.17 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠼[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m-------------[2m-----------------[0m[0m 478.61 KiB/1.17 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠼[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m---------------[2m---------------[0m[0m 590.61 KiB/1.17 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠼[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m-----------------[2m-------------[0m[0m 654.61 KiB/1.17 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠴[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m-------------------[2m-----------[0m[0m 734.61 KiB/1.17 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠴[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m---------------------[2m---------[0m[0m 830.61 KiB/1.17 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠦[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m----------------------[2m--------[0m[0m 846.61 KiB/1.17 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠦[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m----------------------[2m--------[0m[0m 862.61 KiB/1.17 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠦[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m-----------------------[2m-------[0m[0m 878.61 KiB/1.17 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠦[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m-----------------------[2m-------[0m[0m 894.61 KiB/1.17 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠦[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m-----------------------[2m-------[0m[0m 910.61 KiB/1.17 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠦[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m------------------------[2m------[0m[0m 926.61 KiB/1.17 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠧[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m------------------------[2m------[0m[0m 942.61 KiB/1.17 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠧[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m----------------------------[2m--[0m[0m 1.07 MiB/1.17 MiB                                                                                           [1A[2K[1B[2K[1A[37m⠇[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m----------------------------[2m--[0m[0m 1.07 MiB/1.17 MiB                                                                                           [1A[2K[1B[2K[1A[37m⠇[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m----------------------------[2m--[0m[0m 1.09 MiB/1.17 MiB                                                                                           [1A[2K[1B[2K[1A[37m⠇[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m-----------------------------[2m-[0m[0m 1.10 MiB/1.17 MiB                                                                                           [1A[2K[1B[2K[1A[37m⠇[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m-----------------------------[2m-[0m[0m 1.12 MiB/1.17 MiB                                                                                           [1A[2K[1B[2K[1A[37m⠋[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m-----------------------------[2m-[0m[0m 1.12 MiB/1.17 MiB                                                                                           [1A[2K[1B[2K[1A[37m⠋[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m------------------------------[2m[0m[0m 1.14 MiB/1.17 MiB                                                                                           [1A[2K[1B[2K[1A[37m⠋[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m------------------------------[2m[0m[0m 1.15 MiB/1.17 MiB                                                                                           [1A[2K[1B[2K[1A[37m⠋[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m------------------------------[2m[0m[0m 1.17 MiB/1.17 MiB                                                                                           [1A[2K[1B[2K[1A[37m⠋[0m [2mPreparing packages...[0m (4/5)
+[2mpygments            [0m [32m------------------------------[2m[0m[0m 1.17 MiB/1.17 MiB                                                                                           [1A[2K[1B[2K[1A[37m⠋[0m [2mPreparing packages...[0m (4/5)                                                                                                                                   [2K[37m⠋[0m [2m[0m (5/5)                                                                                                                                                        [2K[2mPrepared [1m5 packages[0m [2min 1.75s[0m[0m
+░░░░░░░░░░░░░░░░░░░░ [0/0] [2mInstalling wheels...                                                                                                                 [0m[2K░░░░░░░░░░░░░░░░░░░░ [0/5] [2mInstalling wheels...                                                                                                                 [0m[2K░░░░░░░░░░░░░░░░░░░░ [0/5] [2miniconfig==2.1.0                                                                                                                     [0m[2K████░░░░░░░░░░░░░░░░ [1/5] [2miniconfig==2.1.0                                                                                                                     [0m[2K████░░░░░░░░░░░░░░░░ [1/5] [2mpluggy==1.6.0                                                                                                                        [0m[2K████████░░░░░░░░░░░░ [2/5] [2mpluggy==1.6.0                                                                                                                        [0m[2K████████░░░░░░░░░░░░ [2/5] [2mpytest==8.4.1                                                                                                                        [0m[2K████████████░░░░░░░░ [3/5] [2mpytest==8.4.1                                                                                                                        [0m[2K████████████░░░░░░░░ [3/5] [2mpackaging==25.0                                                                                                                      [0m[2K████████████████░░░░ [4/5] [2mpackaging==25.0                                                                                                                      [0m[2K████████████████░░░░ [4/5] [2mpygments==2.19.2                                                                                                                     [0m[2K████████████████████ [5/5] [2mpygments==2.19.2                                                                                                                     [0m[2K[2mInstalled [1m5 packages[0m [2min 12ms[0m[0m
+ [32m+[39m [1miniconfig[0m[2m==2.1.0[0m
+ [32m+[39m [1mpackaging[0m[2m==25.0[0m
+ [32m+[39m [1mpluggy[0m[2m==1.6.0[0m
+ [32m+[39m [1mpygments[0m[2m==2.19.2[0m
+ [32m+[39m [1mpytest[0m[2m==8.4.1[0m
+[1m===================================================================== test session starts ======================================================================[0m
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+[1mcollecting ... [0m[1mcollected 2 items                                                                                                                                              [0m
+
+../tests/test_outputs.py [32m.[0m[31mF[0m[31m                                                                                                                              [100%][0m
+
+=========================================================================== FAILURES ===========================================================================
+[31m[1m__________________________________________________________________ test_solution_file_content __________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_solution_file_content[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""[39;49;00m
+    [33m    To verify whether the answer is correct or not.[39;49;00m
+    [33m[39;49;00m
+    [33m    We use the following code to solve the mixed integer programming problem[39;49;00m
+    [33m    on a CloudLab r650 machine using 32 CPU cores,[39;49;00m
+    [33m    with a runtime of approximately 5000 seconds.[39;49;00m
+    [33m[39;49;00m
+    [33m    import pulp[39;49;00m
+    [33m[39;49;00m
+    [33m    mps_filename = "question.mps"[39;49;00m
+    [33m[39;49;00m
+    [33m    lpvars, model = pulp.LpProblem.fromMPS(mps_filename, sense=pulp.LpMinimize)[39;49;00m
+    [33m[39;49;00m
+    [33m    solver = pulp.PULP_CBC_CMD(msg=True, threads=32)[39;49;00m
+    [33m[39;49;00m
+    [33m    status = model.solve(solver)[39;49;00m
+    [33m[39;49;00m
+    [33m    print(f"Status: {pulp.LpStatus[status]}")[39;49;00m
+    [33m[39;49;00m
+    [33m    if status == pulp.LpStatusOptimal:[39;49;00m
+    [33m        print(f"Objective value: {model.objective.value()}")[39;49;00m
+    [33m[39;49;00m
+    [33m    print(f"mps_filename: {mps_filename}")[39;49;00m
+    [33m    """[39;49;00m[90m[39;49;00m
+        solution_path = Path([33m"[39;49;00m[33m/app/answer.txt[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+>       [94massert[39;49;00m solution_path.read_text().strip() == [33m"[39;49;00m[33m176[39;49;00m[33m"[39;49;00m, ([90m[39;49;00m
+            [33mf[39;49;00m[33m"[39;49;00m[33mExpected [39;49;00m[33m'[39;49;00m[33m176[39;49;00m[33m'[39;49;00m[33m but got [39;49;00m[33m'[39;49;00m[33m{[39;49;00msolution_path.read_text().strip()[33m}[39;49;00m[33m'[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        )[90m[39;49;00m
+[1m[31mE       AssertionError: Expected '176' but got ''[0m
+[1m[31mE       assert '' == '176'[0m
+[1m[31mE         [0m
+[1m[31mE         [0m[91m- 176[39;49;00m[90m[39;49;00m[0m
+
+[1m[31m/tests/test_outputs.py[0m:46: AssertionError
+============================================================================ PASSES ============================================================================
+[36m[1m=================================================================== short test summary info ====================================================================[0m
+[32mPASSED[0m ../tests/test_outputs.py::[1mtest_solution_file_exists[0m
+[31mFAILED[0m ../tests/test_outputs.py::[1mtest_solution_file_content[0m - AssertionError: Expected '176' but got ''
+[31m================================================================= [31m[1m1 failed[0m, [32m1 passed[0m[31m in 0.03s[0m[31m ==================================================================[0m
+[?2004hroot@ad407add8448:/app# [?2004l
+exit
+[0;32masciinema: recording finished[0m
+[0;32masciinema: asciicast saved to /logs/tests.cast[0m
+[?2004hroot@ad407add8448:/app# 

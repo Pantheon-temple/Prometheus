@@ -1,0 +1,14 @@
+[?2004hroot@ad407add8448:/app# asciinema rec --stdin /logs/agent.cast
+[?2004l[0;32masciinema: recording asciicast to /logs/agent.cast[0m
+[0;32masciinema: press <ctrl-d> or type "exit" when you're done[0m
+[?2004hroot@ad407add8448:/app# clear
+[?2004l[H[J[3J[?2004hroot@ad407add8448:/app# cd /app; tmux wait -S done
+[?2004l[?2004hroot@ad407add8448:/app# cbc question.mps solve solu solution.txt; tmux wait -S done
+[?2004lbash: cbc: command not found
+[?2004hroot@ad407add8448:/app# grep -E "^Objective value:" solution.txt | awk '{print int($3)}' > answer.txt; tmux wait -S done
+[?2004lgrep: solution.txt: No such file or directory
+[?2004hroot@ad407add8448:/app# [?2004l
+exit
+[0;32masciinema: recording finished[0m
+[0;32masciinema: asciicast saved to /logs/agent.cast[0m
+[?2004hroot@ad407add8448:/app# 

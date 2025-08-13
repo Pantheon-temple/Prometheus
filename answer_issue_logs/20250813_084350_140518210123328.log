@@ -1,0 +1,12 @@
+2025-08-13 08:43:52,122 - thread-140518210123328.prometheus.docker.general_container.GeneralContainer - INFO - Created temporary project directory: /tmp/tmp2o7a8c_r/Prometheus
+2025-08-13 08:43:52,262 - thread-140518210123328.prometheus.lang_graph.nodes.issue_classification_subgraph_node - INFO - Enter IssueClassificationSubgraphNode
+2025-08-13 08:43:52,262 - thread-140518210123328.prometheus.lang_graph.nodes.context_retrieval_subgraph_node - INFO - Enter context retrieval subgraph
+2025-08-13 08:44:04,809 - thread-140518210123328.prometheus.lang_graph.nodes.context_extraction_node - INFO - Starting context extraction process
+2025-08-13 08:44:09,073 - thread-140518210123328.prometheus.lang_graph.nodes.context_extraction_node - ERROR - The file scripts/setup_win311_vm.sh does not exist.
+2025-08-13 08:44:09,073 - thread-140518210123328.prometheus.lang_graph.nodes.context_extraction_node - INFO - Context extraction complete, returning context []
+2025-08-13 08:44:21,798 - thread-140518210123328.prometheus.lang_graph.nodes.context_extraction_node - INFO - Starting context extraction process
+2025-08-13 08:44:33,101 - thread-140518210123328.prometheus.lang_graph.nodes.context_extraction_node - ERROR - The file ISSUE_DESCRIPTION.md does not exist.
+2025-08-13 08:44:33,101 - thread-140518210123328.prometheus.lang_graph.nodes.context_extraction_node - ERROR - The file ISSUE_DESCRIPTION.md does not exist.
+2025-08-13 08:44:33,101 - thread-140518210123328.prometheus.lang_graph.nodes.context_extraction_node - ERROR - The file ISSUE_DESCRIPTION.md does not exist.
+2025-08-13 08:44:33,101 - thread-140518210123328.prometheus.lang_graph.nodes.context_extraction_node - ERROR - The file ISSUE_DESCRIPTION.md does not exist.
+2025-08-13 08:44:33,101 - thread-140518210123328.prometheus.lang_graph.nodes.context_extraction_node - INFO - Context extraction complete, returning context []

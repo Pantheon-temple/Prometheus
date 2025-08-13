@@ -1,0 +1,901 @@
+Processing tasks in duration order (longest first):
++-----+---------------------------------------------+------------+------------+
+|   # | Task Name                                   | Duration   | Source     |
++=====+=============================================+============+============+
+|   1 | chem-rf                                     | 960m 0s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|   2 | mixed-integer-programming-1                 | 360m 30s   | calculated |
++-----+---------------------------------------------+------------+------------+
+|   3 | install-windows-xp                          | 62m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|   4 | install-windows-3.11                        | 32m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|   5 | circuit-fibsqrt                             | 30m 45s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|   6 | parallelize-graph                           | 22m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|   7 | super-benchmark-upet                        | 22m 0s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|   8 | mcmc-sampling-stan                          | 20m 0s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|   9 | build-linux-kernel-qemu                     | 20m 0s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  10 | lean4-proof                                 | 20m 0s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  11 | stable-parallel-kmeans                      | 17m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  12 | play-zork-easy                              | 17m 10s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  13 | play-zork                                   | 17m 10s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  14 | eval-mteb                                   | 17m 0s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  15 | enemy-grid-escape                           | 16m 0s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  16 | reverse-engineering                         | 15m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  17 | feal-linear-cryptanalysis                   | 15m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  18 | hdfs-deployment                             | 15m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  19 | feal-differential-cryptanalysis             | 15m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  20 | conda-env-conflict-resolution               | 13m 20s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  21 | swe-bench-astropy-1                         | 13m 20s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  22 | word2vec-from-scratch                       | 12m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  23 | causal-inference-r                          | 12m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  24 | solve-maze-challenge                        | 11m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  25 | swe-bench-astropy-2                         | 11m 20s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  26 | home-server-https                           | 10m 0s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  27 | sudo-llvm-ir                                | 10m 0s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  28 | run-pdp11-code                              | 9m 20s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  29 | swe-bench-fsspec                            | 9m 20s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  30 | adaptive-rejection-sampler                  | 8m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  31 | blind-maze-explorer-algorithm               | 8m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  32 | blind-maze-explorer-5x5                     | 8m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  33 | incompatible-python-fasttext                | 7m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  34 | train-fasttext                              | 7m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  35 | chem-property-targeting                     | 6m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  36 | attention-mil                               | 6m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  37 | neuron-to-jaxley-conversion                 | 6m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  38 | cross-entropy-method                        | 6m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  39 | security-celery-redis-rce                   | 6m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  40 | grid-pattern-transform                      | 6m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  41 | qemu-startup                                | 5m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  42 | path-tracing                                | 5m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  43 | qemu-alpine-ssh                             | 5m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  44 | path-tracing-reverse                        | 5m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  45 | count-dataset-tokens                        | 5m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  46 | download-youtube                            | 5m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  47 | git-multibranch                             | 4m 45s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  48 | aimo-airline-departures                     | 4m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  49 | pytorch-model-cli                           | 4m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  50 | cron-broken-network                         | 4m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  51 | tree-directory-parser                       | 4m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  52 | broken-python                               | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  53 | sanitize-git-repo                           | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  54 | kv-store-grpc                               | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  55 | password-recovery                           | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  56 | prove-plus-comm                             | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  57 | simple-web-scraper                          | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  58 | solana-data                                 | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  59 | build-initramfs-qemu                        | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  60 | cobol-modernization                         | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  61 | new-encrypt-command                         | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  62 | broken-networking                           | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  63 | pandas-etl                                  | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  64 | fibonacci-server                            | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  65 | setup-custom-dev-env                        | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  66 | intrusion-detection                         | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  67 | create-bucket                               | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  68 | classifier-debug                            | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  69 | tmux-advanced-workflow                      | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  70 | processing-pipeline                         | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  71 | simple-sheets-put                           | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  72 | oom                                         | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  73 | heterogeneous-dates                         | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  74 | decommissioning-service-with-sensitive-data | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  75 | sqlite-with-gcov                            | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  76 | nginx-request-logging                       | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  77 | swe-bench-langcodes                         | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  78 | gpt2-codegolf                               | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  79 | modernize-fortran-build                     | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  80 | parallel-particle-simulator                 | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  81 | cartpole-rl-training                        | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  82 | fix-permissions                             | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  83 | recover-obfuscated-files                    | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  84 | polyglot-c-py                               | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  85 | gcc-compiler-optimization                   | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  86 | hello-world                                 | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  87 | reshard-c4-data                             | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  88 | sqlite-db-truncate                          | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  89 | extract-moves-from-video                    | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  90 | csv-to-parquet                              | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  91 | configure-git-webserver                     | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  92 | organization-json-generator                 | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  93 | security-vulhub-minio                       | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  94 | extract-elf                                 | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  95 | git-workflow-hack                           | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  96 | write-compressor                            | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  97 | pcap-to-netflow                             | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  98 | hf-model-inference                          | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  99 | weighted-max-sat-solver                     | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 100 | mlflow-register                             | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 101 | count-call-stack                            | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 102 | chess-best-move                             | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 103 | npm-conflict-resolution                     | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 104 | polyglot-rust-c                             | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 105 | crack-7z-hash                               | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 106 | fix-pandas-version                          | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 107 | fix-git                                     | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 108 | get-bitcoin-nodes                           | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 109 | raman-fitting                               | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 110 | cpp-compatibility                           | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 111 | openssl-selfsigned-cert                     | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 112 | pandas-sql-query                            | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 113 | make-mips-interpreter                       | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 114 | jupyter-notebook-server                     | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 115 | pytorch-model-recovery                      | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 116 | make-doom-for-mips                          | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 117 | build-tcc-qemu                              | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 118 | logistic-regression-divergence              | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 119 | privilege-escalation                        | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 120 | form-filling                                | 3m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+| 121 | extract-safely                              | 2m 40s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 122 | jq-data-processing                          | 2m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 123 | rare-mineral-allocation                     | 2m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 124 | assign-seats                                | 2m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+| 125 | vim-terminal-task                           | 2m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+| 126 | slurm-simple-node-monitoring                | 1m 0s      | historical |
++-----+---------------------------------------------+------------+------------+
+Total tasks: 126
+Starting harness run
+Run ID: 2025-08-13__09-37-19
+Running task: chem-rf
+Running task: install-windows-xp
+Running task: mixed-integer-programming-1
+Running task: install-windows-3.11
+Running docker compose command: docker compose -p chem-rf-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/chem-rf/docker-compose.yaml build
+Running docker compose command: docker compose -p mixed-integer-programming-1-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/mixed-integer-programming-1/docker-compose.yaml build
+Running docker compose command: docker compose -p install-windows-xp-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/install-windows-xp/docker-compose.yaml build
+Running docker compose command: docker compose -p install-windows-3-11-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/install-windows-3.11/docker-compose.yaml build
+Running docker compose command: docker compose -p mixed-integer-programming-1-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/mixed-integer-programming-1/docker-compose.yaml up -d
+Running docker compose command: docker compose -p chem-rf-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/chem-rf/docker-compose.yaml up -d
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/agent.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/agent.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['cd /app', '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Blocking command completed in 0.09s.
+Sending keys: ['cbc question.mps solve solu solution.txt', '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Blocking command completed in 0.08s.
+Sending keys: ['grep -E "^Objective value:" solution.txt | awk \'{print int($3)}\' > answer.txt', '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Blocking command completed in 0.06s.
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/tests.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['bash ', '/tests/run-tests.sh', '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Running docker compose command: docker compose -p install-windows-xp-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/install-windows-xp/docker-compose.yaml up -d
+Running docker compose command: docker compose -p install-windows-3-11-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/install-windows-3.11/docker-compose.yaml up -d
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/agent.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/agent.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/tests.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['bash ', '/tests/run-tests.sh', '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 300.0
+Blocking command completed in 9.67s.
+Stopping recording.
+Sending keys: ['C-d'] min_timeout_sec: 0.1 max_timeout_sec: 180.0
+Stopping recording.
+Sending keys: ['C-d'] min_timeout_sec: 0.1 max_timeout_sec: 180.0
+Running docker compose command: docker compose -p mixed-integer-programming-1-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/mixed-integer-programming-1/docker-compose.yaml down
+Unresolved task mixed-integer-programming-1
+Running task: circuit-fibsqrt
+Running docker compose command: docker compose -p circuit-fibsqrt-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/circuit-fibsqrt/docker-compose.yaml build
+Blocking command completed in 21.00s.
+Stopping recording.
+Sending keys: ['C-d'] min_timeout_sec: 0.1 max_timeout_sec: 180.0
+Stopping recording.
+Sending keys: ['C-d'] min_timeout_sec: 0.1 max_timeout_sec: 180.0
+Running docker compose command: docker compose -p install-windows-3-11-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/install-windows-3.11/docker-compose.yaml down
+Unresolved task install-windows-3.11
+Running task: parallelize-graph
+Running docker compose command: docker compose -p parallelize-graph-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/parallelize-graph/docker-compose.yaml build
+Running docker compose command: docker compose -p parallelize-graph-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/parallelize-graph/docker-compose.yaml up -d
+Running docker compose command: docker compose -p circuit-fibsqrt-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/circuit-fibsqrt/docker-compose.yaml up -d
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/agent.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/agent.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/tests.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['bash ', '/tests/run-tests.sh', '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 90.0
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/tests.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['bash ', '/tests/run-tests.sh', '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 300.0
+Blocking command completed in 7.60s.
+Stopping recording.
+Sending keys: ['C-d'] min_timeout_sec: 0.1 max_timeout_sec: 180.0
+Stopping recording.
+Sending keys: ['C-d'] min_timeout_sec: 0.1 max_timeout_sec: 180.0
+Running docker compose command: docker compose -p circuit-fibsqrt-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/circuit-fibsqrt/docker-compose.yaml down
+Unresolved task circuit-fibsqrt
+Running task: super-benchmark-upet
+Running docker compose command: docker compose -p super-benchmark-upet-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/super-benchmark-upet/docker-compose.yaml build
+Blocking command completed in 21.19s.
+Stopping recording.
+Sending keys: ['C-d'] min_timeout_sec: 0.1 max_timeout_sec: 180.0
+Stopping recording.
+Sending keys: ['C-d'] min_timeout_sec: 0.1 max_timeout_sec: 180.0
+Running docker compose command: docker compose -p install-windows-xp-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/install-windows-xp/docker-compose.yaml down
+Unresolved task install-windows-xp
+Running task: mcmc-sampling-stan
+Running docker compose command: docker compose -p mcmc-sampling-stan-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/mcmc-sampling-stan/docker-compose.yaml build
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/tests.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['bash ', '/tests/run-tests.sh', '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 28800.0
+Running docker compose command: docker compose -p mcmc-sampling-stan-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/mcmc-sampling-stan/docker-compose.yaml up -d
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/agent.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Docker compose command failed with exit code 130
+Command: docker compose -p super-benchmark-upet-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/super-benchmark-upet/docker-compose.yaml build
+STDOUT: #1 [internal] load local bake definitions
+#1 reading from stdin 672B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile:
+#2 transferring dockerfile: 602B done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/python:3.10-slim-bookworm
+#3 DONE 0.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 1.0s
+
+#5 [1/6] FROM docker.io/library/python:3.10-slim-bookworm@sha256:f3fc6b72ff54ef94e52b1c9ede8a3d03281adc8a87f393ffbaf42dfc2ff593cc
+#5 resolve docker.io/library/python:3.10-slim-bookworm@sha256:f3fc6b72ff54ef94e52b1c9ede8a3d03281adc8a87f393ffbaf42dfc2ff593cc done
+#5 sha256:5a882c40e453486c2b2563ec357b2009865e5af3a95558b79a1013e3ec34a46c 1.75kB / 1.75kB done
+#5 sha256:441d4fb629177413ef6d87de2376f027a39da20ffe467a247a15df5ded5d60c6 5.40kB / 5.40kB done
+#5 sha256:f3fc6b72ff54ef94e52b1c9ede8a3d03281adc8a87f393ffbaf42dfc2ff593cc 9.13kB / 9.13kB done
+#5 sha256:b404a5b55749e0a4670e4148ae140035c6ebd5ca95a68f796cad9a4847b3cd54 0B / 249B 0.3s
+#5 sha256:d84e44e3bb9b3b644fe6ec7890a9e3260b81235ec248eae475b4eafd616f0d2e 0B / 15.65MB 0.3s
+#5 sha256:d84e44e3bb9b3b644fe6ec7890a9e3260b81235ec248eae475b4eafd616f0d2e 2.10MB / 15.65MB 0.5s
+#5 ...
+
+#6 [internal] load build context
+#6 transferring context: 809B done
+#6 DONE 0.5s
+
+#5 [1/6] FROM docker.io/library/python:3.10-slim-bookworm@sha256:f3fc6b72ff54ef94e52b1c9ede8a3d03281adc8a87f393ffbaf42dfc2ff593cc
+#5 sha256:b404a5b55749e0a4670e4148ae140035c6ebd5ca95a68f796cad9a4847b3cd54 249B / 249B 0.5s done
+#5 sha256:d84e44e3bb9b3b644fe6ec7890a9e3260b81235ec248eae475b4eafd616f0d2e 3.15MB / 15.65MB 0.6s
+#5 sha256:d84e44e3bb9b3b644fe6ec7890a9e3260b81235ec248eae475b4eafd616f0d2e 6.29MB / 15.65MB 0.8s
+#5 sha256:d84e44e3bb9b3b644fe6ec7890a9e3260b81235ec248eae475b4eafd616f0d2e 8.39MB / 15.65MB 1.0s
+#5 sha256:d84e44e3bb9b3b644fe6ec7890a9e3260b81235ec248eae475b4eafd616f0d2e 11.53MB / 15.65MB 1.2s
+#5 sha256:d84e44e3bb9b3b644fe6ec7890a9e3260b81235ec248eae475b4eafd616f0d2e 13.63MB / 15.65MB 1.4s
+#5 sha256:d84e44e3bb9b3b644fe6ec7890a9e3260b81235ec248eae475b4eafd616f0d2e 14.68MB / 15.65MB 1.5s
+#5 extracting sha256:d84e44e3bb9b3b644fe6ec7890a9e3260b81235ec248eae475b4eafd616f0d2e
+#5 sha256:d84e44e3bb9b3b644fe6ec7890a9e3260b81235ec248eae475b4eafd616f0d2e 15.65MB / 15.65MB 1.6s done
+#5 extracting sha256:d84e44e3bb9b3b644fe6ec7890a9e3260b81235ec248eae475b4eafd616f0d2e 0.3s done
+#5 extracting sha256:b404a5b55749e0a4670e4148ae140035c6ebd5ca95a68f796cad9a4847b3cd54
+#5 extracting sha256:b404a5b55749e0a4670e4148ae140035c6ebd5ca95a68f796cad9a4847b3cd54 done
+#5 DONE 4.2s
+
+#7 [2/6] RUN apt-get update
+#7 0.222 Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+#7 0.235 Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+#7 0.240 Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [48.0 kB]
+#7 0.285 Get:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8793 kB]
+#7 0.346 Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [6924 B]
+#7 0.351 Get:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [273 kB]
+#7 1.067 Fetched 9328 kB in 1s (10.9 MB/s)
+#7 1.067 Reading package lists...
+#7 DONE 1.9s
+
+#8 [3/6] RUN apt-get install -y     tmux curl asciinema git build-essential gcc cmake ccache curl wget unzip sudo libreadline-dev clang zlib1g zlib1g-dev pkg-config jupyter openjdk-17-jdk     && rm -rf /var/lib/apt/lists/*
+#8 0.434 Reading package lists...
+#8 0.777 Building dependency tree...
+#8 0.846 Reading state information...
+#8 0.959 zlib1g is already the newest version (1:1.2.13.dfsg-1).
+#8 0.959 The following additional packages will be installed:
+#8 0.959   adwaita-icon-theme alsa-topology-conf alsa-ucm-conf at-spi2-common
+#8 0.959   at-spi2-core binfmt-support binutils binutils-common
+#8 0.959   binutils-x86-64-linux-gnu blt bzip2 ca-certificates-java clang-14 cmake-data
+#8 0.959   cpp cpp-12 dbus dbus-bin dbus-daemon dbus-session-bus-common
+#8 0.959   dbus-system-bus-common dbus-user-session dconf-gsettings-backend
+#8 0.959   dconf-service dirmngr dmsetup dpkg-dev fakeroot fontconfig fontconfig-config
+#8 0.959   fonts-dejavu-core fonts-dejavu-extra fonts-font-awesome
+#8 0.959   fonts-glyphicons-halflings fonts-lyx fonts-mathjax g++ g++-12 gcc-12 gdb
+#8 0.959   gir1.2-glib-2.0 git-man gnupg gnupg-l10n gnupg-utils gpg gpg-agent
+#8 0.959   gpg-wks-client gpg-wks-server gpgconf gpgsm gsettings-desktop-schemas
+#8 0.959   gtk-update-icon-cache hicolor-icon-theme icu-devtools isympy-common isympy3
+#8 0.959   java-common javascript-common jupyter-client jupyter-console jupyter-core
+#8 0.959   jupyter-nbconvert jupyter-nbextension-jupyter-js-widgets jupyter-nbformat
+#8 0.959   jupyter-notebook less lib32gcc-s1 lib32stdc++6 libabsl20220623
+#8 0.959   libalgorithm-diff-perl libalgorithm-diff-xs-perl libalgorithm-merge-perl
+#8 0.959   libaom3 libapparmor1 libarchive13 libargon2-1 libasan8 libasound2
+#8 0.959   libasound2-data libassuan0 libatk-bridge2.0-0 libatk-wrapper-java
+#8 0.959   libatk-wrapper-java-jni libatk1.0-0 libatomic1 libatspi2.0-0
+#8 0.959   libavahi-client3 libavahi-common-data libavahi-common3 libavif15
+#8 0.959   libbabeltrace1 libbinutils libblas3 libboost-dev libboost-regex1.74.0
+#8 0.959   libboost1.74-dev libbrotli1 libbsd0 libc-dev-bin libc-devtools libc6-dbg
+#8 0.959   libc6-dev libc6-i386 libcairo-gobject2 libcairo2 libcbor0.8 libcc1-0
+#8 0.959   libclang-common-14-dev libclang-cpp14 libclang-rt-14-dev libclang1-14
+#8 0.959   libcrypt-dev libcryptsetup12 libctf-nobfd0 libctf0 libcups2 libcurl3-gnutls
+#8 0.959   libcurl3-nss libcurl4 libdatrie1 libdav1d6 libdbus-1-3 libdconf1 libde265-0
+#8 0.959   libdebuginfod-common libdebuginfod1 libdeflate0 libdevmapper1.02.1
+#8 0.959   libdpkg-perl libdrm-amdgpu1 libdrm-common libdrm-intel1 libdrm-nouveau2
+#8 0.959   libdrm-radeon1 libdrm2 libdw1 libedit2 libelf1 liberror-perl
+#8 0.959   libevent-core-2.1-7 libexpat1 libexpat1-dev libfakeroot libfdisk1 libffi-dev
+#8 0.959   libfido2-1 libfile-fcntllock-perl libfontconfig1 libfontenc1 libfreetype6
+#8 0.959   libfribidi0 libgail-common libgail18 libgav1-1 libgc1 libgcc-12-dev libgd3
+#8 0.959   libgdbm-compat4 libgdk-pixbuf-2.0-0 libgdk-pixbuf2.0-bin
+#8 0.959   libgdk-pixbuf2.0-common libgfortran5 libgif7 libgirepository-1.0-1 libgl1
+#8 0.959   libgl1-mesa-dri libglapi-mesa libglib2.0-0 libglib2.0-data libglvnd0
+#8 0.959   libglx-mesa0 libglx0 libgomp1 libgpm2 libgprofng0 libgraphite2-3 libgtk2.0-0
+#8 0.959   libgtk2.0-bin libgtk2.0-common libharfbuzz0b libheif1 libhiredis0.14
+#8 0.959   libice-dev libice6 libicu-dev libicu72 libimagequant0 libip4tc2 libipt2
+#8 0.959   libisl23 libitm1 libjansson4 libjbig0 libjpeg62-turbo libjs-backbone
+#8 0.959   libjs-bootstrap libjs-bootstrap-tour libjs-codemirror libjs-es6-promise
+#8 0.959   libjs-jed libjs-jquery libjs-jquery-typeahead libjs-jquery-ui libjs-marked
+#8 0.959   libjs-mathjax libjs-moment libjs-requirejs libjs-requirejs-text
+#8 0.959   libjs-sphinxdoc libjs-text-encoding libjs-underscore libjs-xterm libjson-c5
+#8 0.959   libjsoncpp25 libkmod2 libksba8 liblapack3 liblbfgsb0 liblcms2-2
+#8 0.959   libldap-2.5-0 libldap-common liblerc4 libllvm14 libllvm15
+#8 0.959   liblocale-gettext-perl liblsan0 liblua5.3-0 libmpc3 libmpfr6 libncurses-dev
+#8 0.959   libncurses6 libnghttp2-14 libnorm1 libnpth0 libnsl-dev libnspr4
+#8 0.959   libnss-systemd libnss3 libnuma1 libobjc-12-dev libobjc4 libopenblas-dev
+#8 0.959   libopenblas-pthread-dev libopenblas0 libopenblas0-pthread libopenjp2-7
+#8 0.959   libpam-systemd libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0
+#8 0.959   libpciaccess0 libpcsclite1 libperl5.36 libpfm4 libpgm-5.3-0 libpipeline1
+#8 0.959   libpixman-1-0 libpkgconf3 libpng16-16 libproc2-0 libpsl5
+#8 0.959   libpthread-stubs0-dev libpython3-all-dev libpython3-dev libpython3-stdlib
+#8 0.959   libpython3.11 libpython3.11-dev libpython3.11-minimal libpython3.11-stdlib
+#8 0.959   libqhull-r8.0 libquadmath0 libraqm0 librav1e0 librhash0 librsvg2-2
+#8 0.959   librsvg2-common librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db
+#8 0.959   libsensors-config libsensors5 libsm-dev libsm6 libsodium23
+#8 0.959   libsource-highlight-common libsource-highlight4v5 libssh2-1 libstdc++-12-dev
+#8 0.959   libsvtav1enc1 libsystemd-shared libtcl8.6 libthai-data libthai0 libtiff6
+#8 0.959   libtirpc-dev libtk8.6 libtsan2 libubsan1 libutempter0 libuv1 libwebp7
+#8 0.959   libwebpdemux2 libwebpmux3 libx11-6 libx11-data libx11-dev libx11-xcb1
+#8 0.959   libx265-199 libxau-dev libxau6 libxaw7 libxcb-dri2-0 libxcb-dri3-0
+#8 0.959   libxcb-glx0 libxcb-present0 libxcb-randr0 libxcb-render0 libxcb-shape0
+#8 0.959   libxcb-shm0 libxcb-sync1 libxcb-xfixes0 libxcb1 libxcb1-dev libxcomposite1
+#8 0.959   libxcursor1 libxdamage1 libxdmcp-dev libxdmcp6 libxext6 libxfixes3 libxft2
+#8 0.959   libxi6 libxinerama1 libxkbfile1 libxml2 libxml2-dev libxmu6 libxmuu1 libxpm4
+#8 0.959   libxrandr2 libxrender1 libxshmfence1 libxsimd-dev libxslt1.1 libxss1
+#8 0.959   libxt-dev libxt6 libxtst6 libxv1 libxxf86dga1 libxxf86vm1 libyaml-0-2
+#8 0.959   libyuv0 libz3-4 libz3-dev libzmq5 linux-libc-dev llvm-14 llvm-14-dev
+#8 0.960   llvm-14-linker-tools llvm-14-runtime llvm-14-tools make manpages
+#8 0.960   manpages-dev media-types node-jed nss-plugin-pem openjdk-17-jdk-headless
+#8 0.960   openjdk-17-jre openjdk-17-jre-headless openssh-client pandoc pandoc-data
+#8 0.960   patch perl perl-modules-5.36 pinentry-curses pkgconf pkgconf-bin procps
+#8 0.960   psmisc publicsuffix python-babel-localedata python-matplotlib-data
+#8 0.960   python-tinycss2-common python3 python3-all python3-all-dev python3-appdirs
+#8 0.960   python3-argon2 python3-asttokens python3-attr python3-babel python3-backcall
+#8 0.960   python3-beniget python3-bleach python3-brotli python3-bs4 python3-bytecode
+#8 0.960   python3-cffi-backend python3-chardet python3-contourpy python3-coverage
+#8 0.960   python3-cycler python3-dateutil python3-debugpy python3-decorator
+#8 0.960   python3-defusedxml python3-dev python3-distutils python3-entrypoints
+#8 0.960   python3-executing python3-fastjsonschema python3-fonttools python3-fs
+#8 0.960   python3-gast python3-gi python3-html5lib python3-idna python3-ipykernel
+#8 0.960   python3-ipython python3-ipython-genutils python3-ipywidgets python3-jedi
+#8 0.960   python3-jinja2 python3-json-pointer python3-jsonschema
+#8 0.960   python3-jupyter-client python3-jupyter-console python3-jupyter-core
+#8 0.960   python3-jupyterlab-pygments python3-kiwisolver python3-lib2to3 python3-lxml
+#8 0.960   python3-lz4 python3-markupsafe python3-matplotlib python3-matplotlib-inline
+#8 0.960   python3-minimal python3-mpmath python3-nbclient python3-nbconvert
+#8 0.960   python3-nbformat python3-nest-asyncio python3-notebook python3-numpy
+#8 0.960   python3-olefile python3-packaging python3-pandocfilters python3-parso
+#8 0.960   python3-pexpect python3-pickleshare python3-pil python3-pil.imagetk
+#8 0.960   python3-pkg-resources python3-ply python3-prometheus-client
+#8 0.960   python3-prompt-toolkit python3-psutil python3-ptyprocess python3-pure-eval
+#8 0.960   python3-py python3-pydevd python3-pygments python3-pyparsing
+#8 0.960   python3-pyrsistent python3-pythran python3-rfc3987 python3-scipy
+#8 0.960   python3-send2trash python3-setuptools python3-six python3-soupsieve
+#8 0.960   python3-stack-data python3-sympy python3-terminado python3-tinycss2
+#8 0.960   python3-tk python3-tornado python3-traitlets python3-tz python3-ufolib2
+#8 0.960   python3-uritemplate python3-wcwidth python3-webcolors python3-webencodings
+#8 0.960   python3-widgetsnbextension python3-yaml python3-zmq python3.11
+#8 0.960   python3.11-dev python3.11-minimal rpcsvc-proto sensible-utils
+#8 0.960   shared-mime-info systemd systemd-sysv systemd-timesyncd tk8.6-blt2.5 ucf
+#8 0.960   unicode-data x11-common x11-utils x11proto-dev xauth xdg-user-dirs
+#8 0.960   xorg-sgml-doctools xtrans-dev xz-utils
+#8 0.961 Suggested packages:
+#8 0.961   binutils-doc blt-demo bzip2-doc distcc | icecc clang-14-doc wasi-libc
+#8 0.961   cmake-doc cmake-format elpa-cmake-mode ninja-build cpp-doc gcc-12-locales
+#8 0.961   cpp-12-doc pinentry-gnome3 tor debian-keyring g++-multilib g++-12-multilib
+#8 0.961   gcc-12-doc gcc-multilib autoconf automake libtool flex bison gcc-doc
+#8 0.961   gcc-12-multilib gdb-doc gdbserver gettext-base git-daemon-run
+#8 0.961   | git-daemon-sysvinit git-doc git-email git-gui gitk gitweb git-cvs
+#8 0.961   git-mediawiki git-svn parcimonie xloadimage scdaemon default-jre apache2
+#8 0.961   | lighttpd | httpd jupyter-qtconsole lrzip libasound2-plugins alsa-utils
+#8 0.961   libboost-doc libboost1.74-doc libboost-atomic1.74-dev
+#8 0.961   libboost-chrono1.74-dev libboost-container1.74-dev libboost-context1.74-dev
+#8 0.961   libboost-contract1.74-dev libboost-coroutine1.74-dev
+#8 0.961   libboost-date-time1.74-dev libboost-exception1.74-dev libboost-fiber1.74-dev
+#8 0.961   libboost-filesystem1.74-dev libboost-graph1.74-dev
+#8 0.961   libboost-graph-parallel1.74-dev libboost-iostreams1.74-dev
+#8 0.961   libboost-locale1.74-dev libboost-log1.74-dev libboost-math1.74-dev
+#8 0.961   libboost-mpi1.74-dev libboost-mpi-python1.74-dev libboost-numpy1.74-dev
+#8 0.961   libboost-program-options1.74-dev libboost-python1.74-dev
+#8 0.961   libboost-random1.74-dev libboost-regex1.74-dev
+#8 0.961   libboost-serialization1.74-dev libboost-stacktrace1.74-dev
+#8 0.961   libboost-system1.74-dev libboost-test1.74-dev libboost-thread1.74-dev
+#8 0.961   libboost-timer1.74-dev libboost-type-erasure1.74-dev libboost-wave1.74-dev
+#8 0.961   libboost1.74-tools-dev libmpfrc++-dev libntl-dev libboost-nowide1.74-dev
+#8 0.961   glibc-doc cups-common bzr libgd-tools low-memory-monitor gpm gvfs libice-doc
+#8 0.961   icu-doc libjs-jquery-lazyload libjs-json libjs-jquery-ui-docs
+#8 0.961   fonts-mathjax-extras fonts-stix libjs-mathjax-doc liblcms2-utils ncurses-doc
+#8 0.961   pciutils pcscd readline-doc librsvg2-bin libsasl2-modules-gssapi-mit
+#8 0.961   | libsasl2-modules-gssapi-heimdal libsasl2-modules-ldap libsasl2-modules-otp
+#8 0.961   libsasl2-modules-sql lm-sensors libsm-doc libstdc++-12-doc tcl8.6 tk8.6
+#8 0.961   libx11-doc libxcb-doc libxsimd-doc libxt-doc llvm-14-doc make-doc
+#8 0.961   man-browser openjdk-17-demo openjdk-17-source visualvm libnss-mdns
+#8 0.961   fonts-ipafont-gothic fonts-ipafont-mincho fonts-wqy-microhei
+#8 0.961   | fonts-wqy-zenhei fonts-indic keychain libpam-ssh monkeysphere ssh-askpass
+#8 0.961   texlive-latex-recommended texlive-xetex texlive-luatex pandoc-citeproc
+#8 0.961   texlive-latex-extra context wkhtmltopdf groff ghc nodejs php python ruby
+#8 0.961   r-base-core libjs-katex citation-style-language-styles ed diffutils-doc
+#8 0.961   perl-doc libterm-readline-gnu-perl | libterm-readline-perl-perl
+#8 0.961   libtap-harness-archive-perl pinentry-doc python3-doc python3-venv
+#8 0.961   python-argon2-doc python-attr-doc python-bleach-doc python-bytecode-doc
+#8 0.961   python-coverage-doc python-cycler-doc python-fastjsonschema-doc
+#8 0.961   python3-genshi python-ipython-doc python-ipywidgets-doc python-jinja2-doc
+#8 0.961   python-jsonschema-doc python3-pip python-lxml-doc cm-super-minimal dvipng
+#8 0.961   ffmpeg fonts-staypuft ghostscript gir1.2-gtk-3.0 inkscape ipython3
+#8 0.961   python3-cairocffi python3-gi-cairo python3-gobject python3-pyqt5 python3-sip
+#8 0.961   texlive-extra-utils python-mpmath-doc python3-gmpy2 python-nbconvert-doc
+#8 0.961   texlive-fonts-recommended texlive-plain-generic python-notebook-doc gfortran
+#8 0.961   python3-pytest python-pexpect-doc python-pil-doc python-ply-doc
+#8 0.961   python-psutil-doc subversion pydevd python-pygments-doc ttf-bitstream-vera
+#8 0.961   python-pyparsing-doc python-scipy-doc python-setuptools-doc
+#8 0.961   texlive-fonts-extra python-sympy-doc python-terminado-doc
+#8 0.961   python-tinycss2-doc tix python3-tk-dbg python3-pycurl python-tornado-doc
+#8 0.961   python3-twisted python3.11-venv python3.11-doc systemd-container
+#8 0.961   systemd-homed systemd-userdbd systemd-boot systemd-resolved libqrencode4
+#8 0.961   libtss2-esys-3.0.2-0 libtss2-mu0 libtss2-rc0 polkitd | policykit-1 zip
+#8 0.961   mesa-utils
+#8 2.937 The following NEW packages will be installed:
+#8 2.937   adwaita-icon-theme alsa-topology-conf alsa-ucm-conf asciinema at-spi2-common
+#8 2.937   at-spi2-core binfmt-support binutils binutils-common
+#8 2.937   binutils-x86-64-linux-gnu blt build-essential bzip2 ca-certificates-java
+#8 2.937   ccache clang clang-14 cmake cmake-data cpp cpp-12 curl dbus dbus-bin
+#8 2.937   dbus-daemon dbus-session-bus-common dbus-system-bus-common dbus-user-session
+#8 2.937   dconf-gsettings-backend dconf-service dirmngr dmsetup dpkg-dev fakeroot
+#8 2.937   fontconfig fontconfig-config fonts-dejavu-core fonts-dejavu-extra
+#8 2.937   fonts-font-awesome fonts-glyphicons-halflings fonts-lyx fonts-mathjax g++
+#8 2.937   g++-12 gcc gcc-12 gdb gir1.2-glib-2.0 git git-man gnupg gnupg-l10n
+#8 2.937   gnupg-utils gpg gpg-agent gpg-wks-client gpg-wks-server gpgconf gpgsm
+#8 2.937   gsettings-desktop-schemas gtk-update-icon-cache hicolor-icon-theme
+#8 2.937   icu-devtools isympy-common isympy3 java-common javascript-common jupyter
+#8 2.937   jupyter-client jupyter-console jupyter-core jupyter-nbconvert
+#8 2.937   jupyter-nbextension-jupyter-js-widgets jupyter-nbformat jupyter-notebook
+#8 2.937   less lib32gcc-s1 lib32stdc++6 libabsl20220623 libalgorithm-diff-perl
+#8 2.937   libalgorithm-diff-xs-perl libalgorithm-merge-perl libaom3 libapparmor1
+#8 2.937   libarchive13 libargon2-1 libasan8 libasound2 libasound2-data libassuan0
+#8 2.937   libatk-bridge2.0-0 libatk-wrapper-java libatk-wrapper-java-jni libatk1.0-0
+#8 2.937   libatomic1 libatspi2.0-0 libavahi-client3 libavahi-common-data
+#8 2.937   libavahi-common3 libavif15 libbabeltrace1 libbinutils libblas3 libboost-dev
+#8 2.937   libboost-regex1.74.0 libboost1.74-dev libbrotli1 libbsd0 libc-dev-bin
+#8 2.937   libc-devtools libc6-dbg libc6-dev libc6-i386 libcairo-gobject2 libcairo2
+#8 2.937   libcbor0.8 libcc1-0 libclang-common-14-dev libclang-cpp14 libclang-rt-14-dev
+#8 2.937   libclang1-14 libcrypt-dev libcryptsetup12 libctf-nobfd0 libctf0 libcups2
+#8 2.937   libcurl3-gnutls libcurl3-nss libcurl4 libdatrie1 libdav1d6 libdbus-1-3
+#8 2.937   libdconf1 libde265-0 libdebuginfod-common libdebuginfod1 libdeflate0
+#8 2.937   libdevmapper1.02.1 libdpkg-perl libdrm-amdgpu1 libdrm-common libdrm-intel1
+#8 2.937   libdrm-nouveau2 libdrm-radeon1 libdrm2 libdw1 libedit2 libelf1 liberror-perl
+#8 2.937   libevent-core-2.1-7 libexpat1 libexpat1-dev libfakeroot libfdisk1 libffi-dev
+#8 2.937   libfido2-1 libfile-fcntllock-perl libfontconfig1 libfontenc1 libfreetype6
+#8 2.937   libfribidi0 libgail-common libgail18 libgav1-1 libgc1 libgcc-12-dev libgd3
+#8 2.937   libgdbm-compat4 libgdk-pixbuf-2.0-0 libgdk-pixbuf2.0-bin
+#8 2.937   libgdk-pixbuf2.0-common libgfortran5 libgif7 libgirepository-1.0-1 libgl1
+#8 2.937   libgl1-mesa-dri libglapi-mesa libglib2.0-0 libglib2.0-data libglvnd0
+#8 2.937   libglx-mesa0 libglx0 libgomp1 libgpm2 libgprofng0 libgraphite2-3 libgtk2.0-0
+#8 2.937   libgtk2.0-bin libgtk2.0-common libharfbuzz0b libheif1 libhiredis0.14
+#8 2.937   libice-dev libice6 libicu-dev libicu72 libimagequant0 libip4tc2 libipt2
+#8 2.937   libisl23 libitm1 libjansson4 libjbig0 libjpeg62-turbo libjs-backbone
+#8 2.937   libjs-bootstrap libjs-bootstrap-tour libjs-codemirror libjs-es6-promise
+#8 2.937   libjs-jed libjs-jquery libjs-jquery-typeahead libjs-jquery-ui libjs-marked
+#8 2.937   libjs-mathjax libjs-moment libjs-requirejs libjs-requirejs-text
+#8 2.937   libjs-sphinxdoc libjs-text-encoding libjs-underscore libjs-xterm libjson-c5
+#8 2.937   libjsoncpp25 libkmod2 libksba8 liblapack3 liblbfgsb0 liblcms2-2
+#8 2.937   libldap-2.5-0 libldap-common liblerc4 libllvm14 libllvm15
+#8 2.937   liblocale-gettext-perl liblsan0 liblua5.3-0 libmpc3 libmpfr6 libncurses-dev
+#8 2.937   libncurses6 libnghttp2-14 libnorm1 libnpth0 libnsl-dev libnspr4
+#8 2.937   libnss-systemd libnss3 libnuma1 libobjc-12-dev libobjc4 libopenblas-dev
+#8 2.937   libopenblas-pthread-dev libopenblas0 libopenblas0-pthread libopenjp2-7
+#8 2.937   libpam-systemd libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0
+#8 2.937   libpciaccess0 libpcsclite1 libperl5.36 libpfm4 libpgm-5.3-0 libpipeline1
+#8 2.937   libpixman-1-0 libpkgconf3 libpng16-16 libproc2-0 libpsl5
+#8 2.937   libpthread-stubs0-dev libpython3-all-dev libpython3-dev libpython3-stdlib
+#8 2.937   libpython3.11 libpython3.11-dev libpython3.11-minimal libpython3.11-stdlib
+#8 2.937   libqhull-r8.0 libquadmath0 libraqm0 librav1e0 libreadline-dev librhash0
+#8 2.938   librsvg2-2 librsvg2-common librtmp1 libsasl2-2 libsasl2-modules
+#8 2.938   libsasl2-modules-db libsensors-config libsensors5 libsm-dev libsm6
+#8 2.938   libsodium23 libsource-highlight-common libsource-highlight4v5 libssh2-1
+#8 2.938   libstdc++-12-dev libsvtav1enc1 libsystemd-shared libtcl8.6 libthai-data
+#8 2.938   libthai0 libtiff6 libtirpc-dev libtk8.6 libtsan2 libubsan1 libutempter0
+#8 2.938   libuv1 libwebp7 libwebpdemux2 libwebpmux3 libx11-6 libx11-data libx11-dev
+#8 2.938   libx11-xcb1 libx265-199 libxau-dev libxau6 libxaw7 libxcb-dri2-0
+#8 2.938   libxcb-dri3-0 libxcb-glx0 libxcb-present0 libxcb-randr0 libxcb-render0
+#8 2.938   libxcb-shape0 libxcb-shm0 libxcb-sync1 libxcb-xfixes0 libxcb1 libxcb1-dev
+#8 2.938   libxcomposite1 libxcursor1 libxdamage1 libxdmcp-dev libxdmcp6 libxext6
+#8 2.938   libxfixes3 libxft2 libxi6 libxinerama1 libxkbfile1 libxml2 libxml2-dev
+#8 2.938   libxmu6 libxmuu1 libxpm4 libxrandr2 libxrender1 libxshmfence1 libxsimd-dev
+#8 2.938   libxslt1.1 libxss1 libxt-dev libxt6 libxtst6 libxv1 libxxf86dga1 libxxf86vm1
+#8 2.938   libyaml-0-2 libyuv0 libz3-4 libz3-dev libzmq5 linux-libc-dev llvm-14
+#8 2.938   llvm-14-dev llvm-14-linker-tools llvm-14-runtime llvm-14-tools make manpages
+#8 2.938   manpages-dev media-types node-jed nss-plugin-pem openjdk-17-jdk
+#8 2.938   openjdk-17-jdk-headless openjdk-17-jre openjdk-17-jre-headless
+#8 2.938   openssh-client pandoc pandoc-data patch perl perl-modules-5.36
+#8 2.938   pinentry-curses pkg-config pkgconf pkgconf-bin procps psmisc publicsuffix
+#8 2.938   python-babel-localedata python-matplotlib-data python-tinycss2-common
+#8 2.938   python3 python3-all python3-all-dev python3-appdirs python3-argon2
+#8 2.938   python3-asttokens python3-attr python3-babel python3-backcall
+#8 2.938   python3-beniget python3-bleach python3-brotli python3-bs4 python3-bytecode
+#8 2.938   python3-cffi-backend python3-chardet python3-contourpy python3-coverage
+#8 2.938   python3-cycler python3-dateutil python3-debugpy python3-decorator
+#8 2.938   python3-defusedxml python3-dev python3-distutils python3-entrypoints
+#8 2.938   python3-executing python3-fastjsonschema python3-fonttools python3-fs
+#8 2.938   python3-gast python3-gi python3-html5lib python3-idna python3-ipykernel
+#8 2.938   python3-ipython python3-ipython-genutils python3-ipywidgets python3-jedi
+#8 2.938   python3-jinja2 python3-json-pointer python3-jsonschema
+#8 2.938   python3-jupyter-client python3-jupyter-console python3-jupyter-core
+#8 2.938   python3-jupyterlab-pygments python3-kiwisolver python3-lib2to3 python3-lxml
+#8 2.938   python3-lz4 python3-markupsafe python3-matplotlib python3-matplotlib-inline
+#8 2.938   python3-minimal python3-mpmath python3-nbclient python3-nbconvert
+#8 2.938   python3-nbformat python3-nest-asyncio python3-notebook python3-numpy
+#8 2.938   python3-olefile python3-packaging python3-pandocfilters python3-parso
+#8 2.938   python3-pexpect python3-pickleshare python3-pil python3-pil.imagetk
+#8 2.938   python3-pkg-resources python3-ply python3-prometheus-client
+#8 2.938   python3-prompt-toolkit python3-psutil python3-ptyprocess python3-pure-eval
+#8 2.938   python3-py python3-pydevd python3-pygments python3-pyparsing
+#8 2.938   python3-pyrsistent python3-pythran python3-rfc3987 python3-scipy
+#8 2.938   python3-send2trash python3-setuptools python3-six python3-soupsieve
+#8 2.938   python3-stack-data python3-sympy python3-terminado python3-tinycss2
+#8 2.938   python3-tk python3-tornado python3-traitlets python3-tz python3-ufolib2
+#8 2.938   python3-uritemplate python3-wcwidth python3-webcolors python3-webencodings
+#8 2.938   python3-widgetsnbextension python3-yaml python3-zmq python3.11
+#8 2.938   python3.11-dev python3.11-minimal rpcsvc-proto sensible-utils
+#8 2.938   shared-mime-info sudo systemd systemd-sysv systemd-timesyncd tk8.6-blt2.5
+#8 2.938   tmux ucf unicode-data unzip wget x11-common x11-utils x11proto-dev xauth
+#8 2.938   xdg-user-dirs xorg-sgml-doctools xtrans-dev xz-utils zlib1g-dev
+#8 2.964 0 upgraded, 529 newly installed, 0 to remove and 0 not upgraded.
+#8 2.964 Need to get 592 MB of archives.
+#8 2.964 After this operation, 2724 MB of additional disk space will be used.
+#8 2.964 Get:1 http://deb.debian.org/debian bookworm/main amd64 libargon2-1 amd64 0~20171227-0.3+deb12u1 [19.4 kB]
+#8 2.970 Get:2 http://deb.debian.org/debian bookworm/main amd64 dmsetup amd64 2:1.02.185-2 [82.0 kB]
+#8 2.975 Get:3 http://deb.debian.org/debian bookworm/main amd64 libdevmapper1.02.1 amd64 2:1.02.185-2 [133 kB]
+#8 2.980 Get:4 http://deb.debian.org/debian bookworm/main amd64 libjson-c5 amd64 0.16-2 [44.1 kB]
+#8 2.981 Get:5 http://deb.debian.org/debian bookworm/main amd64 libcryptsetup12 amd64 2:2.6.1-4~deb12u2 [223 kB]
+#8 2.984 Get:6 http://deb.debian.org/debian bookworm/main amd64 libfdisk1 amd64 2.38.1-5+deb12u3 [194 kB]
+#8 2.987 Get:7 http://deb.debian.org/debian bookworm/main amd64 libkmod2 amd64 30+20221128-1 [57.9 kB]
+#8 2.987 Get:8 http://deb.debian.org/debian bookworm/main amd64 libapparmor1 amd64 3.0.8-3 [41.2 kB]
+#8 2.988 Get:9 http://deb.debian.org/debian bookworm/main amd64 libip4tc2 amd64 1.8.9-2 [19.0 kB]
+#8 2.988 Get:10 http://deb.debian.org/debian-security bookworm-security/main amd64 libsystemd-shared amd64 252.38-1~deb12u1 [1695 kB]
+#8 2.996 Get:11 http://deb.debian.org/debian-security bookworm-security/main amd64 systemd amd64 252.38-1~deb12u1 [3043 kB]
+#8 3.002 Get:12 http://deb.debian.org/debian-security bookworm-security/main amd64 systemd-sysv amd64 252.38-1~deb12u1 [42.6 kB]
+#8 3.002 Get:13 http://deb.debian.org/debian bookworm/main amd64 libdbus-1-3 amd64 1.14.10-1~deb12u1 [201 kB]
+#8 3.003 Get:14 http://deb.debian.org/debian bookworm/main amd64 dbus-bin amd64 1.14.10-1~deb12u1 [105 kB]
+#8 3.003 Get:15 http://deb.debian.org/debian bookworm/main amd64 dbus-session-bus-common all 1.14.10-1~deb12u1 [78.2 kB]
+#8 3.003 Get:16 http://deb.debian.org/debian bookworm/main amd64 libexpat1 amd64 2.5.0-1+deb12u1 [98.9 kB]
+#8 3.004 Get:17 http://deb.debian.org/debian bookworm/main amd64 dbus-daemon amd64 1.14.10-1~deb12u1 [184 kB]
+#8 3.004 Get:18 http://deb.debian.org/debian bookworm/main amd64 dbus-system-bus-common all 1.14.10-1~deb12u1 [79.3 kB]
+#8 3.005 Get:19 http://deb.debian.org/debian bookworm/main amd64 dbus amd64 1.14.10-1~deb12u1 [97.4 kB]
+#8 3.005 Get:20 http://deb.debian.org/debian bookworm/main amd64 perl-modules-5.36 all 5.36.0-7+deb12u2 [2815 kB]
+#8 3.013 Get:21 http://deb.debian.org/debian bookworm/main amd64 libgdbm-compat4 amd64 1.23-3 [48.2 kB]
+#8 3.013 Get:22 http://deb.debian.org/debian bookworm/main amd64 libperl5.36 amd64 5.36.0-7+deb12u2 [4207 kB]
+#8 3.051 Get:23 http://deb.debian.org/debian bookworm/main amd64 perl amd64 5.36.0-7+deb12u2 [239 kB]
+#8 3.069 Get:24 http://deb.debian.org/debian bookworm/main amd64 libpipeline1 amd64 1.5.7-1 [38.5 kB]
+#8 3.072 Get:25 http://deb.debian.org/debian bookworm/main amd64 binfmt-support amd64 2.2.2-2 [64.0 kB]
+#8 3.083 Get:26 http://deb.debian.org/debian bookworm/main amd64 sensible-utils all 0.0.17+nmu1 [19.0 kB]
+#8 3.083 Get:27 http://deb.debian.org/debian bookworm/main amd64 ucf all 3.0043+nmu1+deb12u1 [55.3 kB]
+#8 3.083 Get:28 http://deb.debian.org/debian bookworm/main amd64 libdebuginfod-common all 0.188-2.1 [21.5 kB]
+#8 3.083 Get:29 http://deb.debian.org/debian bookworm/main amd64 liblocale-gettext-perl amd64 1.07-5 [15.4 kB]
+#8 3.083 Get:30 http://deb.debian.org/debian bookworm/main amd64 libpython3.11-minimal amd64 3.11.2-6+deb12u6 [817 kB]
+#8 3.151 Get:31 http://deb.debian.org/debian bookworm/main amd64 python3.11-minimal amd64 3.11.2-6+deb12u6 [2064 kB]
+#8 3.314 Get:32 http://deb.debian.org/debian bookworm/main amd64 python3-minimal amd64 3.11.2-1+b1 [26.3 kB]
+#8 3.316 Get:33 http://deb.debian.org/debian bookworm/main amd64 media-types all 10.0.0 [26.1 kB]
+#8 3.317 Get:34 http://deb.debian.org/debian bookworm/main amd64 libpython3.11-stdlib amd64 3.11.2-6+deb12u6 [1798 kB]
+#8 3.459 Get:35 http://deb.debian.org/debian bookworm/main amd64 python3.11 amd64 3.11.2-6+deb12u6 [573 kB]
+#8 3.512 Get:36 http://deb.debian.org/debian bookworm/main amd64 libpython3-stdlib amd64 3.11.2-1+b1 [9312 B]
+#8 3.512 Get:37 http://deb.debian.org/debian bookworm/main amd64 python3 amd64 3.11.2-1+b1 [26.3 kB]
+#8 3.512 Get:38 http://deb.debian.org/debian-security bookworm-security/main amd64 sudo amd64 1.9.13p3-1+deb12u2 [1890 kB]
+#8 3.680 Get:39 http://deb.debian.org/debian bookworm/main amd64 less amd64 590-2.1~deb12u2 [132 kB]
+#8 3.692 Get:40 http://deb.debian.org/debian bookworm/main amd64 libproc2-0 amd64 2:4.0.2-3 [62.8 kB]
+#8 3.697 Get:41 http://deb.debian.org/debian bookworm/main amd64 procps amd64 2:4.0.2-3 [709 kB]
+#8 3.758 Get:42 http://deb.debian.org/debian bookworm/main amd64 bzip2 amd64 1.0.8-5+b1 [49.8 kB]
+#8 3.762 Get:43 http://deb.debian.org/debian-security bookworm-security/main amd64 libnss-systemd amd64 252.38-1~deb12u1 [164 kB]
+#8 3.774 Get:44 http://deb.debian.org/debian-security bookworm-security/main amd64 libpam-systemd amd64 252.38-1~deb12u1 [225 kB]
+#8 3.789 Get:45 http://deb.debian.org/debian bookworm/main amd64 manpages all 6.03-2 [1332 kB]
+#8 3.876 Get:46 http://deb.debian.org/debian bookworm/main amd64 libbsd0 amd64 0.11.7-2 [117 kB]
+#8 3.883 Get:47 http://deb.debian.org/debian bookworm/main amd64 libedit2 amd64 3.1-20221030-2 [93.0 kB]
+#8 3.889 Get:48 http://deb.debian.org/debian bookworm/main amd64 libcbor0.8 amd64 0.8.0-2+b1 [27.4 kB]
+#8 3.891 Get:49 http://deb.debian.org/debian bookworm/main amd64 libfido2-1 amd64 1.12.0-2+b1 [77.2 kB]
+#8 3.902 Get:50 http://deb.debian.org/debian bookworm-updates/main amd64 openssh-client amd64 1:9.2p1-2+deb12u7 [992 kB]
+#8 3.982 Get:51 http://deb.debian.org/debian-security bookworm-security/main amd64 systemd-timesyncd amd64 252.38-1~deb12u1 [63.6 kB]
+#8 3.989 Get:52 http://deb.debian.org/debian bookworm/main amd64 libpsl5 amd64 0.21.2-1 [58.7 kB]
+#8 3.995 Get:53 http://deb.debian.org/debian bookworm/main amd64 wget amd64 1.21.3-1+deb12u1 [937 kB]
+#8 4.082 Get:54 http://deb.debian.org/debian bookworm/main amd64 xz-utils amd64 5.4.1-1 [471 kB]
+#8 4.119 Get:55 http://deb.debian.org/debian bookworm/main amd64 hicolor-icon-theme all 0.17-2 [11.4 kB]
+#8 4.120 Get:56 http://deb.debian.org/debian-security bookworm-security/main amd64 libgdk-pixbuf2.0-common all 2.42.10+dfsg-1+deb12u2 [306 kB]
+#8 4.140 Get:57 http://deb.debian.org/debian bookworm/main amd64 libglib2.0-0 amd64 2.74.6-2+deb12u6 [1400 kB]
+#8 4.238 Get:58 http://deb.debian.org/debian-security bookworm-security/main amd64 libicu72 amd64 72.1-3+deb12u1 [9376 kB]
+#8 5.077 Get:59 http://deb.debian.org/debian-security bookworm-security/main amd64 libxml2 amd64 2.9.14+dfsg-1.3~deb12u2 [687 kB]
+#8 5.112 Get:60 http://deb.debian.org/debian bookworm/main amd64 shared-mime-info amd64 2.2-1 [729 kB]
+#8 5.173 Get:61 http://deb.debian.org/debian bookworm/main amd64 libjpeg62-turbo amd64 1:2.1.5-2 [166 kB]
+#8 5.189 Get:62 http://deb.debian.org/debian bookworm/main amd64 libpng16-16 amd64 1.6.39-2 [276 kB]
+#8 5.223 Get:63 http://deb.debian.org/debian bookworm/main amd64 libdeflate0 amd64 1.14-1 [61.4 kB]
+#8 5.231 Get:64 http://deb.debian.org/debian bookworm/main amd64 libjbig0 amd64 2.1-6.1 [31.7 kB]
+#8 5.236 Get:65 http://deb.debian.org/debian bookworm/main amd64 liblerc4 amd64 4.0.0+ds-2 [170 kB]
+#8 5.257 Get:66 http://deb.debian.org/debian bookworm/main amd64 libwebp7 amd64 1.2.4-0.2+deb12u1 [286 kB]
+#8 5.289 Get:67 http://deb.debian.org/debian bookworm/main amd64 libtiff6 amd64 4.5.0-6+deb12u2 [316 kB]
+#8 5.320 Get:68 http://deb.debian.org/debian-security bookworm-security/main amd64 libgdk-pixbuf-2.0-0 amd64 2.42.10+dfsg-1+deb12u2 [138 kB]
+#8 5.333 Get:69 http://deb.debian.org/debian bookworm/main amd64 gtk-update-icon-cache amd64 3.24.38-2~deb12u3 [44.2 kB]
+#8 5.338 Get:70 http://deb.debian.org/debian bookworm/main amd64 adwaita-icon-theme all 43-1 [5124 kB]
+#8 5.785 Get:71 http://deb.debian.org/debian bookworm/main amd64 alsa-topology-conf all 1.2.5.1-2 [15.2 kB]
+#8 5.786 Get:72 http://deb.debian.org/debian bookworm/main amd64 libasound2-data all 1.2.8-1 [20.5 kB]
+#8 5.790 Get:73 http://deb.debian.org/debian bookworm/main amd64 libasound2 amd64 1.2.8-1+b1 [362 kB]
+#8 5.836 Get:74 http://deb.debian.org/debian bookworm/main amd64 alsa-ucm-conf all 1.2.8-1 [51.7 kB]
+#8 5.841 Get:75 http://deb.debian.org/debian bookworm/main amd64 python3-pkg-resources all 66.1.1-1+deb12u1 [296 kB]
+#8 5.875 Get:76 http://deb.debian.org/debian bookworm/main amd64 asciinema all 2.2.0-1 [79.6 kB]
+#8 5.883 Get:77 http://deb.debian.org/debian bookworm/main amd64 at-spi2-common all 2.46.0-5 [162 kB]
+#8 5.902 Get:78 http://deb.debian.org/debian bookworm/main amd64 libxau6 amd64 1:1.0.9-1 [19.7 kB]
+#8 5.903 Get:79 http://deb.debian.org/debian bookworm/main amd64 libxdmcp6 amd64 1:1.1.2-3 [26.3 kB]
+#8 5.907 Get:80 http://deb.debian.org/debian bookworm/main amd64 libxcb1 amd64 1.15-1 [144 kB]
+#8 5.920 Get:81 http://deb.debian.org/debian bookworm/main amd64 libx11-data all 2:1.8.4-2+deb12u2 [292 kB]
+#8 5.945 Get:82 http://deb.debian.org/debian bookworm/main amd64 libx11-6 amd64 2:1.8.4-2+deb12u2 [760 kB]
+#8 6.010 Get:83 http://deb.debian.org/debian bookworm/main amd64 libxext6 amd64 2:1.3.4-1+b1 [52.9 kB]
+#8 6.014 Get:84 http://deb.debian.org/debian bookworm/main amd64 libxi6 amd64 2:1.8-1+b1 [84.2 kB]
+#8 6.019 Get:85 http://deb.debian.org/debian bookworm/main amd64 libatspi2.0-0 amd64 2.46.0-5 [75.4 kB]
+#8 6.025 Get:86 http://deb.debian.org/debian bookworm/main amd64 x11-common all 1:7.7+23 [252 kB]
+#8 6.041 Get:87 http://deb.debian.org/debian bookworm/main amd64 libxtst6 amd64 2:1.2.3-1.1 [28.0 kB]
+#8 6.043 Get:88 http://deb.debian.org/debian bookworm/main amd64 dbus-user-session amd64 1.14.10-1~deb12u1 [78.1 kB]
+#8 6.048 Get:89 http://deb.debian.org/debian bookworm/main amd64 libdconf1 amd64 0.40.0-4 [40.9 kB]
+#8 6.051 Get:90 http://deb.debian.org/debian bookworm/main amd64 dconf-service amd64 0.40.0-4 [31.6 kB]
+#8 6.053 Get:91 http://deb.debian.org/debian bookworm/main amd64 dconf-gsettings-backend amd64 0.40.0-4 [27.8 kB]
+#8 6.055 Get:92 http://deb.debian.org/debian bookworm/main amd64 gsettings-desktop-schemas all 43.0-1 [643 kB]
+#8 6.097 Get:93 http://deb.debian.org/debian bookworm/main amd64 at-spi2-core amd64 2.46.0-5 [57.3 kB]
+#8 6.101 Get:94 http://deb.debian.org/debian bookworm/main amd64 binutils-common amd64 2.40-2 [2487 kB]
+#8 6.437 Get:95 http://deb.debian.org/debian bookworm/main amd64 libbinutils amd64 2.40-2 [572 kB]
+#8 6.555 Get:96 http://deb.debian.org/debian bookworm/main amd64 libctf-nobfd0 amd64 2.40-2 [153 kB]
+#8 6.582 Get:97 http://deb.debian.org/debian bookworm/main amd64 libctf0 amd64 2.40-2 [89.8 kB]
+#8 6.597 Get:98 http://deb.debian.org/debian bookworm/main amd64 libgprofng0 amd64 2.40-2 [812 kB]
+#8 6.745 Get:99 http://deb.debian.org/debian bookworm/main amd64 libjansson4 amd64 2.14-2 [40.8 kB]
+#8 6.750 Get:100 http://deb.debian.org/debian bookworm/main amd64 binutils-x86-64-linux-gnu amd64 2.40-2 [2246 kB]
+#8 7.276 Get:101 http://deb.debian.org/debian bookworm/main amd64 binutils amd64 2.40-2 [65.0 kB]
+#8 7.290 Get:102 http://deb.debian.org/debian bookworm/main amd64 libtcl8.6 amd64 8.6.13+dfsg-2 [1035 kB]
+#8 7.588 Get:103 http://deb.debian.org/debian bookworm/main amd64 libbrotli1 amd64 1.0.9-2+b6 [275 kB]
+#8 7.672 Get:104 http://deb.debian.org/debian bookworm/main amd64 libfreetype6 amd64 2.12.1+dfsg-5+deb12u4 [398 kB]
+#8 7.778 Get:105 http://deb.debian.org/debian bookworm/main amd64 fonts-dejavu-core all 2.37-6 [1068 kB]
+#8 7.919 Get:106 http://deb.debian.org/debian bookworm/main amd64 fontconfig-config amd64 2.14.1-4 [315 kB]
+#8 7.962 Get:107 http://deb.debian.org/debian bookworm/main amd64 libfontconfig1 amd64 2.14.1-4 [386 kB]
+#8 8.023 Get:108 http://deb.debian.org/debian bookworm/main amd64 libxrender1 amd64 1:0.9.10-1.1 [33.2 kB]
+#8 8.028 Get:109 http://deb.debian.org/debian bookworm/main amd64 libxft2 amd64 2.3.6-1 [61.8 kB]
+#8 8.040 Get:110 http://deb.debian.org/debian bookworm/main amd64 libxss1 amd64 1:1.2.3-1 [17.8 kB]
+#8 8.041 Get:111 http://deb.debian.org/debian bookworm/main amd64 libtk8.6 amd64 8.6.13-2 [781 kB]
+#8 8.172 Get:112 http://deb.debian.org/debian bookworm/main amd64 tk8.6-blt2.5 amd64 2.5.3+dfsg-4.1 [593 kB]
+#8 8.306 Get:113 http://deb.debian.org/debian bookworm/main amd64 blt amd64 2.5.3+dfsg-4.1 [14.9 kB]
+#8 8.310 Get:114 http://deb.debian.org/debian bookworm/main amd64 libc-dev-bin amd64 2.36-9+deb12u10 [47.1 kB]
+#8 8.320 Get:115 http://deb.debian.org/debian-security bookworm-security/main amd64 linux-libc-dev amd64 6.1.147-1 [2171 kB]
+#8 8.874 Get:116 http://deb.debian.org/debian bookworm/main amd64 libcrypt-dev amd64 1:4.4.33-2 [118 kB]
+#8 8.897 Get:117 http://deb.debian.org/debian bookworm/main amd64 libtirpc-dev amd64 1.3.3+ds-1 [191 kB]
+#8 8.930 Get:118 http://deb.debian.org/debian bookworm/main amd64 libnsl-dev amd64 1.3.0-2 [66.4 kB]
+#8 8.948 Get:119 http://deb.debian.org/debian bookworm/main amd64 rpcsvc-proto amd64 1.4.3-1 [63.3 kB]
+#8 8.965 Get:120 http://deb.debian.org/debian bookworm/main amd64 libc6-dev amd64 2.36-9+deb12u10 [1903 kB]
+#8 9.334 Get:121 http://deb.debian.org/debian bookworm/main amd64 libisl23 amd64 0.25-1.1 [683 kB]
+#8 9.462 Get:122 http://deb.debian.org/debian bookworm/main amd64 libmpfr6 amd64 4.2.0-1 [701 kB]
+#8 9.599 Get:123 http://deb.debian.org/debian bookworm/main amd64 libmpc3 amd64 1.3.1-1 [51.5 kB]
+#8 9.612 Get:124 http://deb.debian.org/debian bookworm/main amd64 cpp-12 amd64 12.2.0-14+deb12u1 [9768 kB]
+#8 11.54 Get:125 http://deb.debian.org/debian bookworm/main amd64 cpp amd64 4:12.2.0-3 [6836 B]
+#8 11.54 Get:126 http://deb.debian.org/debian bookworm/main amd64 libcc1-0 amd64 12.2.0-14+deb12u1 [41.7 kB]
+#8 11.55 Get:127 http://deb.debian.org/debian bookworm/main amd64 libgomp1 amd64 12.2.0-14+deb12u1 [116 kB]
+#8 11.57 Get:128 http://deb.debian.org/debian bookworm/main amd64 libitm1 amd64 12.2.0-14+deb12u1 [26.1 kB]
+#8 11.57 Get:129 http://deb.debian.org/debian bookworm/main amd64 libatomic1 amd64 12.2.0-14+deb12u1 [9376 B]
+#8 11.57 Get:130 http://deb.debian.org/debian bookworm/main amd64 libasan8 amd64 12.2.0-14+deb12u1 [2193 kB]
+#8 12.03 Get:131 http://deb.debian.org/debian bookworm/main amd64 liblsan0 amd64 12.2.0-14+deb12u1 [969 kB]
+#8 12.18 Get:132 http://deb.debian.org/debian bookworm/main amd64 libtsan2 amd64 12.2.0-14+deb12u1 [2197 kB]
+#8 12.58 Get:133 http://deb.debian.org/debian bookworm/main amd64 libubsan1 amd64 12.2.0-14+deb12u1 [883 kB]
+#8 12.68 Get:134 http://deb.debian.org/debian bookworm/main amd64 libquadmath0 amd64 12.2.0-14+deb12u1 [145 kB]
+#8 12.71 Get:135 http://deb.debian.org/debian bookworm/main amd64 libgcc-12-dev amd64 12.2.0-14+deb12u1 [2437 kB]
+#8 13.25 Get:136 http://deb.debian.org/debian bookworm/main amd64 gcc-12 amd64 12.2.0-14+deb12u1 [19.3 MB]
+#8 16.80 Get:137 http://deb.debian.org/debian bookworm/main amd64 gcc amd64 4:12.2.0-3 [5216 B]
+#8 16.80 Get:138 http://deb.debian.org/debian bookworm/main amd64 libstdc++-12-dev amd64 12.2.0-14+deb12u1 [2047 kB]
+#8 17.15 Get:139 http://deb.debian.org/debian bookworm/main amd64 g++-12 amd64 12.2.0-14+deb12u1 [10.7 MB]
+#8 19.39 Get:140 http://deb.debian.org/debian bookworm/main amd64 g++ amd64 4:12.2.0-3 [1356 B]
+#8 19.39 Get:141 http://deb.debian.org/debian bookworm/main amd64 make amd64 4.3-4.1 [396 kB]
+#8 19.48 Get:142 http://deb.debian.org/debian bookworm/main amd64 libdpkg-perl all 1.21.22 [603 kB]
+#8 19.64 Get:143 http://deb.debian.org/debian bookworm/main amd64 patch amd64 2.7.6-7 [128 kB]
+#8 19.67 Get:144 http://deb.debian.org/debian bookworm/main amd64 dpkg-dev all 1.21.22 [1353 kB]
+#8 19.95 Get:145 http://deb.debian.org/debian bookworm/main amd64 build-essential amd64 12.9 [7704 B]
+#8 19.95 Get:146 http://deb.debian.org/debian bookworm/main amd64 ca-certificates-java all 20230710~deb12u1 [11.9 kB]
+#8 19.95 Get:147 http://deb.debian.org/debian bookworm/main amd64 libhiredis0.14 amd64 0.14.1-3 [35.9 kB]
+#8 19.95 Get:148 http://deb.debian.org/debian bookworm/main amd64 ccache amd64 4.8+really4.7.5-1 [644 kB]
+#8 20.03 Get:149 http://deb.debian.org/debian bookworm/main amd64 libz3-4 amd64 4.8.12-3.1 [7216 kB]
+#8 21.52 Get:150 http://deb.debian.org/debian bookworm/main amd64 libllvm14 amd64 1:14.0.6-12 [21.8 MB]
+#8 26.09 Get:151 http://deb.debian.org/debian bookworm/main amd64 libclang-cpp14 amd64 1:14.0.6-12 [11.1 MB]
+
+STDERR: 
+
+Running docker compose command: docker compose -p super-benchmark-upet-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/super-benchmark-upet/docker-compose.yaml down
+Harness execution failed for /root/.cache/terminal-bench/terminal-bench-core/head/super-benchmark-upet: Command '['docker', 'compose', '-p', 'super-benchmark-upet-1-of-1-2025-08-13__09-37-19', '-f', '/root/.cache/terminal-bench/terminal-bench-core/head/super-benchmark-upet/docker-compose.yaml', 'build']' returned non-zero exit status 130.
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/terminal_bench/harness/harness.py", line 724, in _execute_single_trial
+    trial_results = self._run_trial(trial_handler)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/terminal_bench/harness/harness.py", line 447, in _run_trial
+    with spin_up_terminal(
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/terminal_bench/terminal/terminal.py", line 176, in spin_up_terminal
+    terminal.start()
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/terminal_bench/terminal/terminal.py", line 102, in start
+    self.container = self._compose_manager.start()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/terminal_bench/terminal/docker_compose_manager.py", line 126, in start
+    self._run_docker_compose_command(["build"])
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/terminal_bench/terminal/docker_compose_manager.py", line 101, in _run_docker_compose_command
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['docker', 'compose', '-p', 'super-benchmark-upet-1-of-1-2025-08-13__09-37-19', '-f', '/root/.cache/terminal-bench/terminal-bench-core/head/super-benchmark-upet/docker-compose.yaml', 'build']' returned non-zero exit status 130.
+Running task: build-linux-kernel-qemu
+Running docker compose command: docker compose -p build-linux-kernel-qemu-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/build-linux-kernel-qemu/docker-compose.yaml build
+Docker compose command failed with exit code 130
+Command: docker compose -p build-linux-kernel-qemu-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/build-linux-kernel-qemu/docker-compose.yaml build
+STDOUT: #1 [internal] load local bake definitions
+#1 reading from stdin 670B done
+#1 DONE 0.0s
+
+STDERR: 
+
+Running docker compose command: docker compose -p build-linux-kernel-qemu-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/build-linux-kernel-qemu/docker-compose.yaml down
+Harness execution failed for /root/.cache/terminal-bench/terminal-bench-core/head/build-linux-kernel-qemu: Command '['docker', 'compose', '-p', 'build-linux-kernel-qemu-1-of-1-2025-08-13__09-37-19', '-f', '/root/.cache/terminal-bench/terminal-bench-core/head/build-linux-kernel-qemu/docker-compose.yaml', 'build']' returned non-zero exit status 130.
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/terminal_bench/harness/harness.py", line 724, in _execute_single_trial
+    trial_results = self._run_trial(trial_handler)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/terminal_bench/harness/harness.py", line 447, in _run_trial
+    with spin_up_terminal(
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/terminal_bench/terminal/terminal.py", line 176, in spin_up_terminal
+    terminal.start()
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/terminal_bench/terminal/terminal.py", line 102, in start
+    self.container = self._compose_manager.start()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/terminal_bench/terminal/docker_compose_manager.py", line 126, in start
+    self._run_docker_compose_command(["build"])
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/terminal_bench/terminal/docker_compose_manager.py", line 101, in _run_docker_compose_command
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['docker', 'compose', '-p', 'build-linux-kernel-qemu-1-of-1-2025-08-13__09-37-19', '-f', '/root/.cache/terminal-bench/terminal-bench-core/head/build-linux-kernel-qemu/docker-compose.yaml', 'build']' returned non-zero exit status 130.
+Running task: lean4-proof
+Running docker compose command: docker compose -p lean4-proof-1-of-1-2025-08-13__09-37-19 -f /root/.cache/terminal-bench/terminal-bench-core/head/lean4-proof/docker-compose.yaml build

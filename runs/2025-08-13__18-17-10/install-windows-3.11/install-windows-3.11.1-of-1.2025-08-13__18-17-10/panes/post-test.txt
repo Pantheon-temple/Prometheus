@@ -1,0 +1,280 @@
+root@5180a489a007:/app# bash /tests/run-tests.sh; tmux wait -S done
+Get:1 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+Get:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:4 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1328 kB]
+Get:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Get:6 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [23.0 kB]
+Get:7 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1982 kB]
+Get:8 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+Get:9 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+Get:10 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1134 kB]
+Get:11 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+Get:12 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+Get:13 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [45.2 kB]
+Get:14 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1454 kB]
+Get:15 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1666 kB]
+Get:16 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [2092 kB]
+Get:17 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [48.8 kB]
+Get:18 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [33.9 kB]
+Fetched 32.0 MB in 3s (9849 kB/s)
+Reading package lists... Done
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  libcurl4t64
+The following NEW packages will be installed:
+  curl libcurl4t64
+0 upgraded, 2 newly installed, 0 to remove and 15 not upgraded.
+Need to get 567 kB of archives.
+After this operation, 1481 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcurl4t64 amd64 8.5.0-2ubuntu10.6 [341 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 curl amd64 8.5.0-2ubuntu10.6 [226 kB]
+Fetched 567 kB in 0s (20.1 MB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package libcurl4t64:amd64.
+(Reading database ... 42908 files and directories currently installed.)
+Preparing to unpack .../libcurl4t64_8.5.0-2ubuntu10.6_amd64.deb ...
+Unpacking libcurl4t64:amd64 (8.5.0-2ubuntu10.6) ...
+Selecting previously unselected package curl.
+Preparing to unpack .../curl_8.5.0-2ubuntu10.6_amd64.deb ...
+Unpacking curl (8.5.0-2ubuntu10.6) ...
+Setting up libcurl4t64:amd64 (8.5.0-2ubuntu10.6) ...
+Setting up curl (8.5.0-2ubuntu10.6) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.5) ...
+downloading uv 0.8.9 x86_64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Initialized project `app`
+Using CPython 3.12.3 interpreter at: /usr/bin/python3.12
+Creating virtual environment at: .venv
+Resolved 7 packages in 43ms
+Prepared 5 packages in 47ms
+Installed 5 packages in 9ms
+ + iniconfig==2.1.0
+ + packaging==25.0
+ + pluggy==1.6.0
+ + pygments==2.19.2
+ + pytest==8.4.1
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+vncsnapshot is already the newest version (1.2a-5.2).
+The following additional packages will be installed:
+  libarchive13t64 libgif7 liblept5 libtesseract5 tesseract-ocr-eng tesseract-ocr-osd
+Suggested packages:
+  lrzip floppyd
+The following NEW packages will be installed:
+  libarchive13t64 libgif7 liblept5 libtesseract5 mtools socat tesseract-ocr tesseract-ocr-eng tesseract-ocr-osd
+0 upgraded, 9 newly installed, 0 to remove and 15 not upgraded.
+Need to get 9364 kB of archives.
+After this operation, 24.8 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libarchive13t64 amd64 3.7.2-2ubuntu0.5 [382 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble/main amd64 libgif7 amd64 5.2.2-1ubuntu1 [35.2 kB]
+Get:3 http://archive.ubuntu.com/ubuntu noble/universe amd64 liblept5 amd64 1.82.0-3build4 [1099 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble/universe amd64 libtesseract5 amd64 5.3.4-1build5 [1291 kB]
+Get:5 http://archive.ubuntu.com/ubuntu noble/main amd64 mtools amd64 4.0.43-1build1 [197 kB]
+Get:6 http://archive.ubuntu.com/ubuntu noble/universe amd64 tesseract-ocr-eng all 1:4.1.0-2 [1818 kB]
+Get:7 http://archive.ubuntu.com/ubuntu noble/universe amd64 tesseract-ocr-osd all 1:4.1.0-2 [3841 kB]
+Get:8 http://archive.ubuntu.com/ubuntu noble/universe amd64 tesseract-ocr amd64 5.3.4-1build5 [328 kB]
+Get:9 http://archive.ubuntu.com/ubuntu noble/main amd64 socat amd64 1.8.0.0-4build3 [374 kB]
+Fetched 9364 kB in 2s (4997 kB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package libarchive13t64:amd64.
+(Reading database ... 42921 files and directories currently installed.)
+Preparing to unpack .../0-libarchive13t64_3.7.2-2ubuntu0.5_amd64.deb ...
+Unpacking libarchive13t64:amd64 (3.7.2-2ubuntu0.5) ...
+Selecting previously unselected package libgif7:amd64.
+Preparing to unpack .../1-libgif7_5.2.2-1ubuntu1_amd64.deb ...
+Unpacking libgif7:amd64 (5.2.2-1ubuntu1) ...
+Selecting previously unselected package liblept5:amd64.
+Preparing to unpack .../2-liblept5_1.82.0-3build4_amd64.deb ...
+Unpacking liblept5:amd64 (1.82.0-3build4) ...
+Selecting previously unselected package libtesseract5:amd64.
+Preparing to unpack .../3-libtesseract5_5.3.4-1build5_amd64.deb ...
+Unpacking libtesseract5:amd64 (5.3.4-1build5) ...
+Selecting previously unselected package mtools.
+Preparing to unpack .../4-mtools_4.0.43-1build1_amd64.deb ...
+Unpacking mtools (4.0.43-1build1) ...
+Selecting previously unselected package tesseract-ocr-eng.
+Preparing to unpack .../5-tesseract-ocr-eng_1%3a4.1.0-2_all.deb ...
+Unpacking tesseract-ocr-eng (1:4.1.0-2) ...
+Selecting previously unselected package tesseract-ocr-osd.
+Preparing to unpack .../6-tesseract-ocr-osd_1%3a4.1.0-2_all.deb ...
+Unpacking tesseract-ocr-osd (1:4.1.0-2) ...
+Selecting previously unselected package tesseract-ocr.
+Preparing to unpack .../7-tesseract-ocr_5.3.4-1build5_amd64.deb ...
+Unpacking tesseract-ocr (5.3.4-1build5) ...
+Selecting previously unselected package socat.
+Preparing to unpack .../8-socat_1.8.0.0-4build3_amd64.deb ...
+Unpacking socat (1.8.0.0-4build3) ...
+Setting up mtools (4.0.43-1build1) ...
+Setting up tesseract-ocr-eng (1:4.1.0-2) ...
+Setting up socat (1.8.0.0-4build3) ...
+Setting up libgif7:amd64 (5.2.2-1ubuntu1) ...
+Setting up tesseract-ocr-osd (1:4.1.0-2) ...
+Setting up libarchive13t64:amd64 (3.7.2-2ubuntu0.5) ...
+Setting up liblept5:amd64 (1.82.0-3build4) ...
+Setting up libtesseract5:amd64 (5.3.4-1build5) ...
+Setting up tesseract-ocr (5.3.4-1build5) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.5) ...
+Resolved 11 packages in 149ms
+Prepared 4 packages in 24.94s
+Installed 4 packages in 10ms
+ + numpy==2.3.1
+ + opencv-python==4.11.0.86
+ + pillow==11.3.0
+ + pytesseract==0.3.13
+===================================================================== test session starts ======================================================================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+collected 7 items
+
+../tests/test_outputs.py FFFFFFF                                                                                                                         [100%]
+
+=========================================================================== FAILURES ===========================================================================
+__________________________________________________________________ test_qemu_process_running ___________________________________________________________________
+
+    def test_qemu_process_running():
+        """Test that QEMU process is running (indicates VM was started)"""
+        result = subprocess.run(["pgrep", "qemu-system"], capture_output=True, text=True)
+>       assert result.returncode == 0, (
+            "QEMU process not found - Windows 3.11 VM is not running"
+        )
+E       AssertionError: QEMU process not found - Windows 3.11 VM is not running
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['pgrep', 'qemu-system'], returncode=1, stdout='', stderr='').returncode
+
+/tests/test_outputs.py:12: AssertionError
+______________________________________________________________ test_windows_311_disk_image_exists ______________________________________________________________
+
+    def test_windows_311_disk_image_exists():
+        """Test that Windows 3.11 disk image was downloaded and contains expected content"""
+        img_path = Path("/app/isos/win311.img")
+>       assert img_path.exists(), f"Windows 3.11 disk image {img_path} does not exist"
+E       AssertionError: Windows 3.11 disk image /app/isos/win311.img does not exist
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/isos/win311.img').exists
+
+/tests/test_outputs.py:20: AssertionError
+_____________________________________________________________________ test_network_status ______________________________________________________________________
+
+    def test_network_status():
+        """Test network status and VNC services"""
+        # Check VNC connections (port 5901)
+        netstat_result = subprocess.run(
+            ["netstat", "-tlnp"], capture_output=True, text=True
+        )
+        assert netstat_result.returncode == 0, "Failed to check network services"
+
+        # Check if VNC port 5901 is listening
+>       assert ":5901" in netstat_result.stdout, "VNC service not listening on port 5901"
+E       AssertionError: VNC service not listening on port 5901
+E       assert ':5901' in 'Active Internet connections (only servers)\nProto Recv-Q Send-Q Local Address           Foreign Address         State...
+ \ntcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      57/nginx: master pr \n'
+E        +  where 'Active Internet connections (only servers)\nProto Recv-Q Send-Q Local Address           Foreign Address         State...              \ntcp
+      0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      57/nginx: master pr \n' = CompletedProcess(args=['netstat', '-tlnp'], returncode=0, s
+tdout='Active Internet connections (only servers)\nProto Re...  \ntcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      57/nginx: mast
+er pr \n', stderr='').stdout
+
+/tests/test_outputs.py:88: AssertionError
+____________________________________________________________ test_qemu_running_with_correct_params _____________________________________________________________
+
+    def test_qemu_running_with_correct_params():
+        """Test that QEMU is running with Windows 3.11 compatible parameters"""
+        # Get QEMU process command line
+        result = subprocess.run(["pgrep", "qemu-system"], capture_output=True, text=True)
+        qemu_pid = result.stdout.strip()
+
+        # Get full command line
+        cmdline_result = subprocess.run(
+            ["ps", "-o", "args", "-p", qemu_pid, "--no-headers"],
+            capture_output=True,
+            text=True,
+        )
+>       assert cmdline_result.returncode == 0, "Failed to get QEMU command line"
+E       AssertionError: Failed to get QEMU command line
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['ps', '-o', 'args', '-p', '', '--no-headers'], returncode=1, stdout='', stderr="error: list of ...utput|threads|mis
+c|all>'\n  or 'ps --help <s|l|o|t|m|a>'\n for additional help text.\n\nFor more details see ps(1).\n").returncode
+
+/tests/test_outputs.py:110: AssertionError
+___________________________________________________________ test_windows_311_core_files_verification ___________________________________________________________
+
+    def test_windows_311_core_files_verification():
+        """Test Windows 3.11 core system files with hardcoded hashes"""
+        img_path = Path("/app/isos/win311.img")
+>       assert img_path.exists(), "Windows 3.11 disk image not found"
+E       AssertionError: Windows 3.11 disk image not found
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/isos/win311.img').exists
+
+/tests/test_outputs.py:311: AssertionError
+_____________________________________________________________________ test_no_blank_screen _____________________________________________________________________
+
+    def test_no_blank_screen():
+        """
+        Test that Windows 3.11 desktop is actually visible via VNC.
+        This proves the system is not just running but displaying properly.
+        """
+        import cv2  # type: ignore
+        import numpy as np  # type: ignore
+
+        # Take current screenshot
+        result = subprocess.run(
+            ["vncsnapshot", "-allowblank", "localhost:1", "current_screenshot.png"],
+            capture_output=True,
+            timeout=15,
+        )
+
+>       assert result.returncode == 0, "Failed to take VNC screenshot"
+E       AssertionError: Failed to take VNC screenshot
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['vncsnapshot', '-allowblank', 'localhost:1', 'current_screenshot.png'], returncode=1, stdout=b'', stderr=b'vncsnaps
+hot: ConnectToTcpAddr: connect: Connection refused\nUnable to connect to VNC server\n').returncode
+
+/tests/test_outputs.py:421: AssertionError
+______________________________________________________________ test_windows_311_system_stability _______________________________________________________________
+
+    def test_windows_311_system_stability():
+        """
+        Test that Windows 3.11 system is stable and running properly.
+        """
+        # Verify QEMU has been running for a reasonable time
+        result = subprocess.run(["pgrep", "qemu-system"], capture_output=True, text=True)
+        qemu_pid = result.stdout.strip()
+
+        # Get process runtime
+        ps_result = subprocess.run(
+            ["ps", "-o", "etime", "-p", qemu_pid, "--no-headers"],
+            capture_output=True,
+            text=True,
+        )
+>       assert ps_result.returncode == 0, "Failed to get QEMU runtime"
+E       AssertionError: Failed to get QEMU runtime
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['ps', '-o', 'etime', '-p', '', '--no-headers'], returncode=1, stdout='', stderr="error: list of...utput|threads|mis
+c|all>'\n  or 'ps --help <s|l|o|t|m|a>'\n for additional help text.\n\nFor more details see ps(1).\n").returncode
+
+/tests/test_outputs.py:467: AssertionError
+=================================================================== short test summary info ====================================================================
+FAILED ../tests/test_outputs.py::test_qemu_process_running - AssertionError: QEMU process not found - Windows 3.11 VM is not running
+FAILED ../tests/test_outputs.py::test_windows_311_disk_image_exists - AssertionError: Windows 3.11 disk image /app/isos/win311.img does not exist
+FAILED ../tests/test_outputs.py::test_network_status - AssertionError: VNC service not listening on port 5901
+FAILED ../tests/test_outputs.py::test_qemu_running_with_correct_params - AssertionError: Failed to get QEMU command line
+FAILED ../tests/test_outputs.py::test_windows_311_core_files_verification - AssertionError: Windows 3.11 disk image not found
+FAILED ../tests/test_outputs.py::test_no_blank_screen - AssertionError: Failed to take VNC screenshot
+FAILED ../tests/test_outputs.py::test_windows_311_system_stability - AssertionError: Failed to get QEMU runtime
+====================================================================== 7 failed in 0.32s =======================================================================
+root@5180a489a007:/app#
