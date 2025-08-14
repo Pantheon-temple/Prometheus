@@ -10,7 +10,7 @@ The module is specifically designed for workflows where:
 - The same state attribute name is reused
 """
 
-import logging
+from prometheus.utils.logger_manager import get_logger
 from typing import Dict
 
 
@@ -35,7 +35,7 @@ class ResetMessagesNode:
             be reset during node execution.
         """
         self.message_state_key = message_state_key
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.reset_messages_node")
+        self._logger = get_logger(__name__)
 
     def __call__(self, state: Dict):
         """Resets the specified message state for the next iteration.

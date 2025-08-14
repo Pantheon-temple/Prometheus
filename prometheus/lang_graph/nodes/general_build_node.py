@@ -1,5 +1,4 @@
 import functools
-import logging
 
 from langchain.tools import StructuredTool
 from langchain_core.language_models.chat_models import BaseChatModel
@@ -9,6 +8,7 @@ from prometheus.docker.base_container import BaseContainer
 from prometheus.graph.knowledge_graph import KnowledgeGraph
 from prometheus.lang_graph.subgraphs.build_and_test_state import BuildAndTestState
 from prometheus.tools import container_command
+from prometheus.utils.logger_manager import get_logger
 
 
 class GeneralBuildNode:
@@ -46,7 +46,7 @@ Remember:
         self.tools = self._init_tools(container)
         self.model_with_tools = model.bind_tools(self.tools)
         self.system_prompt = SystemMessage(self.SYS_PROMPT)
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.general_build_node")
+        self._logger = get_logger(__name__)
 
     def _init_tools(self, container: BaseContainer):
         tools = []

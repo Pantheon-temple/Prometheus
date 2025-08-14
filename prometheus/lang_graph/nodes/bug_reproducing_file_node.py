@@ -1,5 +1,4 @@
 import functools
-import logging
 
 from langchain.tools import StructuredTool
 from langchain_core.language_models.chat_models import BaseChatModel
@@ -9,6 +8,7 @@ from prometheus.graph.knowledge_graph import KnowledgeGraph
 from prometheus.lang_graph.subgraphs.bug_reproduction_state import BugReproductionState
 from prometheus.tools import file_operation
 from prometheus.utils.lang_graph_util import get_last_message_content
+from prometheus.utils.logger_manager import get_logger
 
 
 class BugReproducingFileNode:
@@ -44,7 +44,7 @@ Current project structure:
         self.tools = self._init_tools(str(kg.get_local_path()))
         self.model_with_tools = model.bind_tools(self.tools)
         self.system_prompt = SystemMessage(self.SYS_PROMPT)
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.bug_reproducing_file_node")
+        self._logger = get_logger(__name__)
 
     def _init_tools(self, root_path: str):
         """Initializes file operation tools with the given root path.

@@ -18,7 +18,6 @@ codebase to find the most relevant context for the user query.
 """
 
 import itertools
-import logging
 from collections import defaultdict, deque
 from pathlib import Path
 from typing import Mapping, Optional, Sequence
@@ -45,6 +44,7 @@ from prometheus.graph.graph_types import (
     Neo4jTextNode,
     TextNode,
 )
+from prometheus.utils.logger_manager import get_logger
 
 
 class KnowledgeGraph:
@@ -82,7 +82,7 @@ class KnowledgeGraph:
             knowledge_graph_edges if knowledge_graph_edges is not None else []
         )
         self._file_graph_builder = FileGraphBuilder(max_ast_depth, chunk_size, chunk_overlap)
-        self._logger = logging.getLogger("prometheus.graph.knowledge_graph")
+        self._logger = get_logger(__name__)
 
     def build_graph(
         self, root_dir: Path, https_url: Optional[str] = None, commit_id: Optional[str] = None

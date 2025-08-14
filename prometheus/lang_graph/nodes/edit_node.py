@@ -7,7 +7,6 @@ while maintaining code integrity.
 """
 
 import functools
-import logging
 from typing import Dict
 
 from langchain.tools import StructuredTool
@@ -16,6 +15,7 @@ from langchain_core.messages import SystemMessage
 
 from prometheus.graph.knowledge_graph import KnowledgeGraph
 from prometheus.tools import file_operation
+from prometheus.utils.logger_manager import get_logger
 
 
 class EditNode:
@@ -120,7 +120,7 @@ MANDATORY REQUIREMENTS:
         self.system_prompt = SystemMessage(self.SYS_PROMPT)
         self.tools = self._init_tools(kg.get_local_path())
         self.model_with_tools = model.bind_tools(self.tools)
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.edit_node")
+        self._logger = get_logger(__name__)
 
     def _init_tools(self, root_path: str):
         """Initializes file operation tools with the given root path.

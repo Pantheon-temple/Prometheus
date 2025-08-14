@@ -1,10 +1,10 @@
-import logging
 from typing import Dict
 
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.messages import HumanMessage, SystemMessage
 
 from prometheus.utils.issue_util import format_issue_info
+from prometheus.utils.logger_manager import get_logger
 
 
 class IssueBugResponderNode:
@@ -48,7 +48,7 @@ Verification:
         self.system_prompt = SystemMessage(self.SYS_PROMPT)
         self.model = model
 
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.issue_bug_responder_node")
+        self._logger = get_logger(__name__)
 
     def format_human_message(self, state: Dict) -> HumanMessage:
         verification_messages = []

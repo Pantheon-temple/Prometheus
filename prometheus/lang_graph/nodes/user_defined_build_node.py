@@ -1,16 +1,16 @@
-import logging
 import uuid
 from typing import Any
 
 from langchain_core.messages import ToolMessage
 
 from prometheus.docker.base_container import BaseContainer
+from prometheus.utils.logger_manager import get_logger
 
 
 class UserDefinedBuildNode:
     def __init__(self, container: BaseContainer):
         self.container = container
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.user_defined_build_node")
+        self._logger = get_logger(__name__)
 
     def __call__(self, _: Any):
         build_output = self.container.run_build()

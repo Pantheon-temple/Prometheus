@@ -5,7 +5,7 @@ workflows without performing any operations. It acts as a structural element in
 node graphs where a connection is needed but no processing is required.
 """
 
-import logging
+from prometheus.utils.logger_manager import get_logger
 from typing import Dict
 
 
@@ -19,7 +19,7 @@ class NoopNode:
     """
 
     def __init__(self):
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.noop_node")
+        self._logger = get_logger(__name__)
 
     def __call__(self, state: Dict) -> None:
         """Routes the workflow without performing any operations.

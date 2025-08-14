@@ -1,9 +1,9 @@
-import logging
 from typing import Dict
 
 from langchain_core.messages import HumanMessage
 
 from prometheus.utils.issue_util import format_issue_info
+from prometheus.utils.logger_manager import get_logger
 
 
 class IssueBugAnalyzerMessageNode:
@@ -64,9 +64,7 @@ Do NOT provide actual code snippets or diffs. Focus on describing what needs to 
 """
 
     def __init__(self):
-        self._logger = logging.getLogger(
-            "prometheus.lang_graph.nodes.issue_bug_analyzer_message_node"
-        )
+        self._logger = get_logger(__name__)
 
     def format_human_message(self, state: Dict):
         edit_error = ""

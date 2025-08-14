@@ -1,4 +1,3 @@
-import logging
 import shutil
 import tarfile
 import tempfile
@@ -7,6 +6,7 @@ from pathlib import Path
 from typing import Optional, Sequence
 
 import docker
+from prometheus.utils.logger_manager import get_logger
 
 
 class BaseContainer(ABC):
@@ -24,7 +24,6 @@ class BaseContainer(ABC):
     container: docker.models.containers.Container
     project_path: Path
     timeout: int = 120
-    logger: logging.Logger
 
     def __init__(self, project_path: Path, workdir: Optional[str] = None):
         """Initialize the container with a project directory.
@@ -34,7 +33,7 @@ class BaseContainer(ABC):
         Args:
           project_path: Path to the project directory to be containerized.
         """
-        self._logger = logging.getLogger(f"{self.__class__.__module__}.{self.__class__.__name__}")
+        self._logger = get_logger(f"{self.__class__.__module__}.{self.__class__.__name__}")
         temp_dir = Path(tempfile.mkdtemp())
         temp_project_path = temp_dir / project_path.name
         shutil.copytree(project_path, temp_project_path)

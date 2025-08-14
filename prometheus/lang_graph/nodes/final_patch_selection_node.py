@@ -1,4 +1,3 @@
-import logging
 from typing import Dict
 
 from langchain_core.language_models.chat_models import BaseChatModel
@@ -6,6 +5,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field
 
 from prometheus.utils.issue_util import format_issue_info
+from prometheus.utils.logger_manager import get_logger
 
 
 class FinalPatchSelectionStructuredOutput(BaseModel):
@@ -126,7 +126,7 @@ I have generated the following patches, now please select the best patch among t
         )
         structured_llm = model.with_structured_output(FinalPatchSelectionStructuredOutput)
         self.model = prompt | structured_llm
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.final_patch_selection_node")
+        self._logger = get_logger(__name__)
 
     def format_human_message(self, state: Dict):
         patches = ""

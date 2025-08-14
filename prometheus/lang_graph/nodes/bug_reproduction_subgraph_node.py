@@ -1,4 +1,3 @@
-import logging
 from typing import Optional, Sequence
 
 import neo4j
@@ -10,6 +9,7 @@ from prometheus.git.git_repository import GitRepository
 from prometheus.graph.knowledge_graph import KnowledgeGraph
 from prometheus.lang_graph.subgraphs.bug_reproduction_subgraph import BugReproductionSubgraph
 from prometheus.lang_graph.subgraphs.issue_bug_state import IssueBugState
+from prometheus.utils.logger_manager import get_logger
 
 
 class BugReproductionSubgraphNode:
@@ -24,9 +24,7 @@ class BugReproductionSubgraphNode:
         max_token_per_neo4j_result: int,
         test_commands: Optional[Sequence[str]],
     ):
-        self._logger = logging.getLogger(
-            "prometheus.lang_graph.nodes.bug_reproduction_subgraph_node"
-        )
+        self._logger = get_logger(__name__)
         self.git_repo = git_repo
         self.bug_reproduction_subgraph = BugReproductionSubgraph(
             advanced_model=advanced_model,

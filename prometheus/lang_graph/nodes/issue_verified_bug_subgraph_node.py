@@ -1,4 +1,3 @@
-import logging
 from typing import Dict, Optional, Sequence
 
 import neo4j
@@ -9,6 +8,7 @@ from prometheus.docker.base_container import BaseContainer
 from prometheus.git.git_repository import GitRepository
 from prometheus.graph.knowledge_graph import KnowledgeGraph
 from prometheus.lang_graph.subgraphs.issue_verified_bug_subgraph import IssueVerifiedBugSubgraph
+from prometheus.utils.logger_manager import get_logger
 
 
 class IssueVerifiedBugSubgraphNode:
@@ -28,9 +28,7 @@ class IssueVerifiedBugSubgraphNode:
         build_commands: Optional[Sequence[str]] = None,
         test_commands: Optional[Sequence[str]] = None,
     ):
-        self._logger = logging.getLogger(
-            "prometheus.lang_graph.nodes.issue_verified_bug_subgraph_node"
-        )
+        self._logger = get_logger(__name__)
         self.git_repo = git_repo
         self.issue_reproduced_bug_subgraph = IssueVerifiedBugSubgraph(
             advanced_model=advanced_model,

@@ -1,4 +1,3 @@
-import logging
 from typing import Sequence
 
 from langchain_core.language_models.chat_models import BaseChatModel
@@ -11,6 +10,7 @@ from prometheus.utils.lang_graph_util import (
     format_agent_tool_message_history,
     get_last_message_content,
 )
+from prometheus.utils.logger_manager import get_logger
 
 
 class BugReproducingStructuredOutput(BaseModel):
@@ -134,9 +134,7 @@ Log from executing bug reproducing file:
         )
         structured_llm = model.with_structured_output(BugReproducingStructuredOutput)
         self.model = prompt | structured_llm
-        self._logger = logging.getLogger(
-            "prometheus.lang_graph.nodes.bug_reproducing_structured_node"
-        )
+        self._logger = get_logger(__name__)
 
     def __call__(self, state: BugReproductionState):
         bug_reproducing_log = format_agent_tool_message_history(

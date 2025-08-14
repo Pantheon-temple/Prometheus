@@ -1,4 +1,3 @@
-import logging
 from typing import Optional, Sequence
 
 import neo4j
@@ -10,6 +9,7 @@ from prometheus.git.git_repository import GitRepository
 from prometheus.graph.knowledge_graph import KnowledgeGraph
 from prometheus.lang_graph.graphs.issue_state import IssueState
 from prometheus.lang_graph.subgraphs.issue_bug_subgraph import IssueBugSubgraph
+from prometheus.utils.logger_manager import get_logger
 
 
 class IssueBugSubgraphNode:
@@ -29,7 +29,7 @@ class IssueBugSubgraphNode:
         build_commands: Optional[Sequence[str]] = None,
         test_commands: Optional[Sequence[str]] = None,
     ):
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.issue_bug_subgraph_node")
+        self._logger = get_logger(__name__)
         self.container = container
         self.issue_bug_subgraph = IssueBugSubgraph(
             advanced_model=advanced_model,

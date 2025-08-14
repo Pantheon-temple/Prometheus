@@ -1,5 +1,4 @@
 import functools
-import logging
 from pathlib import Path
 from typing import Optional, Sequence
 
@@ -12,6 +11,7 @@ from prometheus.lang_graph.subgraphs.bug_reproduction_state import BugReproducti
 from prometheus.tools import container_command
 from prometheus.utils.issue_util import format_test_commands
 from prometheus.utils.patch_util import get_updated_files
+from prometheus.utils.logger_manager import get_logger
 
 
 class BugReproducingExecuteNode:
@@ -55,7 +55,7 @@ User provided test commands:
         self.tools = self._init_tools(container)
         self.model_with_tools = model.bind_tools(self.tools)
         self.system_prompt = SystemMessage(self.SYS_PROMPT)
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.bug_reproducing_execute_node")
+        self._logger = get_logger(__name__)
 
     def _init_tools(self, container: BaseContainer):
         tools = []

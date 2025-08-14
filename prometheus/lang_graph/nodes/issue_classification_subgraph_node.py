@@ -1,4 +1,3 @@
-import logging
 
 import neo4j
 from langchain_core.language_models.chat_models import BaseChatModel
@@ -8,6 +7,7 @@ from prometheus.lang_graph.graphs.issue_state import IssueState
 from prometheus.lang_graph.subgraphs.issue_classification_subgraph import (
     IssueClassificationSubgraph,
 )
+from prometheus.utils.logger_manager import get_logger
 
 
 class IssueClassificationSubgraphNode:
@@ -18,9 +18,7 @@ class IssueClassificationSubgraphNode:
         neo4j_driver: neo4j.Driver,
         max_token_per_neo4j_result: int,
     ):
-        self._logger = logging.getLogger(
-            "prometheus.lang_graph.nodes.issue_classification_subgraph_node"
-        )
+        self._logger = get_logger(__name__)
         self.issue_classification_subgraph = IssueClassificationSubgraph(
             model=model,
             kg=kg,

@@ -6,7 +6,6 @@ execution histories to determine test framework presence, extract test steps, an
 identify any failures.
 """
 
-import logging
 
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.prompts import ChatPromptTemplate
@@ -14,6 +13,7 @@ from pydantic import BaseModel, Field
 
 from prometheus.lang_graph.subgraphs.build_and_test_state import BuildAndTestState
 from prometheus.utils.lang_graph_util import format_agent_tool_message_history
+from prometheus.utils.logger_manager import get_logger
 
 
 class TestStructuredOutput(BaseModel):
@@ -286,7 +286,7 @@ Output:
         )
         structured_llm = model.with_structured_output(TestStructuredOutput)
         self.model = prompt | structured_llm
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.general_test_structured_node")
+        self._logger = get_logger(__name__)
 
     def __call__(self, state: BuildAndTestState):
         """Processes test state to generate structured test analysis.

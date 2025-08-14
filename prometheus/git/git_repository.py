@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Optional, Sequence
 
 from git import Git, InvalidGitRepositoryError, Repo
+from prometheus.utils.logger_manager import get_logger
 
 
 class GitRepository:
@@ -38,12 +39,12 @@ class GitRepository:
           github_access_token: GitHub access token for authentication with remote
             repositories. Required if address is an HTTPS URL. Defaults to None.
         """
-        self._logger = logging.getLogger("prometheus.git.git_repository")
+        self._logger = get_logger(__name__)
 
         # Configure git command to use our logger
         g = Git()
         type(g).GIT_PYTHON_TRACE = "full"
-        git_cmd_logger = logging.getLogger("git.cmd")
+        git_cmd_logger = get_logger("git.cmd")
 
         # Ensure git command output goes to our logger
         for handler in git_cmd_logger.handlers:

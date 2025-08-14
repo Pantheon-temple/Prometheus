@@ -6,7 +6,6 @@ repository management. It provides a unified interface for codebase analysis,
 issue handling, and conversation management.
 """
 
-import logging
 import traceback
 from datetime import datetime
 from pathlib import Path
@@ -18,6 +17,7 @@ from prometheus.app.services.llm_service import LLMService
 from prometheus.app.services.neo4j_service import Neo4jService
 from prometheus.app.services.repository_service import RepositoryService
 from prometheus.lang_graph.graphs.issue_state import IssueType
+from prometheus.utils.logger_manager import get_logger, create_timestamped_file_handler
 
 
 class ServiceCoordinator:
@@ -62,7 +62,7 @@ class ServiceCoordinator:
         self.working_directory = working_directory
         self.answer_issue_log_dir = self.working_directory / "answer_issue_logs"
         self.answer_issue_log_dir.mkdir(parents=True, exist_ok=True)
-        self._logger = logging.getLogger("prometheus.app.services.service_coordinator")
+        self._logger = get_logger(__name__)
 
         if (
             self.knowledge_graph_service.get_local_path()
@@ -118,13 +118,12 @@ class ServiceCoordinator:
                 - passed_existing_test: Whether existing tests passed.
                 - issue_response: Response from the issue service after processing.
         """
-        logger = logging.getLogger("prometheus")
-        formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        log_file = self.answer_issue_log_dir / f"{timestamp}.log"
-        file_handler = logging.FileHandler(log_file)
-        file_handler.setFormatter(formatter)
-        logger.addHandler(file_handler)
+        # 为这个特定的issue处理创建带时间戳的日志文件处理器
+        file_handler = create_timestamped_file_handler(
+            self.answer_issue_log_dir, 
+            f"issue_{issue_number}", 
+            "prometheus"
+        )
 
         try:
             # fix issue
@@ -159,11 +158,11 @@ class ServiceCoordinator:
                 issue_response,
             )
         except Exception as e:
-            logger.error(f"Error in answer_issue: {str(e)}\n{traceback.format_exc()}")
+            self._logger.error(f"Error in answer_issue: {str(e)}\n{traceback.format_exc()}")
             return None, None, False, False, False, None
         finally:
-            logger.removeHandler(file_handler)
-            file_handler.close()
+            # 移除文件处理器并关闭文件
+            self._logger.remove_file_handler(file_handler, "prometheus")
 
     def exists_knowledge_graph(self) -> bool:
         return self.knowledge_graph_service.exists()

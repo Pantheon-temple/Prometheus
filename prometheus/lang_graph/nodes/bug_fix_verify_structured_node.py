@@ -1,4 +1,3 @@
-import logging
 
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.prompts import ChatPromptTemplate
@@ -6,6 +5,7 @@ from pydantic import BaseModel, Field
 
 from prometheus.lang_graph.subgraphs.bug_fix_verification_state import BugFixVerficationState
 from prometheus.utils.lang_graph_util import get_last_message_content
+from prometheus.utils.logger_manager import get_logger
 
 
 class BugFixVerifyStructureOutput(BaseModel):
@@ -90,9 +90,7 @@ Important:
         )
         structured_llm = model.with_structured_output(BugFixVerifyStructureOutput)
         self.model = prompt | structured_llm
-        self._logger = logging.getLogger(
-            "prometheus.lang_graph.nodes.bug_fix_verify_structured_node"
-        )
+        self._logger = get_logger(__name__)
 
     def __call__(self, state: BugFixVerficationState):
         bug_fix_verify_message = get_last_message_content(state["bug_fix_verify_messages"])

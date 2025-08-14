@@ -6,7 +6,6 @@ with structured tools to systematically search and analyze the codebase Knowledg
 """
 
 import functools
-import logging
 from typing import Dict
 
 import neo4j
@@ -16,6 +15,7 @@ from langchain_core.messages import SystemMessage
 
 from prometheus.graph.knowledge_graph import KnowledgeGraph
 from prometheus.tools import graph_traversal
+from prometheus.utils.logger_manager import get_logger
 
 
 class ContextProviderNode:
@@ -116,7 +116,7 @@ Available AST node types for code structure search: {ast_node_types}
         self.tools = self._init_tools()
         self.model_with_tools = model.bind_tools(self.tools)
 
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.context_provider_node")
+        self._logger = get_logger(__name__)
 
     def _init_tools(self):
         """

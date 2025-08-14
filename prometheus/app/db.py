@@ -1,4 +1,3 @@
-import logging
 from typing import Optional
 
 from passlib.hash import bcrypt
@@ -6,9 +5,10 @@ from sqlmodel import Session, SQLModel, create_engine
 
 from prometheus.app.entity.user import User
 from prometheus.configuration.config import settings
+from prometheus.utils.logger_manager import get_logger
 
 engine = create_engine(settings.DATABASE_URL, echo=True)
-_logger = logging.getLogger("prometheus.app.db")
+_logger = get_logger(__name__)
 
 
 # Create the database and tables

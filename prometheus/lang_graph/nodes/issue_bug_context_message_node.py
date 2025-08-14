@@ -1,7 +1,7 @@
-import logging
 from typing import Dict
 
 from prometheus.utils.issue_util import format_issue_info
+from prometheus.utils.logger_manager import get_logger
 
 
 class IssueBugContextMessageNode:
@@ -19,9 +19,7 @@ Skip any test files
 """
 
     def __init__(self):
-        self._logger = logging.getLogger(
-            "prometheus.lang_graph.nodes.issue_bug_context_message_node"
-        )
+        self._logger = get_logger(__name__)
 
     def __call__(self, state: Dict):
         bug_fix_query = self.BUG_FIX_QUERY.format(

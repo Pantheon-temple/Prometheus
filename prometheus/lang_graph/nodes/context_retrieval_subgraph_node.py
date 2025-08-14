@@ -1,4 +1,3 @@
-import logging
 from typing import Dict, Sequence
 
 import neo4j
@@ -7,6 +6,7 @@ from langchain_core.language_models.chat_models import BaseChatModel
 from prometheus.graph.knowledge_graph import KnowledgeGraph
 from prometheus.lang_graph.subgraphs.context_retrieval_subgraph import ContextRetrievalSubgraph
 from prometheus.models.context import Context
+from prometheus.utils.logger_manager import get_logger
 
 
 class ContextRetrievalSubgraphNode:
@@ -19,9 +19,7 @@ class ContextRetrievalSubgraphNode:
         query_key_name: str,
         context_key_name: str,
     ):
-        self._logger = logging.getLogger(
-            "prometheus.lang_graph.nodes.context_retrieval_subgraph_node"
-        )
+        self._logger = get_logger(__name__)
         self.context_retrieval_subgraph = ContextRetrievalSubgraph(
             model=model,
             kg=kg,

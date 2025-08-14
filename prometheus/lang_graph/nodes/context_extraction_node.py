@@ -1,4 +1,3 @@
-import logging
 from typing import Sequence
 
 from langchain_core.language_models.chat_models import BaseChatModel
@@ -9,6 +8,7 @@ from prometheus.exceptions.file_operation_exceptions import FileOperationExcepti
 from prometheus.lang_graph.subgraphs.context_retrieval_state import ContextRetrievalState
 from prometheus.models.context import Context
 from prometheus.utils.file_utils import read_file_with_line_numbers
+from prometheus.utils.logger_manager import get_logger
 
 SYS_PROMPT = """\
 You are a context summary agent that summarizes code context that is relevant to a given query from history messages.
@@ -88,7 +88,7 @@ class ContextExtractionNode:
         self.model = structured_llm
         self.system_prompt = SystemMessage(SYS_PROMPT)
         self.root_path = root_path
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.context_extraction_node")
+        self._logger = get_logger(__name__)
 
     def __call__(self, state: ContextRetrievalState):
         self._logger.info("Starting context extraction process")

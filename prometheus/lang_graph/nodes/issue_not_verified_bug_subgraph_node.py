@@ -1,4 +1,3 @@
-import logging
 from typing import Dict
 
 import neo4j
@@ -9,6 +8,7 @@ from prometheus.graph.knowledge_graph import KnowledgeGraph
 from prometheus.lang_graph.subgraphs.issue_not_verified_bug_subgraph import (
     IssueNotVerifiedBugSubgraph,
 )
+from prometheus.utils.logger_manager import get_logger
 
 
 class IssueNotVerifiedBugSubgraphNode:
@@ -21,9 +21,8 @@ class IssueNotVerifiedBugSubgraphNode:
         neo4j_driver: neo4j.Driver,
         max_token_per_neo4j_result: int,
     ):
-        self._logger = logging.getLogger(
-            "prometheus.lang_graph.nodes.issue_not_verified_bug_subgraph_node"
-        )
+        self._logger = get_logger(__name__)
+        
         self.issue_not_verified_bug_subgraph = IssueNotVerifiedBugSubgraph(
             advanced_model=advanced_model,
             base_model=base_model,

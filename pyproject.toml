@@ -26,7 +26,9 @@ dependencies = [
   "unidiff>=0.7.5",
   "passlib[bcrypt]>=1.7.4",
   "sqlmodel==0.0.24",
-  "psycopg2-binary"
+  "psycopg2-binary",
+  "mcp>=1.4.1",
+  "tavily-python>=0.5.1"
 ]
 requires-python = ">= 3.11"
 

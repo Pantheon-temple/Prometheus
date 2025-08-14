@@ -1,10 +1,10 @@
-import logging
 
 from langchain_core.language_models.chat_models import BaseChatModel
 
 from prometheus.docker.base_container import BaseContainer
 from prometheus.lang_graph.subgraphs.bug_fix_verification_subgraph import BugFixVerificationSubgraph
 from prometheus.lang_graph.subgraphs.issue_bug_state import IssueBugState
+from prometheus.utils.logger_manager import get_logger
 
 
 class BugFixVerificationSubgraphNode:
@@ -13,9 +13,7 @@ class BugFixVerificationSubgraphNode:
         model: BaseChatModel,
         container: BaseContainer,
     ):
-        self._logger = logging.getLogger(
-            "prometheus.lang_graph.nodes.bug_fix_verification_subgraph_node"
-        )
+        self._logger = get_logger(__name__)
         self.subgraph = BugFixVerificationSubgraph(
             model=model,
             container=container,

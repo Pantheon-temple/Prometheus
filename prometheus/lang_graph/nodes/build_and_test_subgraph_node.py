@@ -1,4 +1,3 @@
-import logging
 from typing import Optional, Sequence
 
 from langchain_core.language_models.chat_models import BaseChatModel
@@ -7,6 +6,7 @@ from prometheus.docker.base_container import BaseContainer
 from prometheus.graph.knowledge_graph import KnowledgeGraph
 from prometheus.lang_graph.subgraphs.build_and_test_subgraph import BuildAndTestSubgraph
 from prometheus.lang_graph.subgraphs.issue_bug_state import IssueBugState
+from prometheus.utils.logger_manager import get_logger
 
 
 class BuildAndTestSubgraphNode:
@@ -25,7 +25,7 @@ class BuildAndTestSubgraphNode:
             build_commands=build_commands,
             test_commands=test_commands,
         )
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.build_and_test_subgraph_node")
+        self._logger = get_logger(__name__)
 
     def __call__(self, state: IssueBugState):
         exist_build = None

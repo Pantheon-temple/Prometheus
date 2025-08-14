@@ -1,4 +1,3 @@
-import logging
 import os
 import shutil
 from pathlib import Path
@@ -6,8 +5,9 @@ from pathlib import Path
 from pydantic import BaseModel, Field
 
 from prometheus.utils.str_util import pre_append_line_numbers
+from prometheus.utils.logger_manager import get_logger
 
-logger = logging.getLogger("prometheus.tools.file_operation")
+logger = get_logger(__name__)
 
 
 class ReadFileInput(BaseModel):

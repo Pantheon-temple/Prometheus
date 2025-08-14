@@ -1,4 +1,3 @@
-import logging
 
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.prompts import ChatPromptTemplate
@@ -7,6 +6,7 @@ from pydantic import BaseModel, Field
 from prometheus.lang_graph.graphs.issue_state import IssueType
 from prometheus.lang_graph.subgraphs.issue_classification_state import IssueClassificationState
 from prometheus.utils.issue_util import format_issue_info
+from prometheus.utils.logger_manager import get_logger
 
 
 class IssueClassifierOutput(BaseModel):
@@ -124,7 +124,7 @@ Issue classification context:
         )
         structured_llm = model.with_structured_output(IssueClassifierOutput)
         self.model = prompt | structured_llm
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.issue_classifier_node")
+        self._logger = get_logger(__name__)
 
     def format_context_info(self, state: IssueClassificationState) -> str:
         context_info = self.ISSUE_CLASSIFICATION_CONTEXT.format(

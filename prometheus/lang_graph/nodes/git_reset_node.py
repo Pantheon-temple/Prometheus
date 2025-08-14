@@ -1,6 +1,6 @@
-import logging
 
 from prometheus.git.git_repository import GitRepository
+from prometheus.utils.logger_manager import get_logger
 
 
 class GitResetNode:
@@ -9,7 +9,7 @@ class GitResetNode:
         git_repo: GitRepository,
     ):
         self.git_repo = git_repo
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.git_reset_node")
+        self._logger = get_logger(__name__)
 
     def __call__(self, _):
         self._logger.debug("Resetting the git repository")
