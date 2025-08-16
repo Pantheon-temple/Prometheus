@@ -17,7 +17,7 @@ from prometheus.app.services.llm_service import LLMService
 from prometheus.app.services.neo4j_service import Neo4jService
 from prometheus.app.services.repository_service import RepositoryService
 from prometheus.lang_graph.graphs.issue_state import IssueType
-from prometheus.utils.logger_manager import get_logger, create_timestamped_file_handler, logger_manager
+from prometheus.utils.logger_manager import get_logger, create_timestamped_file_handler
 
 
 class ServiceCoordinator:
