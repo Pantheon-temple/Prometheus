@@ -28,7 +28,8 @@ dependencies = [
   "sqlmodel==0.0.24",
   "psycopg2-binary",
   "mcp>=1.4.1",
-  "tavily-python>=0.5.1"
+  "tavily-python>=0.5.1",
+  "langchain-mcp-adapters>=0.1.9"
 ]
 requires-python = ">= 3.11"
 

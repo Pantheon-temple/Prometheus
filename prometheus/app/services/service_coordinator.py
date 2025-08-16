@@ -17,7 +17,7 @@ from prometheus.app.services.llm_service import LLMService
 from prometheus.app.services.neo4j_service import Neo4jService
 from prometheus.app.services.repository_service import RepositoryService
 from prometheus.lang_graph.graphs.issue_state import IssueType
-from prometheus.utils.logger_manager import get_logger, create_timestamped_file_handler
+from prometheus.utils.logger_manager import get_logger, create_timestamped_file_handler, logger_manager
 
 
 class ServiceCoordinator:
@@ -160,9 +160,9 @@ class ServiceCoordinator:
         except Exception as e:
             self._logger.error(f"Error in answer_issue: {str(e)}\n{traceback.format_exc()}")
             return None, None, False, False, False, None
-        finally:
-            # 移除文件处理器并关闭文件
-            self._logger.remove_file_handler(file_handler, "prometheus")
+        # finally:
+        #     # 移除文件处理器并关闭文件
+        #     self._logger.remove_file_handler(file_handler, "prometheus")
 
     def exists_knowledge_graph(self) -> bool:
         return self.knowledge_graph_service.exists()

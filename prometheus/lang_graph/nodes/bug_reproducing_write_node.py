@@ -6,7 +6,7 @@ from langchain_core.messages import SystemMessage
 
 from prometheus.graph.knowledge_graph import KnowledgeGraph
 from prometheus.lang_graph.subgraphs.bug_reproduction_state import BugReproductionState
-from prometheus.tools import file_operation
+from prometheus.tools.file_operation import FileOperationTool
 from prometheus.utils.logger_manager import get_logger
 
 
@@ -112,12 +112,13 @@ def test_empty_array_parsing(parser):
 '''
 
     def __init__(self, model: BaseChatModel, kg: KnowledgeGraph):
-        self.tools = self._init_tools(str(kg.get_local_path()))
+        self.file_operation_tool = FileOperationTool(str(kg.get_local_path()))
+        self.tools = self._init_tools()
         self.system_prompt = SystemMessage(self.SYS_PROMPT)
         self.model_with_tools = model.bind_tools(self.tools)
         self._logger = get_logger(__name__)
 
-    def _init_tools(self, root_path: str):
+    def _init_tools(self):
         """Initializes file operation tools with the given root path.
 
         Args:
@@ -128,12 +129,12 @@ def test_empty_array_parsing(parser):
         """
         tools = []
 
-        read_file_fn = functools.partial(file_operation.read_file, root_path=root_path)
+        read_file_fn = functools.partial(self.file_operation_tool.read_file)
         read_file_tool = StructuredTool.from_function(
             func=read_file_fn,
-            name=file_operation.read_file.__name__,
-            description=file_operation.READ_FILE_DESCRIPTION,
-            args_schema=file_operation.ReadFileInput,
+            name=self.file_operation_tool.read_file.__name__,
+            description=self.file_operation_tool.read_file_spec.description,
+            args_schema=self.file_operation_tool.read_file_spec.input_schema,
         )
         tools.append(read_file_tool)
 

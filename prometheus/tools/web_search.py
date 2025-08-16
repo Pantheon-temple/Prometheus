@@ -4,27 +4,19 @@ from pathlib import Path
 from typing import Annotated
 import json
 import asyncio
+from dataclasses import dataclass
 from dynaconf.vendor.dotenv import load_dotenv
 from pydantic import BaseModel, Field, field_validator
-from mcp.server import Server
-from mcp.shared.exceptions import McpError
-from mcp.types import ErrorData
-from mcp.server.stdio import stdio_server
-from mcp.types import (
-    GetPromptResult,
-    Prompt,
-    PromptArgument,
-    PromptMessage,
-    TextContent,
-    Tool,
-    INVALID_PARAMS,
-    INTERNAL_ERROR,
-)
 from tavily import TavilyClient, InvalidAPIKeyError, UsageLimitExceededError
 from prometheus.configuration.config import settings
 from prometheus.utils.logger_manager import get_logger
 
 logger = get_logger(__name__)
+
+@dataclass
+class ToolSpec:
+    description: str
+    input_schema: type
 
 
 tavily_api_key = settings.get("TAVILY_API_KEY", None)
@@ -38,17 +30,6 @@ else:
 class WebSearchInput(BaseModel):
     """Base parameters for Tavily search."""
     query: Annotated[str, Field(description="Search query")]
-
-WEB_SEARCH_DESCRIPTION = """\
-    Searches the web for technical information to aid in bug analysis and resolution. 
-    Use this when you need external context, such as: 
-    1. Looking up unfamiliar error messages, exceptions, or stack traces. 
-    2. Finding official documentation or usage examples for a specific library, framework, or API. 
-    3. Searching for known bugs, common pitfalls, or compatibility issues related to a software version. 
-    4. Learning the best practices or design patterns for fixing a class of vulnerability (e.g., SQL injection, XSS). 
-    
-    Queries should be specific and include relevant keywords like library names, version numbers, and error codes.
-"""
 
 def format_results(response: dict) -> str:
         """Format Tavily search results into a readable string."""
@@ -84,55 +65,69 @@ def format_results(response: dict) -> str:
         return "\n".join(output)
 
 
-
-def web_search(query: str, 
-        max_results: int = 5, 
-        include_domains: list[str] = [
-            'stackoverflow.com', 
-            'github.com', 
-            'developer.mozilla.org', 
-            'learn.microsoft.com', 
-            'docs.python.org', 
-            'pydantic.dev',
-            'pypi.org',
-            'readthedocs.org',
-        ], 
-        exclude_domains: list[str] = None) -> str:
-    """
-    Search the web for technical information to aid in bug analysis and resolution.
-    """
-    if tavily_client is None:
-        raise McpError(ErrorData(
-            code=INTERNAL_ERROR,
-            message="Tavily API key is not set"
-        ))
-    try:
-        response = tavily_client.search(
-            query=query,
-            max_results=max_results,
-            search_depth="advanced",
-            include_answer=True,
-            include_domains=include_domains or [],  # Convert None to empty list
-            exclude_domains=exclude_domains or [],  # Convert None to empty list
-        )
-        return format_results(response)
-    except InvalidAPIKeyError: 
-        raise McpError(ErrorData(
-            code=INVALID_PARAMS,
-            message="Invalid Tavily API key"
-        ))
-    except UsageLimitExceededError:
-        raise McpError(ErrorData(
-            code=INTERNAL_ERROR,
-            message="Usage limit exceeded"
-        ))
-    except Exception as e:
-        raise McpError(ErrorData(
-            code=INTERNAL_ERROR,
-            message=f"An error occurred: {str(e)}"
-        ))
-
-
+class WebSearchTool:
+    """Tool class for web search functionality."""
+    
+    web_search_spec = ToolSpec(
+        description="""\
+        Searches the web for technical information to aid in bug analysis and resolution. 
+        Use this when you need external context, such as: 
+        1. Looking up unfamiliar error messages, exceptions, or stack traces. 
+        2. Finding official documentation or usage examples for a specific library, framework, or API. 
+        3. Searching for known bugs, common pitfalls, or compatibility issues related to a software version. 
+        4. Learning the best practices or design patterns for fixing a class of vulnerability (e.g., SQL injection, XSS). 
+        
+        Queries should be specific and include relevant keywords like library names, version numbers, and error codes.
+        """,
+        input_schema=WebSearchInput
+    )
+    
+    def __init__(self):
+        """Initialize the web search tool."""
+        self.tavily_client = tavily_client
+    
+    def web_search(self, query: str, max_results: int = 5, 
+                   include_domains: list[str] = [
+                       'stackoverflow.com', 
+                       'github.com', 
+                       'developer.mozilla.org', 
+                       'learn.microsoft.com', 
+                       'docs.python.org', 
+                       'pydantic.dev',
+                       'pypi.org',
+                       'readthedocs.org',
+                   ], 
+                   exclude_domains: list[str] = None) -> str:
+        """Search the web for technical information to aid in bug analysis and resolution.
+        
+        Args:
+            query: Search query string.
+            max_results: Maximum number of results to return (default: 5).
+            include_domains: List of domains to include in search.
+            exclude_domains: List of domains to exclude from search.
+            
+        Returns:
+            Formatted search results as a string.
+        """
+        
+        if tavily_client is None:
+            raise RuntimeError("Tavily API key is not set")
+        try:
+            response = tavily_client.search(
+                query=query,
+                max_results=max_results,
+                search_depth="advanced",
+                include_answer=True,
+                include_domains=include_domains or [],  # Convert None to empty list
+                exclude_domains=exclude_domains or [],  # Convert None to empty list
+            )
+            return format_results(response)
+        except InvalidAPIKeyError: 
+            raise ValueError("Invalid Tavily API key")
+        except UsageLimitExceededError:
+            raise RuntimeError("Usage limit exceeded")
+        except Exception as e:
+            raise RuntimeError(f"An error occurred: {str(e)}")
 
 
 if __name__ == "__main__":
@@ -144,4 +139,4 @@ if __name__ == "__main__":
     else:
         tavily_client = TavilyClient(api_key=tavily_api_key)
 
-    print(web_search("What is the capital of France?")) 
+    print(web_search("What is the capital of France?"))

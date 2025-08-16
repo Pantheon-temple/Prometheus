@@ -4,7 +4,7 @@ from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.messages import SystemMessage
 from langchain.tools import StructuredTool
 import functools
-from prometheus.tools import web_search
+from prometheus.tools.web_search import WebSearchTool
 from prometheus.utils.logger_manager import get_logger
 
 
@@ -95,6 +95,7 @@ rather than implementation details.
 """
 
     def __init__(self, model: BaseChatModel):
+        self.web_search_tool = WebSearchTool()
         self.model = model
         self.system_prompt = SystemMessage(self.SYS_PROMPT)
         self.tools = self._init_tools()
@@ -105,12 +106,12 @@ rather than implementation details.
         """Initializes tools for the node."""
         tools = []
 
-        web_search_fn = functools.partial(web_search.web_search)
+        web_search_fn = functools.partial(self.web_search_tool.web_search)
         web_search_tool = StructuredTool.from_function(
             func=web_search_fn,
-            name=web_search.web_search.__name__,
-            description=web_search.WEB_SEARCH_DESCRIPTION,
-            args_schema=web_search.WebSearchInput,
+            name=self.web_search_tool.web_search.__name__,
+            description=self.web_search_tool.web_search_spec.description,
+            args_schema=self.web_search_tool.web_search_spec.input_schema,
         )
         tools.append(web_search_tool)
 

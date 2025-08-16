@@ -1,0 +1,162 @@
+nodes:
+  - name: BugFixVerificationSubgraphNode
+    tools: []
+
+  - name: BugFixVerifyNode
+    class:
+      - ContainerCommandTool:
+          tools:
+          - run_command
+
+  - name: BugFixVerifyStructuredNode
+    tools: []
+
+  - name: BugReproducingExecuteNode
+    class:
+      - ContainerCommandTool:
+          tools:
+          - run_command
+
+  - name: BugReproducingFileNode
+    class:
+      - FileOperationTool:
+          tools:
+          - read_file
+          - create_file
+
+  - name: BugReproducingStructuredNode
+    tools: []
+
+  - name: BugReproducingWriteMessageNode
+    tools: []
+
+  - name: BugReproducingWriteNode
+    class:
+      - FileOperationTool:
+          tools:
+          - read_file
+
+  - name: BugReproductionSubgraphNode
+    tools: []
+
+  - name: BuildAndTestSubgraphNode
+    tools: []
+
+  - name: ContextExtractionNode
+    tools: []
+
+  - name: ContextProviderNode
+    class:
+      - GraphTraversalTool:
+          tools:
+          - find_file_node_with_basename
+          - find_file_node_with_relative_path
+          - find_ast_node_with_text_in_file_with_basename
+          - find_ast_node_with_text_in_file_with_relative_path
+          - find_text_node_with_text
+          - find_text_node_with_text_in_file
+          - get_next_text_node_with_node_id
+          - preview_file_content_with_basename
+          - preview_file_content_with_relative_path
+          - read_code_with_basename
+          - read_code_with_relative_path
+
+  - name: ContextQueryMessageNode
+    tools: []
+
+  - name: ContextRefineNode
+    tools: []
+
+  - name: ContextRetrievalSubgraphNode
+    tools: []
+
+  - name: EditMessageNode
+    tools: []
+
+  - name: EditNode
+    class:
+      - FileOperationTool:
+          tools:
+          - read_file
+          - read_file_with_line_numbers
+          - create_file
+          - delete
+          - edit_file
+
+  - name: FinalPatchSelectionNode
+    tools: []
+
+  - name: GeneralBuildNode
+    class:
+      - ContainerCommandTool:
+          tools:
+          - run_command
+
+  - name: GeneralBuildStructuredNode
+    tools: []
+
+  - name: GeneralTestNode
+    class:
+      - ContainerCommandTool:
+          tools:
+          - run_command
+
+  - name: GeneralTestStructuredNode
+    tools: []
+
+  - name: GitDiffNode
+    tools: []
+
+  - name: GitResetNode
+    tools: []
+
+  - name: IssueBugAnalyzerMessageNode
+    tools: []
+
+  - name: IssueBugAnalyzerNode
+    class:
+      - WebSearchTool:
+          tools:
+          - web_search
+
+  - name: IssueBugContextMessageNode
+    tools: []
+
+  - name: IssueBugReproductionContextMessageNode
+    tools: []
+
+  - name: IssueBugResponderNode
+    tools: []
+
+  - name: IssueBugSubgraphNode
+    tools: []
+
+  - name: IssueClassificationContextMessageNode
+    tools: []
+
+  - name: IssueClassificationSubgraphNode
+    tools: []
+
+  - name: IssueClassifierNode
+    tools: []
+
+  - name: IssueNotVerifiedBugSubgraphNode
+    tools: []
+
+  - name: IssueVerifiedBugSubgraphNode
+    tools: []
+
+  - name: NoopNode
+    tools: []
+
+  - name: ResetMessagesNode
+    tools: []
+
+  - name: UpdateContainerNode
+    tools: []
+
+  - name: UserDefinedBuildNode
+    tools: []
+
+  - name: UserDefinedTestNode
+    tools: []
