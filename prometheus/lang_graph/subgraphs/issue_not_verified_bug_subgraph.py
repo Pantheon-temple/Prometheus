@@ -43,6 +43,11 @@ class IssueNotVerifiedBugSubgraph:
 
         issue_bug_analyzer_message_node = IssueBugAnalyzerMessageNode()
         issue_bug_analyzer_node = IssueBugAnalyzerNode(advanced_model)
+        issue_bug_analyzer_tools = ToolNode(
+            tools=issue_bug_analyzer_node.tools,
+            name="issue_bug_analyzer_tools",
+            messages_key="issue_bug_analyzer_messages",
+        )
 
         edit_message_node = EditMessageNode()
         edit_node = EditNode(advanced_model, kg)
@@ -66,6 +71,7 @@ class IssueNotVerifiedBugSubgraph:
 
         workflow.add_node("issue_bug_analyzer_message_node", issue_bug_analyzer_message_node)
         workflow.add_node("issue_bug_analyzer_node", issue_bug_analyzer_node)
+        workflow.add_node("issue_bug_analyzer_tools", issue_bug_analyzer_tools)
 
         workflow.add_node("edit_message_node", edit_message_node)
         workflow.add_node("edit_node", edit_node)
@@ -84,7 +90,15 @@ class IssueNotVerifiedBugSubgraph:
         workflow.add_edge("issue_bug_context_message_node", "context_retrieval_subgraph_node")
         workflow.add_edge("context_retrieval_subgraph_node", "issue_bug_analyzer_message_node")
         workflow.add_edge("issue_bug_analyzer_message_node", "issue_bug_analyzer_node")
-        workflow.add_edge("issue_bug_analyzer_node", "edit_message_node")
+        
+        # Conditionally invoke tools or continue to edit message
+        workflow.add_conditional_edges(
+            "issue_bug_analyzer_node",
+            functools.partial(tools_condition, messages_key="issue_bug_analyzer_messages"),
+            {"tools": "issue_bug_analyzer_tools", END: "edit_message_node"},
+        )
+        
+        workflow.add_edge("issue_bug_analyzer_tools", "issue_bug_analyzer_node")
 
         workflow.add_edge("edit_message_node", "edit_node")
         workflow.add_conditional_edges(
