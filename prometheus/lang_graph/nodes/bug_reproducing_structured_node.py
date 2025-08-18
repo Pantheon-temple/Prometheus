@@ -1,4 +1,5 @@
 import logging
+import threading
 from typing import Sequence
 
 from langchain_core.language_models.chat_models import BaseChatModel
@@ -135,7 +136,7 @@ Log from executing bug reproducing file:
         structured_llm = model.with_structured_output(BugReproducingStructuredOutput)
         self.model = prompt | structured_llm
         self._logger = logging.getLogger(
-            "prometheus.lang_graph.nodes.bug_reproducing_structured_node"
+            f"thread-{threading.get_ident()}.prometheus.lang_graph.nodes.bug_reproducing_structured_node"
         )
 
     def __call__(self, state: BugReproductionState):

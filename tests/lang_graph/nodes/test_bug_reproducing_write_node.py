@@ -12,22 +12,26 @@ from tests.test_utils.util import FakeListChatWithToolsModel
 @pytest.fixture
 def mock_kg():
     kg = Mock(spec=KnowledgeGraph)
-    kg.get_local_path.return_value = "/foo/bar"
     return kg
 
 
 @pytest.fixture
 def test_state():
     return BugReproductionState(
-        {
-            "issue_title": "Test Bug",
-            "issue_body": "Bug description",
-            "issue_comments": ["Comment 1", "Comment 2"],
-            "bug_context": "Context of the bug",
-            "reproduced_bug_file": "test/file.py",
-            "reproduced_bug_failure_log": "Test failure log",
-            "bug_reproducing_write_messages": [HumanMessage("assert x == 10")],
-        }
+        issue_title="Test Bug",
+        issue_body="Bug description",
+        issue_comments=[{"user1": "Comment 1"}, {"user2": "Comment 2"}],
+        max_refined_query_loop=3,
+        bug_reproducing_query="mock query",
+        bug_reproducing_context=[],
+        bug_reproducing_write_messages=[HumanMessage("assert x == 10")],
+        bug_reproducing_file_messages=[],
+        bug_reproducing_execute_messages=[],
+        bug_reproducing_patch="",
+        reproduced_bug=False,
+        reproduced_bug_failure_log="Test failure log",
+        reproduced_bug_file="test/file.py",
+        reproduced_bug_commands=[],
     )
 
 

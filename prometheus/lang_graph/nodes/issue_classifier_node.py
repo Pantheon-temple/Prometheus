@@ -1,4 +1,5 @@
 import logging
+import threading
 
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.prompts import ChatPromptTemplate
@@ -124,14 +125,18 @@ Issue classification context:
         )
         structured_llm = model.with_structured_output(IssueClassifierOutput)
         self.model = prompt | structured_llm
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.issue_classifier_node")
+        self._logger = logging.getLogger(
+            f"thread-{threading.get_ident()}.prometheus.lang_graph.nodes.issue_classifier_node"
+        )
 
     def format_context_info(self, state: IssueClassificationState) -> str:
         context_info = self.ISSUE_CLASSIFICATION_CONTEXT.format(
             issue_info=format_issue_info(
                 state["issue_title"], state["issue_body"], state["issue_comments"]
             ),
-            issue_classification_context="\n\n".join(state["issue_classification_context"]),
+            issue_classification_context="\n\n".join(
+                [str(context) for context in state["issue_classification_context"]]
+            ),
         )
         return context_info
 

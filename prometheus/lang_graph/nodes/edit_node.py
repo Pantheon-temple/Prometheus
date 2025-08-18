@@ -8,15 +8,14 @@ while maintaining code integrity.
 
 import functools
 import logging
+import threading
 from typing import Dict
 
 from langchain.tools import StructuredTool
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.messages import SystemMessage
 
-from prometheus.graph.knowledge_graph import KnowledgeGraph
 from prometheus.tools import file_operation
-from prometheus.utils.lang_graph_util import truncate_messages
 
 
 class EditNode:
@@ -117,11 +116,13 @@ MANDATORY REQUIREMENTS:
 6. Verify uniqueness of matches before changes
 """
 
-    def __init__(self, model: BaseChatModel, kg: KnowledgeGraph):
+    def __init__(self, model: BaseChatModel, local_path: str):
         self.system_prompt = SystemMessage(self.SYS_PROMPT)
-        self.tools = self._init_tools(kg.get_local_path())
+        self.tools = self._init_tools(local_path)
         self.model_with_tools = model.bind_tools(self.tools)
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.edit_node")
+        self._logger = logging.getLogger(
+            f"thread-{threading.get_ident()}.prometheus.lang_graph.nodes.edit_node"
+        )
 
     def _init_tools(self, root_path: str):
         """Initializes file operation tools with the given root path.
@@ -185,8 +186,7 @@ MANDATORY REQUIREMENTS:
 
     def __call__(self, state: Dict):
         message_history = [self.system_prompt] + state["edit_messages"]
-        truncated_message_history = truncate_messages(message_history)
-        response = self.model_with_tools.invoke(truncated_message_history)
+        response = self.model_with_tools.invoke(message_history)
 
         self._logger.debug(response)
         return {"edit_messages": [response]}

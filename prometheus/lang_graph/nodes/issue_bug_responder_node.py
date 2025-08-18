@@ -1,4 +1,5 @@
 import logging
+import threading
 from typing import Dict
 
 from langchain_core.language_models.chat_models import BaseChatModel
@@ -48,7 +49,9 @@ Verification:
         self.system_prompt = SystemMessage(self.SYS_PROMPT)
         self.model = model
 
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.issue_bug_responder_node")
+        self._logger = logging.getLogger(
+            f"thread-{threading.get_ident()}.prometheus.lang_graph.nodes.issue_bug_responder_node"
+        )
 
     def format_human_message(self, state: Dict) -> HumanMessage:
         verification_messages = []

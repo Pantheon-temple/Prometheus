@@ -5,6 +5,7 @@ from pathlib import Path
 class FileType(enum.StrEnum):
     """Enum of all tree-sitter supported file types"""
 
+    # Supported programming languages
     BASH = "bash"
     C = "c"
     CSHARP = "csharp"
@@ -16,16 +17,18 @@ class FileType(enum.StrEnum):
     PHP = "php"
     PYTHON = "python"
     SQL = "sql"
-    YAML = "yaml"
     RUST = "rust"
     RUBY = "ruby"
     TYPESCRIPT = "typescript"
+    # configuration files
+    YAML = "yaml"
+    # Unknown file type
     UNKNOWN = "UNKNOWN"
 
     @classmethod
     def from_path(cls, path: Path):
         match path.suffix:
-            case ".sh":
+            case ".sh" | ".bash":
                 return cls.BASH
             case ".c":
                 return cls.C
@@ -53,7 +56,9 @@ class FileType(enum.StrEnum):
                 return cls.RUBY
             case ".ts":
                 return cls.TYPESCRIPT
+            # configuration files
             case ".yaml" | ".yml":
                 return cls.YAML
+            # If the file type is not recognized, return UNKNOWN
             case _:
                 return cls.UNKNOWN

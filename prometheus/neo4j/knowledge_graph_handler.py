@@ -7,13 +7,11 @@ from neo4j import GraphDatabase, ManagedTransaction
 
 from prometheus.graph.graph_types import (
     KnowledgeGraphNode,
-    MetadataNode,
     Neo4jASTNode,
     Neo4jFileNode,
     Neo4jHasASTEdge,
     Neo4jHasFileEdge,
     Neo4jHasTextEdge,
-    Neo4jMetadataNode,
     Neo4jNextChunkEdge,
     Neo4jTextNode,
 )
@@ -31,10 +29,11 @@ class KnowledgeGraphHandler:
         """
         self.driver = driver
         self.batch_size = batch_size
-
+        # initialize the database and logger
+        self._init_database()
         self._logger = logging.getLogger("prometheus.neo4j.knowledge_graph_handler")
 
-    def _init_database(self, tx: ManagedTransaction):
+    def _init_database(self):
         """Initialization of the neo4j database."""
 
         # Create constraints for node_id attributes.
@@ -47,22 +46,9 @@ class KnowledgeGraphHandler:
             "CREATE CONSTRAINT unique_text_node_id IF NOT EXISTS "
             "FOR (n:TextNode) REQUIRE n.node_id IS UNIQUE",
         ]
-        for query in queries:
-            tx.run(query)
-
-    def _write_meta_node(self, tx: ManagedTransaction, metadata_node: Neo4jMetadataNode):
-        """Write Neo4jMetadataNode to neo4j."""
-        self._logger.debug(f"Writing {len(metadata_node)} MetadataNode to neo4j")
-        query = """
-      CREATE (a:MetadataNode {codebase_source: $codebase_source, local_path: $local_path, https_url: $https_url, commit_id: $commit_id})
-    """
-        tx.run(
-            query,
-            codebase_source=metadata_node["codebase_source"],
-            local_path=metadata_node["local_path"],
-            https_url=metadata_node["https_url"],
-            commit_id=metadata_node["commit_id"],
-        )
+        with self.driver.session() as session:
+            for query in queries:
+                session.run(query)
 
     def _write_file_nodes(self, tx: ManagedTransaction, file_nodes: Sequence[Neo4jFileNode]):
         """Write Neo4jFileNode to neo4j."""
@@ -187,9 +173,6 @@ class KnowledgeGraphHandler:
         """
         self._logger.info("Writing knowledge graph to neo4j")
         with self.driver.session() as session:
-            session.execute_write(self._init_database)
-
-            session.execute_write(self._write_meta_node, kg.get_neo4j_metadata_node())
             session.execute_write(self._write_file_nodes, kg.get_neo4j_file_nodes())
             session.execute_write(self._write_ast_nodes, kg.get_neo4j_ast_nodes())
             session.execute_write(self._write_text_nodes, kg.get_neo4j_text_nodes())
@@ -200,118 +183,271 @@ class KnowledgeGraphHandler:
             session.execute_write(self._write_next_chunk_edges, kg.get_neo4j_next_chunk_edges())
         self.write_parent_of_edges(kg.get_parent_of_edges())
 
-    def _read_metadata_node(self, tx: ManagedTransaction) -> MetadataNode:
-        """Read MetadataNode from neo4j."""
-        query = "MATCH (n:MetadataNode) RETURN n.codebase_source AS codebase_source, n.local_path AS local_path, n.https_url AS https_url, n.commit_id AS commit_id"
-        result = tx.run(query)
-        return [MetadataNode.from_neo4j_metadata_node(record.data()) for record in result][0]
+    def _read_file_nodes(
+        self, tx: ManagedTransaction, root_node_id: int
+    ) -> Sequence[KnowledgeGraphNode]:
+        """
+        Read all FileNode nodes that are reachable from the specified root_node_id (including the root node itself).
 
-    def _read_file_nodes(self, tx: ManagedTransaction) -> Sequence[KnowledgeGraphNode]:
-        """Read FileNode from neo4j."""
-        query = "MATCH (n:FileNode) RETURN n.node_id AS node_id, n.basename AS basename, n.relative_path AS relative_path"
-        result = tx.run(query)
+        Args:
+            tx (ManagedTransaction): An active Neo4j transaction.
+            root_node_id (int): The node id of the root node.
+
+        Returns:
+            Sequence[KnowledgeGraphNode]: List of FileNode KnowledgeGraphNode objects.
+        """
+        query = """
+        MATCH (root:FileNode {node_id: $root_node_id})
+        RETURN root.node_id AS node_id, root.basename AS basename, root.relative_path AS relative_path
+        UNION
+        MATCH (root:FileNode {node_id: $root_node_id})-[:HAS_FILE*]->(n:FileNode)
+        RETURN n.node_id AS node_id, n.basename AS basename, n.relative_path AS relative_path
+        """
+        result = tx.run(query, root_node_id=root_node_id)
         return [KnowledgeGraphNode.from_neo4j_file_node(record.data()) for record in result]
 
-    def _read_ast_nodes(self, tx: ManagedTransaction) -> Sequence[KnowledgeGraphNode]:
-        """Read ASTNode from neo4j."""
-        query = "MATCH (n:ASTNode) RETURN n.node_id AS node_id, n.start_line AS start_line, n.end_line AS end_line, n.type AS type, n.text AS text"
-        result = tx.run(query)
+    def _read_ast_nodes(
+        self, tx: ManagedTransaction, root_node_id: int
+    ) -> Sequence[KnowledgeGraphNode]:
+        """
+        Read all ASTNode nodes related to the file tree rooted at root_node_id:
+          - Traverse from the root FileNode via HAS_FILE* to get all reachable FileNodes.
+          - For each FileNode, get its AST root node via HAS_AST, and all its AST descendants via PARENT_OF*.
+
+        Args:
+            tx (ManagedTransaction): An active Neo4j transaction.
+            root_node_id (int): The node id of the root FileNode.
+
+        Returns:
+            Sequence[KnowledgeGraphNode]: List of ASTNode KnowledgeGraphNode objects.
+        """
+        query = """
+        MATCH (root {node_id: $root_node_id})
+        OPTIONAL MATCH (root)-[*]->(n:ASTNode)
+        RETURN DISTINCT n.node_id AS node_id, n.start_line AS start_line, n.end_line AS end_line, n.type AS type, n.text AS text
+        """
+        result = tx.run(query, root_node_id=root_node_id)
         return [KnowledgeGraphNode.from_neo4j_ast_node(record.data()) for record in result]
 
-    def _read_text_nodes(self, tx: ManagedTransaction) -> Sequence[KnowledgeGraphNode]:
-        """Read TextNode from neo4j."""
-        query = (
-            "MATCH (n:TextNode) RETURN n.node_id AS node_id, n.text AS text, n.metadata AS metadata"
-        )
-        result = tx.run(query)
+    def _read_text_nodes(
+        self, tx: ManagedTransaction, root_node_id: int
+    ) -> Sequence[KnowledgeGraphNode]:
+        """
+        Read all TextNode nodes that are reachable from the specified root_node_id (regardless of edge type).
+
+        Args:
+            tx (ManagedTransaction): An active Neo4j transaction.
+            root_node_id (int): The node id of the root node.
+
+        Returns:
+            Sequence[KnowledgeGraphNode]: List of TextNode KnowledgeGraphNode objects.
+        """
+        query = """
+        MATCH (root {node_id: $root_node_id})
+        OPTIONAL MATCH (root)-[*]->(n:TextNode)
+        RETURN DISTINCT n.node_id AS node_id, n.text AS text, n.metadata AS metadata
+        """
+        result = tx.run(query, root_node_id=root_node_id)
         return [KnowledgeGraphNode.from_neo4j_text_node(record.data()) for record in result]
 
-    def _read_parent_of_edges(self, tx: ManagedTransaction) -> Sequence[Mapping[str, int]]:
-        """Read PARENT_OF edges from neo4j."""
+    def _read_parent_of_edges(
+        self, tx: ManagedTransaction, root_node_id: int
+    ) -> Sequence[Mapping[str, int]]:
+        """
+        Read all PARENT_OF edges where both source and target ASTNode are reachable from the subtree rooted at root_node_id.
+
+        Args:
+            tx (ManagedTransaction): An active Neo4j transaction.
+            root_node_id (int): The node id of the root FileNode.
+
+        Returns:
+            Sequence[Mapping[str, int]]: List of dicts with source_id and target_id for each PARENT_OF edge.
+        """
         query = """
-        MATCH (source:ASTNode) -[:PARENT_OF]-> (target:ASTNode)
-        RETURN source.node_id AS source_id, target.node_id AS target_id
-    """
-        result = tx.run(query)
+        // Find all reachable ASTNodes (from the file tree)
+        MATCH (root:FileNode {node_id: $root_node_id})
+        OPTIONAL MATCH (root)-[*]->(ast:ASTNode)
+        WITH collect(ast) AS all_ast_nodes
+        UNWIND all_ast_nodes AS node1
+        WITH node1, all_ast_nodes WHERE node1 IS NOT NULL
+        // Find PARENT_OF edges only between those ASTNodes
+        MATCH (node1)-[:PARENT_OF]->(node2:ASTNode)
+        WHERE node2 IN all_ast_nodes
+        RETURN node1.node_id AS source_id, node2.node_id AS target_id
+        """
+        result = tx.run(query, root_node_id=root_node_id)
         return [record.data() for record in result]
 
-    def _read_has_file_edges(self, tx: ManagedTransaction) -> Sequence[Mapping[str, int]]:
-        """Read HAS_FILE edges from neo4j."""
+    def _read_has_file_edges(
+        self, tx: ManagedTransaction, root_node_id: int
+    ) -> Sequence[Mapping[str, int]]:
+        """
+        Read all HAS_FILE edges that are reachable from the specified root_node_id (i.e., only those
+        between FileNodes in the subtree of root_node_id, including root itself).
+
+        Args:
+            tx (ManagedTransaction): An active Neo4j transaction.
+            root_node_id (int): The node id of the root FileNode.
+
+        Returns:
+            Sequence[Mapping[str, int]]: List of dicts with source_id and target_id for each HAS_FILE edge.
+        """
         query = """
-        MATCH (source:FileNode) -[:HAS_FILE]-> (target:FileNode)
-        RETURN source.node_id AS source_id, target.node_id AS target_id
-    """
-        result = tx.run(query)
+            MATCH p = (root:FileNode {node_id: $root_node_id})-[:HAS_FILE*0..]->(n:FileNode)
+            WITH collect(DISTINCT n) AS nodes_in_subtree
+            UNWIND nodes_in_subtree AS src
+            MATCH (src)-[:HAS_FILE]->(dst:FileNode)
+            WHERE dst IN nodes_in_subtree
+            RETURN DISTINCT src.node_id AS source_id, dst.node_id AS target_id
+            """
+        result = tx.run(query, root_node_id=root_node_id)
         return [record.data() for record in result]
 
-    def _read_has_ast_edges(self, tx: ManagedTransaction) -> Sequence[Mapping[str, int]]:
-        """Read HAS_AST edges from neo4j."""
+    def _read_has_ast_edges(
+        self, tx: ManagedTransaction, root_node_id: int
+    ) -> Sequence[Mapping[str, int]]:
+        """
+        Read all HAS_AST edges where the source FileNode is in the subtree rooted at root_node_id.
+
+        Args:
+            tx (ManagedTransaction): An active Neo4j transaction.
+            root_node_id (int): The node id of the root FileNode.
+
+        Returns:
+            Sequence[Mapping[str, int]]: List of dicts with source_id and target_id for each HAS_AST edge.
+        """
         query = """
-        MATCH (source:FileNode) -[:HAS_AST]-> (target:ASTNode)
-        RETURN source.node_id AS source_id, target.node_id AS target_id
-    """
-        result = tx.run(query)
+        // Find all reachable FileNodes (including root)
+        MATCH (root:FileNode {node_id: $root_node_id})
+        OPTIONAL MATCH (root)-[:HAS_FILE*]->(subfile:FileNode)
+        WITH collect(root) + collect(subfile) AS all_file_nodes
+        UNWIND all_file_nodes AS file_node
+        WITH file_node WHERE file_node IS NOT NULL
+        // Find HAS_AST edges from these FileNodes
+        MATCH (file_node)-[:HAS_AST]->(ast:ASTNode)
+        RETURN file_node.node_id AS source_id, ast.node_id AS target_id
+        """
+        result = tx.run(query, root_node_id=root_node_id)
         return [record.data() for record in result]
 
-    def _read_has_text_edges(self, tx: ManagedTransaction) -> Sequence[Mapping[str, int]]:
-        """Read HAS_TEXT edges from neo4j."""
+    def _read_has_text_edges(
+        self, tx: ManagedTransaction, root_node_id: int
+    ) -> Sequence[Mapping[str, int]]:
+        """
+        Read all HAS_TEXT edges where the source FileNode is in the subtree rooted at root_node_id.
+
+        Args:
+            tx (ManagedTransaction): An active Neo4j transaction.
+            root_node_id (int): The node id of the root FileNode.
+
+        Returns:
+            Sequence[Mapping[str, int]]: List of dicts with source_id and target_id for each HAS_TEXT edge.
+        """
         query = """
-        MATCH (source:FileNode) -[:HAS_TEXT]-> (target:TextNode)
-        RETURN source.node_id AS source_id, target.node_id AS target_id
-    """
-        result = tx.run(query)
+        // Find all reachable FileNodes (including root)
+        MATCH (root:FileNode {node_id: $root_node_id})
+        OPTIONAL MATCH (root)-[:HAS_FILE*]->(subfile:FileNode)
+        WITH collect(root) + collect(subfile) AS all_file_nodes
+        UNWIND all_file_nodes AS file_node
+        WITH file_node WHERE file_node IS NOT NULL
+        // Find HAS_TEXT edges from these FileNodes
+        MATCH (file_node)-[:HAS_TEXT]->(text:TextNode)
+        RETURN file_node.node_id AS source_id, text.node_id AS target_id
+        """
+        result = tx.run(query, root_node_id=root_node_id)
         return [record.data() for record in result]
 
-    def _read_next_chunk_edges(self, tx: ManagedTransaction) -> Sequence[Mapping[str, int]]:
-        """Read NEXT_CHUNK edges from neo4j."""
+    def _read_next_chunk_edges(
+        self, tx: ManagedTransaction, root_node_id: int
+    ) -> Sequence[Mapping[str, int]]:
+        """
+        Read all NEXT_CHUNK edges between TextNodes that are reachable from the subtree rooted at root_node_id.
+
+        Args:
+            tx (ManagedTransaction): An active Neo4j transaction.
+            root_node_id (int): The node id of the root FileNode.
+
+        Returns:
+            Sequence[Mapping[str, int]]: List of dicts with source_id and target_id for each NEXT_CHUNK edge.
+        """
         query = """
-        MATCH (source:TextNode) -[:NEXT_CHUNK]-> (target:TextNode)
-        RETURN source.node_id AS source_id, target.node_id AS target_id
-    """
-        result = tx.run(query)
+        // Find all reachable TextNodes (from the file tree)
+        MATCH (root:FileNode {node_id: $root_node_id})
+        OPTIONAL MATCH (root)-[*]->(text_node:TextNode)
+        WITH collect(text_node) AS all_text_nodes
+        UNWIND all_text_nodes AS node1
+        WITH node1, all_text_nodes WHERE node1 IS NOT NULL
+        // Find NEXT_CHUNK edges only between those TextNodes
+        MATCH (node1)-[:NEXT_CHUNK]->(node2:TextNode)
+        WHERE node2 IN all_text_nodes
+        RETURN node1.node_id AS source_id, node2.node_id AS target_id
+        """
+        result = tx.run(query, root_node_id=root_node_id)
         return [record.data() for record in result]
 
-    def read_knowledge_graph(self) -> KnowledgeGraph:
+    def read_knowledge_graph(
+        self,
+        root_node_id: int,
+        max_ast_depth: int,
+        chunk_size: int,
+        chunk_overlap: int,
+    ) -> KnowledgeGraph:
         """Read KnowledgeGraph from neo4j."""
         self._logger.info("Reading knowledge graph from neo4j")
         with self.driver.session() as session:
             return KnowledgeGraph.from_neo4j(
-                session.execute_read(self._read_metadata_node),
-                session.execute_read(self._read_file_nodes),
-                session.execute_read(self._read_ast_nodes),
-                session.execute_read(self._read_text_nodes),
-                session.execute_read(self._read_parent_of_edges),
-                session.execute_read(self._read_has_file_edges),
-                session.execute_read(self._read_has_ast_edges),
-                session.execute_read(self._read_has_text_edges),
-                session.execute_read(self._read_next_chunk_edges),
+                root_node_id,
+                max_ast_depth,
+                chunk_size,
+                chunk_overlap,
+                session.execute_read(self._read_file_nodes, root_node_id=root_node_id),
+                session.execute_read(self._read_ast_nodes, root_node_id=root_node_id),
+                session.execute_read(self._read_text_nodes, root_node_id=root_node_id),
+                session.execute_read(self._read_parent_of_edges, root_node_id=root_node_id),
+                session.execute_read(self._read_has_file_edges, root_node_id=root_node_id),
+                session.execute_read(self._read_has_ast_edges, root_node_id=root_node_id),
+                session.execute_read(self._read_has_text_edges, root_node_id=root_node_id),
+                session.execute_read(self._read_next_chunk_edges, root_node_id=root_node_id),
             )
 
-    def knowledge_graph_exists(self) -> bool:
-        """Check if the knowledge graph exists in the Neo4j database.
+    def knowledge_graph_exists(self, root_node_id: int) -> bool:
+        """
+        Check if the knowledge graph with specific root_node_id exists in the Neo4j database.
+
+        Args:
+            root_node_id (int): The node id of the root node.
 
         Returns:
-          True if there are any nodes in the database, False otherwise.
+            bool: True if the root node exists, False otherwise.
+        """
+        query = "MATCH (n {node_id: $root_node_id}) RETURN count(n) > 0 AS exists"
+        with self.driver.session() as session:
+            result = session.run(query, root_node_id=root_node_id)
+            return result.single()["exists"]
+
+    def count_nodes(self, tx: ManagedTransaction) -> int:
+        """
+        Return the number of nodes in the Neo4j database.
+
+        Args:
+            tx (ManagedTransaction): An active Neo4j transaction.
+
+        Returns:
+            int: The total number of nodes in the database.
         """
         query = """
-      MATCH (n)
-      RETURN COUNT(n) > 0 AS graph_exists
-    """
-        with self.driver.session() as session:
-            result = session.run(query)
-            record = result.single()
-            return record["graph_exists"] if record else False
-
-    def verify_empty(self, tx: ManagedTransaction):
-        query = """
-      MATCH (n)
-      RETURN count(n) as count
-    """
+          MATCH (n)
+          RETURN count(n) as count
+        """
         result = tx.run(query)
-        return result.single()["count"] == 0
+        return result.single()["count"]
 
-    def clear_knowledge_graph(self):
-        """Clear the knowledge graph from neo4j."""
+    def verify_empty(self, tx: ManagedTransaction) -> bool:
+        """Verify that the Neo4j database is empty."""
+        return self.count_nodes(tx) == 0
+
+    def clear_all_knowledge_graph(self):
+        """Clear all knowledge graphs from neo4j."""
         query = """
       MATCH (n)
       DETACH DELETE n
@@ -327,3 +463,31 @@ class KnowledgeGraphHandler:
 
                 self._logger.warning(f"Database not empty after attempt {attempt + 1}, retrying...")
                 session.run(query)
+
+    def get_new_knowledge_graph_root_node_id(self) -> int:
+        """
+        Estimate the next available node id in the Neo4j database.
+
+        Returns:
+            int: The next available node id (max id + 1), or 0 if no nodes exist.
+        """
+        query = "MATCH (n) RETURN max(id(n)) AS max_id"
+        with self.driver.session() as session:
+            result = session.run(query)
+            max_id = result.single()["max_id"]
+            return 0 if max_id is None else max_id + 1
+
+    def clear_knowledge_graph(self, root_node_id: int):
+        """
+        Delete the subgraph rooted at root_node_id, including all descendant nodes and their relationships.
+
+        Args:
+            root_node_id (int): The node id of the root node.
+        """
+        query = """
+        MATCH (root {node_id: $root_node_id})
+        OPTIONAL MATCH (root)-[*]->(descendant)
+        DETACH DELETE root, descendant
+        """
+        with self.driver.session() as session:
+            session.run(query, root_node_id=root_node_id)

@@ -3,6 +3,8 @@ from typing import Annotated, Mapping, Sequence, TypedDict
 from langchain_core.messages import BaseMessage
 from langgraph.graph.message import add_messages
 
+from prometheus.models.context import Context
+
 
 class BugReproductionState(TypedDict):
     issue_title: str
@@ -12,7 +14,7 @@ class BugReproductionState(TypedDict):
     max_refined_query_loop: int
 
     bug_reproducing_query: str
-    bug_reproducing_context: Sequence[str]
+    bug_reproducing_context: Sequence[Context]
 
     bug_reproducing_write_messages: Annotated[Sequence[BaseMessage], add_messages]
     bug_reproducing_file_messages: Annotated[Sequence[BaseMessage], add_messages]

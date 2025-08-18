@@ -23,8 +23,9 @@ def test_init_with_https_url(git_repo_fixture):  # noqa: F811
         https_url = "https://github.com/foo/bar.git"
         target_directory = test_project_paths.TEST_PROJECT_PATH
 
-        GitRepository(
-            address=https_url, working_directory=target_directory, github_access_token=access_token
+        git_repo = GitRepository()
+        git_repo.from_clone_repository(
+            https_url=https_url, target_directory=target_directory, github_access_token=access_token
         )
 
         mock_clone_from.assert_called_once_with(
@@ -38,11 +39,8 @@ def test_init_with_https_url(git_repo_fixture):  # noqa: F811
 )
 @pytest.mark.git
 def test_checkout_commit(git_repo_fixture):  # noqa: F811
-    git_repo = GitRepository(
-        address=git_repo_fixture.working_dir,
-        working_directory=Path("/foo/bar"),
-        copy_to_working_dir=False,
-    )
+    git_repo = GitRepository()
+    git_repo.from_local_repository(git_repo_fixture.working_dir)
 
     commit_sha = "293551b7bd9572b63018c9ed2bccea0f37726805"
     assert git_repo.repo.head.commit.hexsha != commit_sha
@@ -56,11 +54,8 @@ def test_checkout_commit(git_repo_fixture):  # noqa: F811
 )
 @pytest.mark.git
 def test_switch_branch(git_repo_fixture):  # noqa: F811
-    git_repo = GitRepository(
-        address=git_repo_fixture.working_dir,
-        working_directory=Path("/foo/bar"),
-        copy_to_working_dir=False,
-    )
+    git_repo = GitRepository()
+    git_repo.from_local_repository(git_repo_fixture.working_dir)
 
     branch_name = "dev"
     assert git_repo.repo.active_branch.name != branch_name
@@ -78,9 +73,8 @@ def test_get_diff(git_repo_fixture):  # noqa: F811
     test_file = local_path / "test.c"
 
     # Initialize repository
-    git_repo = GitRepository(
-        address=str(local_path), working_directory=Path("/foo/bar"), copy_to_working_dir=False
-    )
+    git_repo = GitRepository()
+    git_repo.from_local_repository(local_path)
 
     # Create a change by modifying test.c
     original_content = test_file.read_text()
@@ -120,13 +114,48 @@ index 79a1160..76e8197 100644
     reason="Test fails on Windows because of cptree in git_repo_fixture",
 )
 @pytest.mark.git
+def test_apply_patch(git_repo_fixture):  # noqa: F811
+    local_path = Path(git_repo_fixture.working_dir).absolute()
+
+    # Initialize repository
+    git_repo = GitRepository()
+    git_repo.from_local_repository(local_path)
+
+    # Apply a patch that modifies test.c
+    patch = """\
+diff --git a/test.c b/test.c
+--- a/test.c
++++ b/test.c
+@@ -1,6 +1,1 @@
+-#include <stdio.h>
+-
+-int main() {
+-    printf("Hello world!");
+-    return 0;
+-}
+\ No newline at end of file
++int main() { return 0; }
+\ No newline at end of file
+
+"""
+    git_repo.apply_patch(patch)
+    # Verify the change
+    test_file = local_path / "test.c"
+    assert test_file.exists()
+    assert test_file.read_text() == "int main() { return 0; }"
+
+
+@pytest.mark.skipif(
+    sys.platform.startswith("win"),
+    reason="Test fails on Windows because of cptree in git_repo_fixture",
+)
+@pytest.mark.git
 def test_remove_repository(git_repo_fixture):  # noqa: F811
     with mock.patch("shutil.rmtree") as mock_rmtree:
         local_path = git_repo_fixture.working_dir
 
-        git_repo = GitRepository(
-            address=local_path, working_directory=Path("/foo/bar"), copy_to_working_dir=False
-        )
+        git_repo = GitRepository()
+        git_repo.from_local_repository(local_path)
         assert git_repo.repo is not None
 
         git_repo.remove_repository()

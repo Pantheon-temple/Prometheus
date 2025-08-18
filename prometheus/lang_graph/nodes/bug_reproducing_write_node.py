@@ -1,14 +1,13 @@
 import functools
 import logging
+import threading
 
 from langchain.tools import StructuredTool
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.messages import SystemMessage
 
-from prometheus.graph.knowledge_graph import KnowledgeGraph
 from prometheus.lang_graph.subgraphs.bug_reproduction_state import BugReproductionState
 from prometheus.tools import file_operation
-from prometheus.utils.lang_graph_util import truncate_messages
 
 
 class BugReproducingWriteNode:
@@ -112,11 +111,13 @@ def test_empty_array_parsing(parser):
 </example>
 '''
 
-    def __init__(self, model: BaseChatModel, kg: KnowledgeGraph):
-        self.tools = self._init_tools(str(kg.get_local_path()))
+    def __init__(self, model: BaseChatModel, local_path: str):
+        self.tools = self._init_tools(local_path)
         self.system_prompt = SystemMessage(self.SYS_PROMPT)
         self.model_with_tools = model.bind_tools(self.tools)
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.bug_reproducing_write_node")
+        self._logger = logging.getLogger(
+            f"thread-{threading.get_ident()}.prometheus.lang_graph.nodes.bug_reproducing_write_node"
+        )
 
     def _init_tools(self, root_path: str):
         """Initializes file operation tools with the given root path.
@@ -142,8 +143,7 @@ def test_empty_array_parsing(parser):
 
     def __call__(self, state: BugReproductionState):
         message_history = [self.system_prompt] + state["bug_reproducing_write_messages"]
-        truncated_message_history = truncate_messages(message_history)
-        response = self.model_with_tools.invoke(truncated_message_history)
+        response = self.model_with_tools.invoke(message_history)
 
         self._logger.debug(response)
         return {"bug_reproducing_write_messages": [response]}

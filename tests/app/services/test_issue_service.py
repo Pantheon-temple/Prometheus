@@ -1,29 +1,14 @@
-from pathlib import Path
 from unittest.mock import Mock, create_autospec
 
 import pytest
 
 from prometheus.app.services.issue_service import IssueService
-from prometheus.app.services.knowledge_graph_service import KnowledgeGraphService
 from prometheus.app.services.llm_service import LLMService
 from prometheus.app.services.neo4j_service import Neo4jService
 from prometheus.app.services.repository_service import RepositoryService
+from prometheus.git.git_repository import GitRepository
+from prometheus.graph.knowledge_graph import KnowledgeGraph
 from prometheus.lang_graph.graphs.issue_state import IssueType
-
-
-@pytest.fixture
-def mock_kg_service():
-    service = create_autospec(KnowledgeGraphService, instance=True)
-    service.kg = Mock(name="mock_knowledge_graph")
-    service.kg.get_local_path.return_value = Path("/mock/path")
-    return service
-
-
-@pytest.fixture
-def mock_repository_service():
-    service = create_autospec(RepositoryService, instance=True)
-    service.git_repo = Mock(name="mock_git_repo")
-    return service
 
 
 @pytest.fixture
@@ -42,17 +27,24 @@ def mock_llm_service():
 
 
 @pytest.fixture
-def issue_service(mock_kg_service, mock_repository_service, mock_neo4j_service, mock_llm_service):
+def mock_repository_service():
+    service = create_autospec(RepositoryService, instance=True)
+    return service
+
+
+@pytest.fixture
+def issue_service(mock_neo4j_service, mock_llm_service, mock_repository_service):
     return IssueService(
-        mock_kg_service,
-        mock_repository_service,
-        mock_neo4j_service,
-        mock_llm_service,
+        neo4j_service=mock_neo4j_service,
+        llm_service=mock_llm_service,
+        repository_service=mock_repository_service,
         max_token_per_neo4j_result=1000,
+        working_directory="/tmp/working_dir/",
+        logging_level="DEBUG",
     )
 
 
-def test_answer_issue_with_general_container(issue_service, monkeypatch):
+async def test_answer_issue_with_general_container(issue_service, monkeypatch):
     # Setup
     mock_issue_graph = Mock()
     mock_issue_graph_class = Mock(return_value=mock_issue_graph)
@@ -64,12 +56,18 @@ def test_answer_issue_with_general_container(issue_service, monkeypatch):
         "prometheus.app.services.issue_service.GeneralContainer", mock_general_container_class
     )
 
-    # Mock output state for bug type
+    repository = Mock(spec=GitRepository)
+    repository.get_working_directory.return_value = "mock/working/directory"
+
+    knowledge_graph = Mock(spec=KnowledgeGraph)
+
+    # Mock output state for a bug type
     mock_output_state = {
         "issue_type": IssueType.BUG,
         "edit_patch": "test_patch",
         "passed_reproducing_test": True,
         "passed_build": True,
+        "passed_regression_test": True,
         "passed_existing_test": True,
         "issue_response": "test_response",
     }
@@ -77,34 +75,39 @@ def test_answer_issue_with_general_container(issue_service, monkeypatch):
 
     # Exercise
     result = issue_service.answer_issue(
+        repository_id=1,
+        repository=repository,
+        knowledge_graph=knowledge_graph,
         issue_title="Test Issue",
         issue_body="Test Body",
         issue_comments=[],
         issue_type=IssueType.BUG,
         run_build=True,
+        run_regression_test=True,
         run_existing_test=True,
+        run_reproduce_test=True,
         number_of_candidate_patch=1,
+        build_commands=None,
+        test_commands=None,
     )
 
     # Verify
-    mock_general_container_class.assert_called_once_with(
-        issue_service.kg_service.kg.get_local_path()
-    )
+    mock_general_container_class.assert_called_once_with(repository.get_working_directory())
     mock_issue_graph_class.assert_called_once_with(
         advanced_model=issue_service.llm_service.advanced_model,
         base_model=issue_service.llm_service.base_model,
-        kg=issue_service.kg_service.kg,
-        git_repo=issue_service.repository_service.git_repo,
+        kg=knowledge_graph,
+        git_repo=repository,
         neo4j_driver=issue_service.neo4j_service.neo4j_driver,
         max_token_per_neo4j_result=issue_service.max_token_per_neo4j_result,
         container=mock_container,
         build_commands=None,
         test_commands=None,
     )
-    assert result == ("test_patch", True, True, True, "test_response")
+    assert result == ("test_patch", True, True, True, True, "test_response", IssueType.BUG)
 
 
-def test_answer_issue_with_user_defined_container(issue_service, monkeypatch):
+async def test_answer_issue_with_user_defined_container(issue_service, monkeypatch):
     # Setup
     mock_issue_graph = Mock()
     mock_issue_graph_class = Mock(return_value=mock_issue_graph)
@@ -116,18 +119,36 @@ def test_answer_issue_with_user_defined_container(issue_service, monkeypatch):
         "prometheus.app.services.issue_service.UserDefinedContainer", mock_user_container_class
     )
 
-    # Mock output state for question type
-    mock_output_state = {"issue_type": IssueType.QUESTION, "issue_response": "test_response"}
+    repository = Mock(spec=GitRepository)
+    repository.get_working_directory.return_value = "mock/working/directory"
+
+    knowledge_graph = Mock(spec=KnowledgeGraph)
+
+    # Mock output state for a question type
+    mock_output_state = {
+        "issue_type": IssueType.QUESTION,
+        "edit_patch": None,
+        "passed_reproducing_test": False,
+        "passed_build": False,
+        "passed_regression_test": False,
+        "passed_existing_test": False,
+        "issue_response": "test_response",
+    }
     mock_issue_graph.invoke.return_value = mock_output_state
 
     # Exercise
     result = issue_service.answer_issue(
+        repository_id=1,
+        repository=repository,
+        knowledge_graph=knowledge_graph,
         issue_title="Test Issue",
         issue_body="Test Body",
         issue_comments=[],
         issue_type=IssueType.QUESTION,
         run_build=True,
+        run_regression_test=True,
         run_existing_test=True,
+        run_reproduce_test=True,
         number_of_candidate_patch=1,
         dockerfile_content="FROM python:3.8",
         image_name="test-image",
@@ -138,11 +159,11 @@ def test_answer_issue_with_user_defined_container(issue_service, monkeypatch):
 
     # Verify
     mock_user_container_class.assert_called_once_with(
-        issue_service.kg_service.kg.get_local_path(),
+        repository.get_working_directory(),
         "/app",
         ["pip install -r requirements.txt"],
         ["pytest"],
         "FROM python:3.8",
         "test-image",
     )
-    assert result == (None, False, False, False, "test_response")
+    assert result == (None, False, False, False, False, "test_response", IssueType.QUESTION)

@@ -5,8 +5,8 @@ from tests.test_utils.fixtures import neo4j_container_with_kg_fixture  # noqa: F
 
 
 @pytest.mark.slow
-def test_neo4j_service(neo4j_container_with_kg_fixture):  # noqa: F811
-    neo4j_container, _ = neo4j_container_with_kg_fixture
+async def test_neo4j_service(neo4j_container_with_kg_fixture):  # noqa: F811
+    neo4j_container, kg = neo4j_container_with_kg_fixture
     neo4j_service = Neo4jService(
         neo4j_container.get_connection_url(), neo4j_container.username, neo4j_container.password
     )

@@ -5,49 +5,6 @@ import enum
 from typing import TypedDict, Union
 
 
-class CodeBaseSourceEnum(enum.StrEnum):
-    """Enum of all knowledge graph edge types"""
-
-    github = "GitHub"
-    local = "local"
-
-
-@dataclasses.dataclass(frozen=True)
-class MetadataNode:
-    """A node for the codebase metadata.
-
-    Attributes:
-      codebase_source: Where the codebase originated from.
-      local_path: The local path where the codebase is stored.
-      https_url: The HTTPS URL of the remote repository.
-      commit_id: The commit ID of the remote repository.
-    """
-
-    codebase_source: CodeBaseSourceEnum
-
-    local_path: str
-
-    https_url: str | None
-    commit_id: str | None
-
-    def to_neo4j_node(self) -> "Neo4jMetadataNode":
-        return Neo4jMetadataNode(
-            codebase_source=self.codebase_source,
-            local_path=self.local_path,
-            https_url=self.https_url,
-            commit_id=self.commit_id,
-        )
-
-    @classmethod
-    def from_neo4j_metadata_node(cls, node: "Neo4jMetadataNode") -> "MetadataNode":
-        return cls(
-            codebase_source=node["codebase_source"],
-            local_path=node["local_path"],
-            https_url=node["https_url"],
-            commit_id=node["commit_id"],
-        )
-
-
 @dataclasses.dataclass(frozen=True)
 class FileNode:
     """A node representing a file/dir.
@@ -162,11 +119,11 @@ class KnowledgeGraphNode:
 class KnowledgeGraphEdgeType(enum.StrEnum):
     """Enum of all knowledge graph edge types"""
 
-    parent_of = "PARENT_OF"
-    has_file = "HAS_FILE"
-    has_ast = "HAS_AST"
-    has_text = "HAS_TEXT"
-    next_chunk = "NEXT_CHUNK"
+    parent_of = "PARENT_OF"  # ASTNode -> ASTNode
+    has_file = "HAS_FILE"  # FileNode -> FileNode
+    has_ast = "HAS_AST"  # FileNode -> ASTNode
+    has_text = "HAS_TEXT"  # FileNode -> TextNode
+    next_chunk = "NEXT_CHUNK"  # TextNode -> TextNode
 
 
 @dataclasses.dataclass(frozen=True)

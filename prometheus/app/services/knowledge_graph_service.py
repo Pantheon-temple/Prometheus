@@ -1,14 +1,15 @@
 """Service for managing and interacting with Knowledge Graphs in Neo4j."""
 
+import asyncio
 from pathlib import Path
-from typing import Optional
 
+from prometheus.app.services.base_service import BaseService
 from prometheus.app.services.neo4j_service import Neo4jService
 from prometheus.graph.knowledge_graph import KnowledgeGraph
 from prometheus.neo4j import knowledge_graph_handler
 
 
-class KnowledgeGraphService:
+class KnowledgeGraphService(BaseService):
     """Manages the lifecycle and operations of Knowledge Graphs.
 
     This service handles the creation, persistence, and management of Knowledge Graphs
@@ -39,26 +40,9 @@ class KnowledgeGraphService:
         self.max_ast_depth = max_ast_depth
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
-        self.kg = self._load_existing_knowledge_graph()
+        self.writing_lock = asyncio.Lock()
 
-    def _load_existing_knowledge_graph(self) -> Optional[KnowledgeGraph]:
-        """Attempts to load an existing Knowledge Graph from Neo4j.
-
-        Returns:
-            KnowledgeGraph if one exists in the database, None otherwise.
-        """
-        if self.kg_handler.knowledge_graph_exists():
-            return self.kg_handler.read_knowledge_graph()
-        return None
-
-    def get_local_path(self) -> Path:
-        if self.kg:
-            return self.kg.get_local_path()
-        return None
-
-    def build_and_save_knowledge_graph(
-        self, path: Path, https_url: Optional[str] = None, commit_id: Optional[str] = None
-    ):
+    async def build_and_save_knowledge_graph(self, path: Path) -> int:
         """Builds a new Knowledge Graph from source code and saves it to Neo4j.
 
         Creates a new Knowledge Graph representation of the codebase at the specified path,
@@ -67,20 +51,28 @@ class KnowledgeGraphService:
 
         Args:
             path: Path to the source code directory to analyze.
-            https_url: Optional HTTPS URL of the repository.
-            commit_id: Optional commit identifier for version tracking.
+        Returns:
+            The root node ID of the newly created Knowledge Graph.
         """
-        if self.exists():
-            self.clear()
+        async with self.writing_lock:  # Ensure only one build operation at a time
+            root_node_id = self.kg_handler.get_new_knowledge_graph_root_node_id()
+            kg = KnowledgeGraph(
+                self.max_ast_depth, self.chunk_size, self.chunk_overlap, root_node_id
+            )
+            await kg.build_graph(path)
+            self.kg_handler.write_knowledge_graph(kg)
+            return kg.root_node_id
 
-        kg = KnowledgeGraph(self.max_ast_depth, self.chunk_size, self.chunk_overlap)
-        kg.build_graph(path, https_url, commit_id)
-        self.kg = kg
-        self.kg_handler.write_knowledge_graph(kg)
+    def clear_kg(self, root_node_id: int):
+        self.kg_handler.clear_knowledge_graph(root_node_id)
 
-    def exists(self) -> bool:
-        return self.kg_handler.knowledge_graph_exists()
-
-    def clear(self):
-        self.kg_handler.clear_knowledge_graph()
-        self.kg = None
+    def get_knowledge_graph(
+        self,
+        root_node_id: int,
+        max_ast_depth: int,
+        chunk_size: int,
+        chunk_overlap: int,
+    ) -> KnowledgeGraph:
+        return self.kg_handler.read_knowledge_graph(
+            root_node_id, max_ast_depth, chunk_size, chunk_overlap
+        )

@@ -1,4 +1,5 @@
 import logging
+import threading
 from typing import Dict
 
 from langchain_core.messages import HumanMessage
@@ -65,12 +66,21 @@ Do NOT provide actual code snippets or diffs. Focus on describing what needs to 
 
     def __init__(self):
         self._logger = logging.getLogger(
-            "prometheus.lang_graph.nodes.issue_bug_analyzer_message_node"
+            f"thread-{threading.get_ident()}.prometheus.lang_graph.nodes.issue_bug_analyzer_message_node"
         )
 
     def format_human_message(self, state: Dict):
         edit_error = ""
-        if "reproducing_test_fail_log" in state and state["reproducing_test_fail_log"]:
+        if (
+            "tested_patch_result" in state
+            and state["tested_patch_result"]
+            and not state["tested_patch_result"][0].passed
+        ):
+            edit_error = (
+                f"The patch failed to pass the regression tests:\n"
+                f"{state['tested_patch_result'][0].regression_test_failure_log}"
+            )
+        elif "reproducing_test_fail_log" in state and state["reproducing_test_fail_log"]:
             edit_error = f"The patch failed to pass the bug exposing test cases:\n{state['reproducing_test_fail_log']}"
         elif "build_fail_log" in state and state["build_fail_log"]:
             edit_error = f"The patch failed to pass the build:\n{state['build_fail_log']}"
@@ -85,7 +95,9 @@ Do NOT provide actual code snippets or diffs. Focus on describing what needs to 
                     issue_info=format_issue_info(
                         state["issue_title"], state["issue_body"], state["issue_comments"]
                     ),
-                    bug_fix_context="\n\n".join(state["bug_fix_context"]),
+                    bug_fix_context="\n\n".join(
+                        [str(context) for context in state["bug_fix_context"]]
+                    ),
                 )
             )
 

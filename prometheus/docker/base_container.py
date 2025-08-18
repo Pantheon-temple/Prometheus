@@ -2,6 +2,7 @@ import logging
 import shutil
 import tarfile
 import tempfile
+import threading
 from abc import ABC, abstractmethod
 from pathlib import Path
 from typing import Optional, Sequence
@@ -34,7 +35,9 @@ class BaseContainer(ABC):
         Args:
           project_path: Path to the project directory to be containerized.
         """
-        self._logger = logging.getLogger(f"{self.__class__.__module__}.{self.__class__.__name__}")
+        self._logger = logging.getLogger(
+            f"thread-{threading.get_ident()}.{self.__class__.__module__}.{self.__class__.__name__}"
+        )
         temp_dir = Path(tempfile.mkdtemp())
         temp_project_path = temp_dir / project_path.name
         shutil.copytree(project_path, temp_project_path)

@@ -2,7 +2,12 @@ from unittest.mock import MagicMock, Mock
 
 import pytest
 
-from prometheus.utils.neo4j_util import EMPTY_DATA_MESSAGE, format_neo4j_data, run_neo4j_query
+from prometheus.utils.neo4j_util import (
+    EMPTY_DATA_MESSAGE,
+    format_neo4j_data,
+    neo4j_data_for_context_generator,
+    run_neo4j_query,
+)
 
 
 class MockResult:
@@ -145,3 +150,142 @@ def test_run_neo4j_query_multiple_results(mock_neo4j_driver):
     expected_str = "Result 1:\nage: 30\nname: John\n\n\nResult 2:\nage: 25\nname: Jane"
     assert result[0] == expected_str
     assert result[1] == test_data
+
+
+def mock_file_node_data():
+    return [{"FileNode": {"basename": "test.py", "relative_path": "bar/test.py", "node_id": 37}}]
+
+
+def mock_ast_node_data():
+    return [
+        {
+            "FileNode": {"basename": "test.py", "relative_path": "bar/test.py", "node_id": 37},
+            "ASTNode": {
+                "start_line": 1,
+                "text": "Hello world!",
+                "type": "string_content",
+                "end_line": 1,
+                "node_id": 47,
+            },
+        },
+        {
+            "FileNode": {"basename": "test.py", "relative_path": "bar/test.py", "node_id": 37},
+            "ASTNode": {
+                "start_line": 1,
+                "text": '"Hello world!"',
+                "type": "string",
+                "end_line": 1,
+                "node_id": 44,
+            },
+        },
+        {
+            "FileNode": {"basename": "test.py", "relative_path": "bar/test.py", "node_id": 37},
+            "ASTNode": {
+                "start_line": 1,
+                "text": '("Hello world!")',
+                "type": "argument_list",
+                "end_line": 1,
+                "node_id": 42,
+            },
+        },
+        {
+            "FileNode": {"basename": "test.py", "relative_path": "bar/test.py", "node_id": 37},
+            "ASTNode": {
+                "start_line": 1,
+                "text": 'print("Hello world!")',
+                "type": "expression_statement",
+                "end_line": 1,
+                "node_id": 39,
+            },
+        },
+        {
+            "FileNode": {"basename": "test.py", "relative_path": "bar/test.py", "node_id": 37},
+            "ASTNode": {
+                "start_line": 1,
+                "text": 'print("Hello world!")',
+                "type": "call",
+                "end_line": 1,
+                "node_id": 40,
+            },
+        },
+    ]
+
+
+def mock_text_node_data():
+    return [
+        {
+            "FileNode": {"basename": "test.md", "relative_path": "foo/test.md", "node_id": 33},
+            "TextNode": {
+                "metadata": "",
+                "text": "# A\n\nText under header A.\n\n## B\n\nText under header B.\n\n## C\n\nText under header C.\n\n### D",
+                "node_id": 34,
+            },
+        }
+    ]
+
+
+def mock_preview_file_data():
+    return [
+        {
+            "FileNode": {"basename": "test.py", "relative_path": "bar/test.py", "node_id": 37},
+            "preview": {"start_line": 1, "text": '1. print("Hello world!")', "end_line": 1},
+        }
+    ]
+
+
+def mock_read_code_data():
+    return [
+        {
+            "FileNode": {"basename": "test.java", "relative_path": "bar/test.java", "node_id": 36},
+            "SelectedLines": {
+                "start_line": 2,
+                "text": "2.   public static void main(String[] args) {",
+                "end_line": 3,
+            },
+        }
+    ]
+
+
+def test_neo4j_data_for_context_generator():
+    # Get testing data
+    data = [
+        *mock_file_node_data(),
+        *mock_ast_node_data(),
+        *mock_text_node_data(),
+        *mock_preview_file_data(),
+        *mock_read_code_data(),
+    ]
+
+    # Call the target function
+    result = list(neo4j_data_for_context_generator(data))
+
+    # Test the length of the result
+    assert len(result) == 8
+
+    # Check the contents of each Context object
+    context_1 = result[0]
+    assert context_1.relative_path == "bar/test.py"
+    assert context_1.content == "Hello world!"
+    assert context_1.start_line_number == 1
+    assert context_1.end_line_number == 1
+
+    context_2 = result[5]
+    assert context_2.relative_path == "foo/test.md"
+    assert (
+        context_2.content
+        == "# A\n\nText under header A.\n\n## B\n\nText under header B.\n\n## C\n\nText under header C.\n\n### D"
+    )
+    assert context_2.start_line_number is None
+    assert context_2.end_line_number is None
+
+    context_3 = result[6]
+    assert context_3.relative_path == "bar/test.py"
+    assert context_3.content == """1. print("Hello world!")"""
+    assert context_3.start_line_number == 1
+    assert context_3.end_line_number == 1
+
+    context_4 = result[7]
+    assert context_4.relative_path == "bar/test.java"
+    assert context_4.content == "2.   public static void main(String[] args) {"
+    assert context_4.start_line_number == 2
+    assert context_4.end_line_number == 3

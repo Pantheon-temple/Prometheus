@@ -1,4 +1,5 @@
 import logging
+import threading
 import uuid
 from typing import Any
 
@@ -10,7 +11,9 @@ from prometheus.docker.base_container import BaseContainer
 class UserDefinedBuildNode:
     def __init__(self, container: BaseContainer):
         self.container = container
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.user_defined_build_node")
+        self._logger = logging.getLogger(
+            f"thread-{threading.get_ident()}.prometheus.lang_graph.nodes.user_defined_build_node"
+        )
 
     def __call__(self, _: Any):
         build_output = self.container.run_build()

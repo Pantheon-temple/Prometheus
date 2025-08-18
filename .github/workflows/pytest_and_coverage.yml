@@ -14,6 +14,11 @@ jobs:
       # Logging
       PROMETHEUS_LOGGING_LEVEL: DEBUG
 
+      # General settings
+      PROMETHEUS_ENVIRONMENT: local
+      PROMETHEUS_BACKEND_CORS_ORIGINS: "[\"*\"]"
+      PROMETHEUS_ENABLE_AUTHENTICATION: false
+
       # Neo4j settings
       PROMETHEUS_NEO4J_URI: bolt://localhost:7687
       PROMETHEUS_NEO4J_USERNAME: neo4j
@@ -38,15 +43,22 @@ jobs:
       PROMETHEUS_OPENAI_FORMAT_BASE_URL: https://api.openai.com/v1/chat/completions
 
       # Model settings
-      PROMETHEUS_MAX_INPUT_TOKENS: 64000
-      PROMETHEUS_TEMPERATURE: 0.3
-      PROMETHEUS_MAX_OUTPUT_TOKENS: 15000
+      PROMETHEUS_ADVANCED_MODEL_MAX_INPUT_TOKENS: 64000
+      PROMETHEUS_ADVANCED_MODEL_TEMPERATURE: 0.3
+      PROMETHEUS_ADVANCED_MODEL_MAX_OUTPUT_TOKENS: 15000
+
+      PROMETHEUS_BASE_MODEL_MAX_INPUT_TOKENS: 64000
+      PROMETHEUS_BASE_MODEL_TEMPERATURE: 0.3
+      PROMETHEUS_BASE_MODEL_MAX_OUTPUT_TOKENS: 15000
 
       # GitHub settings
       PROMETHEUS_GITHUB_ACCESS_TOKEN: github_access_token
 
       # DATABASE settings
       PROMETHEUS_DATABASE_URL: postgresql://postgres:password@localhost:5432/postgres?sslmode=disable
+
+      # JWT settings
+      PROMETHEUS_JWT_SECRET_KEY: your_jwt_secret_key
 
     steps:
       - name: Check out code

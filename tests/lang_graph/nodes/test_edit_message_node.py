@@ -4,6 +4,7 @@ import pytest
 from langchain_core.messages import HumanMessage
 
 from prometheus.lang_graph.nodes.edit_message_node import EditMessageNode
+from prometheus.models.context import Context
 
 
 @pytest.fixture
@@ -20,7 +21,14 @@ def base_state():
             {"username": "user1", "comment": "Comment 1"},
             {"username": "user2", "comment": "Comment 2"},
         ],
-        "bug_fix_context": ["Context 1", "Context 2"],
+        "bug_fix_context": [
+            Context(
+                relative_path="foobar.py",
+                content="# Context 1",
+                start_line_number=1,
+                end_line_number=1,
+            )
+        ],
         "issue_bug_analyzer_messages": ["Analysis message"],
     }
 
@@ -45,7 +53,7 @@ def test_first_message_formatting(edit_node, base_state):
 
             message_content = result["edit_messages"][0].content
             assert "Formatted Issue Info" in message_content
-            assert "Context 1\n\nContext 2" in message_content
+            assert "# Context 1" in message_content
             assert "Last Analysis Message" in message_content
 
 

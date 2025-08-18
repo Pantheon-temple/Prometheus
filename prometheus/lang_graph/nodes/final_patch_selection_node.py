@@ -1,10 +1,11 @@
 import logging
-from typing import Dict
+import threading
 
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field
 
+from prometheus.lang_graph.subgraphs.issue_not_verified_bug_state import IssueNotVerifiedBugState
 from prometheus.utils.issue_util import format_issue_info
 
 
@@ -126,30 +127,42 @@ I have generated the following patches, now please select the best patch among t
         )
         structured_llm = model.with_structured_output(FinalPatchSelectionStructuredOutput)
         self.model = prompt | structured_llm
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.final_patch_selection_node")
+        self._logger = logging.getLogger(
+            f"thread-{threading.get_ident()}.prometheus.lang_graph.nodes.final_patch_selection_node"
+        )
 
-    def format_human_message(self, state: Dict):
-        patches = ""
-        for index, patch in enumerate(state["edit_patches"]):
-            patches += f"Patch at index {index}:\n"
-            patches += f"{patch}\n\n"
-        patches += f"You must select a patch with index from 0 to {len(state['edit_patches']) - 1}, and provide your reasoning."
+    def format_human_message(self, state: IssueNotVerifiedBugState):
+        if state["run_regression_test"]:
+            patches = [result.patch for result in state["tested_patch_result"] if result.passed]
+        else:
+            patches = state["edit_patches"]
+
+        patches_str = ""
+        for index, patch in enumerate(patches):
+            patches_str += f"Patch at index {index}:\n"
+            patches_str += f"{patch}\n\n"
+        patches_str += (
+            f"You must select a patch with index from 0 to {len(state['edit_patches']) - 1},"
+            f" and provide your reasoning."
+        )
 
         return self.HUMAN_PROMPT.format(
             issue_info=format_issue_info(
                 state["issue_title"], state["issue_body"], state["issue_comments"]
             ),
-            bug_fix_context="\n\n".join(state["bug_fix_context"]),
-            patches=patches,
+            bug_fix_context="\n\n".join([str(context) for context in state["bug_fix_context"]]),
+            patches=patches_str,
         )
 
-    def __call__(self, state: Dict):
+    def __call__(self, state: IssueNotVerifiedBugState):
         human_prompt = self.format_human_message(state)
         for try_index in range(self.max_retries):
             response = self.model.invoke({"human_prompt": human_prompt})
-            self._logger.info(f"FinalPatchSelectionNode response at {try_index} try:\n{response}")
+            self._logger.info(
+                f"FinalPatchSelectionNode response at {try_index + 1} try:\n{response}"
+            )
 
-            if response.patch_index >= 0 and response.patch_index < len(state["edit_patches"]):
+            if 0 <= response.patch_index < len(state["edit_patches"]):
                 return {"final_patch": state["edit_patches"][response.patch_index]}
 
         self._logger.info(

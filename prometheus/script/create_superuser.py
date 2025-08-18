@@ -1,6 +1,12 @@
 import argparse
+import re
 
-from prometheus.app.db import create_superuser
+from prometheus.app.services.database_service import DatabaseService
+from prometheus.app.services.user_service import UserService
+from prometheus.configuration.config import settings
+
+database_service: DatabaseService = DatabaseService(settings.DATABASE_URL)
+user_service: UserService = UserService(database_service)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Create a superuser account.")
@@ -11,9 +17,14 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    create_superuser(
+    pattern = r"^[^@\s]+@[^@\s]+\.[^@\s]+$"
+    if not re.match(pattern, args.email):
+        raise ValueError("Invalid email format")
+
+    user_service.create_superuser(
         username=args.username,
         email=args.email,
         password=args.password,
         github_token=args.github_token,
     )
+    print("Superuser account created!")

@@ -12,7 +12,6 @@ from tests.test_utils.util import FakeListChatWithToolsModel
 @pytest.fixture
 def mock_kg():
     kg = Mock(spec=KnowledgeGraph)
-    kg.get_local_path.return_value = "/test/path"
     kg.get_file_tree.return_value = "test_dir/\n  test_file.py"
     return kg
 
@@ -25,27 +24,34 @@ def fake_llm():
 @pytest.fixture
 def basic_state():
     return BugReproductionState(
-        {
-            "bug_reproducing_write_messages": [
-                AIMessage(content="def test_bug():\n    assert 1 == 2")
-            ],
-            "bug_reproducing_file_messages": [],
-        }
+        issue_title="mock issue title",
+        issue_body="mock issue body",
+        issue_comments=[],
+        max_refined_query_loop=3,
+        bug_reproducing_query="mock query",
+        bug_reproducing_context=[],
+        bug_reproducing_patch="",
+        bug_reproducing_write_messages=[AIMessage(content="def test_bug():\n    assert 1 == 2")],
+        bug_reproducing_file_messages=[],
+        bug_reproducing_execute_messages=[],
+        reproduced_bug=False,
+        reproduced_bug_failure_log="",
+        reproduced_bug_file="",
+        reproduced_bug_commands=[],
     )
 
 
 def test_initialization(mock_kg, fake_llm):
     """Test basic initialization of BugReproducingFileNode."""
-    node = BugReproducingFileNode(fake_llm, mock_kg)
+    node = BugReproducingFileNode(fake_llm, mock_kg, "test/path")
 
     assert isinstance(node.system_prompt, SystemMessage)
     assert len(node.tools) == 2  # read_file, create_file
-    assert mock_kg.get_local_path.called
 
 
 def test_format_human_message(mock_kg, fake_llm, basic_state):
     """Test human message formatting with bug file."""
-    node = BugReproducingFileNode(fake_llm, mock_kg)
+    node = BugReproducingFileNode(fake_llm, mock_kg, "test/path")
     message = node.format_human_message(basic_state)
 
     assert isinstance(message, HumanMessage)
@@ -54,7 +60,7 @@ def test_format_human_message(mock_kg, fake_llm, basic_state):
 
 def test_call_method(mock_kg, fake_llm, basic_state):
     """Test the __call__ method execution."""
-    node = BugReproducingFileNode(fake_llm, mock_kg)
+    node = BugReproducingFileNode(fake_llm, mock_kg, "test/path")
     result = node(basic_state)
 
     assert "bug_reproducing_file_messages" in result

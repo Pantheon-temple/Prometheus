@@ -7,6 +7,7 @@ between the agent's workspace and the container environment.
 """
 
 import logging
+import threading
 from typing import Dict
 
 from prometheus.docker.base_container import BaseContainer
@@ -33,7 +34,9 @@ class UpdateContainerNode:
         """
         self.container = container
         self.git_repo = git_repo
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.update_container_node")
+        self._logger = logging.getLogger(
+            f"thread-{threading.get_ident()}.prometheus.lang_graph.nodes.update_container_node"
+        )
 
     def __call__(self, _: Dict):
         """Synchronizes the current project state with the container."""

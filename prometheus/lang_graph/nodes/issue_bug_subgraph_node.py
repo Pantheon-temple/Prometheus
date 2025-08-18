@@ -1,4 +1,5 @@
 import logging
+import threading
 from typing import Optional, Sequence
 
 import neo4j
@@ -29,7 +30,9 @@ class IssueBugSubgraphNode:
         build_commands: Optional[Sequence[str]] = None,
         test_commands: Optional[Sequence[str]] = None,
     ):
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.issue_bug_subgraph_node")
+        self._logger = logging.getLogger(
+            f"thread-{threading.get_ident()}.prometheus.lang_graph.nodes.issue_bug_subgraph_node"
+        )
         self.container = container
         self.issue_bug_subgraph = IssueBugSubgraph(
             advanced_model=advanced_model,
@@ -57,18 +60,22 @@ class IssueBugSubgraphNode:
                 issue_comments=state["issue_comments"],
                 run_build=state["run_build"],
                 run_existing_test=state["run_existing_test"],
+                run_regression_test=state["run_regression_test"],
+                run_reproduce_test=state["run_reproduce_test"],
                 number_of_candidate_patch=state["number_of_candidate_patch"],
             )
 
             self._logger.info(f"Generated patch:\n{output_state['edit_patch']}")
             self._logger.info(f"passed_reproducing_test: {output_state['passed_reproducing_test']}")
             self._logger.info(f"passed_build: {output_state['passed_build']}")
+            self._logger.info(f"passed_regression_test: {output_state['passed_regression_test']}")
             self._logger.info(f"passed_existing_test: {output_state['passed_existing_test']}")
             self._logger.info(f"issue_response:\n{output_state['issue_response']}")
             return {
                 "edit_patch": output_state["edit_patch"],
                 "passed_reproducing_test": output_state["passed_reproducing_test"],
                 "passed_build": output_state["passed_build"],
+                "passed_regression_test": output_state["passed_regression_test"],
                 "passed_existing_test": output_state["passed_existing_test"],
                 "issue_response": output_state["issue_response"],
             }
@@ -78,6 +85,7 @@ class IssueBugSubgraphNode:
                 "edit_patch": None,
                 "passed_reproducing_test": False,
                 "passed_build": False,
+                "passed_regression_test": False,
                 "passed_existing_test": False,
                 "issue_response": None,
             }

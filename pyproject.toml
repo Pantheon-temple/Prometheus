@@ -24,17 +24,24 @@ dependencies = [
   "dynaconf>=3.2.6",
   "docker>=7.1.0",
   "unidiff>=0.7.5",
-  "passlib[bcrypt]>=1.7.4",
+  "argon2-cffi>=23.1.0",
   "sqlmodel==0.0.24",
-  "psycopg2-binary"
+  "psycopg2-binary",
+  "pyjwt==2.6.0",
 ]
 requires-python = ">= 3.11"
 
 [project.optional-dependencies]
 test = [
   "ruff>=0.9.1",
+  "anyio",
   "pytest>=8.3.3",
   "pytest-cov>=5.0.0",
+  "pytest-asyncio==1.1.0",
+  "pytest-tornasync",
+  "pytest-trio",
+  "pytest-twisted",
+  "twisted",
   "testcontainers==4.8.2",
 ]
 

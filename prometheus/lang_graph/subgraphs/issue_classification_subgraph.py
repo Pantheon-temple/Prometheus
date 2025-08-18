@@ -18,6 +18,7 @@ class IssueClassificationSubgraph:
         self,
         model: BaseChatModel,
         kg: KnowledgeGraph,
+        local_path: str,
         neo4j_driver: neo4j.Driver,
         max_token_per_neo4j_result: int,
     ):
@@ -25,6 +26,7 @@ class IssueClassificationSubgraph:
         context_retrieval_subgraph_node = ContextRetrievalSubgraphNode(
             model=model,
             kg=kg,
+            local_path=local_path,
             neo4j_driver=neo4j_driver,
             max_token_per_neo4j_result=max_token_per_neo4j_result,
             query_key_name="issue_classification_query",
@@ -60,7 +62,7 @@ class IssueClassificationSubgraph:
             "issue_title": issue_title,
             "issue_body": issue_body,
             "issue_comments": issue_comments,
-            "max_refined_query_loop": 1,
+            "max_refined_query_loop": 3,
         }
 
         output_state = self.subgraph.invoke(

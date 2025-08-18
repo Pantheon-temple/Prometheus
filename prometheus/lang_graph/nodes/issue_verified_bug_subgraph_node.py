@@ -1,5 +1,6 @@
 import logging
-from typing import Dict, Optional, Sequence
+import threading
+from typing import Optional, Sequence
 
 import neo4j
 from langchain_core.language_models.chat_models import BaseChatModel
@@ -8,6 +9,7 @@ from langgraph.errors import GraphRecursionError
 from prometheus.docker.base_container import BaseContainer
 from prometheus.git.git_repository import GitRepository
 from prometheus.graph.knowledge_graph import KnowledgeGraph
+from prometheus.lang_graph.subgraphs.issue_bug_state import IssueBugState
 from prometheus.lang_graph.subgraphs.issue_verified_bug_subgraph import IssueVerifiedBugSubgraph
 
 
@@ -29,7 +31,7 @@ class IssueVerifiedBugSubgraphNode:
         test_commands: Optional[Sequence[str]] = None,
     ):
         self._logger = logging.getLogger(
-            "prometheus.lang_graph.nodes.issue_verified_bug_subgraph_node"
+            f"thread-{threading.get_ident()}.prometheus.lang_graph.nodes.issue_verified_bug_subgraph_node"
         )
         self.git_repo = git_repo
         self.issue_reproduced_bug_subgraph = IssueVerifiedBugSubgraph(
@@ -44,7 +46,7 @@ class IssueVerifiedBugSubgraphNode:
             test_commands=test_commands,
         )
 
-    def __call__(self, state: Dict):
+    def __call__(self, state: IssueBugState):
         self._logger.info("Enter IssueVerifiedBugSubgraphNode")
         try:
             output_state = self.issue_reproduced_bug_subgraph.invoke(
@@ -52,9 +54,12 @@ class IssueVerifiedBugSubgraphNode:
                 issue_body=state["issue_body"],
                 issue_comments=state["issue_comments"],
                 run_build=state["run_build"],
+                run_regression_test=state["run_regression_test"],
                 run_existing_test=state["run_existing_test"],
                 reproduced_bug_file=state["reproduced_bug_file"],
                 reproduced_bug_commands=state["reproduced_bug_commands"],
+                reproduced_bug_patch=state["reproduced_bug_patch"],
+                selected_regression_tests=state["selected_regression_tests"],
             )
         except GraphRecursionError:
             self._logger.info("Recursion limit reached")

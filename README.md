@@ -9,7 +9,8 @@
 <div align="center">
   <a href="https://github.com/Pantheon-temple/Prometheus/graphs/contributors"><img src="https://img.shields.io/github/contributors/Pantheon-temple/Prometheus?style=for-the-badge&color=blue" alt="Contributors"></a>
   <a href="https://github.com/Pantheon-temple/Prometheus/stargazers"><img src="https://img.shields.io/github/stars/Pantheon-temple/Prometheus?style=for-the-badge&color=blue" alt="Stargazers"></a>
-  <a href="https://github.com/Pantheon-temple/Prometheus/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Pantheon-temple/Prometheus?style=for-the-badge&color=blue" alt="MIT License"></a>
+  <a href="https://github.com/Pantheon-temple/Prometheus/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Pantheon-temple/Prometheus?style=for-the-badge&color=blue" alt="APACHE-2.0 License"></a>
+  <a href="https://www.arxiv.org/abs/2507.19942"><img src="https://img.shields.io/badge/Paper-arXiv-red?style=for-the-badge&logo=arxiv" alt="Paper"></a>
   <br/>
     <a href="https://github.com/Pantheon-temple/Prometheus/blob/main/CREDITS.md"><img src="https://img.shields.io/badge/Project-Credits-blue?style=for-the-badge&color=FFE165&logo=github&logoColor=white" alt="Credits"></a>
   <br/>
@@ -36,11 +37,22 @@ governed by a state machine to ensure code quality through automated reviews, bu
 ## 📊 Evaluation Results on SWE-bench Lite
 
 <div align="center">
-  <img src="./docs/static/images/barChart.png" alt="SWE-bench Lite Result" width="800"/>
+  <img src="./docs/static/images/comparison_deepseek_July08.png" alt="SWE-bench Lite Result" width="800"/>
   <p><em>Success Rate Comparison across popular agents. Prometheus achieves 28.67%.</em></p>
 </div>
 
 
+```bibtex
+@misc{Prometheus-code-agent-2025,
+      title={Prometheus: Unified Knowledge Graphs for Issue Resolution in Multilingual Codebases}, 
+      author={Zimin Chen and Yue Pan and Siyu Lu and Jiayi Xu and Claire Le Goues and Martin Monperrus and He Ye},
+      year={2025},
+      eprint={2507.19942},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2507.19942}, 
+}
+```
 
 ## ⚙️ Quick Start
 
@@ -54,18 +66,34 @@ governed by a state machine to ensure code quality through automated reviews, bu
 
 ### 📦 Setup
 
-1. Clone the repository:
+1. #### Clone the repository:
    ```bash
    git clone https://github.com/Pantheon-temple/Prometheus.git
    cd Prometheus
    ```
 
-2. Copy the `example.env` file to `.env` and update it with your API keys and other required configurations:
+2. #### Copy the `example.env` file to `.env` and update it with your API keys and other required configurations:
+
    ```bash
    mv example.env .env
    ```
 
-3. Start the services using Docker Compose:
+   > You need to provide a secure `JWT_SECRET_KEY` in the `.env` file.
+   > You can generate a strong key by running the following command:
+
+   ```bash
+   python -m prometheus.script.generate_jwt_token
+   ```
+
+   This will print a secure token you can copy and paste into your `.env` file
+
+3. #### Create the working directory to store logs and cloned repositories:
+
+   ```bash
+   mkdir working_dir
+   ```
+
+4. #### Start the services using Docker Compose:
 
     - **Linux (includes PostgreSQL)**:
       ```bash
@@ -82,9 +110,26 @@ governed by a state machine to ensure code quality through automated reviews, bu
       docker-compose -f docker-compose.win_mac.yml up --build
       ```
 
-4. Access Prometheus:
-    - Service: [http://localhost:9002](http://localhost:9002)
+5. #### Access Prometheus:
+    - Service: [http://localhost:9002/v1.2](http://localhost:9002/v1.2)
     - OpenAPI Docs: [http://localhost:9002/docs](http://localhost:9002/docs)
+
+6. #### Upload Your Codebase:
+
+   You can upload a GitHub repository to Prometheus using the following API endpoint:
+
+   - **Endpoint:** `POST /repository/upload/`
+     - **Request Body:** JSON object matching the `UploadRepositoryRequest` schema (see [API Documents](http://127.0.0.1:9002/docs#/repository/repository-upload_github_repository))
+
+   This will clone the specified repository (defaulting to the latest commit on the main branch) into Prometheus.
+
+7. #### 📝 Answer Repository Issues
+
+   You can ask Prometheus to analyze and answer a specific issue in your codebase using the `/issue/answer/` API endpoint.
+   
+   - **Endpoint:** `POST /issue/answer/`
+     - **Request Body:** JSON object matching the `IssueRequest` schema (see [API Documents](http://127.0.0.1:9002/docs#/issue/issue-answer_issue))
+     - **Response:** Returns the generated patch, test/build results, and a summary response.
 
 ---
 
@@ -123,39 +168,6 @@ docker run -d \
 ```
 
 Verify Neo4J at: [http://localhost:7474](http://localhost:7474)
-
----
-
-## ⚙️ Configuration
-
-Set the following variables in your `.env` file:
-
-### 🔹 Neo4j
-
-* `PROMETHEUS_NEO4J_URI`
-* `PROMETHEUS_NEO4J_USERNAME`
-* `PROMETHEUS_NEO4J_PASSWORD`
-
-### 🔹 LLM Models
-
-* `PROMETHEUS_ADVANCED_MODEL`
-* `PROMETHEUS_BASE_MODEL`
-* API Keys:
-
-    * `PROMETHEUS_OPENAI_FORMAT_API_KEY`
-    * `PROMETHEUS_ANTHROPIC_API_KEY`
-    * `PROMETHEUS_GEMINI_API_KEY`
-* Base URL for LLMs:
-
-    * `PROMETHEUS_OPENAI_FORMAT_BASE_URL`
-
-### 🔹 Other Settings
-
-* `PROMETHEUS_WORKING_DIRECTORY`
-* `PROMETHEUS_GITHUB_ACCESS_TOKEN`
-* `PROMETHEUS_KNOWLEDGE_GRAPH_MAX_AST_DEPTH`
-* `PROMETHEUS_NEO4J_BATCH_SIZE`
-* `PROMETHEUS_POSTGRES_URL`
 
 ---
 

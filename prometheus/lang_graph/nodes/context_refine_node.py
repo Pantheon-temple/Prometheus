@@ -1,4 +1,5 @@
 import logging
+import threading
 
 from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.messages import HumanMessage
@@ -33,23 +34,34 @@ DO NOT request additional context if:
 2. The additional context would only provide nice-to-have but non-essential details
 3. The information is redundant with what's already available
 
-Output format:
-```python
-class ContextRefineStructuredOutput(BaseModel):
-    reasoning: str     # Why current context is/isn't enough
-    refined_query: str # Additional query to ask the ContextRetriever if the context is not enough. Empty otherwise
+Provide your analysis in a structured format matching the ContextRefineStructuredOutput model.
+
+Example output:
+```json
+{{
+    "reasoning": "1. The current context includes the main function implementation but lacks details on helper functions it calls.\n2. The query requires understanding of how data is processed, which is not fully covered in the provided context.\n3. The documentation for the main function is missing, which could provide insights into its intended behavior.\n4. Therefore, additional context is needed to fully understand and address the user's query.",
+    "refined_query": "Please provide the implementation details of the helper functions called within the main function, as well as any relevant documentation that explains the overall data processing workflow."
+}}
 ```
 
-The codebase structure:
-{file_tree}
+PLEASE DO NOT INCLUDE ``` IN YOUR OUTPUT!
 """
 
     REFINE_PROMPT = """\
+This is the codebase structure:
+--- BEGIN FILE TREE ---
+{file_tree}
+--- END FILE TREE ---
+    
 This is the original user query:
+--- BEGIN ORIGINAL QUERY ---
 {original_query}
+--- END ORIGINAL QUERY ---
 
 All aggregated context for the queries:
+--- BEGIN AGGREGATED CONTEXT ---
 {context}
+--- END AGGREGATED CONTEXT ---
 
 Analyze if the current context is sufficient to complete the user query by considering:
 1. Do you understand the full scope and requirements of the user query?
@@ -69,20 +81,24 @@ If additional context is needed:
 """
 
     def __init__(self, model: BaseChatModel, kg: KnowledgeGraph):
+        self.file_tree = kg.get_file_tree()
         prompt = ChatPromptTemplate.from_messages(
             [
-                ("system", self.SYS_PROMPT.format(file_tree=kg.get_file_tree())),
+                ("system", self.SYS_PROMPT),
                 ("human", "{human_prompt}"),
             ]
         )
         structured_llm = model.with_structured_output(ContextRefineStructuredOutput)
         self.model = prompt | structured_llm
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.context_refine_node")
+        self._logger = logging.getLogger(
+            f"thread-{threading.get_ident()}.prometheus.lang_graph.nodes.context_refine_node"
+        )
 
     def format_refine_message(self, state: ContextRetrievalState):
         original_query = state["query"]
-        context = "\n\n".join(state["context"])
+        context = "\n\n".join([str(context) for context in state["context"]])
         return self.REFINE_PROMPT.format(
+            file_tree=self.file_tree,
             original_query=original_query,
             context=context,
         )

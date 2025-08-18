@@ -23,9 +23,9 @@ POSTGRES_DB = "postgres"
 
 
 @pytest.fixture(scope="session")
-def neo4j_container_with_kg_fixture():
-    kg = KnowledgeGraph(1000, 100, 10)
-    kg.build_graph(test_project_paths.TEST_PROJECT_PATH)
+async def neo4j_container_with_kg_fixture():
+    kg = KnowledgeGraph(1000, 100, 10, 0)
+    await kg.build_graph(test_project_paths.TEST_PROJECT_PATH)
     container = (
         Neo4jContainer(image=NEO4J_IMAGE, username=NEO4J_USERNAME, password=NEO4J_PASSWORD)
         .with_env("NEO4J_PLUGINS", '["apoc"]')
@@ -38,7 +38,7 @@ def neo4j_container_with_kg_fixture():
         yield neo4j_container, kg
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def empty_neo4j_container_fixture():
     container = (
         Neo4jContainer(image=NEO4J_IMAGE, username=NEO4J_USERNAME, password=NEO4J_PASSWORD)
@@ -51,17 +51,13 @@ def empty_neo4j_container_fixture():
 
 @pytest.fixture(scope="session")
 def postgres_container_fixture():
-    container = (
-        PostgresContainer(
-            image=POSTGRES_IMAGE,
-            username=POSTGRES_USERNAME,
-            password=POSTGRES_PASSWORD,
-            dbname=POSTGRES_DB,
-            port=5432,
-        )
-        .with_name(f"postgres_container_{uuid.uuid4().hex[:12]}")
-        .with_bind_ports(5432, 5432)  # Bind to a specific port for testing
-    )
+    container = PostgresContainer(
+        image=POSTGRES_IMAGE,
+        username=POSTGRES_USERNAME,
+        password=POSTGRES_PASSWORD,
+        dbname=POSTGRES_DB,
+        port=5432,
+    ).with_name(f"postgres_container_{uuid.uuid4().hex[:12]}")
     with container as postgres_container:
         yield postgres_container
 
@@ -80,3 +76,12 @@ def git_repo_fixture():
         yield repo
     finally:
         shutil.rmtree(temp_project_dir)
+
+
+@pytest.fixture
+def temp_test_dir(tmp_path):
+    """Create a temporary test directory."""
+    test_dir = tmp_path / "test_files"
+    test_dir.mkdir()
+    yield test_dir
+    # Cleanup happens automatically after tests due to tmp_path fixture

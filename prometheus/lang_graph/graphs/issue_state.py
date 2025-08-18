@@ -18,10 +18,13 @@ class IssueState(TypedDict):
     issue_type: IssueType
     run_build: bool
     run_existing_test: bool
+    run_regression_test: bool
+    run_reproduce_test: bool
     number_of_candidate_patch: int
 
     edit_patch: str
 
+    passed_regression_test: bool
     passed_reproducing_test: bool
     passed_build: bool
     passed_existing_test: bool

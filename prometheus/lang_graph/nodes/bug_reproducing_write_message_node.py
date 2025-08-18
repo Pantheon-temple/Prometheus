@@ -1,4 +1,5 @@
 import logging
+import threading
 
 from langchain_core.messages import HumanMessage
 
@@ -25,7 +26,7 @@ Now think about what went wrong and generate the complete self-contained test ca
 
     def __init__(self):
         self._logger = logging.getLogger(
-            "prometheus.lang_graph.nodes.bug_reproducing_write_message_node"
+            f"thread-{threading.get_ident()}.prometheus.lang_graph.nodes.bug_reproducing_write_message_node"
         )
 
     def format_human_message(self, state: BugReproductionState):
@@ -41,7 +42,9 @@ Now think about what went wrong and generate the complete self-contained test ca
                 issue_info=format_issue_info(
                     state["issue_title"], state["issue_body"], state["issue_comments"]
                 ),
-                bug_reproducing_context="\n\n".join(state["bug_reproducing_context"]),
+                bug_reproducing_context="\n\n".join(
+                    [str(context) for context in state["bug_reproducing_context"]]
+                ),
             )
         )
 

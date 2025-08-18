@@ -1,5 +1,7 @@
 from typing import Mapping, Sequence, TypedDict
 
+from prometheus.models.context import Context
+
 
 class IssueClassificationState(TypedDict):
     # Attributes provided by the user
@@ -11,6 +13,6 @@ class IssueClassificationState(TypedDict):
 
     # Attributes generated and by the subgraph
     issue_classification_query: str
-    issue_classification_context: Sequence[str]
+    issue_classification_context: Sequence[Context]
 
     issue_type: str

@@ -19,12 +19,15 @@ def mock_container():
 def mock_kg():
     kg = Mock(spec=KnowledgeGraph)
     kg.get_all_ast_node_types.return_value = ["FunctionDef", "ClassDef", "Module", "Import", "Call"]
+    kg.root_node_id = 0
     return kg
 
 
 @pytest.fixture
 def mock_git_repo():
-    return Mock(spec=GitRepository)
+    git_repo = Mock(spec=GitRepository)
+    git_repo.playground_path = "mock/playground/path"
+    return git_repo
 
 
 @pytest.fixture

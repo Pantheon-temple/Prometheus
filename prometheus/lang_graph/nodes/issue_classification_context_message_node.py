@@ -1,4 +1,5 @@
 import logging
+import threading
 
 from prometheus.lang_graph.subgraphs.issue_classification_state import IssueClassificationState
 from prometheus.utils.issue_util import format_issue_info
@@ -73,7 +74,7 @@ Search priority:
 
     def __init__(self):
         self._logger = logging.getLogger(
-            "prometheus.lang_graph.nodes.issue_classification_context_message_node"
+            f"thread-{threading.get_ident()}.prometheus.lang_graph.nodes.issue_classification_context_message_node"
         )
 
     def __call__(self, state: IssueClassificationState):

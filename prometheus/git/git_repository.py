@@ -1,13 +1,13 @@
 """Git repository management module."""
 
+import asyncio
 import logging
-import os
 import shutil
 import tempfile
 from pathlib import Path
 from typing import Optional, Sequence
 
-from git import Git, InvalidGitRepositoryError, Repo
+from git import Git, GitCommandError, InvalidGitRepositoryError, Repo
 
 
 class GitRepository:
@@ -16,27 +16,12 @@ class GitRepository:
     This class provides a unified interface for working with Git repositories,
     whether they are local or remote (HTTPS). It supports common Git operations
     such as cloning, checking out commits, switching branches, and pushing changes.
-    For remote repositories, it handles authentication using GitHub access tokens..
+    For remote repositories, it handles authentication using GitHub access tokens.
     """
 
-    def __init__(
-        self,
-        address: str,
-        working_directory: Path,
-        copy_to_working_dir: bool = True,
-        github_access_token: Optional[str] = None,
-    ):
-        """Initialize a GitRepository instance.
-
-        Args:
-          address: Either a local path to a Git repository or an HTTPS URL
-            for a remote repository.
-          working_directory: Directory where the repository will be stored
-            or copied to.
-          copy_to_working_dir: If True, creates a copy of a local
-            repository in the working directory. Defaults to True.
-          github_access_token: GitHub access token for authentication with remote
-            repositories. Required if address is an HTTPS URL. Defaults to None.
+    def __init__(self):
+        """
+        Initialize a GitRepository instance.
         """
         self._logger = logging.getLogger("prometheus.git.git_repository")
 
@@ -51,24 +36,12 @@ class GitRepository:
         git_cmd_logger.parent = self._logger
         git_cmd_logger.propagate = True
 
-        if address.startswith("https://"):
-            if github_access_token is None:
-                raise ValueError("github_access_token is required for https repository")
-            self.repo = self._clone_repository(address, github_access_token, working_directory)
-            self._set_default_branch()
-        else:
-            local_path = address
-            if copy_to_working_dir:
-                local_path = working_directory / os.path.basename(address)
-                shutil.copytree(address, local_path)
-            try:
-                self.repo = Repo(local_path)
-                self._set_default_branch()
-            except InvalidGitRepositoryError:
-                self.repo = Repo.init(local_path)
-                self._set_default_branch()
+        self.repo = None
+        self.playground_path = None
 
     def _set_default_branch(self):
+        if self.repo is None:
+            raise InvalidGitRepositoryError("No repository is currently set.")
         try:
             self.default_branch = (
                 self.repo.remote().refs["HEAD"].reference.name.replace("refs/heads/", "")
@@ -76,9 +49,9 @@ class GitRepository:
         except ValueError:
             self.default_branch = self.repo.active_branch.name
 
-    def _clone_repository(
+    async def from_clone_repository(
         self, https_url: str, github_access_token: str, target_directory: Path
-    ) -> Repo:
+    ):
         """Clone a remote repository using HTTPS authentication.
 
         Args:
@@ -89,25 +62,50 @@ class GitRepository:
         Returns:
             Repo: GitPython Repo object representing the cloned repository.
         """
-        self._original_https_url = https_url
-        https_url = https_url.replace("https://", f"https://{github_access_token}@")
+        https_url = https_url.replace("https://", f"https://x-access-token:{github_access_token}@")
         repo_name = https_url.split("/")[-1].split(".")[0]
         local_path = target_directory / repo_name
         if local_path.exists():
             shutil.rmtree(local_path)
 
-        return Repo.clone_from(https_url, local_path)
+        self.repo = await asyncio.to_thread(Repo.clone_from, https_url, local_path)
+        self.playground_path = local_path
+        self._set_default_branch()
+
+    def from_local_repository(self, local_path: Path):
+        """Initialize the GitRepository from a local repository path.
+
+        Args:
+            local_path: Path to the local Git repository.
+
+        Raises:
+            InvalidGitRepositoryError: If the provided path is not a valid Git repository.
+        """
+        if not local_path.is_dir() or not (local_path / ".git").exists():
+            raise InvalidGitRepositoryError(f"{local_path} is not a valid Git repository.")
+
+        self.repo = Repo(local_path)
+        self.playground_path = local_path
+        self._set_default_branch()
 
     def checkout_commit(self, commit_sha: str):
+        if self.repo is None:
+            raise InvalidGitRepositoryError("No repository is currently set.")
         self.repo.git.checkout(commit_sha)
 
     def switch_branch(self, branch_name: str):
+        if self.repo is None:
+            raise InvalidGitRepositoryError("No repository is currently set.")
         self.repo.git.checkout(branch_name)
 
     def pull(self):
+        if self.repo is None:
+            raise InvalidGitRepositoryError("No repository is currently set.")
         self.repo.git.pull()
 
     def get_diff(self, excluded_files: Optional[Sequence[str]] = None) -> str:
+        if self.repo is None:
+            raise InvalidGitRepositoryError("No repository is currently set.")
         self.repo.git.add("-A")
         if excluded_files:
             self.repo.git.reset(excluded_files)
@@ -118,9 +116,13 @@ class GitRepository:
         return diff
 
     def get_working_directory(self) -> Path:
+        if self.repo is None:
+            raise InvalidGitRepositoryError("No repository is currently set.")
         return Path(self.repo.working_dir).absolute()
 
     def reset_repository(self):
+        if self.repo is None:
+            raise InvalidGitRepositoryError("No repository is currently set.")
         self.repo.git.reset("--hard")
         self.repo.git.clean("-fd")
 
@@ -129,7 +131,14 @@ class GitRepository:
             shutil.rmtree(self.repo.working_dir)
             self.repo = None
 
-    def create_and_push_branch(self, branch_name: str, commit_message: str, patch: str):
+    def apply_patch(self, patch: str):
+        """Apply a patch to the current repository."""
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".patch") as tmp_file:
+            tmp_file.write(patch)
+            tmp_file.flush()
+            self.repo.git.apply(tmp_file.name)
+
+    async def create_and_push_branch(self, branch_name: str, commit_message: str, patch: str):
         """Create a new branch, commit changes, and push to remote.
 
         This method creates a new branch, switches to it, stages all changes,
@@ -139,17 +148,25 @@ class GitRepository:
         Args:
             branch_name: Name of the new branch to create.
             commit_message: Message for the commit.
+            patch: Patch to apply to the branch.
         """
-        with tempfile.NamedTemporaryFile(mode="w", suffix=".patch") as tmp_file:
-            tmp_file.write(patch)
-            tmp_file.flush()
+        if self.repo is None:
+            raise InvalidGitRepositoryError("No repository is currently set.")
 
+        # Get the current commit SHA to ensure we can reset later
+        start_commit_sha = self.repo.head.commit.hexsha
+        try:
+            # create and checkout new branch
             new_branch = self.repo.create_head(branch_name)
             new_branch.checkout()
-
-            self.repo.git.apply(tmp_file.name)
+            # Apply the patch and commit changes
+            self.apply_patch(patch)
             self.repo.git.add(A=True)
             self.repo.index.commit(commit_message)
-            self.repo.git.push("--set-upstream", "origin", branch_name)
+            await asyncio.to_thread(self.repo.git.push, "--set-upstream", "origin", branch_name)
+        except GitCommandError as e:
+            raise e
+        finally:
             self.reset_repository()
-            self.switch_branch(self.default_branch)
+            # Reset to the original commit
+            self.checkout_commit(start_commit_sha)

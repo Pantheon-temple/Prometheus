@@ -1,4 +1,5 @@
 import logging
+import threading
 from typing import Dict
 
 from prometheus.utils.issue_util import format_issue_info
@@ -20,7 +21,7 @@ Skip any test files
 
     def __init__(self):
         self._logger = logging.getLogger(
-            "prometheus.lang_graph.nodes.issue_bug_context_message_node"
+            f"thread-{threading.get_ident()}.prometheus.lang_graph.nodes.issue_bug_context_message_node"
         )
 
     def __call__(self, state: Dict):

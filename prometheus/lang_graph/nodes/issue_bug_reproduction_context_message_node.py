@@ -1,4 +1,5 @@
 import logging
+import threading
 
 from prometheus.lang_graph.subgraphs.bug_reproduction_state import BugReproductionState
 from prometheus.utils.issue_util import format_issue_info
@@ -109,7 +110,7 @@ Find the THREE most relevant test cases with complete context, ensuring ALL nece
 
     def __init__(self):
         self._logger = logging.getLogger(
-            "prometheus.lang_graph.nodes.issue_bug_reproduction_context_message_node"
+            f"thread-{threading.get_ident()}.prometheus.lang_graph.nodes.issue_bug_reproduction_context_message_node"
         )
 
     def __call__(self, state: BugReproductionState):

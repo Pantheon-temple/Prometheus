@@ -7,6 +7,7 @@ with structured tools to systematically search and analyze the codebase Knowledg
 
 import functools
 import logging
+import threading
 from typing import Dict
 
 import neo4j
@@ -16,7 +17,6 @@ from langchain_core.messages import SystemMessage
 
 from prometheus.graph.knowledge_graph import KnowledgeGraph
 from prometheus.tools import graph_traversal
-from prometheus.utils.lang_graph_util import truncate_messages
 
 
 class ContextProviderNode:
@@ -35,7 +35,7 @@ class ContextProviderNode:
 
     SYS_PROMPT = """\
 You are a context gatherer that searches a Neo4j knowledge graph representation of a 
-codebase. Your role is to efficiently find relevant code and documentation 
+codebase. Your role is to understand the logic of the project and efficiently find relevant code and documentation 
 context based on user queries.
 
 Knowledge Graph Structure:
@@ -56,7 +56,7 @@ Search Strategy Guidelines:
    - Prioritize relative_path tools when exact file location is known
    - Fall back to basename tools for filename-only searches
    - Use AST node searches to find specific code structures
-   - Use preview_* or read_* tools with more than hundrend lines to get more context than class/function
+   - Use preview_* or read_* tools with more than hundred lines to get more context than class/function
    - If a search returns no results, try alternative approaches with broader scope
 
 2. Documentation/Text Search:
@@ -73,17 +73,16 @@ Search Strategy Guidelines:
 
 4. Critical Rules:
    - Do not repeat the same query!
-   - Do not select a whole file or directory as context, but rather specific code snippets.
-   - Each context should be a small, focused piece of code or documentation that directly addresses the query, which must be less than 100 lines!
-   - But several contexts snippets can be selected if they are relevant to the query.
 
-In your response, just provide a short summary with a few setences (3-4 setences) on what you have done.
+In your response, just provide a short summary with a few sentences (3-4 sentences) on what you have done.
 As your searched are automatically visible to the user, you do not need to repeat them. 
 
 The file tree of the codebase:
 {file_tree}
 
 Available AST node types for code structure search: {ast_node_types}
+
+PLEASE CALL THE MINIMUM NUMBER OF TOOLS NEEDED TO ANSWER THE QUERY!
 """
 
     def __init__(
@@ -111,6 +110,7 @@ Available AST node types for code structure search: {ast_node_types}
           max_token_per_result: Maximum number of tokens per retrieved Neo4j result.
         """
         self.neo4j_driver = neo4j_driver
+        self.root_node_id = kg.root_node_id
         self.max_token_per_result = max_token_per_result
 
         ast_node_types_str = ", ".join(kg.get_all_ast_node_types())
@@ -119,8 +119,9 @@ Available AST node types for code structure search: {ast_node_types}
         )
         self.tools = self._init_tools()
         self.model_with_tools = model.bind_tools(self.tools)
-
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.context_provider_node")
+        self._logger = logging.getLogger(
+            f"thread-{threading.get_ident()}.prometheus.lang_graph.nodes.context_provider_node"
+        )
 
     def _init_tools(self):
         """
@@ -139,6 +140,7 @@ Available AST node types for code structure search: {ast_node_types}
             graph_traversal.find_file_node_with_basename,
             driver=self.neo4j_driver,
             max_token_per_result=self.max_token_per_result,
+            root_node_id=self.root_node_id,
         )
         find_file_node_with_basename_tool = StructuredTool.from_function(
             func=find_file_node_with_basename_fn,
@@ -155,6 +157,7 @@ Available AST node types for code structure search: {ast_node_types}
             graph_traversal.find_file_node_with_relative_path,
             driver=self.neo4j_driver,
             max_token_per_result=self.max_token_per_result,
+            root_node_id=self.root_node_id,
         )
         find_file_node_with_relative_path_tool = StructuredTool.from_function(
             func=find_file_node_with_relative_path_fn,
@@ -173,6 +176,7 @@ Available AST node types for code structure search: {ast_node_types}
             graph_traversal.find_ast_node_with_text_in_file_with_basename,
             driver=self.neo4j_driver,
             max_token_per_result=self.max_token_per_result,
+            root_node_id=self.root_node_id,
         )
         find_ast_node_with_text_in_file_with_basename_tool = StructuredTool.from_function(
             func=find_ast_node_with_text_in_file_with_basename_fn,
@@ -188,6 +192,7 @@ Available AST node types for code structure search: {ast_node_types}
             graph_traversal.find_ast_node_with_text_in_file_with_relative_path,
             driver=self.neo4j_driver,
             max_token_per_result=self.max_token_per_result,
+            root_node_id=self.root_node_id,
         )
         find_ast_node_with_text_in_file_with_relative_path_tool = StructuredTool.from_function(
             func=find_ast_node_with_text_in_file_with_relative_path_fn,
@@ -204,6 +209,7 @@ Available AST node types for code structure search: {ast_node_types}
             graph_traversal.find_ast_node_with_type_in_file_with_basename,
             driver=self.neo4j_driver,
             max_token_per_result=self.max_token_per_result,
+            root_node_id=self.root_node_id,
         )
         find_ast_node_with_type_in_file_with_basename_tool = StructuredTool.from_function(
             func=find_ast_node_with_type_in_file_with_basename_fn,
@@ -219,6 +225,7 @@ Available AST node types for code structure search: {ast_node_types}
             graph_traversal.find_ast_node_with_type_in_file_with_relative_path,
             driver=self.neo4j_driver,
             max_token_per_result=self.max_token_per_result,
+            root_node_id=self.root_node_id,
         )
         find_ast_node_with_type_in_file_with_relative_path_tool = StructuredTool.from_function(
             func=find_ast_node_with_type_in_file_with_relative_path_fn,
@@ -236,6 +243,7 @@ Available AST node types for code structure search: {ast_node_types}
             graph_traversal.find_text_node_with_text,
             driver=self.neo4j_driver,
             max_token_per_result=self.max_token_per_result,
+            root_node_id=self.root_node_id,
         )
         find_text_node_with_text_tool = StructuredTool.from_function(
             func=find_text_node_with_text_fn,
@@ -251,6 +259,7 @@ Available AST node types for code structure search: {ast_node_types}
             graph_traversal.find_text_node_with_text_in_file,
             driver=self.neo4j_driver,
             max_token_per_result=self.max_token_per_result,
+            root_node_id=self.root_node_id,
         )
         find_text_node_with_text_in_file_tool = StructuredTool.from_function(
             func=find_text_node_with_text_in_file_fn,
@@ -266,6 +275,7 @@ Available AST node types for code structure search: {ast_node_types}
             graph_traversal.get_next_text_node_with_node_id,
             driver=self.neo4j_driver,
             max_token_per_result=self.max_token_per_result,
+            root_node_id=self.root_node_id,
         )
         get_next_text_node_with_node_id_tool = StructuredTool.from_function(
             func=get_next_text_node_with_node_id_fn,
@@ -283,6 +293,7 @@ Available AST node types for code structure search: {ast_node_types}
             graph_traversal.preview_file_content_with_basename,
             driver=self.neo4j_driver,
             max_token_per_result=self.max_token_per_result,
+            root_node_id=self.root_node_id,
         )
         preview_file_content_with_basename_tool = StructuredTool.from_function(
             func=preview_file_content_with_basename_fn,
@@ -298,6 +309,7 @@ Available AST node types for code structure search: {ast_node_types}
             graph_traversal.preview_file_content_with_relative_path,
             driver=self.neo4j_driver,
             max_token_per_result=self.max_token_per_result,
+            root_node_id=self.root_node_id,
         )
         preview_file_content_with_relative_path_tool = StructuredTool.from_function(
             func=preview_file_content_with_relative_path_fn,
@@ -313,6 +325,7 @@ Available AST node types for code structure search: {ast_node_types}
             graph_traversal.read_code_with_basename,
             driver=self.neo4j_driver,
             max_token_per_result=self.max_token_per_result,
+            root_node_id=self.root_node_id,
         )
         read_code_with_basename_tool = StructuredTool.from_function(
             func=read_code_with_basename_fn,
@@ -328,6 +341,7 @@ Available AST node types for code structure search: {ast_node_types}
             graph_traversal.read_code_with_relative_path,
             driver=self.neo4j_driver,
             max_token_per_result=self.max_token_per_result,
+            root_node_id=self.root_node_id,
         )
         read_code_with_relative_path_tool = StructuredTool.from_function(
             func=read_code_with_relative_path_fn,
@@ -349,10 +363,9 @@ Available AST node types for code structure search: {ast_node_types}
         Returns:
           Dictionary that will update the state with the model's response messages.
         """
-        self._logger.debug(f"Context provider messages: {state['context_provider_messages']}")
+        # self._logger.debug(f"Context provider messages: {state['context_provider_messages']}")
         message_history = [self.system_prompt] + state["context_provider_messages"]
-        truncated_message_history = truncate_messages(message_history)
-        response = self.model_with_tools.invoke(truncated_message_history)
+        response = self.model_with_tools.invoke(message_history)
         self._logger.debug(response)
         # The response will be added to the bottom of the list
         return {"context_provider_messages": [response]}

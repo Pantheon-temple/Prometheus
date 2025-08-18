@@ -1,17 +1,14 @@
 from typing import Callable, Dict, Sequence
 
-import tiktoken
 from langchain_core.messages import (
     AIMessage,
     BaseMessage,
     HumanMessage,
-    SystemMessage,
     ToolMessage,
-    trim_messages,
 )
 from langchain_core.output_parsers import StrOutputParser
 
-from prometheus.configuration.config import settings
+from prometheus.utils.neo4j_util import neo4j_data_for_context_generator
 
 
 def check_remaining_steps(
@@ -25,53 +22,6 @@ def check_remaining_steps(
         return original_route
     else:
         return "low_remaining_steps"
-
-
-def str_token_counter(text: str) -> int:
-    enc = tiktoken.get_encoding("o200k_base")
-    return len(enc.encode(text))
-
-
-def tiktoken_counter(messages: Sequence[BaseMessage]) -> int:
-    """Approximately reproduce https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb
-
-    For simplicity only supports str Message.contents.
-    """
-    output_parser = StrOutputParser()
-    num_tokens = 3  # every reply is primed with <|start|>assistant<|message|>
-    tokens_per_message = 3
-    tokens_per_name = 1
-    for msg in messages:
-        if isinstance(msg, HumanMessage):
-            role = "user"
-        elif isinstance(msg, AIMessage):
-            role = "assistant"
-        elif isinstance(msg, ToolMessage):
-            role = "tool"
-        elif isinstance(msg, SystemMessage):
-            role = "system"
-        else:
-            raise ValueError(f"Unsupported messages type {msg.__class__}")
-        msg_content = output_parser.invoke(msg)
-        num_tokens += tokens_per_message + str_token_counter(role) + str_token_counter(msg_content)
-        if msg.name:
-            num_tokens += tokens_per_name + str_token_counter(msg.name)
-    return num_tokens
-
-
-def truncate_messages(
-    messages: Sequence[BaseMessage], max_tokens: int = settings.MAX_INPUT_TOKENS
-) -> Sequence[BaseMessage]:
-    """TODO: Instead of truncating, we should use a better strategy to keep the most relevant messages."""
-    return trim_messages(
-        messages,
-        token_counter=tiktoken_counter,
-        strategy="last",
-        max_tokens=max_tokens,
-        start_on="human",
-        end_on=("human", "tool"),
-        include_system=True,
-    )
 
 
 def extract_ai_responses(messages: Sequence[BaseMessage]) -> Sequence[str]:
@@ -95,6 +45,11 @@ def extract_human_queries(messages: Sequence[BaseMessage]) -> Sequence[str]:
 
 
 def extract_last_tool_messages(messages: Sequence[BaseMessage]) -> Sequence[ToolMessage]:
+    """
+    Extracts all tool messages that come after the last human message in the sequence.
+    :param messages:
+    :return: messages: A list of ToolMessage objects that come after the last HumanMessage.
+    """
     tool_messages = []
     last_human_index = -1
     for i in range(len(messages) - 1, -1, -1):
@@ -109,6 +64,15 @@ def extract_last_tool_messages(messages: Sequence[BaseMessage]) -> Sequence[Tool
         if isinstance(message, ToolMessage):
             tool_messages.append(message)
     return tool_messages
+
+
+def transform_tool_messages_to_str(messages: Sequence[ToolMessage]) -> str:
+    result = ""
+    for message in messages:
+        for context in neo4j_data_for_context_generator(message.artifact):
+            result += str(context)
+            result += "\n"
+    return result
 
 
 def get_last_message_content(messages: Sequence[BaseMessage]) -> str:

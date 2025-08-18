@@ -42,15 +42,15 @@ class FileGraphBuilder:
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
 
+    def support_code_file(self, file: Path) -> bool:
+        return tree_sitter_parser.supports_file(file)
+
+    def support_text_file(self, file: Path) -> bool:
+        return file.suffix in [".markdown", ".md", ".txt", ".rst"]
+
     def supports_file(self, file: Path) -> bool:
         """Checks if we support building knowledge graph for this file."""
-        if tree_sitter_parser.supports_file(file):
-            return True
-
-        if file.suffix in [".md", ".txt", ".rst"]:
-            return True
-
-        return False
+        return self.support_code_file(file) or self.support_text_file(file)
 
     def build_file_graph(
         self, parent_node: KnowledgeGraphNode, file: Path, next_node_id: int
@@ -69,41 +69,60 @@ class FileGraphBuilder:
           and kg_edges is a list of all edges created for this file.
         """
         # In this case, it is a file that tree sitter can parse (source code)
-        if tree_sitter_parser.supports_file(file):
+        if self.support_code_file(file):
             return self._tree_sitter_file_graph(parent_node, file, next_node_id)
-
-        if file.suffix in [".md", ".txt", ".rst"]:
+        # otherwise it is a text file that we can parse using langchain text splitter
+        else:
             return self._text_file_graph(parent_node, file, next_node_id)
 
     def _tree_sitter_file_graph(
         self, parent_node: KnowledgeGraphNode, file: Path, next_node_id: int
     ) -> Tuple[int, Sequence[KnowledgeGraphNode], Sequence[KnowledgeGraphEdge]]:
-        """Parse a file to a tree-sitter graph.
+        """
+        Parse a file into a tree-sitter based abstract syntax tree (AST) and build a corresponding knowledge graph.
 
-        Tree-sitter is an abstract syntax tree (AST) parser to parse source code. We simply
-        use the tree representation as the knowledge graph to represent this file.
-        In the AST, nodes have PARENT_OF relationship, if one node is a parent of another
-        node. For example, 'class_definition' can be a parent of 'function_definition'.
-        The root ASTNode is connected to the parent_node using the HAS_AST relationship.
+        This function uses tree-sitter to parse the source code file and constructs a subgraph where:
+          - Each AST node in the tree-sitter AST is represented as a KnowledgeGraphNode wrapping an ASTNode.
+          - Edges of type 'PARENT_OF' connect parent AST nodes to their children.
+          - The root AST node for the file is connected to the parent FileNode with an edge of type 'HAS_AST'.
 
         Args:
-          parent_node: The parent knowledge graph node that represent the file.
-            The node attribute should have type FileNode.
-          file: The file to build knowledge graph.
-          next_node_id: The next available node id.
+            parent_node (KnowledgeGraphNode): The parent knowledge graph node representing the file (should wrap a FileNode).
+            file (Path): The file to be parsed and included in the knowledge graph.
+            next_node_id (int): The next available node id (to ensure global uniqueness in the graph).
 
         Returns:
-          A tuple of (next_node_id, kg_nodes, kg_edges), where next_node_id is the
-          new next_node_id, kg_nodes is a list of all nodes created for the file,
-          and kg_edges is a list of all edges created for this file.
+            Tuple[int, Sequence[KnowledgeGraphNode], Sequence[KnowledgeGraphEdge]]:
+                - The next available node id after all nodes are created.
+                - A list of all AST-related KnowledgeGraphNode objects for this file.
+                - A list of all edges (HAS_AST, PARENT_OF) created for this file's AST subgraph.
+
+        Algorithm:
+            1. Use tree-sitter to parse the file and obtain the AST.
+            2. Create a KnowledgeGraphNode for the root AST node and connect it to the parent file node with HAS_AST.
+            3. Traverse the AST in depth-first order using a stack:
+                - For each AST node, create a KnowledgeGraphNode and assign it a unique id.
+                - For each parent-child relationship in the AST, add a PARENT_OF edge.
+                - Traverse to the maximum depth specified by self.max_ast_depth.
+            4. Return the updated next_node_id, all nodes, and all edges for this file.
+
+        Notes:
+            - If the parsed tree is empty or contains errors, no nodes/edges are added.
+            - AST node text is decoded to utf-8 to ensure string compatibility.
+            - The function only builds the AST subgraph for one file; integration into the global graph is done by the caller.
         """
+
+        # Store created AST KnowledgeGraphNodes and edges for this file
         tree_sitter_nodes = []
         tree_sitter_edges = []
 
+        # Parse the file into a tree-sitter AST
         tree = tree_sitter_parser.parse(file)
         if tree.root_node.has_error or tree.root_node.child_count == 0:
+            # Return empty results if the file cannot be parsed properly
             return next_node_id, tree_sitter_nodes, tree_sitter_edges
 
+        # Create the KnowledgeGraphNode for the root AST node
         ast_root_node = ASTNode(
             type=tree.root_node.type,
             start_line=tree.root_node.start_point[0] + 1,
@@ -113,19 +132,27 @@ class FileGraphBuilder:
         kg_ast_root_node = KnowledgeGraphNode(next_node_id, ast_root_node)
         next_node_id += 1
         tree_sitter_nodes.append(kg_ast_root_node)
+
+        # Add the HAS_AST edge connecting the file node to its AST root node
         tree_sitter_edges.append(
             KnowledgeGraphEdge(parent_node, kg_ast_root_node, KnowledgeGraphEdgeType.has_ast)
         )
 
+        # Use an explicit stack for depth-first traversal of the AST
         node_stack = deque()
-        node_stack.append((tree.root_node, kg_ast_root_node, 1))
+        node_stack.append(
+            (tree.root_node, kg_ast_root_node, 1)
+        )  # (tree_sitter_node, kg_node, depth)
         while node_stack:
             tree_sitter_node, kg_node, depth = node_stack.pop()
 
+            # Limit the maximum depth to self.max_ast_depth
             if depth > self.max_ast_depth:
                 continue
 
+            # Process all children of the current AST node
             for tree_sitter_child_node in tree_sitter_node.children:
+                # Create KnowledgeGraphNode for the child AST node
                 child_ast_node = ASTNode(
                     type=tree_sitter_child_node.type,
                     start_line=tree_sitter_child_node.start_point[0] + 1,
@@ -136,11 +163,15 @@ class FileGraphBuilder:
                 next_node_id += 1
 
                 tree_sitter_nodes.append(kg_child_ast_node)
+                # Add a PARENT_OF edge from the parent to this child
                 tree_sitter_edges.append(
                     KnowledgeGraphEdge(kg_node, kg_child_ast_node, KnowledgeGraphEdgeType.parent_of)
                 )
 
+                # Add the child node to the stack to continue traversal
                 node_stack.append((tree_sitter_child_node, kg_child_ast_node, depth + 1))
+
+        # Return the updated next_node_id, all nodes, and all edges for this file's AST subgraph
         return next_node_id, tree_sitter_nodes, tree_sitter_edges
 
     def _text_file_graph(

@@ -1,5 +1,5 @@
 import functools
-from typing import Sequence
+from typing import Dict, Sequence
 
 import neo4j
 from langchain_core.language_models.chat_models import BaseChatModel
@@ -7,12 +7,13 @@ from langgraph.graph import END, StateGraph
 from langgraph.prebuilt import ToolNode, tools_condition
 
 from prometheus.graph.knowledge_graph import KnowledgeGraph
+from prometheus.lang_graph.nodes.context_extraction_node import ContextExtractionNode
 from prometheus.lang_graph.nodes.context_provider_node import ContextProviderNode
 from prometheus.lang_graph.nodes.context_query_message_node import ContextQueryMessageNode
 from prometheus.lang_graph.nodes.context_refine_node import ContextRefineNode
-from prometheus.lang_graph.nodes.context_selection_node import ContextSelectionNode
 from prometheus.lang_graph.nodes.reset_messages_node import ResetMessagesNode
 from prometheus.lang_graph.subgraphs.context_retrieval_state import ContextRetrievalState
+from prometheus.models.context import Context
 
 
 class ContextRetrievalSubgraph:
@@ -40,6 +41,7 @@ class ContextRetrievalSubgraph:
         self,
         model: BaseChatModel,
         kg: KnowledgeGraph,
+        local_path: str,
         neo4j_driver: neo4j.Driver,
         max_token_per_neo4j_result: int,
     ):
@@ -48,7 +50,7 @@ class ContextRetrievalSubgraph:
 
         Args:
             model (BaseChatModel): The LLM used for context selection and refinement.
-            kg (KnowledgeGraph): The graph-based semantic index for code/docs retrieval.
+            local_path (str): Local path to the codebase for context extraction.
             neo4j_driver (neo4j.Driver): Driver for executing Cypher queries in Neo4j.
             max_token_per_neo4j_result (int): Token limit for responses from graph tools.
         """
@@ -68,8 +70,8 @@ class ContextRetrievalSubgraph:
             messages_key="context_provider_messages",
         )
 
-        # Step 4: Select relevant context snippets from the candidates
-        context_selection_node = ContextSelectionNode(model)
+        # Step 4: Extract the Context
+        context_extraction_node = ContextExtractionNode(model, local_path)
 
         # Step 5: Reset tool messages to prepare for the next iteration (if needed)
         reset_context_provider_messages_node = ResetMessagesNode("context_provider_messages")
@@ -84,7 +86,7 @@ class ContextRetrievalSubgraph:
         workflow.add_node("context_query_message_node", context_query_message_node)
         workflow.add_node("context_provider_node", context_provider_node)
         workflow.add_node("context_provider_tools", context_provider_tools)
-        workflow.add_node("context_selection_node", context_selection_node)
+        workflow.add_node("context_extraction_node", context_extraction_node)
         workflow.add_node(
             "reset_context_provider_messages_node", reset_context_provider_messages_node
         )
@@ -99,10 +101,10 @@ class ContextRetrievalSubgraph:
         workflow.add_conditional_edges(
             "context_provider_node",
             functools.partial(tools_condition, messages_key="context_provider_messages"),
-            {"tools": "context_provider_tools", END: "context_selection_node"},
+            {"tools": "context_provider_tools", END: "context_extraction_node"},
         )
         workflow.add_edge("context_provider_tools", "context_provider_node")
-        workflow.add_edge("context_selection_node", "reset_context_provider_messages_node")
+        workflow.add_edge("context_extraction_node", "reset_context_provider_messages_node")
         workflow.add_edge("reset_context_provider_messages_node", "context_refine_node")
 
         # If refined_query is non-empty, loop back to provider; else terminate
@@ -115,22 +117,20 @@ class ContextRetrievalSubgraph:
         # Compile and store the subgraph
         self.subgraph = workflow.compile()
 
-    def invoke(
-        self, query: str, max_refined_query_loop: int, recursion_limit: int = 999
-    ) -> Sequence[str]:
+    def invoke(self, query: str, max_refined_query_loop: int) -> Dict[str, Sequence[Context]]:
         """
         Executes the context retrieval subgraph given an initial query.
 
         Args:
             query (str): The natural language query representing the information need.
             max_refined_query_loop (int): Maximum number of times the system can refine and retry the query.
-            recursion_limit (int, optional): Global recursion limit for LangGraph. Default is 999.
 
         Returns:
             Dict with a single key:
-                - "context" (Sequence[str]): A list of selected context snippets relevant to the query.
+                - "context" (Sequence[Context]): A list of selected context snippets relevant to the query.
         """
-        config = {"recursion_limit": recursion_limit}
+        # Set the recursion limit based on the maximum number of refined query loops
+        config = {"recursion_limit": max_refined_query_loop * 40}
 
         input_state = {
             "query": query,

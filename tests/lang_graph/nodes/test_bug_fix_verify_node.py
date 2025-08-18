@@ -5,7 +5,7 @@ from langchain_core.messages import AIMessage, HumanMessage
 
 from prometheus.docker.base_container import BaseContainer
 from prometheus.lang_graph.nodes.bug_fix_verify_node import BugFixVerifyNode
-from prometheus.lang_graph.subgraphs.bug_fix_verification_state import BugFixVerficationState
+from prometheus.lang_graph.subgraphs.bug_fix_verification_state import BugFixVerificationState
 from tests.test_utils.util import FakeListChatWithToolsModel
 
 
@@ -16,7 +16,7 @@ def mock_container():
 
 @pytest.fixture
 def test_state():
-    return BugFixVerficationState(
+    return BugFixVerificationState(
         {
             "reproduced_bug_file": "test_bug.py",
             "reproduced_bug_commands": ["python test_bug.py", "./run_test.sh"],

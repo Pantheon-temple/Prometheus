@@ -6,19 +6,23 @@ from prometheus.configuration.config import settings
 
 def test_model_response():
     llm_service = LLMService(
-        advanced_model_name=settings.ADVANCED_MODEL,
-        base_model_name=settings.BASE_MODEL,
-        openai_format_api_key=settings.OPENAI_FORMAT_API_KEY,
-        openai_format_base_url=settings.OPENAI_FORMAT_BASE_URL,
-        anthropic_api_key=settings.ANTHROPIC_API_KEY,
-        gemini_api_key=settings.GEMINI_API_KEY,
-        temperature=settings.TEMPERATURE,
-        max_output_tokens=settings.MAX_OUTPUT_TOKENS,
+        settings.ADVANCED_MODEL,
+        settings.BASE_MODEL,
+        settings.ADVANCED_MODEL_MAX_INPUT_TOKENS,
+        settings.ADVANCED_MODEL_MAX_OUTPUT_TOKENS,
+        settings.ADVANCED_MODEL_TEMPERATURE,
+        settings.BASE_MODEL_MAX_INPUT_TOKENS,
+        settings.BASE_MODEL_MAX_OUTPUT_TOKENS,
+        settings.BASE_MODEL_TEMPERATURE,
+        settings.OPENAI_FORMAT_API_KEY,
+        settings.OPENAI_FORMAT_BASE_URL,
+        settings.ANTHROPIC_API_KEY,
+        settings.GEMINI_API_KEY,
     )
 
     # Test base model
     chat_model = llm_service.base_model
-    print(f"\nTesting model Base Model: {chat_model.model_name}")
+    print(f"\nTesting model Base Model: {settings.BASE_MODEL}")
 
     # Run a simple chat generation
     response = chat_model.invoke([HumanMessage(content="Hello! Tell me a fun fact about space.")])
@@ -26,7 +30,7 @@ def test_model_response():
 
     # Test advanced model
     chat_model = llm_service.advanced_model
-    print(f"\nTesting model Advanced Model: {chat_model.model_name}")
+    print(f"\nTesting model Advanced Model: {settings.ADVANCED_MODEL}")
     # Run a simple chat generation
     response = chat_model.invoke([HumanMessage(content="Hello! Tell me a fun fact about space.")])
     print("Response:", response.content)

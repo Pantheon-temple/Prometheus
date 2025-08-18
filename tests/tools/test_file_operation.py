@@ -1,5 +1,3 @@
-import pytest
-
 from prometheus.tools.file_operation import (
     create_file,
     delete,
@@ -7,18 +5,10 @@ from prometheus.tools.file_operation import (
     read_file,
     read_file_with_line_numbers,
 )
+from tests.test_utils.fixtures import temp_test_dir  # noqa: F401
 
 
-@pytest.fixture
-def temp_test_dir(tmp_path):
-    """Create a temporary test directory."""
-    test_dir = tmp_path / "test_files"
-    test_dir.mkdir()
-    yield test_dir
-    # Cleanup happens automatically after tests due to tmp_path fixture
-
-
-def test_create_and_read_file(temp_test_dir):
+def test_create_and_read_file(temp_test_dir):  # noqa: F811
     """Test creating a file and reading its contents."""
     test_file = temp_test_dir / "test.txt"
     content = "line 1\nline 2\nline 3"
@@ -35,13 +25,13 @@ def test_create_and_read_file(temp_test_dir):
     assert result == expected
 
 
-def test_read_file_nonexistent(temp_test_dir):
+def test_read_file_nonexistent(temp_test_dir):  # noqa: F811
     """Test reading a nonexistent file."""
     result = read_file("nonexistent_file.txt", str(temp_test_dir))
     assert result == "The file nonexistent_file.txt does not exist."
 
 
-def test_read_file_with_line_numbers(temp_test_dir):
+def test_read_file_with_line_numbers(temp_test_dir):  # noqa: F811
     """Test reading specific line ranges from a file."""
     content = "line 1\nline 2\nline 3\nline 4\nline 5"
     create_file("test_lines.txt", str(temp_test_dir), content)
@@ -56,7 +46,7 @@ def test_read_file_with_line_numbers(temp_test_dir):
     assert result == "The end line number 2 must be greater than the start line number 4."
 
 
-def test_delete(temp_test_dir):
+def test_delete(temp_test_dir):  # noqa: F811
     """Test file and directory deletion."""
     # Test file deletion
     test_file = temp_test_dir / "to_delete.txt"
@@ -75,13 +65,13 @@ def test_delete(temp_test_dir):
     assert not test_subdir.exists()
 
 
-def test_delete_nonexistent(temp_test_dir):
+def test_delete_nonexistent(temp_test_dir):  # noqa: F811
     """Test deleting a nonexistent path."""
     result = delete("nonexistent_path", str(temp_test_dir))
     assert result == "The file nonexistent_path does not exist."
 
 
-def test_edit_file(temp_test_dir):
+def test_edit_file(temp_test_dir):  # noqa: F811
     """Test editing specific lines in a file."""
     # Test case 1: Successfully edit a single occurrence
     initial_content = "line 1\nline 2\nline 3\nline 4\nline 5"
@@ -91,7 +81,7 @@ def test_edit_file(temp_test_dir):
 
     # Test case 2: Absolute path error
     result = edit_file("/edit_test.txt", str(temp_test_dir), "line 2", "new line 2")
-    assert result == "relative_path: /edit_test.txt is a abolsute path, not relative path."
+    assert result == "relative_path: /edit_test.txt is a absolute path, not relative path."
 
     # Test case 3: File doesn't exist
     result = edit_file("nonexistent.txt", str(temp_test_dir), "line 2", "new line 2")
@@ -114,7 +104,7 @@ def test_edit_file(temp_test_dir):
     )
 
 
-def test_create_file_already_exists(temp_test_dir):
+def test_create_file_already_exists(temp_test_dir):  # noqa: F811
     """Test creating a file that already exists."""
     create_file("existing.txt", str(temp_test_dir), "content")
     result = create_file("existing.txt", str(temp_test_dir), "new content")

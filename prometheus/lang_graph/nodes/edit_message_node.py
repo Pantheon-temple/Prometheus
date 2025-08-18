@@ -1,4 +1,5 @@
 import logging
+import threading
 from typing import Dict
 
 from langchain_core.messages import HumanMessage
@@ -9,30 +10,42 @@ from prometheus.utils.lang_graph_util import get_last_message_content
 
 class EditMessageNode:
     FIRST_HUMAN_PROMPT = """\
+--- BEGIN ISSUE INFO ---
 {issue_info}
+--- END ISSUE INFO ---
 
-Bug Context:
+Bug Context Found:
+--- BEGIN BUG FIX CONTEXT ---
 {bug_fix_context}
+--- END BUG FIX CONTEXT ---
 
 Bug analyzer agent has analyzed the issue and provided instruction on how to fix it:
+--- BEGIN BUG ANALYZER MESSAGE ---
 {bug_analyzer_message}
+--- END BUG ANALYZER MESSAGE ---
 
 Please implement these changes precisely, following the exact specifications from the analyzer.
 """
 
     FOLLOWUP_HUMAN_PROMPT = """\
 The edit that you generated following error:
+--- BEGIN EDIT ERROR ---
 {edit_error}
+--- END EDIT ERROR ---
 
 Bug analyzer agent has analyzed the issue and provided instruction on how to fix it:
+--- BEGIN BUG ANALYZER MESSAGE ---
 {bug_analyzer_message}
+--- END BUG ANALYZER MESSAGE ---
 
 Please implement these revised changes carefully, ensuring you address the
 specific issues that caused the previous error.
 """
 
     def __init__(self):
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.edit_message_node")
+        self._logger = logging.getLogger(
+            f"thread-{threading.get_ident()}.prometheus.lang_graph.nodes.edit_message_node"
+        )
 
     def format_human_message(self, state: Dict):
         edit_error = ""
@@ -58,7 +71,7 @@ specific issues that caused the previous error.
                 issue_info=format_issue_info(
                     state["issue_title"], state["issue_body"], state["issue_comments"]
                 ),
-                bug_fix_context="\n\n".join(state["bug_fix_context"]),
+                bug_fix_context="\n\n".join([str(context) for context in state["bug_fix_context"]]),
                 bug_analyzer_message=get_last_message_content(state["issue_bug_analyzer_messages"]),
             )
         )

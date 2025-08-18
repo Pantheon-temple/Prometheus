@@ -1,5 +1,6 @@
 import functools
 import logging
+import threading
 
 from langchain.tools import StructuredTool
 from langchain_core.language_models.chat_models import BaseChatModel
@@ -46,7 +47,9 @@ Remember:
         self.tools = self._init_tools(container)
         self.model_with_tools = model.bind_tools(self.tools)
         self.system_prompt = SystemMessage(self.SYS_PROMPT)
-        self._logger = logging.getLogger("prometheus.lang_graph.nodes.general_build_node")
+        self._logger = logging.getLogger(
+            f"thread-{threading.get_ident()}.prometheus.lang_graph.nodes.general_build_node"
+        )
 
     def _init_tools(self, container: BaseContainer):
         tools = []

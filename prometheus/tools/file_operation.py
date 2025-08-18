@@ -23,7 +23,7 @@ Returns an error message if the file doesn't exist.
 
 def read_file(relative_path: str, root_path: str, n_lines: int = 1000) -> str:
     if os.path.isabs(relative_path):
-        return f"relative_path: {relative_path} is a abolsute path, not relative path."
+        return f"relative_path: {relative_path} is a absolute path, not relative path."
 
     file_path = Path(os.path.join(root_path, relative_path))
     if not file_path.exists():
@@ -54,7 +54,7 @@ def read_file_with_line_numbers(
     relative_path: str, root_path: str, start_line: int, end_line: int
 ) -> str:
     if os.path.isabs(relative_path):
-        return f"relative_path: {relative_path} is a abolsute path, not relative path."
+        return f"relative_path: {relative_path} is a absolute path, not relative path."
 
     file_path = Path(os.path.join(root_path, relative_path))
     if not file_path.exists():
@@ -68,10 +68,11 @@ def read_file_with_line_numbers(
 
     with file_path.open() as f:
         lines = f.readlines()
+    final_content = "".join(lines[zero_based_start_line:zero_based_end_line])
+    if not final_content:
+        return f"No content found between lines {start_line} and {end_line} in {relative_path}!"
 
-    return pre_append_line_numbers(
-        "".join(lines[zero_based_start_line:zero_based_end_line]), start_line
-    )
+    return pre_append_line_numbers(final_content, start_line)
 
 
 class CreateFileInput(BaseModel):
@@ -90,7 +91,7 @@ Returns an error message if the file already exists.
 
 def create_file(relative_path: str, root_path: str, content: str) -> str:
     if os.path.isabs(relative_path):
-        return f"relative_path: {relative_path} is a abolsute path, not relative path."
+        return f"relative_path: {relative_path} is a absolute path, not relative path."
 
     file_path = Path(os.path.join(root_path, relative_path))
     if file_path.exists():
@@ -116,7 +117,7 @@ Returns an error message if the path doesn't exist.
 
 def delete(relative_path: str, root_path: str) -> str:
     if os.path.isabs(relative_path):
-        return f"relative_path: {relative_path} is a abolsute path, not relative path."
+        return f"relative_path: {relative_path} is a absolute path, not relative path."
 
     file_path = Path(os.path.join(root_path, relative_path))
     if not file_path.exists():
@@ -162,7 +163,7 @@ edit_file(
 
 def edit_file(relative_path: str, root_path: str, old_content: str, new_content: str) -> str:
     if os.path.isabs(relative_path):
-        return f"relative_path: {relative_path} is a abolsute path, not relative path."
+        return f"relative_path: {relative_path} is a absolute path, not relative path."
 
     file_path = Path(os.path.join(root_path, relative_path))
     if not file_path.exists():

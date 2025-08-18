@@ -12,10 +12,8 @@ from prometheus.utils.lang_graph_util import (
     extract_last_tool_messages,
     format_agent_tool_message_history,
     get_last_message_content,
-    str_token_counter,
-    tiktoken_counter,
-    truncate_messages,
 )
+from prometheus.utils.llm_util import str_token_counter, tiktoken_counter
 
 
 # Test check_remaining_steps
@@ -50,21 +48,6 @@ def test_tiktoken_counter():
     token_count = tiktoken_counter(messages)
     assert isinstance(token_count, int)
     assert token_count > 0
-
-
-# Test truncate_messages
-def test_truncate_messages():
-    messages = [
-        SystemMessage(content="System message"),
-        HumanMessage(content="Human message 1"),
-        AIMessage(content="AI response 1"),
-        HumanMessage(content="Human message 2"),
-        AIMessage(content="AI response 2"),
-    ]
-
-    truncated = truncate_messages(messages, max_tokens=1000)
-    assert isinstance(truncated, (list, tuple))
-    assert len(truncated) <= len(messages)
 
 
 # Test extract_ai_responses

@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 
-from prometheus.docker.general_container import GeneralContainer
+from prometheus.docker.base_container import BaseContainer
 
 
 class RunCommandInput(BaseModel):
@@ -13,5 +13,5 @@ of the codebase.
 """
 
 
-def run_command(command: str, container: GeneralContainer) -> str:
+def run_command(command: str, container: BaseContainer) -> str:
     return container.execute_command(command)

@@ -11,7 +11,6 @@ from tests.test_utils.util import FakeListChatWithToolsModel
 @pytest.fixture
 def mock_kg():
     kg = Mock(spec=KnowledgeGraph)
-    kg.get_local_path.return_value = "/mock/path"
     return kg
 
 
