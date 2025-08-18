@@ -1,0 +1,573 @@
+[?2004hroot@84d3e4ac0623:/app# asciinema rec --stdin /logs/tests.cast
+[?2004l[0;32masciinema: recording asciicast to /logs/tests.cast[0m
+[0;32masciinema: press <ctrl-d> or type "exit" when you're done[0m
+[?2004hroot@84d3e4ac0623:/app# clear
+[?2004l[H[J[3J[?2004hroot@84d3e4ac0623:/app# bash /tests/run-tests.sh; tmux wait -S done
+[?2004l0% [Working]            Get:1 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+0% [Waiting for headers] [1 InRelease 14.2 kB/126 kB 11%]                                                         Get:2 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+0% [2 InRelease 5484 B/256 kB 2%] [1 InRelease 14.2 kB/126 kB 11%]                                                                  0% [2 InRelease 130 kB/256 kB 51%]0% [2 InRelease 194 kB/256 kB 76%]                                  0% [Waiting for headers]0% [Waiting for headers] [Waiting for headers]                                              Get:3 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1982 kB]
+0% [Waiting for headers] [3 Packages 2655 B/1982 kB 0%]                                                       Get:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+0% [4 InRelease 2588 B/126 kB 2%] [3 Packages 70.7 kB/1982 kB 4%]                                                                 0% [3 Packages 139 kB/1982 kB 7%]0% [Waiting for headers] [3 Packages 182 kB/1982 kB 9%]                                                       Get:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+0% [5 InRelease 2588 B/126 kB 2%] [3 Packages 288 kB/1982 kB 15%]                                                                 0% [3 Packages 399 kB/1982 kB 20%]15% [Waiting for headers] [3 Packages 586 kB/1982 kB 30%]                                                         Get:6 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1808 kB]
+16% [6 Packages 2655 B/1808 kB 0%] [3 Packages 853 kB/1982 kB 43%]                                                                  20% [6 Packages 401 kB/1808 kB 22%]20% [3 Packages store 0 B] [6 Packages 401 kB/1808 kB 22%] [Waiting for headers]                                                                                21% [6 Packages 753 kB/1808 kB 42%] [Waiting for headers]                                                         Get:7 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [23.0 kB]
+22% [6 Packages 877 kB/1808 kB 49%] [7 Packages 15.7 kB/23.0 kB 68%]                                                                    22% [6 Packages 947 kB/1808 kB 52%] [Waiting for headers]                                                         Get:8 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1134 kB]
+22% [6 Packages 947 kB/1808 kB 52%] [8 Packages 30.4 kB/1134 kB 3%]22% [7 Packages store 0 B] [6 Packages 958 kB/1808 kB 53%] [8 Packages 242 kB/1134 kB 21%]                                                                                          23% [6 Packages 977 kB/1808 kB 54%] [8 Packages 279 kB/1134 kB 25%]                                                                   26% [6 Packages 1231 kB/1808 kB 68%] [Waiting for headers]                                                          Get:9 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1328 kB]
+26% [6 Packages 1231 kB/1808 kB 68%] [9 Packages 25.1 kB/1328 kB 2%]26% [8 Packages store 0 B] [6 Packages 1231 kB/1808 kB 68%] [9 Packages 25.1 kB/1328 kB 2%]                                                                                           30% [6 Packages 1721 kB/1808 kB 95%] [9 Packages 892 kB/1328 kB 67%]                                                                    Get:10 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+30% [10 Packages 32.9 kB/117 kB 28%] [9 Packages 957 kB/1328 kB 72%]30% [6 Packages store 0 B] [10 Packages 32.9 kB/117 kB 28%] [9 Packages 957 kB/1328 kB 72%]                                                                                           31% [6 Packages store 0 B] [9 Packages 1163 kB/1328 kB 88%]                                                           Get:11 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+31% [6 Packages store 0 B] [11 Packages 0 B/331 kB 0%] [9 Packages 1187 kB/1328 kB 89%]                                                                                       32% [11 Packages 72.2 kB/331 kB 22%] [9 Packages 1187 kB/1328 kB 89%]32% [10 Packages store 0 B] [11 Packages 72.2 kB/331 kB 22%] [9 Packages 1187 kB/1328 kB 89%]                                                                                             32% [11 Packages 72.2 kB/331 kB 22%] [9 Packages 1187 kB/1328 kB 89%]                                                                     33% [9 Packages 1251 kB/1328 kB 94%]                                    Get:12 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+33% [12 Packages 51.0 kB/19.3 MB 0%] [9 Packages 1251 kB/1328 kB 94%]33% [11 Packages store 0 B] [12 Packages 57.3 kB/19.3 MB 0%] [9 Packages 1251 kB/1328 kB 94%]                                                                                             34% [12 Packages 121 kB/19.3 MB 1%] [9 Packages 1251 kB/1328 kB 94%]49% [12 Packages 6276 kB/19.3 MB 32%] [9 Packages 1258 kB/1328 kB 95%]63% [12 Packages 11.8 MB/19.3 MB 61%] [9 Packages 1258 kB/1328 kB 95%]                                                                      67% [12 Packages 13.1 MB/19.3 MB 68%]67% [9 Packages store 0 B] [12 Packages 13.1 MB/19.3 MB 68%]                                                            68% [12 Packages 13.6 MB/19.3 MB 70%]83% [12 Packages 19.3 MB/19.3 MB 100%]                                      83% [Working]             Get:13 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1666 kB]
+83% [13 Packages 56.5 kB/1666 kB 3%]83% [12 Packages store 0 B] [13 Packages 56.5 kB/1666 kB 3%]                                                            87% [12 Packages store 0 B] [Waiting for headers]                                                 Get:14 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [2092 kB]
+87% [12 Packages store 0 B] [14 Packages 41.0 kB/2092 kB 2%]                                                            92% [12 Packages store 0 B]                           Get:15 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1454 kB]
+92% [12 Packages store 0 B] [15 Packages 17.4 kB/1454 kB 1%]                                                            96% [12 Packages store 0 B] [Waiting for headers]                                                 Get:16 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [45.2 kB]
+96% [12 Packages store 0 B] [16 Packages 8356 B/45.2 kB 18%]                                                            96% [12 Packages store 0 B] [Waiting for headers]                                                 Get:17 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [33.9 kB]
+96% [12 Packages store 0 B] [17 Packages 27.5 kB/33.9 kB 81%]                                                             96% [12 Packages store 0 B]                           Get:18 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [48.8 kB]
+96% [12 Packages store 0 B] [18 Packages 2022 B/48.8 kB 4%]                                                           96% [12 Packages store 0 B]                           97% [Working]97% [13 Packages store 0 B]                           97% [Working]97% [14 Packages store 0 B]                           98% [Working]98% [15 Packages store 0 B]                           98% [Working]98% [16 Packages store 0 B]                           99% [Working]99% [17 Packages store 0 B]                           99% [Working]99% [18 Packages store 0 B]                           100% [Working]              Fetched 32.0 MB in 4s (8854 kB/s)
+Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 5%Reading package lists... 5%Reading package lists... 62%Reading package lists... 62%Reading package lists... 63%Reading package lists... 63%Reading package lists... 64%Reading package lists... 64%Reading package lists... 69%Reading package lists... 69%Reading package lists... 74%Reading package lists... 74%Reading package lists... 82%Reading package lists... 82%Reading package lists... 82%Reading package lists... 82%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 87%Reading package lists... 87%Reading package lists... 92%Reading package lists... 92%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 5%Reading package lists... 5%Reading package lists... 62%Reading package lists... 62%Reading package lists... 63%Reading package lists... 63%Reading package lists... 64%Reading package lists... 64%Reading package lists... 69%Reading package lists... 69%Reading package lists... 74%Reading package lists... 74%Reading package lists... 82%Reading package lists... 82%Reading package lists... 82%Reading package lists... 82%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 87%Reading package lists... 87%Reading package lists... 92%Reading package lists... 92%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree... Done
+Reading state information... 0% Reading state information... 0%Reading state information... Done
+The following additional packages will be installed:
+  libcurl4t64
+The following NEW packages will be installed:
+  curl libcurl4t64
+0 upgraded, 2 newly installed, 0 to remove and 15 not upgraded.
+Need to get 567 kB of archives.
+After this operation, 1481 kB of additional disk space will be used.
+0% [Working]            Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcurl4t64 amd64 8.5.0-2ubuntu10.6 [341 kB]
+0% [1 libcurl4t64 1156 B/341 kB 0%]                                   58% [Working]             Get:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 curl amd64 8.5.0-2ubuntu10.6 [226 kB]
+59% [2 curl 6948 B/226 kB 3%]                             100% [Working]              Fetched 567 kB in 0s (11.3 MB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package libcurl4t64:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 42908 files and directories currently installed.)
+Preparing to unpack .../libcurl4t64_8.5.0-2ubuntu10.6_amd64.deb ...
+Unpacking libcurl4t64:amd64 (8.5.0-2ubuntu10.6) ...
+Selecting previously unselected package curl.
+Preparing to unpack .../curl_8.5.0-2ubuntu10.6_amd64.deb ...
+Unpacking curl (8.5.0-2ubuntu10.6) ...
+Setting up libcurl4t64:amd64 (8.5.0-2ubuntu10.6) ...
+Setting up curl (8.5.0-2ubuntu10.6) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.5) ...
+downloading uv 0.8.9 x86_64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Initialized project `[36mapp[39m`
+Using CPython 3.12.3 interpreter at: [36m/usr/bin/python3.12[39m
+Creating virtual environment at: [36m.venv[39m
+[37m⠋[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠋[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠋[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mapp==0.1.0                                                                                                                                                    [0m[2K[37m⠙[0m [2mpytest==8.4.1                                                                                                                                                 [0m[2K[37m⠙[0m [2mcolorama==0.4.6                                                                                                                                               [0m[2K[37m⠙[0m [2mcolorama==0.4.6                                                                                                                                               [0m[2K[37m⠙[0m [2miniconfig==2.1.0                                                                                                                                              [0m[2K[37m⠙[0m [2mpackaging==25.0                                                                                                                                               [0m[2K[37m⠙[0m [2mpluggy==1.6.0                                                                                                                                                 [0m[2K[37m⠙[0m [2mpygments==2.19.2                                                                                                                                              [0m[2K[37m⠙[0m [2m                                                                                                                                                              [0m[2K[2mResolved [1m7 packages[0m [2min 44ms[0m[0m
+[37m⠋[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠋[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠋[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mapp==0.1.0                                                                                                                                                    [0m[2K[37m⠙[0m [2mpytest==8.4.1                                                                                                                                                 [0m[2K[37m⠙[0m [2mcolorama==0.4.6                                                                                                                                               [0m[2K[37m⠙[0m [2mcolorama==0.4.6                                                                                                                                               [0m[2K[37m⠙[0m [2miniconfig==2.1.0                                                                                                                                              [0m[2K[37m⠙[0m [2mpackaging==25.0                                                                                                                                               [0m[2K[37m⠙[0m [2mpluggy==1.6.0                                                                                                                                                 [0m[2K[37m⠙[0m [2mpygments==2.19.2                                                                                                                                              [0m[2K[37m⠙[0m [2m                                                                                                                                                              [0m[2K[37m⠋[0m [2mPreparing packages...[0m (0/0)                                                                                                                                   [2K[37m⠋[0m [2mPreparing packages...[0m (0/5)                                                                                                                                   [2K[37m⠙[0m [2mPreparing packages...[0m (0/5)                                                                                                                                   [2K[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB                                                                                           [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB                                                                                           [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpluggy              [0m [32m[2m------------------------------[0m[0m     0 B/20.06 KiB
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpluggy              [0m [32m[2m------------------------------[0m[0m     0 B/20.06 KiB
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpluggy              [0m [32m[2m------------------------------[0m[0m     0 B/20.06 KiB
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpluggy              [0m [32m[2m------------------------------[0m[0m     0 B/20.06 KiB
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m[2m------------------------------[0m[0m     0 B/5.91 KiB
+[2mpluggy              [0m [32m[2m------------------------------[0m[0m     0 B/20.06 KiB
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [4A[2K[1B[2K[1B[2K[1B[2K[1B[2K[4A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m[2m------------------------------[0m[0m     0 B/5.91 KiB
+[2mpluggy              [0m [32m[2m------------------------------[0m[0m     0 B/20.06 KiB
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 14.88 KiB/1.17 MiB                                                                                          [4A[2K[1B[2K[1B[2K[1B[2K[1B[2K[4A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m[2m------------------------------[0m[0m     0 B/5.91 KiB
+[2mpluggy              [0m [32m-----------------------[2m-------[0m[0m 14.88 KiB/20.06 KiB
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 14.88 KiB/1.17 MiB                                                                                          [4A[2K[1B[2K[1B[2K[1B[2K[1B[2K[4A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m[2m------------------------------[0m[0m     0 B/5.91 KiB
+[2mpluggy              [0m [32m-----------------------[2m-------[0m[0m 14.88 KiB/20.06 KiB
+[2mpackaging           [0m [32m--------[2m----------------------[0m[0m 16.00 KiB/64.91 KiB
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 14.88 KiB/1.17 MiB                                                                                          [4A[2K[1B[2K[1B[2K[1B[2K[1B[2K[4A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m[2m------------------------------[0m[0m     0 B/5.91 KiB
+[2mpluggy              [0m [32m-----------------------[2m-------[0m[0m 14.88 KiB/20.06 KiB
+[2mpackaging           [0m [32m---------------[2m---------------[0m[0m 32.00 KiB/64.91 KiB
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 14.88 KiB/1.17 MiB                                                                                          [4A[2K[1B[2K[1B[2K[1B[2K[1B[2K[4A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m[2m------------------------------[0m[0m     0 B/5.91 KiB
+[2mpluggy              [0m [32m-----------------------[2m-------[0m[0m 14.88 KiB/20.06 KiB
+[2mpackaging           [0m [32m-----------------------[2m-------[0m[0m 48.00 KiB/64.91 KiB
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 14.88 KiB/1.17 MiB                                                                                          [4A[2K[1B[2K[1B[2K[1B[2K[1B[2K[4A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m[2m------------------------------[0m[0m     0 B/5.91 KiB
+[2mpluggy              [0m [32m-----------------------[2m-------[0m[0m 14.88 KiB/20.06 KiB
+[2mpackaging           [0m [32m------------------------------[2m[0m[0m 64.00 KiB/64.91 KiB
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 14.88 KiB/1.17 MiB                                                                                          [4A[2K[1B[2K[1B[2K[1B[2K[1B[2K[4A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m------------------------------[2m[0m[0m 5.91 KiB/5.91 KiB
+[2mpluggy              [0m [32m-----------------------[2m-------[0m[0m 14.88 KiB/20.06 KiB
+[2mpackaging           [0m [32m------------------------------[2m[0m[0m 64.00 KiB/64.91 KiB
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 14.88 KiB/1.17 MiB                                                                                          [4A[2K[1B[2K[1B[2K[1B[2K[1B[2K[4A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m------------------------------[2m[0m[0m 5.91 KiB/5.91 KiB
+[2mpluggy              [0m [32m------------------------------[2m[0m[0m 20.06 KiB/20.06 KiB
+[2mpytest              [0m [32m--[2m----------------------------[0m[0m 16.00 KiB/356.91 KiB
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 30.88 KiB/1.17 MiB                                                                                          [4A[2K[1B[2K[1B[2K[1B[2K[1B[2K[4A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpluggy              [0m [32m------------------------------[2m[0m[0m 20.06 KiB/20.06 KiB
+[2mpytest              [0m [32m--[2m----------------------------[0m[0m 16.00 KiB/356.91 KiB
+[2mpygments            [0m [32m--[2m----------------------------[0m[0m 62.88 KiB/1.17 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpytest              [0m [32m--[2m----------------------------[0m[0m 16.00 KiB/356.91 KiB
+[2mpygments            [0m [32m--[2m----------------------------[0m[0m 62.88 KiB/1.17 MiB                                                                                          [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpygments            [0m [32m------------[2m------------------[0m[0m 444.68 KiB/1.17 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (0/5)                                                                                                                                   [2K[2mPrepared [1m5 packages[0m [2min 43ms[0m[0m
+░░░░░░░░░░░░░░░░░░░░ [0/0] [2mInstalling wheels...                                                                                                                 [0m[2K░░░░░░░░░░░░░░░░░░░░ [0/5] [2mInstalling wheels...                                                                                                                 [0m[2K░░░░░░░░░░░░░░░░░░░░ [0/5] [2mpackaging==25.0                                                                                                                      [0m[2K████░░░░░░░░░░░░░░░░ [1/5] [2mpackaging==25.0                                                                                                                      [0m[2K████░░░░░░░░░░░░░░░░ [1/5] [2mpluggy==1.6.0                                                                                                                        [0m[2K████████░░░░░░░░░░░░ [2/5] [2mpluggy==1.6.0                                                                                                                        [0m[2K████████░░░░░░░░░░░░ [2/5] [2miniconfig==2.1.0                                                                                                                     [0m[2K████████████░░░░░░░░ [3/5] [2miniconfig==2.1.0                                                                                                                     [0m[2K████████████░░░░░░░░ [3/5] [2mpytest==8.4.1                                                                                                                        [0m[2K████████████████░░░░ [4/5] [2mpytest==8.4.1                                                                                                                        [0m[2K████████████████░░░░ [4/5] [2mpygments==2.19.2                                                                                                                     [0m[2K████████████████████ [5/5] [2mpygments==2.19.2                                                                                                                     [0m[2K[2mInstalled [1m5 packages[0m [2min 5ms[0m[0m
+ [32m+[39m [1miniconfig[0m[2m==2.1.0[0m
+ [32m+[39m [1mpackaging[0m[2m==25.0[0m
+ [32m+[39m [1mpluggy[0m[2m==1.6.0[0m
+ [32m+[39m [1mpygments[0m[2m==2.19.2[0m
+ [32m+[39m [1mpytest[0m[2m==8.4.1[0m
+Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 5%Reading package lists... 5%Reading package lists... 62%Reading package lists... 62%Reading package lists... 63%Reading package lists... 63%Reading package lists... 64%Reading package lists... 64%Reading package lists... 69%Reading package lists... 69%Reading package lists... 74%Reading package lists... 74%Reading package lists... 82%Reading package lists... 82%Reading package lists... 82%Reading package lists... 82%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 83%Reading package lists... 87%Reading package lists... 87%Reading package lists... 92%Reading package lists... 92%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree... Done
+Reading state information... 0% Reading state information... 0%Reading state information... Done
+vncsnapshot is already the newest version (1.2a-5.2).
+The following additional packages will be installed:
+  libarchive13t64 libgif7 liblept5 libtesseract5 tesseract-ocr-eng tesseract-ocr-osd
+Suggested packages:
+  lrzip floppyd
+The following NEW packages will be installed:
+  libarchive13t64 libgif7 liblept5 libtesseract5 mtools socat tesseract-ocr tesseract-ocr-eng tesseract-ocr-osd
+0 upgraded, 9 newly installed, 0 to remove and 15 not upgraded.
+Need to get 9364 kB of archives.
+After this operation, 24.8 MB of additional disk space will be used.
+0% [Working]            Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libarchive13t64 amd64 3.7.2-2ubuntu0.5 [382 kB]
+0% [1 libarchive13t64 2604 B/382 kB 1%]                                       5% [Working]            Get:2 http://archive.ubuntu.com/ubuntu noble/main amd64 libgif7 amd64 5.2.2-1ubuntu1 [35.2 kB]
+6% [2 libgif7 5502 B/35.2 kB 16%]                                 8% [Working]            Get:3 http://archive.ubuntu.com/ubuntu noble/universe amd64 liblept5 amd64 1.82.0-3build4 [1099 kB]
+8% [3 liblept5 4792 B/1099 kB 0%]                                 20% [Working]             Get:4 http://archive.ubuntu.com/ubuntu noble/universe amd64 libtesseract5 amd64 5.3.4-1build5 [1291 kB]
+20% [4 libtesseract5 830 B/1291 kB 0%]                                      33% [Working]             Get:5 http://archive.ubuntu.com/ubuntu noble/main amd64 mtools amd64 4.0.43-1build1 [197 kB]
+33% [5 mtools 4112 B/197 kB 2%]                               37% [Working]             Get:6 http://archive.ubuntu.com/ubuntu noble/universe amd64 tesseract-ocr-eng all 1:4.1.0-2 [1818 kB]
+37% [6 tesseract-ocr-eng 8790 B/1818 kB 0%]                                           55% [Waiting for headers]                         Get:7 http://archive.ubuntu.com/ubuntu noble/universe amd64 tesseract-ocr-osd all 1:4.1.0-2 [3841 kB]
+55% [7 tesseract-ocr-osd 25.3 kB/3841 kB 1%]                                            90% [Waiting for headers]                         Get:8 http://archive.ubuntu.com/ubuntu noble/universe amd64 tesseract-ocr amd64 5.3.4-1build5 [328 kB]
+90% [8 tesseract-ocr 26.1 kB/328 kB 8%]                                       95% [Working]             Get:9 http://archive.ubuntu.com/ubuntu noble/main amd64 socat amd64 1.8.0.0-4build3 [374 kB]
+95% [9 socat 7216 B/374 kB 2%]                              100% [Working]              Fetched 9364 kB in 1s (9229 kB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package libarchive13t64:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 42921 files and directories currently installed.)
+Preparing to unpack .../0-libarchive13t64_3.7.2-2ubuntu0.5_amd64.deb ...
+Unpacking libarchive13t64:amd64 (3.7.2-2ubuntu0.5) ...
+Selecting previously unselected package libgif7:amd64.
+Preparing to unpack .../1-libgif7_5.2.2-1ubuntu1_amd64.deb ...
+Unpacking libgif7:amd64 (5.2.2-1ubuntu1) ...
+Selecting previously unselected package liblept5:amd64.
+Preparing to unpack .../2-liblept5_1.82.0-3build4_amd64.deb ...
+Unpacking liblept5:amd64 (1.82.0-3build4) ...
+Selecting previously unselected package libtesseract5:amd64.
+Preparing to unpack .../3-libtesseract5_5.3.4-1build5_amd64.deb ...
+Unpacking libtesseract5:amd64 (5.3.4-1build5) ...
+Selecting previously unselected package mtools.
+Preparing to unpack .../4-mtools_4.0.43-1build1_amd64.deb ...
+Unpacking mtools (4.0.43-1build1) ...
+Selecting previously unselected package tesseract-ocr-eng.
+Preparing to unpack .../5-tesseract-ocr-eng_1%3a4.1.0-2_all.deb ...
+Unpacking tesseract-ocr-eng (1:4.1.0-2) ...
+Selecting previously unselected package tesseract-ocr-osd.
+Preparing to unpack .../6-tesseract-ocr-osd_1%3a4.1.0-2_all.deb ...
+Unpacking tesseract-ocr-osd (1:4.1.0-2) ...
+Selecting previously unselected package tesseract-ocr.
+Preparing to unpack .../7-tesseract-ocr_5.3.4-1build5_amd64.deb ...
+Unpacking tesseract-ocr (5.3.4-1build5) ...
+Selecting previously unselected package socat.
+Preparing to unpack .../8-socat_1.8.0.0-4build3_amd64.deb ...
+Unpacking socat (1.8.0.0-4build3) ...
+Setting up mtools (4.0.43-1build1) ...
+Setting up tesseract-ocr-eng (1:4.1.0-2) ...
+Setting up socat (1.8.0.0-4build3) ...
+Setting up libgif7:amd64 (5.2.2-1ubuntu1) ...
+Setting up tesseract-ocr-osd (1:4.1.0-2) ...
+Setting up libarchive13t64:amd64 (3.7.2-2ubuntu0.5) ...
+Setting up liblept5:amd64 (1.82.0-3build4) ...
+Setting up libtesseract5:amd64 (5.3.4-1build5) ...
+Setting up tesseract-ocr (5.3.4-1build5) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.5) ...
+[37m⠋[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠋[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠋[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mapp==0.1.0                                                                                                                                                    [0m[2K[37m⠙[0m [2mnumpy==2.3.1                                                                                                                                                  [0m[2K[37m⠙[0m [2mopencv-python==4.11.0.86                                                                                                                                      [0m[2K[37m⠙[0m [2mnumpy==2.3.1                                                                                                                                                  [0m[2K[37m⠙[0m [2mnumpy==2.3.1                                                                                                                                                  [0m[2K[37m⠙[0m [2mnumpy==2.3.1                                                                                                                                                  [0m[2K[37m⠙[0m [2mnumpy==2.3.1                                                                                                                                                  [0m[2K[37m⠙[0m [2mnumpy==2.3.1                                                                                                                                                  [0m[2K[37m⠙[0m [2mnumpy==2.3.1                                                                                                                                                  [0m[2K[37m⠙[0m [2mnumpy==2.3.1                                                                                                                                                  [0m[2K[37m⠙[0m [2mpytesseract==0.3.13                                                                                                                                           [0m[2K[37m⠙[0m [2mpytest==8.4.1                                                                                                                                                 [0m[2K[37m⠙[0m [2mpackaging==25.0                                                                                                                                               [0m[2K[37m⠙[0m [2mpillow==11.3.0                                                                                                                                                [0m[2K[37m⠙[0m [2miniconfig==2.1.0                                                                                                                                              [0m[2K[37m⠙[0m [2mpluggy==1.6.0                                                                                                                                                 [0m[2K[37m⠙[0m [2mpygments==2.19.2                                                                                                                                              [0m[2K[37m⠙[0m [2mnumpy==2.3.1                                                                                                                                                  [0m[2K[37m⠙[0m [2mnumpy==2.3.1                                                                                                                                                  [0m[2K[2mResolved [1m11 packages[0m [2min 57ms[0m[0m
+[37m⠋[0m [2mPreparing packages...[0m (0/0)                                                                                                                                   [2K[37m⠋[0m [2mPreparing packages...[0m (0/4)                                                                                                                                   [2K[37m⠙[0m [2mPreparing packages...[0m (0/4)                                                                                                                                   [2K[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mpytesseract         [0m [32m[2m------------------------------[0m[0m     0 B/14.36 KiB                                                                                           [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mpytesseract         [0m [32m------------------------------[2m[0m[0m 14.36 KiB/14.36 KiB                                                                                         [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mpytesseract         [0m [32m------------------------------[2m[0m[0m 14.36 KiB/14.36 KiB                                                                                         [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mpytesseract         [0m [32m------------------------------[2m[0m[0m 14.36 KiB/14.36 KiB
+[2mnumpy               [0m [32m[2m------------------------------[0m[0m     0 B/15.86 MiB                                                                                           [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mpytesseract         [0m [32m------------------------------[2m[0m[0m 14.36 KiB/14.36 KiB
+[2mnumpy               [0m [32m[2m------------------------------[0m[0m     0 B/15.86 MiB                                                                                           [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mpytesseract         [0m [32m------------------------------[2m[0m[0m 14.36 KiB/14.36 KiB
+[2mnumpy               [0m [32m[2m------------------------------[0m[0m     0 B/15.86 MiB                                                                                           [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mpytesseract         [0m [32m------------------------------[2m[0m[0m 14.36 KiB/14.36 KiB
+[2mnumpy               [0m [32m[2m------------------------------[0m[0m     0 B/15.86 MiB
+[2mopencv-python       [0m [32m[2m------------------------------[0m[0m     0 B/60.07 MiB                                                                                           [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mpytesseract         [0m [32m------------------------------[2m[0m[0m 14.36 KiB/14.36 KiB
+[2mnumpy               [0m [32m[2m------------------------------[0m[0m     0 B/15.86 MiB
+[2mopencv-python       [0m [32m-[2m-----------------------------[0m[0m 16.00 KiB/60.07 MiB                                                                                         [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mpytesseract         [0m [32m------------------------------[2m[0m[0m 14.36 KiB/14.36 KiB
+[2mnumpy               [0m [32m[2m------------------------------[0m[0m     0 B/15.86 MiB
+[2mopencv-python       [0m [32m-[2m-----------------------------[0m[0m 16.00 KiB/60.07 MiB                                                                                         [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mnumpy               [0m [32m[2m------------------------------[0m[0m     0 B/15.86 MiB
+[2mopencv-python       [0m [32m-[2m-----------------------------[0m[0m 16.00 KiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mnumpy               [0m [32m[2m------------------------------[0m[0m     0 B/15.86 MiB
+[2mopencv-python       [0m [32m-[2m-----------------------------[0m[0m 32.00 KiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mnumpy               [0m [32m[2m------------------------------[0m[0m     0 B/15.86 MiB
+[2mopencv-python       [0m [32m-[2m-----------------------------[0m[0m 48.00 KiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mnumpy               [0m [32m-[2m-----------------------------[0m[0m 16.00 KiB/15.86 MiB
+[2mopencv-python       [0m [32m-[2m-----------------------------[0m[0m 48.00 KiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mnumpy               [0m [32m-[2m-----------------------------[0m[0m 16.00 KiB/15.86 MiB
+[2mopencv-python       [0m [32m-[2m-----------------------------[0m[0m 61.78 KiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mnumpy               [0m [32m-[2m-----------------------------[0m[0m 32.00 KiB/15.86 MiB
+[2mopencv-python       [0m [32m-[2m-----------------------------[0m[0m 61.78 KiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mnumpy               [0m [32m-[2m-----------------------------[0m[0m 32.00 KiB/15.86 MiB
+[2mopencv-python       [0m [32m-[2m-----------------------------[0m[0m 61.78 KiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mnumpy               [0m [32m-[2m-----------------------------[0m[0m 32.00 KiB/15.86 MiB
+[2mopencv-python       [0m [32m-[2m-----------------------------[0m[0m 61.78 KiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mpillow              [0m [32m[2m------------------------------[0m[0m     0 B/6.34 MiB
+[2mnumpy               [0m [32m-[2m-----------------------------[0m[0m 32.00 KiB/15.86 MiB
+[2mopencv-python       [0m [32m-[2m-----------------------------[0m[0m 61.78 KiB/60.07 MiB                                                                                         [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mpillow              [0m [32m-[2m-----------------------------[0m[0m 175.89 KiB/6.34 MiB
+[2mnumpy               [0m [32m--[2m----------------------------[0m[0m 588.33 KiB/15.86 MiB
+[2mopencv-python       [0m [32m--[2m----------------------------[0m[0m 2.81 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mpillow              [0m [32m--[2m----------------------------[0m[0m 240.00 KiB/6.34 MiB
+[2mnumpy               [0m [32m--------[2m----------------------[0m[0m 3.97 MiB/15.86 MiB
+[2mopencv-python       [0m [32m---[2m---------------------------[0m[0m 5.17 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/4)
+[2mpillow              [0m [32m-----------[2m-------------------[0m[0m 2.20 MiB/6.34 MiB
+[2mnumpy               [0m [32m-----------[2m-------------------[0m[0m 5.36 MiB/15.86 MiB
+[2mopencv-python       [0m [32m---[2m---------------------------[0m[0m 5.50 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠹[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m-----------[2m-------------------[0m[0m 2.20 MiB/6.34 MiB
+[2mnumpy               [0m [32m-----------[2m-------------------[0m[0m 5.67 MiB/15.86 MiB
+[2mopencv-python       [0m [32m---[2m---------------------------[0m[0m 5.81 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠹[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m-----------[2m-------------------[0m[0m 2.27 MiB/6.34 MiB
+[2mnumpy               [0m [32m------------[2m------------------[0m[0m 5.87 MiB/15.86 MiB
+[2mopencv-python       [0m [32m----[2m--------------------------[0m[0m 6.15 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠹[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m-------------[2m-----------------[0m[0m 2.60 MiB/6.34 MiB
+[2mnumpy               [0m [32m------------[2m------------------[0m[0m 5.87 MiB/15.86 MiB
+[2mopencv-python       [0m [32m----[2m--------------------------[0m[0m 6.43 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠹[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m--------------[2m----------------[0m[0m 2.93 MiB/6.34 MiB
+[2mnumpy               [0m [32m------------[2m------------------[0m[0m 5.87 MiB/15.86 MiB
+[2mopencv-python       [0m [32m----[2m--------------------------[0m[0m 6.72 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠸[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m---------------[2m---------------[0m[0m 3.14 MiB/6.34 MiB
+[2mnumpy               [0m [32m------------[2m------------------[0m[0m 6.00 MiB/15.86 MiB
+[2mopencv-python       [0m [32m----[2m--------------------------[0m[0m 6.97 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠸[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m----------------[2m--------------[0m[0m 3.35 MiB/6.34 MiB
+[2mnumpy               [0m [32m------------[2m------------------[0m[0m 6.22 MiB/15.86 MiB
+[2mopencv-python       [0m [32m----[2m--------------------------[0m[0m 7.14 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠸[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m------------------[2m------------[0m[0m 3.70 MiB/6.34 MiB
+[2mnumpy               [0m [32m-------------[2m-----------------[0m[0m 6.44 MiB/15.86 MiB
+[2mopencv-python       [0m [32m----[2m--------------------------[0m[0m 7.15 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠸[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m-------------------[2m-----------[0m[0m 3.90 MiB/6.34 MiB
+[2mnumpy               [0m [32m-------------[2m-----------------[0m[0m 6.64 MiB/15.86 MiB
+[2mopencv-python       [0m [32m----[2m--------------------------[0m[0m 7.36 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠼[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m--------------------[2m----------[0m[0m 4.05 MiB/6.34 MiB
+[2mnumpy               [0m [32m-------------[2m-----------------[0m[0m 6.79 MiB/15.86 MiB
+[2mopencv-python       [0m [32m----[2m--------------------------[0m[0m 7.51 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠼[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m--------------------[2m----------[0m[0m 4.19 MiB/6.34 MiB
+[2mnumpy               [0m [32m--------------[2m----------------[0m[0m 6.95 MiB/15.86 MiB
+[2mopencv-python       [0m [32m----[2m--------------------------[0m[0m 7.65 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠼[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m---------------------[2m---------[0m[0m 4.41 MiB/6.34 MiB
+[2mnumpy               [0m [32m--------------[2m----------------[0m[0m 7.15 MiB/15.86 MiB
+[2mopencv-python       [0m [32m----[2m--------------------------[0m[0m 7.89 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠼[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m-----------------------[2m-------[0m[0m 4.70 MiB/6.34 MiB
+[2mnumpy               [0m [32m---------------[2m---------------[0m[0m 7.40 MiB/15.86 MiB
+[2mopencv-python       [0m [32m-----[2m-------------------------[0m[0m 8.18 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠴[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m-----------------------[2m-------[0m[0m 4.86 MiB/6.34 MiB
+[2mnumpy               [0m [32m---------------[2m---------------[0m[0m 7.54 MiB/15.86 MiB
+[2mopencv-python       [0m [32m-----[2m-------------------------[0m[0m 8.40 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠴[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m-------------------------[2m-----[0m[0m 5.12 MiB/6.34 MiB
+[2mnumpy               [0m [32m---------------[2m---------------[0m[0m 7.81 MiB/15.86 MiB
+[2mopencv-python       [0m [32m-----[2m-------------------------[0m[0m 8.51 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠴[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m--------------------------[2m----[0m[0m 5.34 MiB/6.34 MiB
+[2mnumpy               [0m [32m----------------[2m--------------[0m[0m 8.00 MiB/15.86 MiB
+[2mopencv-python       [0m [32m-----[2m-------------------------[0m[0m 8.73 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠴[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m---------------------------[2m---[0m[0m 5.54 MiB/6.34 MiB
+[2mnumpy               [0m [32m----------------[2m--------------[0m[0m 8.15 MiB/15.86 MiB
+[2mopencv-python       [0m [32m-----[2m-------------------------[0m[0m 8.87 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠦[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m---------------------------[2m---[0m[0m 5.67 MiB/6.34 MiB
+[2mnumpy               [0m [32m-----------------[2m-------------[0m[0m 8.50 MiB/15.86 MiB
+[2mopencv-python       [0m [32m-----[2m-------------------------[0m[0m 9.08 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠦[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m----------------------------[2m--[0m[0m 5.88 MiB/6.34 MiB
+[2mnumpy               [0m [32m-----------------[2m-------------[0m[0m 8.67 MiB/15.86 MiB
+[2mopencv-python       [0m [32m-----[2m-------------------------[0m[0m 9.22 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠦[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m-----------------------------[2m-[0m[0m 6.11 MiB/6.34 MiB
+[2mnumpy               [0m [32m-----------------[2m-------------[0m[0m 8.87 MiB/15.86 MiB
+[2mopencv-python       [0m [32m-----[2m-------------------------[0m[0m 9.41 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠦[0m [2mPreparing packages...[0m (1/4)
+[2mpillow              [0m [32m------------------------------[2m[0m[0m 6.27 MiB/6.34 MiB
+[2mnumpy               [0m [32m------------------[2m------------[0m[0m 9.09 MiB/15.86 MiB
+[2mopencv-python       [0m [32m-----[2m-------------------------[0m[0m 9.69 MiB/60.07 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠦[0m [2mPreparing packages...[0m (1/4)
+[2mnumpy               [0m [32m------------------[2m------------[0m[0m 9.15 MiB/15.86 MiB
+[2mopencv-python       [0m [32m-----[2m-------------------------[0m[0m 9.77 MiB/60.07 MiB                                                                                          [2A[2K[1B[2K[1B[2K[2A[37m⠧[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m------------------[2m------------[0m[0m 9.31 MiB/15.86 MiB
+[2mopencv-python       [0m [32m-----[2m-------------------------[0m[0m 9.86 MiB/60.07 MiB                                                                                          [2A[2K[1B[2K[1B[2K[2A[37m⠧[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m------------------[2m------------[0m[0m 9.42 MiB/15.86 MiB
+[2mopencv-python       [0m [32m------[2m------------------------[0m[0m 10.45 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠧[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m-------------------[2m-----------[0m[0m 10.00 MiB/15.86 MiB
+[2mopencv-python       [0m [32m------[2m------------------------[0m[0m 10.50 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠧[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m--------------------[2m----------[0m[0m 10.09 MiB/15.86 MiB
+[2mopencv-python       [0m [32m------[2m------------------------[0m[0m 10.97 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠧[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m--------------------[2m----------[0m[0m 10.51 MiB/15.86 MiB
+[2mopencv-python       [0m [32m------[2m------------------------[0m[0m 11.17 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠇[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m---------------------[2m---------[0m[0m 10.76 MiB/15.86 MiB
+[2mopencv-python       [0m [32m------[2m------------------------[0m[0m 11.51 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠇[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m---------------------[2m---------[0m[0m 10.98 MiB/15.86 MiB
+[2mopencv-python       [0m [32m------[2m------------------------[0m[0m 11.84 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠇[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m----------------------[2m--------[0m[0m 11.44 MiB/15.86 MiB
+[2mopencv-python       [0m [32m-------[2m-----------------------[0m[0m 12.06 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠋[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m----------------------[2m--------[0m[0m 11.45 MiB/15.86 MiB
+[2mopencv-python       [0m [32m-------[2m-----------------------[0m[0m 12.51 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠋[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m-----------------------[2m-------[0m[0m 12.06 MiB/15.86 MiB
+[2mopencv-python       [0m [32m-------[2m-----------------------[0m[0m 12.51 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠋[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m-----------------------[2m-------[0m[0m 12.11 MiB/15.86 MiB
+[2mopencv-python       [0m [32m-------[2m-----------------------[0m[0m 13.14 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠋[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m------------------------[2m------[0m[0m 12.69 MiB/15.86 MiB
+[2mopencv-python       [0m [32m-------[2m-----------------------[0m[0m 13.18 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠋[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m-------------------------[2m-----[0m[0m 12.78 MiB/15.86 MiB
+[2mopencv-python       [0m [32m-------[2m-----------------------[0m[0m 13.68 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m-------------------------[2m-----[0m[0m 13.11 MiB/15.86 MiB
+[2mopencv-python       [0m [32m-------[2m-----------------------[0m[0m 13.87 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m--------------------------[2m----[0m[0m 13.45 MiB/15.86 MiB
+[2mopencv-python       [0m [32m--------[2m----------------------[0m[0m 14.20 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m--------------------------[2m----[0m[0m 13.62 MiB/15.86 MiB
+[2mopencv-python       [0m [32m--------[2m----------------------[0m[0m 14.55 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠹[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m---------------------------[2m---[0m[0m 14.13 MiB/15.86 MiB
+[2mopencv-python       [0m [32m--------[2m----------------------[0m[0m 14.67 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠹[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m---------------------------[2m---[0m[0m 14.19 MiB/15.86 MiB
+[2mopencv-python       [0m [32m--------[2m----------------------[0m[0m 15.21 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠹[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m----------------------------[2m--[0m[0m 14.73 MiB/15.86 MiB
+[2mopencv-python       [0m [32m--------[2m----------------------[0m[0m 15.21 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠹[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m----------------------------[2m--[0m[0m 14.79 MiB/15.86 MiB
+[2mopencv-python       [0m [32m--------[2m----------------------[0m[0m 15.82 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠹[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m------------------------------[2m[0m[0m 15.34 MiB/15.86 MiB
+[2mopencv-python       [0m [32m--------[2m----------------------[0m[0m 15.89 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠸[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m------------------------------[2m[0m[0m 15.47 MiB/15.86 MiB
+[2mopencv-python       [0m [32m---------[2m---------------------[0m[0m 16.37 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠸[0m [2mPreparing packages...[0m (2/4)
+[2mnumpy               [0m [32m------------------------------[2m[0m[0m 15.86 MiB/15.86 MiB
+[2mopencv-python       [0m [32m---------[2m---------------------[0m[0m 16.56 MiB/60.07 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠸[0m [2mPreparing packages...[0m (2/4)
+[2mopencv-python       [0m [32m---------[2m---------------------[0m[0m 16.56 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠸[0m [2mPreparing packages...[0m (2/4)
+[2mopencv-python       [0m [32m---------[2m---------------------[0m[0m 17.08 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠼[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m---------[2m---------------------[0m[0m 17.70 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠼[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m----------[2m--------------------[0m[0m 18.28 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠼[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m----------[2m--------------------[0m[0m 18.95 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠼[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m----------[2m--------------------[0m[0m 19.39 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠼[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-----------[2m-------------------[0m[0m 20.06 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠴[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-----------[2m-------------------[0m[0m 20.70 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠴[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-----------[2m-------------------[0m[0m 21.30 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠴[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-----------[2m-------------------[0m[0m 21.94 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠦[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m------------[2m------------------[0m[0m 22.45 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠦[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m------------[2m------------------[0m[0m 23.11 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠦[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m------------[2m------------------[0m[0m 23.64 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠦[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-------------[2m-----------------[0m[0m 24.20 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠧[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-------------[2m-----------------[0m[0m 24.86 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠧[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-------------[2m-----------------[0m[0m 25.48 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠧[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m--------------[2m----------------[0m[0m 26.09 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠧[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m--------------[2m----------------[0m[0m 26.61 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠇[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m--------------[2m----------------[0m[0m 27.26 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠇[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m--------------[2m----------------[0m[0m 27.87 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠇[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m---------------[2m---------------[0m[0m 28.48 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠇[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m---------------[2m---------------[0m[0m 29.08 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠇[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m---------------[2m---------------[0m[0m 29.59 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠋[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m----------------[2m--------------[0m[0m 30.23 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠋[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m----------------[2m--------------[0m[0m 30.73 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠋[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m----------------[2m--------------[0m[0m 31.44 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠋[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-----------------[2m-------------[0m[0m 32.05 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-----------------[2m-------------[0m[0m 32.59 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-----------------[2m-------------[0m[0m 33.25 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-----------------[2m-------------[0m[0m 33.83 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m------------------[2m------------[0m[0m 34.44 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠹[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m------------------[2m------------[0m[0m 35.00 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠹[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m------------------[2m------------[0m[0m 35.62 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠹[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-------------------[2m-----------[0m[0m 36.19 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠸[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-------------------[2m-----------[0m[0m 36.78 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠸[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-------------------[2m-----------[0m[0m 37.36 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠸[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-------------------[2m-----------[0m[0m 37.98 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠸[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m--------------------[2m----------[0m[0m 38.47 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠸[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m--------------------[2m----------[0m[0m 39.17 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠼[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m--------------------[2m----------[0m[0m 39.75 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠼[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m---------------------[2m---------[0m[0m 40.29 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠼[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m---------------------[2m---------[0m[0m 40.92 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠼[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m---------------------[2m---------[0m[0m 41.55 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠴[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m----------------------[2m--------[0m[0m 42.18 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠴[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m----------------------[2m--------[0m[0m 42.67 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠴[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m----------------------[2m--------[0m[0m 42.93 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠴[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m----------------------[2m--------[0m[0m 43.64 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠦[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-----------------------[2m-------[0m[0m 44.56 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠦[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-----------------------[2m-------[0m[0m 45.11 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠦[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-----------------------[2m-------[0m[0m 45.75 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠦[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m------------------------[2m------[0m[0m 46.22 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠧[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m------------------------[2m------[0m[0m 46.92 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠧[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m------------------------[2m------[0m[0m 47.50 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠧[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m------------------------[2m------[0m[0m 47.84 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠧[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-------------------------[2m-----[0m[0m 48.42 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠇[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-------------------------[2m-----[0m[0m 49.33 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠇[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-------------------------[2m-----[0m[0m 49.92 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠇[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m--------------------------[2m----[0m[0m 50.45 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠇[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m--------------------------[2m----[0m[0m 51.06 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠋[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m--------------------------[2m----[0m[0m 51.67 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠋[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m---------------------------[2m---[0m[0m 52.30 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠋[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m---------------------------[2m---[0m[0m 52.78 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠋[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m---------------------------[2m---[0m[0m 53.52 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m----------------------------[2m--[0m[0m 54.11 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m----------------------------[2m--[0m[0m 54.64 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m----------------------------[2m--[0m[0m 55.28 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m----------------------------[2m--[0m[0m 55.84 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠹[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-----------------------------[2m-[0m[0m 56.41 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠹[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-----------------------------[2m-[0m[0m 56.97 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠹[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-----------------------------[2m-[0m[0m 57.39 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠹[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-----------------------------[2m-[0m[0m 57.67 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠸[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m-----------------------------[2m-[0m[0m 58.06 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠸[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m------------------------------[2m[0m[0m 58.40 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠸[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m------------------------------[2m[0m[0m 58.86 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠼[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m------------------------------[2m[0m[0m 59.25 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠼[0m [2mPreparing packages...[0m (3/4)
+[2mopencv-python       [0m [32m------------------------------[2m[0m[0m 59.61 MiB/60.07 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠼[0m [2mPreparing packages...[0m (3/4)                                                                                                                                   [2K[2mPrepared [1m4 packages[0m [2min 6.09s[0m[0m
+░░░░░░░░░░░░░░░░░░░░ [0/0] [2mInstalling wheels...                                                                                                                 [0m[2K░░░░░░░░░░░░░░░░░░░░ [0/4] [2mInstalling wheels...                                                                                                                 [0m[2K░░░░░░░░░░░░░░░░░░░░ [0/4] [2mpytesseract==0.3.13                                                                                                                  [0m[2K█████░░░░░░░░░░░░░░░ [1/4] [2mpytesseract==0.3.13                                                                                                                  [0m[2K█████░░░░░░░░░░░░░░░ [1/4] [2mpillow==11.3.0                                                                                                                       [0m[2K██████████░░░░░░░░░░ [2/4] [2mpillow==11.3.0                                                                                                                       [0m[2K██████████░░░░░░░░░░ [2/4] [2mopencv-python==4.11.0.86                                                                                                             [0m[2K███████████████░░░░░ [3/4] [2mopencv-python==4.11.0.86                                                                                                             [0m[2K███████████████░░░░░ [3/4] [2mnumpy==2.3.1                                                                                                                         [0m[2K████████████████████ [4/4] [2mnumpy==2.3.1                                                                                                                         [0m[2K[2mInstalled [1m4 packages[0m [2min 10ms[0m[0m
+ [32m+[39m [1mnumpy[0m[2m==2.3.1[0m
+ [32m+[39m [1mopencv-python[0m[2m==4.11.0.86[0m
+ [32m+[39m [1mpillow[0m[2m==11.3.0[0m
+ [32m+[39m [1mpytesseract[0m[2m==0.3.13[0m
+[1m===================================================================== test session starts ======================================================================[0m
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+[1mcollecting ... [0m[1mcollected 7 items                                                                                                                                              [0m
+
+../tests/test_outputs.py [31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31m                                                                                                                         [100%][0m
+
+=========================================================================== FAILURES ===========================================================================
+[31m[1m__________________________________________________________________ test_qemu_process_running ___________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_qemu_process_running[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Test that QEMU process is running (indicates VM was started)"""[39;49;00m[90m[39;49;00m
+        result = subprocess.run([[33m"[39;49;00m[33mpgrep[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mqemu-system[39;49;00m[33m"[39;49;00m], capture_output=[94mTrue[39;49;00m, text=[94mTrue[39;49;00m)[90m[39;49;00m
+>       [94massert[39;49;00m result.returncode == [94m0[39;49;00m, ([90m[39;49;00m
+            [33m"[39;49;00m[33mQEMU process not found - Windows 3.11 VM is not running[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        )[90m[39;49;00m
+[1m[31mE       AssertionError: QEMU process not found - Windows 3.11 VM is not running[0m
+[1m[31mE       assert 1 == 0[0m
+[1m[31mE        +  where 1 = CompletedProcess(args=['pgrep', 'qemu-system'], returncode=1, stdout='', stderr='').returncode[0m
+
+[1m[31m/tests/test_outputs.py[0m:12: AssertionError
+[31m[1m______________________________________________________________ test_windows_311_disk_image_exists ______________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_windows_311_disk_image_exists[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Test that Windows 3.11 disk image was downloaded and contains expected content"""[39;49;00m[90m[39;49;00m
+        img_path = Path([33m"[39;49;00m[33m/app/isos/win311.img[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+>       [94massert[39;49;00m img_path.exists(), [33mf[39;49;00m[33m"[39;49;00m[33mWindows 3.11 disk image [39;49;00m[33m{[39;49;00mimg_path[33m}[39;49;00m[33m does not exist[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: Windows 3.11 disk image /app/isos/win311.img does not exist[0m
+[1m[31mE       assert False[0m
+[1m[31mE        +  where False = exists()[0m
+[1m[31mE        +    where exists = PosixPath('/app/isos/win311.img').exists[0m
+
+[1m[31m/tests/test_outputs.py[0m:20: AssertionError
+[31m[1m_____________________________________________________________________ test_network_status ______________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_network_status[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Test network status and VNC services"""[39;49;00m[90m[39;49;00m
+        [90m# Check VNC connections (port 5901)[39;49;00m[90m[39;49;00m
+        netstat_result = subprocess.run([90m[39;49;00m
+            [[33m"[39;49;00m[33mnetstat[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m-tlnp[39;49;00m[33m"[39;49;00m], capture_output=[94mTrue[39;49;00m, text=[94mTrue[39;49;00m[90m[39;49;00m
+        )[90m[39;49;00m
+        [94massert[39;49;00m netstat_result.returncode == [94m0[39;49;00m, [33m"[39;49;00m[33mFailed to check network services[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        [90m# Check if VNC port 5901 is listening[39;49;00m[90m[39;49;00m
+>       [94massert[39;49;00m [33m"[39;49;00m[33m:5901[39;49;00m[33m"[39;49;00m [95min[39;49;00m netstat_result.stdout, [33m"[39;49;00m[33mVNC service not listening on port 5901[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: VNC service not listening on port 5901[0m
+[1m[31mE       assert ':5901' in 'Active Internet connections (only servers)\nProto Recv-Q Send-Q Local Address           Foreign Address         State...hon3          \ntcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      57/python3          \n'[0m
+[1m[31mE        +  where 'Active Internet connections (only servers)\nProto Recv-Q Send-Q Local Address           Foreign Address         State...hon3          \ntcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      57/python3          \n' = CompletedProcess(args=['netstat', '-tlnp'], returncode=0, stdout='Active Internet connections (only servers)\nProto Re...  \ntcp        0      0 0.0.0.0:8080            0.0.0.0:*               LISTEN      57/python3          \n', stderr='').stdout[0m
+
+[1m[31m/tests/test_outputs.py[0m:88: AssertionError
+[31m[1m____________________________________________________________ test_qemu_running_with_correct_params _____________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_qemu_running_with_correct_params[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Test that QEMU is running with Windows 3.11 compatible parameters"""[39;49;00m[90m[39;49;00m
+        [90m# Get QEMU process command line[39;49;00m[90m[39;49;00m
+        result = subprocess.run([[33m"[39;49;00m[33mpgrep[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mqemu-system[39;49;00m[33m"[39;49;00m], capture_output=[94mTrue[39;49;00m, text=[94mTrue[39;49;00m)[90m[39;49;00m
+        qemu_pid = result.stdout.strip()[90m[39;49;00m
+    [90m[39;49;00m
+        [90m# Get full command line[39;49;00m[90m[39;49;00m
+        cmdline_result = subprocess.run([90m[39;49;00m
+            [[33m"[39;49;00m[33mps[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m-o[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33margs[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m-p[39;49;00m[33m"[39;49;00m, qemu_pid, [33m"[39;49;00m[33m--no-headers[39;49;00m[33m"[39;49;00m],[90m[39;49;00m
+            capture_output=[94mTrue[39;49;00m,[90m[39;49;00m
+            text=[94mTrue[39;49;00m,[90m[39;49;00m
+        )[90m[39;49;00m
+>       [94massert[39;49;00m cmdline_result.returncode == [94m0[39;49;00m, [33m"[39;49;00m[33mFailed to get QEMU command line[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: Failed to get QEMU command line[0m
+[1m[31mE       assert 1 == 0[0m
+[1m[31mE        +  where 1 = CompletedProcess(args=['ps', '-o', 'args', '-p', '', '--no-headers'], returncode=1, stdout='', stderr="error: list of ...utput|threads|misc|all>'\n  or 'ps --help <s|l|o|t|m|a>'\n for additional help text.\n\nFor more details see ps(1).\n").returncode[0m
+
+[1m[31m/tests/test_outputs.py[0m:110: AssertionError
+[31m[1m___________________________________________________________ test_windows_311_core_files_verification ___________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_windows_311_core_files_verification[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Test Windows 3.11 core system files with hardcoded hashes"""[39;49;00m[90m[39;49;00m
+        img_path = Path([33m"[39;49;00m[33m/app/isos/win311.img[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+>       [94massert[39;49;00m img_path.exists(), [33m"[39;49;00m[33mWindows 3.11 disk image not found[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: Windows 3.11 disk image not found[0m
+[1m[31mE       assert False[0m
+[1m[31mE        +  where False = exists()[0m
+[1m[31mE        +    where exists = PosixPath('/app/isos/win311.img').exists[0m
+
+[1m[31m/tests/test_outputs.py[0m:311: AssertionError
+[31m[1m_____________________________________________________________________ test_no_blank_screen _____________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_no_blank_screen[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""[39;49;00m
+    [33m    Test that Windows 3.11 desktop is actually visible via VNC.[39;49;00m
+    [33m    This proves the system is not just running but displaying properly.[39;49;00m
+    [33m    """[39;49;00m[90m[39;49;00m
+        [94mimport[39;49;00m[90m [39;49;00m[04m[96mcv2[39;49;00m  [90m# type: ignore[39;49;00m[90m[39;49;00m
+        [94mimport[39;49;00m[90m [39;49;00m[04m[96mnumpy[39;49;00m[90m [39;49;00m[94mas[39;49;00m[90m [39;49;00m[04m[96mnp[39;49;00m  [90m# type: ignore[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        [90m# Take current screenshot[39;49;00m[90m[39;49;00m
+        result = subprocess.run([90m[39;49;00m
+            [[33m"[39;49;00m[33mvncsnapshot[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m-allowblank[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mlocalhost:1[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mcurrent_screenshot.png[39;49;00m[33m"[39;49;00m],[90m[39;49;00m
+            capture_output=[94mTrue[39;49;00m,[90m[39;49;00m
+            timeout=[94m15[39;49;00m,[90m[39;49;00m
+        )[90m[39;49;00m
+    [90m[39;49;00m
+>       [94massert[39;49;00m result.returncode == [94m0[39;49;00m, [33m"[39;49;00m[33mFailed to take VNC screenshot[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: Failed to take VNC screenshot[0m
+[1m[31mE       assert 1 == 0[0m
+[1m[31mE        +  where 1 = CompletedProcess(args=['vncsnapshot', '-allowblank', 'localhost:1', 'current_screenshot.png'], returncode=1, stdout=b'', stderr=b'vncsnapshot: ConnectToTcpAddr: connect: Connection refused\nUnable to connect to VNC server\n').returncode[0m
+
+[1m[31m/tests/test_outputs.py[0m:421: AssertionError
+[31m[1m______________________________________________________________ test_windows_311_system_stability _______________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_windows_311_system_stability[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""[39;49;00m
+    [33m    Test that Windows 3.11 system is stable and running properly.[39;49;00m
+    [33m    """[39;49;00m[90m[39;49;00m
+        [90m# Verify QEMU has been running for a reasonable time[39;49;00m[90m[39;49;00m
+        result = subprocess.run([[33m"[39;49;00m[33mpgrep[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mqemu-system[39;49;00m[33m"[39;49;00m], capture_output=[94mTrue[39;49;00m, text=[94mTrue[39;49;00m)[90m[39;49;00m
+        qemu_pid = result.stdout.strip()[90m[39;49;00m
+    [90m[39;49;00m
+        [90m# Get process runtime[39;49;00m[90m[39;49;00m
+        ps_result = subprocess.run([90m[39;49;00m
+            [[33m"[39;49;00m[33mps[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m-o[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33metime[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m-p[39;49;00m[33m"[39;49;00m, qemu_pid, [33m"[39;49;00m[33m--no-headers[39;49;00m[33m"[39;49;00m],[90m[39;49;00m
+            capture_output=[94mTrue[39;49;00m,[90m[39;49;00m
+            text=[94mTrue[39;49;00m,[90m[39;49;00m
+        )[90m[39;49;00m
+>       [94massert[39;49;00m ps_result.returncode == [94m0[39;49;00m, [33m"[39;49;00m[33mFailed to get QEMU runtime[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: Failed to get QEMU runtime[0m
+[1m[31mE       assert 1 == 0[0m
+[1m[31mE        +  where 1 = CompletedProcess(args=['ps', '-o', 'etime', '-p', '', '--no-headers'], returncode=1, stdout='', stderr="error: list of...utput|threads|misc|all>'\n  or 'ps --help <s|l|o|t|m|a>'\n for additional help text.\n\nFor more details see ps(1).\n").returncode[0m
+
+[1m[31m/tests/test_outputs.py[0m:467: AssertionError
+[36m[1m=================================================================== short test summary info ====================================================================[0m
+[31mFAILED[0m ../tests/test_outputs.py::[1mtest_qemu_process_running[0m - AssertionError: QEMU process not found - Windows 3.11 VM is not running
+[31mFAILED[0m ../tests/test_outputs.py::[1mtest_windows_311_disk_image_exists[0m - AssertionError: Windows 3.11 disk image /app/isos/win311.img does not exist
+[31mFAILED[0m ../tests/test_outputs.py::[1mtest_network_status[0m - AssertionError: VNC service not listening on port 5901
+[31mFAILED[0m ../tests/test_outputs.py::[1mtest_qemu_running_with_correct_params[0m - AssertionError: Failed to get QEMU command line
+[31mFAILED[0m ../tests/test_outputs.py::[1mtest_windows_311_core_files_verification[0m - AssertionError: Windows 3.11 disk image not found
+[31mFAILED[0m ../tests/test_outputs.py::[1mtest_no_blank_screen[0m - AssertionError: Failed to take VNC screenshot
+[31mFAILED[0m ../tests/test_outputs.py::[1mtest_windows_311_system_stability[0m - AssertionError: Failed to get QEMU runtime
+[31m====================================================================== [31m[1m7 failed[0m[31m in 0.30s[0m[31m =======================================================================[0m
+[?2004hroot@84d3e4ac0623:/app# [?2004l
+exit
+[0;32masciinema: recording finished[0m
+[0;32masciinema: asciicast saved to /logs/tests.cast[0m
+[?2004hroot@84d3e4ac0623:/app# 

@@ -1,0 +1,219 @@
+root@e743d91a668c:/app# bash /tests/run-tests.sh; tmux wait -S done
+Hit:1 http://deb.debian.org/debian bookworm InRelease
+Hit:2 http://deb.debian.org/debian bookworm-updates InRelease
+Hit:3 http://deb.debian.org/debian-security bookworm-security InRelease
+Reading package lists... Done
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  libcurl4 libldap-2.5-0 libldap-common libnghttp2-14 libpsl5 librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libssh2-1 publicsuffix
+Suggested packages:
+  libsasl2-modules-gssapi-mit | libsasl2-modules-gssapi-heimdal libsasl2-modules-ldap libsasl2-modules-otp libsasl2-modules-sql
+The following NEW packages will be installed:
+  curl libcurl4 libldap-2.5-0 libldap-common libnghttp2-14 libpsl5 librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libssh2-1 publicsuffix
+0 upgraded, 12 newly installed, 0 to remove and 25 not upgraded.
+Need to get 1564 kB of archives.
+After this operation, 3748 kB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian bookworm/main amd64 libsasl2-modules-db amd64 2.1.28+dfsg-10 [20.3 kB]
+Get:2 http://deb.debian.org/debian bookworm/main amd64 libsasl2-2 amd64 2.1.28+dfsg-10 [59.7 kB]
+Get:3 http://deb.debian.org/debian bookworm/main amd64 libldap-2.5-0 amd64 2.5.13+dfsg-5 [183 kB]
+Get:4 http://deb.debian.org/debian bookworm/main amd64 libnghttp2-14 amd64 1.52.0-1+deb12u2 [73.0 kB]
+Get:5 http://deb.debian.org/debian bookworm/main amd64 libpsl5 amd64 0.21.2-1 [58.7 kB]
+Get:6 http://deb.debian.org/debian bookworm/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-2+b2 [60.8 kB]
+Get:7 http://deb.debian.org/debian bookworm/main amd64 libssh2-1 amd64 1.10.0-3+b1 [179 kB]
+Get:8 http://deb.debian.org/debian bookworm/main amd64 libcurl4 amd64 7.88.1-10+deb12u12 [391 kB]
+Get:9 http://deb.debian.org/debian bookworm/main amd64 curl amd64 7.88.1-10+deb12u12 [315 kB]
+Get:10 http://deb.debian.org/debian bookworm/main amd64 libldap-common all 2.5.13+dfsg-5 [29.3 kB]
+Get:11 http://deb.debian.org/debian bookworm/main amd64 libsasl2-modules amd64 2.1.28+dfsg-10 [66.6 kB]
+Get:12 http://deb.debian.org/debian bookworm/main amd64 publicsuffix all 20230209.2326-1 [126 kB]
+Fetched 1564 kB in 0s (36.5 MB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package libsasl2-modules-db:amd64.
+(Reading database ... 13242 files and directories currently installed.)
+Preparing to unpack .../00-libsasl2-modules-db_2.1.28+dfsg-10_amd64.deb ...
+Unpacking libsasl2-modules-db:amd64 (2.1.28+dfsg-10) ...
+Selecting previously unselected package libsasl2-2:amd64.
+Preparing to unpack .../01-libsasl2-2_2.1.28+dfsg-10_amd64.deb ...
+Unpacking libsasl2-2:amd64 (2.1.28+dfsg-10) ...
+Selecting previously unselected package libldap-2.5-0:amd64.
+Preparing to unpack .../02-libldap-2.5-0_2.5.13+dfsg-5_amd64.deb ...
+Unpacking libldap-2.5-0:amd64 (2.5.13+dfsg-5) ...
+Selecting previously unselected package libnghttp2-14:amd64.
+Preparing to unpack .../03-libnghttp2-14_1.52.0-1+deb12u2_amd64.deb ...
+Unpacking libnghttp2-14:amd64 (1.52.0-1+deb12u2) ...
+Selecting previously unselected package libpsl5:amd64.
+Preparing to unpack .../04-libpsl5_0.21.2-1_amd64.deb ...
+Unpacking libpsl5:amd64 (0.21.2-1) ...
+Selecting previously unselected package librtmp1:amd64.
+Preparing to unpack .../05-librtmp1_2.4+20151223.gitfa8646d.1-2+b2_amd64.deb ...
+Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b2) ...
+Selecting previously unselected package libssh2-1:amd64.
+Preparing to unpack .../06-libssh2-1_1.10.0-3+b1_amd64.deb ...
+Unpacking libssh2-1:amd64 (1.10.0-3+b1) ...
+Selecting previously unselected package libcurl4:amd64.
+Preparing to unpack .../07-libcurl4_7.88.1-10+deb12u12_amd64.deb ...
+Unpacking libcurl4:amd64 (7.88.1-10+deb12u12) ...
+Selecting previously unselected package curl.
+Preparing to unpack .../08-curl_7.88.1-10+deb12u12_amd64.deb ...
+Unpacking curl (7.88.1-10+deb12u12) ...
+Selecting previously unselected package libldap-common.
+Preparing to unpack .../09-libldap-common_2.5.13+dfsg-5_all.deb ...
+Unpacking libldap-common (2.5.13+dfsg-5) ...
+Selecting previously unselected package libsasl2-modules:amd64.
+Preparing to unpack .../10-libsasl2-modules_2.1.28+dfsg-10_amd64.deb ...
+Unpacking libsasl2-modules:amd64 (2.1.28+dfsg-10) ...
+Selecting previously unselected package publicsuffix.
+Preparing to unpack .../11-publicsuffix_20230209.2326-1_all.deb ...
+Unpacking publicsuffix (20230209.2326-1) ...
+Setting up libpsl5:amd64 (0.21.2-1) ...
+Setting up libsasl2-modules:amd64 (2.1.28+dfsg-10) ...
+Setting up libnghttp2-14:amd64 (1.52.0-1+deb12u2) ...
+Setting up libldap-common (2.5.13+dfsg-5) ...
+Setting up libsasl2-modules-db:amd64 (2.1.28+dfsg-10) ...
+Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b2) ...
+Setting up libsasl2-2:amd64 (2.1.28+dfsg-10) ...
+Setting up libssh2-1:amd64 (1.10.0-3+b1) ...
+Setting up publicsuffix (20230209.2326-1) ...
+Setting up libldap-2.5-0:amd64 (2.5.13+dfsg-5) ...
+Setting up libcurl4:amd64 (7.88.1-10+deb12u12) ...
+Setting up curl (7.88.1-10+deb12u12) ...
+Processing triggers for libc-bin (2.36-9+deb12u10) ...
+downloading uv 0.7.13 x86_64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Initialized project `app`
+Using CPython 3.13.1 interpreter at: /usr/local/bin/python3.13
+Creating virtual environment at: .venv
+Resolved 7 packages in 41ms
+Prepared 5 packages in 42ms
+Installed 5 packages in 5ms
+ + iniconfig==2.1.0
+ + packaging==25.0
+ + pluggy==1.6.0
+ + pygments==2.19.2
+ + pytest==8.4.1
+===================================================================== test session starts ======================================================================
+platform linux -- Python 3.13.1, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+collected 2 items
+
+../tests/test_outputs.py .F                                                                                                                              [100%]
+
+=========================================================================== FAILURES ===========================================================================
+________________________________________________________________________ test_sqrt_fib _________________________________________________________________________
+
+    def test_sqrt_fib():
+        """Test that C simulation computes (fib(sqrt(n)) % 2^32) correctly"""
+
+        # First compile the C program
+        print("Compiling sim.c...")
+        compile_result = subprocess.run(["gcc", "-O3", "/tests/sim.c", "-o", "sim"],
+                                      capture_output=True, text=True)
+        if compile_result.returncode != 0:
+            print(f"Compilation failed: {compile_result.stderr}")
+            assert False
+
+        # Test values
+        test_cases = [1, 4, 8, 12, 41, 42, 107, 220, 209, 366,
+                      12**2, 41**2, 42**2, 107**2, 220**2, 209**2,
+                      12**2-1, 41**2-1, 42**2-1, 107**2-1, 220**2-1, 209**2-1,
+                      12**2+1, 41**2+1, 42**2+1, 107**2+1, 220**2+1, 209**2+1,
+                      ]
+        all_passed = True
+
+        print("\nTesting (fib(sqrt(n)) % 2^32):")
+        print("-" * 80)
+        print(f"{'n':>4} | {'fib(n)':>20} | {'fib(n) % 2^32':>15} | "
+              f"{'sqrt':>12} | {'C output':>12} | {'Status':>8}")
+        print("-" * 80)
+
+        for n in test_cases:
+            # Calculate expected value
+            fib_n = fibonacci(isqrt(n))
+            fib_n_mod = fib_n % (2**32)  # Take modulo 2^32
+            expected = fib_n_mod
+
+            result = subprocess.run(["./sim", str(n)],
+                                  capture_output=True, text=True)
+
+            if result.returncode != 0:
+                print(f"Error running simulation for n={n}: {result.stderr}")
+                all_passed = False
+                continue
+
+            try:
+                actual = int(result.stdout.strip())
+            except ValueError:
+                print(f"Error parsing output for n={n}: '{result.stdout}'")
+                all_passed = False
+                continue
+
+            # Compare results
+            passed = (actual == expected)
+            status = "PASS" if passed else "FAIL"
+            if not passed:
+                all_passed = False
+
+            print(f"{n:>4} | {fib_n:>20} | {fib_n_mod:>15} | "
+                  f"{expected:>12} | {actual:>12} | {status:>8}")
+
+        print("-" * 80)
+        print(f"\nOverall: {'ALL TESTS PASSED' if all_passed else 'SOME TESTS FAILED'}")
+
+>       assert all_passed
+E       assert False
+
+/tests/test_outputs.py:100: AssertionError
+--------------------------------------------------------------------- Captured stdout call ---------------------------------------------------------------------
+Compiling sim.c...
+
+Testing (fib(sqrt(n)) % 2^32):
+--------------------------------------------------------------------------------
+   n |               fib(n) |   fib(n) % 2^32 |         sqrt |     C output |   Status
+--------------------------------------------------------------------------------
+   1 |                    1 |               1 |            1 |            0 |     FAIL
+   4 |                    1 |               1 |            1 |            2 |     FAIL
+   8 |                    1 |               1 |            1 |            4 |     FAIL
+  12 |                    2 |               2 |            2 |            6 |     FAIL
+  41 |                    8 |               8 |            8 |           20 |     FAIL
+  42 |                    8 |               8 |            8 |           21 |     FAIL
+ 107 |                   55 |              55 |           55 |           53 |     FAIL
+ 220 |                  377 |             377 |          377 |          110 |     FAIL
+ 209 |                  377 |             377 |          377 |          104 |     FAIL
+ 366 |                 4181 |            4181 |         4181 |          183 |     FAIL
+ 144 |                  144 |             144 |          144 |           72 |     FAIL
+1681 |            165580141 |       165580141 |    165580141 |          840 |     FAIL
+1764 |            267914296 |       267914296 |    267914296 |          882 |     FAIL
+11449 | 10284720757613717413913 |      2214125593 |   2214125593 |         5724 |     FAIL
+48400 | 4244200115309993198876969489421897548446236915 |      3361931507 |   3361931507 |        24200 |     FAIL
+43681 | 21327100234463183349497947550385773274930109 |      1510415293 |   1510415293 |        21840 |     FAIL
+ 143 |                   89 |              89 |           89 |           71 |     FAIL
+1680 |            102334155 |       102334155 |    102334155 |          840 |     FAIL
+1763 |            165580141 |       165580141 |    165580141 |          881 |     FAIL
+11448 | 6356306993006846248183 |      1617528055 |   1617528055 |         5724 |     FAIL
+48399 | 2623059926317798754175087863660165740874359106 |       791601474 |    791601474 |        24199 |     FAIL
+43680 | 13180872826374098837632191485015125807374171 |       537698139 |    537698139 |        21840 |     FAIL
+ 145 |                  144 |             144 |          144 |           72 |     FAIL
+1682 |            165580141 |       165580141 |    165580141 |          841 |     FAIL
+1765 |            267914296 |       267914296 |    267914296 |          882 |     FAIL
+11450 | 10284720757613717413913 |      2214125593 |   2214125593 |         5725 |     FAIL
+48401 | 4244200115309993198876969489421897548446236915 |      3361931507 |   3361931507 |        24200 |     FAIL
+43682 | 21327100234463183349497947550385773274930109 |      1510415293 |   1510415293 |        21841 |     FAIL
+--------------------------------------------------------------------------------
+
+Overall: SOME TESTS FAILED
+============================================================================ PASSES ============================================================================
+=================================================================== short test summary info ====================================================================
+PASSED ../tests/test_outputs.py::test_gates_file_exists
+FAILED ../tests/test_outputs.py::test_sqrt_fib - assert False
+================================================================= 1 failed, 1 passed in 0.18s ==================================================================
+root@e743d91a668c:/app#

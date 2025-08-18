@@ -1,0 +1,269 @@
+[?2004hroot@e743d91a668c:/app# asciinema rec --stdin /logs/tests.cast
+[?2004l[0;32masciinema: recording asciicast to /logs/tests.cast[0m
+[0;32masciinema: press <ctrl-d> or type "exit" when you're done[0m
+[?2004hroot@e743d91a668c:/app# clear
+[?2004l[H[J[3J[?2004hroot@e743d91a668c:/app# bash /tests/run-tests.sh; tmux wait -S done
+[?2004l0% [Working]            Hit:1 http://deb.debian.org/debian bookworm InRelease
+0% [Working]            Hit:2 http://deb.debian.org/debian bookworm-updates InRelease
+0% [Waiting for headers]                        Hit:3 http://deb.debian.org/debian-security bookworm-security InRelease
+                        0% [Working]0% [Working]0% [Working]20% [Working]             Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 96%Reading package lists... 96%Reading package lists... 96%Reading package lists... 96%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 96%Reading package lists... 96%Reading package lists... 96%Reading package lists... 96%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree... Done
+Reading state information... 0% Reading state information... 0%Reading state information... Done
+The following additional packages will be installed:
+  libcurl4 libldap-2.5-0 libldap-common libnghttp2-14 libpsl5 librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libssh2-1 publicsuffix
+Suggested packages:
+  libsasl2-modules-gssapi-mit | libsasl2-modules-gssapi-heimdal libsasl2-modules-ldap libsasl2-modules-otp libsasl2-modules-sql
+The following NEW packages will be installed:
+  curl libcurl4 libldap-2.5-0 libldap-common libnghttp2-14 libpsl5 librtmp1 libsasl2-2 libsasl2-modules libsasl2-modules-db libssh2-1 publicsuffix
+0 upgraded, 12 newly installed, 0 to remove and 25 not upgraded.
+Need to get 1564 kB of archives.
+After this operation, 3748 kB of additional disk space will be used.
+0% [Working]            Get:1 http://deb.debian.org/debian bookworm/main amd64 libsasl2-modules-db amd64 2.1.28+dfsg-10 [20.3 kB]
+0% [1 libsasl2-modules-db 4096 B/20.3 kB 20%]                                             3% [Working]            Get:2 http://deb.debian.org/debian bookworm/main amd64 libsasl2-2 amd64 2.1.28+dfsg-10 [59.7 kB]
+3% [2 libsasl2-2 8192 B/59.7 kB 14%]                                    7% [Working]            Get:3 http://deb.debian.org/debian bookworm/main amd64 libldap-2.5-0 amd64 2.5.13+dfsg-5 [183 kB]
+8% [3 libldap-2.5-0 20.3 kB/183 kB 11%]                                       18% [Working]             Get:4 http://deb.debian.org/debian bookworm/main amd64 libnghttp2-14 amd64 1.52.0-1+deb12u2 [73.0 kB]
+20% [4 libnghttp2-14 28.7 kB/73.0 kB 39%]                                         24% [Working]             Get:5 http://deb.debian.org/debian bookworm/main amd64 libpsl5 amd64 0.21.2-1 [58.7 kB]
+25% [5 libpsl5 16.4 kB/58.7 kB 28%]                                   29% [Waiting for headers]                         Get:6 http://deb.debian.org/debian bookworm/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-2+b2 [60.8 kB]
+31% [6 librtmp1 56.6 kB/60.8 kB 93%]                                    33% [Waiting for headers]                         Get:7 http://deb.debian.org/debian bookworm/main amd64 libssh2-1 amd64 1.10.0-3+b1 [179 kB]
+36% [7 libssh2-1 49.2 kB/179 kB 28%]                                    44% [Waiting for headers]                         Get:8 http://deb.debian.org/debian bookworm/main amd64 libcurl4 amd64 7.88.1-10+deb12u12 [391 kB]
+45% [8 libcurl4 10.3 kB/391 kB 3%]                                  66% [Working]             Get:9 http://deb.debian.org/debian bookworm/main amd64 curl amd64 7.88.1-10+deb12u12 [315 kB]
+66% [9 curl 7910 B/315 kB 3%]                             84% [Working]             Get:10 http://deb.debian.org/debian bookworm/main amd64 libldap-common all 2.5.13+dfsg-5 [29.3 kB]
+84% [10 libldap-common 16.6 kB/29.3 kB 56%]                                           87% [Working]             Get:11 http://deb.debian.org/debian bookworm/main amd64 libsasl2-modules amd64 2.1.28+dfsg-10 [66.6 kB]
+88% [11 libsasl2-modules 29.7 kB/66.6 kB 45%]                                             Get:12 http://deb.debian.org/debian bookworm/main amd64 publicsuffix all 20230209.2326-1 [126 kB]
+                                             100% [Working]              Fetched 1564 kB in 0s (36.5 MB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package libsasl2-modules-db:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 13242 files and directories currently installed.)
+Preparing to unpack .../00-libsasl2-modules-db_2.1.28+dfsg-10_amd64.deb ...
+Unpacking libsasl2-modules-db:amd64 (2.1.28+dfsg-10) ...
+Selecting previously unselected package libsasl2-2:amd64.
+Preparing to unpack .../01-libsasl2-2_2.1.28+dfsg-10_amd64.deb ...
+Unpacking libsasl2-2:amd64 (2.1.28+dfsg-10) ...
+Selecting previously unselected package libldap-2.5-0:amd64.
+Preparing to unpack .../02-libldap-2.5-0_2.5.13+dfsg-5_amd64.deb ...
+Unpacking libldap-2.5-0:amd64 (2.5.13+dfsg-5) ...
+Selecting previously unselected package libnghttp2-14:amd64.
+Preparing to unpack .../03-libnghttp2-14_1.52.0-1+deb12u2_amd64.deb ...
+Unpacking libnghttp2-14:amd64 (1.52.0-1+deb12u2) ...
+Selecting previously unselected package libpsl5:amd64.
+Preparing to unpack .../04-libpsl5_0.21.2-1_amd64.deb ...
+Unpacking libpsl5:amd64 (0.21.2-1) ...
+Selecting previously unselected package librtmp1:amd64.
+Preparing to unpack .../05-librtmp1_2.4+20151223.gitfa8646d.1-2+b2_amd64.deb ...
+Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b2) ...
+Selecting previously unselected package libssh2-1:amd64.
+Preparing to unpack .../06-libssh2-1_1.10.0-3+b1_amd64.deb ...
+Unpacking libssh2-1:amd64 (1.10.0-3+b1) ...
+Selecting previously unselected package libcurl4:amd64.
+Preparing to unpack .../07-libcurl4_7.88.1-10+deb12u12_amd64.deb ...
+Unpacking libcurl4:amd64 (7.88.1-10+deb12u12) ...
+Selecting previously unselected package curl.
+Preparing to unpack .../08-curl_7.88.1-10+deb12u12_amd64.deb ...
+Unpacking curl (7.88.1-10+deb12u12) ...
+Selecting previously unselected package libldap-common.
+Preparing to unpack .../09-libldap-common_2.5.13+dfsg-5_all.deb ...
+Unpacking libldap-common (2.5.13+dfsg-5) ...
+Selecting previously unselected package libsasl2-modules:amd64.
+Preparing to unpack .../10-libsasl2-modules_2.1.28+dfsg-10_amd64.deb ...
+Unpacking libsasl2-modules:amd64 (2.1.28+dfsg-10) ...
+Selecting previously unselected package publicsuffix.
+Preparing to unpack .../11-publicsuffix_20230209.2326-1_all.deb ...
+Unpacking publicsuffix (20230209.2326-1) ...
+Setting up libpsl5:amd64 (0.21.2-1) ...
+Setting up libsasl2-modules:amd64 (2.1.28+dfsg-10) ...
+Setting up libnghttp2-14:amd64 (1.52.0-1+deb12u2) ...
+Setting up libldap-common (2.5.13+dfsg-5) ...
+Setting up libsasl2-modules-db:amd64 (2.1.28+dfsg-10) ...
+Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b2) ...
+Setting up libsasl2-2:amd64 (2.1.28+dfsg-10) ...
+Setting up libssh2-1:amd64 (1.10.0-3+b1) ...
+Setting up publicsuffix (20230209.2326-1) ...
+Setting up libldap-2.5-0:amd64 (2.5.13+dfsg-5) ...
+Setting up libcurl4:amd64 (7.88.1-10+deb12u12) ...
+Setting up curl (7.88.1-10+deb12u12) ...
+Processing triggers for libc-bin (2.36-9+deb12u10) ...
+downloading uv 0.7.13 x86_64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Initialized project `[36mapp[39m`
+Using CPython 3.13.1 interpreter at: [36m/usr/local/bin/python3.13[39m
+Creating virtual environment at: [36m.venv[39m
+[37m⠋[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠋[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠋[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mResolving dependencies...                                                                                                                                     [0m[2K[37m⠙[0m [2mapp==0.1.0                                                                                                                                                    [0m[2K[37m⠙[0m [2mpytest==8.4.1                                                                                                                                                 [0m[2K[37m⠙[0m [2mcolorama==0.4.6                                                                                                                                               [0m[2K[37m⠙[0m [2mcolorama==0.4.6                                                                                                                                               [0m[2K[37m⠙[0m [2miniconfig==2.1.0                                                                                                                                              [0m[2K[37m⠙[0m [2mpackaging==25.0                                                                                                                                               [0m[2K[37m⠙[0m [2mpluggy==1.6.0                                                                                                                                                 [0m[2K[37m⠙[0m [2mpygments==2.19.2                                                                                                                                              [0m[2K[37m⠙[0m [2m                                                                                                                                                              [0m[2K[2mResolved [1m7 packages[0m [2min 41ms[0m[0m
+[37m⠋[0m [2mPreparing packages...[0m (0/0)                                                                                                                                   [2K[37m⠋[0m [2mPreparing packages...[0m (0/5)                                                                                                                                   [2K[37m⠙[0m [2mPreparing packages...[0m (0/5)                                                                                                                                   [2K[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpygments            [0m [32m[2m------------------------------[0m[0m     0 B/1.17 MiB                                                                                            [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 14.88 KiB/1.17 MiB                                                                                          [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 14.88 KiB/1.17 MiB                                                                                          [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m[2m------------------------------[0m[0m     0 B/5.91 KiB
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 14.88 KiB/1.17 MiB                                                                                          [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m------------------------------[2m[0m[0m 5.91 KiB/5.91 KiB
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 14.88 KiB/1.17 MiB                                                                                          [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m------------------------------[2m[0m[0m 5.91 KiB/5.91 KiB
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 14.88 KiB/1.17 MiB                                                                                          [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m------------------------------[2m[0m[0m 5.91 KiB/5.91 KiB
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 14.88 KiB/1.17 MiB                                                                                          [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2miniconfig           [0m [32m------------------------------[2m[0m[0m 5.91 KiB/5.91 KiB
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 14.88 KiB/1.17 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpackaging           [0m [32m[2m------------------------------[0m[0m     0 B/64.91 KiB
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 14.88 KiB/1.17 MiB                                                                                          [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpackaging           [0m [32m-------[2m-----------------------[0m[0m 14.88 KiB/64.91 KiB
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 14.88 KiB/1.17 MiB                                                                                          [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpackaging           [0m [32m-------[2m-----------------------[0m[0m 14.88 KiB/64.91 KiB
+[2mpygments            [0m [32m-[2m-----------------------------[0m[0m 30.88 KiB/1.17 MiB                                                                                          [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpackaging           [0m [32m-------[2m-----------------------[0m[0m 14.88 KiB/64.91 KiB
+[2mpygments            [0m [32m--[2m----------------------------[0m[0m 46.88 KiB/1.17 MiB                                                                                          [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpackaging           [0m [32m-------[2m-----------------------[0m[0m 14.88 KiB/64.91 KiB
+[2mpygments            [0m [32m--[2m----------------------------[0m[0m 62.88 KiB/1.17 MiB                                                                                          [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpackaging           [0m [32m-------[2m-----------------------[0m[0m 14.88 KiB/64.91 KiB
+[2mpygments            [0m [32m--[2m----------------------------[0m[0m 77.78 KiB/1.17 MiB                                                                                          [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpackaging           [0m [32m-------[2m-----------------------[0m[0m 14.88 KiB/64.91 KiB
+[2mpygments            [0m [32m--[2m----------------------------[0m[0m 77.78 KiB/1.17 MiB                                                                                          [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpackaging           [0m [32m-------[2m-----------------------[0m[0m 14.88 KiB/64.91 KiB
+[2mpygments            [0m [32m--[2m----------------------------[0m[0m 77.78 KiB/1.17 MiB                                                                                          [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpluggy              [0m [32m[2m------------------------------[0m[0m     0 B/20.06 KiB
+[2mpackaging           [0m [32m-------[2m-----------------------[0m[0m 14.88 KiB/64.91 KiB
+[2mpygments            [0m [32m--[2m----------------------------[0m[0m 77.78 KiB/1.17 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpluggy              [0m [32m-----------------------[2m-------[0m[0m 14.88 KiB/20.06 KiB
+[2mpackaging           [0m [32m-------[2m-----------------------[0m[0m 14.88 KiB/64.91 KiB
+[2mpygments            [0m [32m--[2m----------------------------[0m[0m 77.78 KiB/1.17 MiB                                                                                          [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpluggy              [0m [32m------------------------------[2m[0m[0m 20.06 KiB/20.06 KiB
+[2mpytest              [0m [32m----[2m--------------------------[0m[0m 46.88 KiB/356.91 KiB
+[2mpygments            [0m [32m----[2m--------------------------[0m[0m 157.78 KiB/1.17 MiB                                                                                         [3A[2K[1B[2K[1B[2K[1B[2K[3A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpytest              [0m [32m------[2m------------------------[0m[0m 62.88 KiB/356.91 KiB
+[2mpygments            [0m [32m------[2m------------------------[0m[0m 221.78 KiB/1.17 MiB                                                                                         [2A[2K[1B[2K[1B[2K[2A[37m⠙[0m [2mPreparing packages...[0m (0/5)
+[2mpygments            [0m [32m-------------[2m-----------------[0m[0m 493.78 KiB/1.17 MiB                                                                                         [1A[2K[1B[2K[1A[37m⠙[0m [2mPreparing packages...[0m (0/5)                                                                                                                                   [2K[2mPrepared [1m5 packages[0m [2min 42ms[0m[0m
+░░░░░░░░░░░░░░░░░░░░ [0/0] [2mInstalling wheels...                                                                                                                 [0m[2K░░░░░░░░░░░░░░░░░░░░ [0/5] [2mInstalling wheels...                                                                                                                 [0m[2K░░░░░░░░░░░░░░░░░░░░ [0/5] [2mpluggy==1.6.0                                                                                                                        [0m[2K████░░░░░░░░░░░░░░░░ [1/5] [2mpluggy==1.6.0                                                                                                                        [0m[2K████░░░░░░░░░░░░░░░░ [1/5] [2miniconfig==2.1.0                                                                                                                     [0m[2K████████░░░░░░░░░░░░ [2/5] [2miniconfig==2.1.0                                                                                                                     [0m[2K████████░░░░░░░░░░░░ [2/5] [2mpackaging==25.0                                                                                                                      [0m[2K████████████░░░░░░░░ [3/5] [2mpackaging==25.0                                                                                                                      [0m[2K████████████░░░░░░░░ [3/5] [2mpytest==8.4.1                                                                                                                        [0m[2K████████████████░░░░ [4/5] [2mpytest==8.4.1                                                                                                                        [0m[2K████████████████░░░░ [4/5] [2mpygments==2.19.2                                                                                                                     [0m[2K████████████████████ [5/5] [2mpygments==2.19.2                                                                                                                     [0m[2K[2mInstalled [1m5 packages[0m [2min 5ms[0m[0m
+ [32m+[39m [1miniconfig[0m[2m==2.1.0[0m
+ [32m+[39m [1mpackaging[0m[2m==25.0[0m
+ [32m+[39m [1mpluggy[0m[2m==1.6.0[0m
+ [32m+[39m [1mpygments[0m[2m==2.19.2[0m
+ [32m+[39m [1mpytest[0m[2m==8.4.1[0m
+[1m===================================================================== test session starts ======================================================================[0m
+platform linux -- Python 3.13.1, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+[1mcollecting ... [0m[1mcollected 2 items                                                                                                                                              [0m
+
+../tests/test_outputs.py [32m.[0m[31mF[0m[31m                                                                                                                              [100%][0m
+
+=========================================================================== FAILURES ===========================================================================
+[31m[1m________________________________________________________________________ test_sqrt_fib _________________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_sqrt_fib[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Test that C simulation computes (fib(sqrt(n)) % 2^32) correctly"""[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        [90m# First compile the C program[39;49;00m[90m[39;49;00m
+        [96mprint[39;49;00m([33m"[39;49;00m[33mCompiling sim.c...[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        compile_result = subprocess.run([[33m"[39;49;00m[33mgcc[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m-O3[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m/tests/sim.c[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m-o[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33msim[39;49;00m[33m"[39;49;00m],[90m[39;49;00m
+                                      capture_output=[94mTrue[39;49;00m, text=[94mTrue[39;49;00m)[90m[39;49;00m
+        [94mif[39;49;00m compile_result.returncode != [94m0[39;49;00m:[90m[39;49;00m
+            [96mprint[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33mCompilation failed: [39;49;00m[33m{[39;49;00mcompile_result.stderr[33m}[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+            [94massert[39;49;00m [94mFalse[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        [90m# Test values[39;49;00m[90m[39;49;00m
+        test_cases = [[94m1[39;49;00m, [94m4[39;49;00m, [94m8[39;49;00m, [94m12[39;49;00m, [94m41[39;49;00m, [94m42[39;49;00m, [94m107[39;49;00m, [94m220[39;49;00m, [94m209[39;49;00m, [94m366[39;49;00m,[90m[39;49;00m
+                      [94m12[39;49;00m**[94m2[39;49;00m, [94m41[39;49;00m**[94m2[39;49;00m, [94m42[39;49;00m**[94m2[39;49;00m, [94m107[39;49;00m**[94m2[39;49;00m, [94m220[39;49;00m**[94m2[39;49;00m, [94m209[39;49;00m**[94m2[39;49;00m,[90m[39;49;00m
+                      [94m12[39;49;00m**[94m2[39;49;00m-[94m1[39;49;00m, [94m41[39;49;00m**[94m2[39;49;00m-[94m1[39;49;00m, [94m42[39;49;00m**[94m2[39;49;00m-[94m1[39;49;00m, [94m107[39;49;00m**[94m2[39;49;00m-[94m1[39;49;00m, [94m220[39;49;00m**[94m2[39;49;00m-[94m1[39;49;00m, [94m209[39;49;00m**[94m2[39;49;00m-[94m1[39;49;00m,[90m[39;49;00m
+                      [94m12[39;49;00m**[94m2[39;49;00m+[94m1[39;49;00m, [94m41[39;49;00m**[94m2[39;49;00m+[94m1[39;49;00m, [94m42[39;49;00m**[94m2[39;49;00m+[94m1[39;49;00m, [94m107[39;49;00m**[94m2[39;49;00m+[94m1[39;49;00m, [94m220[39;49;00m**[94m2[39;49;00m+[94m1[39;49;00m, [94m209[39;49;00m**[94m2[39;49;00m+[94m1[39;49;00m,[90m[39;49;00m
+                      ][90m[39;49;00m
+        all_passed = [94mTrue[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        [96mprint[39;49;00m([33m"[39;49;00m[33m\n[39;49;00m[33mTesting (fib(sqrt(n)) [39;49;00m[33m%[39;49;00m[33m 2^32):[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [96mprint[39;49;00m([33m"[39;49;00m[33m-[39;49;00m[33m"[39;49;00m * [94m80[39;49;00m)[90m[39;49;00m
+        [96mprint[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33m{[39;49;00m[33m'[39;49;00m[33mn[39;49;00m[33m'[39;49;00m[33m:[39;49;00m[33m>4[39;49;00m[33m}[39;49;00m[33m | [39;49;00m[33m{[39;49;00m[33m'[39;49;00m[33mfib(n)[39;49;00m[33m'[39;49;00m[33m:[39;49;00m[33m>20[39;49;00m[33m}[39;49;00m[33m | [39;49;00m[33m{[39;49;00m[33m'[39;49;00m[33mfib(n) [39;49;00m[33m%[39;49;00m[33m 2^32[39;49;00m[33m'[39;49;00m[33m:[39;49;00m[33m>15[39;49;00m[33m}[39;49;00m[33m | [39;49;00m[33m"[39;49;00m[90m[39;49;00m
+              [33mf[39;49;00m[33m"[39;49;00m[33m{[39;49;00m[33m'[39;49;00m[33msqrt[39;49;00m[33m'[39;49;00m[33m:[39;49;00m[33m>12[39;49;00m[33m}[39;49;00m[33m | [39;49;00m[33m{[39;49;00m[33m'[39;49;00m[33mC output[39;49;00m[33m'[39;49;00m[33m:[39;49;00m[33m>12[39;49;00m[33m}[39;49;00m[33m | [39;49;00m[33m{[39;49;00m[33m'[39;49;00m[33mStatus[39;49;00m[33m'[39;49;00m[33m:[39;49;00m[33m>8[39;49;00m[33m}[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        [96mprint[39;49;00m([33m"[39;49;00m[33m-[39;49;00m[33m"[39;49;00m * [94m80[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mfor[39;49;00m n [95min[39;49;00m test_cases:[90m[39;49;00m
+            [90m# Calculate expected value[39;49;00m[90m[39;49;00m
+            fib_n = fibonacci(isqrt(n))[90m[39;49;00m
+            fib_n_mod = fib_n % ([94m2[39;49;00m**[94m32[39;49;00m)  [90m# Take modulo 2^32[39;49;00m[90m[39;49;00m
+            expected = fib_n_mod[90m[39;49;00m
+    [90m[39;49;00m
+            result = subprocess.run([[33m"[39;49;00m[33m./sim[39;49;00m[33m"[39;49;00m, [96mstr[39;49;00m(n)],[90m[39;49;00m
+                                  capture_output=[94mTrue[39;49;00m, text=[94mTrue[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+            [94mif[39;49;00m result.returncode != [94m0[39;49;00m:[90m[39;49;00m
+                [96mprint[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33mError running simulation for n=[39;49;00m[33m{[39;49;00mn[33m}[39;49;00m[33m: [39;49;00m[33m{[39;49;00mresult.stderr[33m}[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+                all_passed = [94mFalse[39;49;00m[90m[39;49;00m
+                [94mcontinue[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                actual = [96mint[39;49;00m(result.stdout.strip())[90m[39;49;00m
+            [94mexcept[39;49;00m [96mValueError[39;49;00m:[90m[39;49;00m
+                [96mprint[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33mError parsing output for n=[39;49;00m[33m{[39;49;00mn[33m}[39;49;00m[33m: [39;49;00m[33m'[39;49;00m[33m{[39;49;00mresult.stdout[33m}[39;49;00m[33m'[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+                all_passed = [94mFalse[39;49;00m[90m[39;49;00m
+                [94mcontinue[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+            [90m# Compare results[39;49;00m[90m[39;49;00m
+            passed = (actual == expected)[90m[39;49;00m
+            status = [33m"[39;49;00m[33mPASS[39;49;00m[33m"[39;49;00m [94mif[39;49;00m passed [94melse[39;49;00m [33m"[39;49;00m[33mFAIL[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            [94mif[39;49;00m [95mnot[39;49;00m passed:[90m[39;49;00m
+                all_passed = [94mFalse[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+            [96mprint[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33m{[39;49;00mn[33m:[39;49;00m[33m>4[39;49;00m[33m}[39;49;00m[33m | [39;49;00m[33m{[39;49;00mfib_n[33m:[39;49;00m[33m>20[39;49;00m[33m}[39;49;00m[33m | [39;49;00m[33m{[39;49;00mfib_n_mod[33m:[39;49;00m[33m>15[39;49;00m[33m}[39;49;00m[33m | [39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                  [33mf[39;49;00m[33m"[39;49;00m[33m{[39;49;00mexpected[33m:[39;49;00m[33m>12[39;49;00m[33m}[39;49;00m[33m | [39;49;00m[33m{[39;49;00mactual[33m:[39;49;00m[33m>12[39;49;00m[33m}[39;49;00m[33m | [39;49;00m[33m{[39;49;00mstatus[33m:[39;49;00m[33m>8[39;49;00m[33m}[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        [96mprint[39;49;00m([33m"[39;49;00m[33m-[39;49;00m[33m"[39;49;00m * [94m80[39;49;00m)[90m[39;49;00m
+        [96mprint[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33m\n[39;49;00m[33mOverall: [39;49;00m[33m{[39;49;00m[33m'[39;49;00m[33mALL TESTS PASSED[39;49;00m[33m'[39;49;00m[90m [39;49;00m[94mif[39;49;00m[90m [39;49;00mall_passed[90m [39;49;00m[94melse[39;49;00m[90m [39;49;00m[33m'[39;49;00m[33mSOME TESTS FAILED[39;49;00m[33m'[39;49;00m[33m}[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+>       [94massert[39;49;00m all_passed[90m[39;49;00m
+[1m[31mE       assert False[0m
+
+[1m[31m/tests/test_outputs.py[0m:100: AssertionError
+--------------------------------------------------------------------- Captured stdout call ---------------------------------------------------------------------
+Compiling sim.c...
+
+Testing (fib(sqrt(n)) % 2^32):
+--------------------------------------------------------------------------------
+   n |               fib(n) |   fib(n) % 2^32 |         sqrt |     C output |   Status
+--------------------------------------------------------------------------------
+   1 |                    1 |               1 |            1 |            0 |     FAIL
+   4 |                    1 |               1 |            1 |            2 |     FAIL
+   8 |                    1 |               1 |            1 |            4 |     FAIL
+  12 |                    2 |               2 |            2 |            6 |     FAIL
+  41 |                    8 |               8 |            8 |           20 |     FAIL
+  42 |                    8 |               8 |            8 |           21 |     FAIL
+ 107 |                   55 |              55 |           55 |           53 |     FAIL
+ 220 |                  377 |             377 |          377 |          110 |     FAIL
+ 209 |                  377 |             377 |          377 |          104 |     FAIL
+ 366 |                 4181 |            4181 |         4181 |          183 |     FAIL
+ 144 |                  144 |             144 |          144 |           72 |     FAIL
+1681 |            165580141 |       165580141 |    165580141 |          840 |     FAIL
+1764 |            267914296 |       267914296 |    267914296 |          882 |     FAIL
+11449 | 10284720757613717413913 |      2214125593 |   2214125593 |         5724 |     FAIL
+48400 | 4244200115309993198876969489421897548446236915 |      3361931507 |   3361931507 |        24200 |     FAIL
+43681 | 21327100234463183349497947550385773274930109 |      1510415293 |   1510415293 |        21840 |     FAIL
+ 143 |                   89 |              89 |           89 |           71 |     FAIL
+1680 |            102334155 |       102334155 |    102334155 |          840 |     FAIL
+1763 |            165580141 |       165580141 |    165580141 |          881 |     FAIL
+11448 | 6356306993006846248183 |      1617528055 |   1617528055 |         5724 |     FAIL
+48399 | 2623059926317798754175087863660165740874359106 |       791601474 |    791601474 |        24199 |     FAIL
+43680 | 13180872826374098837632191485015125807374171 |       537698139 |    537698139 |        21840 |     FAIL
+ 145 |                  144 |             144 |          144 |           72 |     FAIL
+1682 |            165580141 |       165580141 |    165580141 |          841 |     FAIL
+1765 |            267914296 |       267914296 |    267914296 |          882 |     FAIL
+11450 | 10284720757613717413913 |      2214125593 |   2214125593 |         5725 |     FAIL
+48401 | 4244200115309993198876969489421897548446236915 |      3361931507 |   3361931507 |        24200 |     FAIL
+43682 | 21327100234463183349497947550385773274930109 |      1510415293 |   1510415293 |        21841 |     FAIL
+--------------------------------------------------------------------------------
+
+Overall: SOME TESTS FAILED
+============================================================================ PASSES ============================================================================
+[36m[1m=================================================================== short test summary info ====================================================================[0m
+[32mPASSED[0m ../tests/test_outputs.py::[1mtest_gates_file_exists[0m
+[31mFAILED[0m ../tests/test_outputs.py::[1mtest_sqrt_fib[0m - assert False
+[31m================================================================= [31m[1m1 failed[0m, [32m1 passed[0m[31m in 0.18s[0m[31m ==================================================================[0m
+[?2004hroot@e743d91a668c:/app# [?2004l
+exit
+[0;32masciinema: recording finished[0m
+[0;32masciinema: asciicast saved to /logs/tests.cast[0m
+[?2004hroot@e743d91a668c:/app# 

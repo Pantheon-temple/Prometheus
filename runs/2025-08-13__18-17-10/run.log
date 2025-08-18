@@ -1,0 +1,337 @@
+Processing tasks in duration order (longest first):
++-----+---------------------------------------------+------------+------------+
+|   # | Task Name                                   | Duration   | Source     |
++=====+=============================================+============+============+
+|   1 | chem-rf                                     | 960m 0s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|   2 | mixed-integer-programming-1                 | 360m 30s   | calculated |
++-----+---------------------------------------------+------------+------------+
+|   3 | install-windows-xp                          | 62m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|   4 | install-windows-3.11                        | 32m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|   5 | circuit-fibsqrt                             | 30m 45s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|   6 | parallelize-graph                           | 22m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|   7 | super-benchmark-upet                        | 22m 0s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|   8 | mcmc-sampling-stan                          | 20m 0s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|   9 | build-linux-kernel-qemu                     | 20m 0s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  10 | lean4-proof                                 | 20m 0s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  11 | stable-parallel-kmeans                      | 17m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  12 | play-zork-easy                              | 17m 10s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  13 | play-zork                                   | 17m 10s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  14 | eval-mteb                                   | 17m 0s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  15 | enemy-grid-escape                           | 16m 0s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  16 | hdfs-deployment                             | 15m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  17 | feal-linear-cryptanalysis                   | 15m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  18 | reverse-engineering                         | 15m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  19 | feal-differential-cryptanalysis             | 15m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  20 | swe-bench-astropy-1                         | 13m 20s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  21 | conda-env-conflict-resolution               | 13m 20s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  22 | word2vec-from-scratch                       | 12m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  23 | causal-inference-r                          | 12m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  24 | solve-maze-challenge                        | 11m 30s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  25 | swe-bench-astropy-2                         | 11m 20s    | calculated |
++-----+---------------------------------------------+------------+------------+
+|  26 | home-server-https                           | 10m 0s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  27 | sudo-llvm-ir                                | 10m 0s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  28 | swe-bench-fsspec                            | 9m 20s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  29 | run-pdp11-code                              | 9m 20s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  30 | blind-maze-explorer-algorithm               | 8m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  31 | blind-maze-explorer-5x5                     | 8m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  32 | adaptive-rejection-sampler                  | 8m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  33 | incompatible-python-fasttext                | 7m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  34 | train-fasttext                              | 7m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  35 | neuron-to-jaxley-conversion                 | 6m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  36 | chem-property-targeting                     | 6m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  37 | cross-entropy-method                        | 6m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  38 | security-celery-redis-rce                   | 6m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  39 | attention-mil                               | 6m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  40 | grid-pattern-transform                      | 6m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  41 | count-dataset-tokens                        | 5m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  42 | qemu-alpine-ssh                             | 5m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  43 | path-tracing-reverse                        | 5m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  44 | qemu-startup                                | 5m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  45 | path-tracing                                | 5m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  46 | download-youtube                            | 5m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  47 | git-multibranch                             | 4m 45s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  48 | aimo-airline-departures                     | 4m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  49 | pytorch-model-cli                           | 4m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  50 | tree-directory-parser                       | 4m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  51 | cron-broken-network                         | 4m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+|  52 | broken-networking                           | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  53 | recover-obfuscated-files                    | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  54 | get-bitcoin-nodes                           | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  55 | write-compressor                            | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  56 | processing-pipeline                         | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  57 | hf-model-inference                          | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  58 | polyglot-c-py                               | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  59 | heterogeneous-dates                         | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  60 | extract-moves-from-video                    | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  61 | reshard-c4-data                             | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  62 | fibonacci-server                            | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  63 | sqlite-with-gcov                            | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  64 | simple-web-scraper                          | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  65 | cobol-modernization                         | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  66 | make-doom-for-mips                          | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  67 | simple-sheets-put                           | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  68 | sqlite-db-truncate                          | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  69 | polyglot-rust-c                             | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  70 | jupyter-notebook-server                     | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  71 | privilege-escalation                        | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  72 | weighted-max-sat-solver                     | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  73 | hello-world                                 | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  74 | fix-pandas-version                          | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  75 | security-vulhub-minio                       | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  76 | pandas-sql-query                            | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  77 | gcc-compiler-optimization                   | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  78 | logistic-regression-divergence              | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  79 | cartpole-rl-training                        | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  80 | count-call-stack                            | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  81 | kv-store-grpc                               | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  82 | oom                                         | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  83 | setup-custom-dev-env                        | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  84 | classifier-debug                            | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  85 | password-recovery                           | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  86 | solana-data                                 | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  87 | make-mips-interpreter                       | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  88 | organization-json-generator                 | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  89 | git-workflow-hack                           | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  90 | pytorch-model-recovery                      | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  91 | sanitize-git-repo                           | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  92 | modernize-fortran-build                     | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  93 | pandas-etl                                  | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  94 | build-initramfs-qemu                        | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  95 | tmux-advanced-workflow                      | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  96 | swe-bench-langcodes                         | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  97 | csv-to-parquet                              | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  98 | fix-git                                     | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+|  99 | chess-best-move                             | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 100 | parallel-particle-simulator                 | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 101 | create-bucket                               | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 102 | decommissioning-service-with-sensitive-data | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 103 | new-encrypt-command                         | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 104 | nginx-request-logging                       | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 105 | configure-git-webserver                     | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 106 | cpp-compatibility                           | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 107 | mlflow-register                             | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 108 | openssl-selfsigned-cert                     | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 109 | broken-python                               | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 110 | gpt2-codegolf                               | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 111 | npm-conflict-resolution                     | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 112 | raman-fitting                               | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 113 | intrusion-detection                         | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 114 | fix-permissions                             | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 115 | crack-7z-hash                               | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 116 | extract-elf                                 | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 117 | pcap-to-netflow                             | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 118 | prove-plus-comm                             | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 119 | build-tcc-qemu                              | 3m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 120 | form-filling                                | 3m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+| 121 | extract-safely                              | 2m 40s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 122 | jq-data-processing                          | 2m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 123 | rare-mineral-allocation                     | 2m 30s     | calculated |
++-----+---------------------------------------------+------------+------------+
+| 124 | assign-seats                                | 2m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+| 125 | vim-terminal-task                           | 2m 0s      | calculated |
++-----+---------------------------------------------+------------+------------+
+| 126 | slurm-simple-node-monitoring                | 1m 0s      | historical |
++-----+---------------------------------------------+------------+------------+
+Total tasks: 126
+Starting harness run
+Run ID: 2025-08-13__18-17-10
+Running task: chem-rf
+Running task: mixed-integer-programming-1
+Running task: install-windows-xp
+Running task: install-windows-3.11
+Running docker compose command: docker compose -p mixed-integer-programming-1-1-of-1-2025-08-13__18-17-10 -f /root/.cache/terminal-bench/terminal-bench-core/head/mixed-integer-programming-1/docker-compose.yaml build
+Running docker compose command: docker compose -p install-windows-xp-1-of-1-2025-08-13__18-17-10 -f /root/.cache/terminal-bench/terminal-bench-core/head/install-windows-xp/docker-compose.yaml build
+Running docker compose command: docker compose -p chem-rf-1-of-1-2025-08-13__18-17-10 -f /root/.cache/terminal-bench/terminal-bench-core/head/chem-rf/docker-compose.yaml build
+Running docker compose command: docker compose -p install-windows-3-11-1-of-1-2025-08-13__18-17-10 -f /root/.cache/terminal-bench/terminal-bench-core/head/install-windows-3.11/docker-compose.yaml build
+Running docker compose command: docker compose -p mixed-integer-programming-1-1-of-1-2025-08-13__18-17-10 -f /root/.cache/terminal-bench/terminal-bench-core/head/mixed-integer-programming-1/docker-compose.yaml up -d
+Running docker compose command: docker compose -p install-windows-3-11-1-of-1-2025-08-13__18-17-10 -f /root/.cache/terminal-bench/terminal-bench-core/head/install-windows-3.11/docker-compose.yaml up -d
+Running docker compose command: docker compose -p install-windows-xp-1-of-1-2025-08-13__18-17-10 -f /root/.cache/terminal-bench/terminal-bench-core/head/install-windows-xp/docker-compose.yaml up -d
+Running docker compose command: docker compose -p chem-rf-1-of-1-2025-08-13__18-17-10 -f /root/.cache/terminal-bench/terminal-bench-core/head/chem-rf/docker-compose.yaml up -d
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/agent.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/agent.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/agent.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/agent.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['cd /app', '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Blocking command completed in 0.07s.
+Sending keys: ['cbc question.mps solve solu solution.txt', '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Blocking command completed in 0.05s.
+Sending keys: ['grep -E "^Objective value:" solution.txt | awk \'{print int($3)}\' > answer.txt', '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Blocking command completed in 0.06s.
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/tests.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['bash ', '/tests/run-tests.sh', '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 60.0
+Blocking command completed in 6.48s.
+Stopping recording.
+Sending keys: ['C-d'] min_timeout_sec: 0.1 max_timeout_sec: 180.0
+Stopping recording.
+Sending keys: ['C-d'] min_timeout_sec: 0.1 max_timeout_sec: 180.0
+Running docker compose command: docker compose -p mixed-integer-programming-1-1-of-1-2025-08-13__18-17-10 -f /root/.cache/terminal-bench/terminal-bench-core/head/mixed-integer-programming-1/docker-compose.yaml down
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/tests.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/tests.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['bash ', '/tests/run-tests.sh', '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 300.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['bash ', '/tests/run-tests.sh', '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 300.0
+Unresolved task mixed-integer-programming-1
+Running task: circuit-fibsqrt
+Running docker compose command: docker compose -p circuit-fibsqrt-1-of-1-2025-08-13__18-17-10 -f /root/.cache/terminal-bench/terminal-bench-core/head/circuit-fibsqrt/docker-compose.yaml build
+Running docker compose command: docker compose -p circuit-fibsqrt-1-of-1-2025-08-13__18-17-10 -f /root/.cache/terminal-bench/terminal-bench-core/head/circuit-fibsqrt/docker-compose.yaml up -d
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/agent.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/tests.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0
+Sending keys: ['bash ', '/tests/run-tests.sh', '; tmux wait -S done', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 28800.0
+Blocking command completed in 37.08s.
+Stopping recording.
+Sending keys: ['C-d'] min_timeout_sec: 0.1 max_timeout_sec: 180.0
+Stopping recording.
+Sending keys: ['C-d'] min_timeout_sec: 0.1 max_timeout_sec: 180.0
+Running docker compose command: docker compose -p install-windows-3-11-1-of-1-2025-08-13__18-17-10 -f /root/.cache/terminal-bench/terminal-bench-core/head/install-windows-3.11/docker-compose.yaml down
+Blocking command completed in 41.59s.
+Stopping recording.
+Sending keys: ['C-d'] min_timeout_sec: 0.1 max_timeout_sec: 180.0
+Unresolved task install-windows-3.11
+Running task: parallelize-graph
+Running docker compose command: docker compose -p parallelize-graph-1-of-1-2025-08-13__18-17-10 -f /root/.cache/terminal-bench/terminal-bench-core/head/parallelize-graph/docker-compose.yaml build
+Stopping recording.
+Sending keys: ['C-d'] min_timeout_sec: 0.1 max_timeout_sec: 180.0
+Running docker compose command: docker compose -p install-windows-xp-1-of-1-2025-08-13__18-17-10 -f /root/.cache/terminal-bench/terminal-bench-core/head/install-windows-xp/docker-compose.yaml down
+Running docker compose command: docker compose -p parallelize-graph-1-of-1-2025-08-13__18-17-10 -f /root/.cache/terminal-bench/terminal-bench-core/head/parallelize-graph/docker-compose.yaml up -d
+Starting recording.
+Sending keys: ['asciinema rec --stdin /logs/agent.cast', 'Enter'] min_timeout_sec: 1.0 max_timeout_sec: 180.0
+Sending keys: ['clear', 'Enter'] min_timeout_sec: 0.0 max_timeout_sec: 180.0

@@ -1,0 +1,26 @@
+{
+    "id": "c19eecfc-e30c-4866-98a7-34b264c36e4f",
+    "trial_name": "install-windows-3.11.1-of-1.2025-08-13__18-17-10",
+    "task_id": "install-windows-3.11",
+    "instruction": "Download and run Windows 3.11 for Workgroups in a virtual machine using qemu. You working image should live in `/app/isos/win311.img`.\n\nVNC Configuration Requirements:\n- Configure QEMU to use VNC display :1 \n- Ensure VNC server is listening on port 5901\n- Set up a web interface (nginx) on port 80 for remote access\n\nQEMU Configuration Requirements:\n- Configure QEMU to accept keyboard input programmatically (for automated testing)\n- Set up QEMU with appropriate interfaces to allow external keyboard control\n- Ensure the VM can receive keystrokes beyond just VNC user interaction\n\nThe VM should be left running in the background once started. You will have completed your objective when QEMU is at the Windows 3.11 desktop, the VNC interface is accessible for monitoring, and QEMU is properly configured to accept programmatic keyboard input.",
+    "is_resolved": false,
+    "failure_mode": "unset",
+    "parser_results": {
+        "test_qemu_process_running - AssertionError: QEMU process not found": "failed",
+        "test_windows_311_disk_image_exists": "failed",
+        "test_network_status": "failed",
+        "test_qemu_running_with_correct_params": "failed",
+        "test_windows_311_core_files_verification": "failed",
+        "test_no_blank_screen": "failed",
+        "test_windows_311_system_stability": "failed"
+    },
+    "recording_path": "2025-08-13__18-17-10/install-windows-3.11/install-windows-3.11.1-of-1.2025-08-13__18-17-10/sessions/agent.cast",
+    "total_input_tokens": 0,
+    "total_output_tokens": 0,
+    "trial_started_at": "2025-08-13T10:17:16.053827+00:00",
+    "trial_ended_at": "2025-08-13T10:18:22.371086+00:00",
+    "agent_started_at": "2025-08-13T10:17:18.320496+00:00",
+    "agent_ended_at": "2025-08-13T10:17:40.170212+00:00",
+    "test_started_at": "2025-08-13T10:17:41.396160+00:00",
+    "test_ended_at": "2025-08-13T10:18:18.507213+00:00"
+}

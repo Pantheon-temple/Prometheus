@@ -1,0 +1,21 @@
+{
+    "id": "3cda6989-c2ec-47a2-9d7a-43f8c16854ce",
+    "trial_name": "mixed-integer-programming-1.1-of-1.2025-08-13__09-37-19",
+    "task_id": "mixed-integer-programming-1",
+    "instruction": "\nThe mixed integer programming problem is located at /app/question.mps.\n\nSolve the problem and save only the integer part of the objective value to a file named answer.txt in the current directory.\n\nFor example, if the objective value is 1, run: echo -n \"1\" > answer.txt\n",
+    "is_resolved": false,
+    "failure_mode": "unset",
+    "parser_results": {
+        "test_solution_file_exists": "passed",
+        "test_solution_file_content": "failed"
+    },
+    "recording_path": "2025-08-13__09-37-19/mixed-integer-programming-1/mixed-integer-programming-1.1-of-1.2025-08-13__09-37-19/sessions/agent.cast",
+    "total_input_tokens": 200,
+    "total_output_tokens": 60,
+    "trial_started_at": "2025-08-13T01:37:24.123119+00:00",
+    "trial_ended_at": "2025-08-13T01:38:06.863594+00:00",
+    "agent_started_at": "2025-08-13T01:37:42.789306+00:00",
+    "agent_ended_at": "2025-08-13T01:37:44.389248+00:00",
+    "test_started_at": "2025-08-13T01:37:45.700472+00:00",
+    "test_ended_at": "2025-08-13T01:37:55.406591+00:00"
+}

@@ -1,0 +1,71 @@
+2025-08-13 18:17:28,540 - thread-140675781736000.prometheus.docker.general_container.GeneralContainer - INFO - Created temporary project directory: /tmp/tmpdquc3fed/Prometheus
+2025-08-13 18:17:28,677 - thread-140675781736000.prometheus.lang_graph.nodes.issue_classification_subgraph_node - INFO - Enter IssueClassificationSubgraphNode
+2025-08-13 18:17:28,677 - thread-140675781736000.prometheus.lang_graph.nodes.context_retrieval_subgraph_node - INFO - Enter context retrieval subgraph
+2025-08-13 18:17:43,068 - thread-140675781736000.prometheus.lang_graph.nodes.context_extraction_node - INFO - Starting context extraction process
+2025-08-13 18:17:44,056 - thread-140675781736000.prometheus - ERROR - Error in answer_issue: 'NoneType' object has no attribute 'context'
+Traceback (most recent call last):
+  File "/root/lh/Prometheus/prometheus/app/services/issue_service.py", line 126, in answer_issue
+    output_state = issue_graph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/root/lh/Prometheus/prometheus/lang_graph/graphs/issue_graph.py", line 125, in invoke
+    output_state = self.graph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/lh/Prometheus/prometheus/lang_graph/nodes/issue_classification_subgraph_node.py", line 36, in __call__
+    issue_type = self.issue_classification_subgraph.invoke(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/lh/Prometheus/prometheus/lang_graph/subgraphs/issue_classification_subgraph.py", line 68, in invoke
+    output_state = self.subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/lh/Prometheus/prometheus/lang_graph/nodes/context_retrieval_subgraph_node.py", line 39, in __call__
+    output_state = self.context_retrieval_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/lh/Prometheus/prometheus/lang_graph/subgraphs/context_retrieval_subgraph.py", line 142, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/lh/Prometheus/prometheus/lang_graph/nodes/context_extraction_node.py", line 135, in __call__
+    context_list = response.context
+                   ^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'context'
+

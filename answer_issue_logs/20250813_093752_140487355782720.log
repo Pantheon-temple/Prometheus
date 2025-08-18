@@ -1,0 +1,95 @@
+2025-08-13 09:37:53,349 - thread-140487355782720.prometheus.docker.general_container.GeneralContainer - INFO - Created temporary project directory: /tmp/tmpqn8gkbsf/Prometheus
+2025-08-13 09:37:53,475 - thread-140487355782720.prometheus.lang_graph.nodes.issue_classification_subgraph_node - INFO - Enter IssueClassificationSubgraphNode
+2025-08-13 09:37:53,475 - thread-140487355782720.prometheus.lang_graph.nodes.context_retrieval_subgraph_node - INFO - Enter context retrieval subgraph
+2025-08-13 09:38:01,883 - thread-140487355782720.prometheus.lang_graph.nodes.context_extraction_node - INFO - Starting context extraction process
+2025-08-13 09:38:04,125 - thread-140487355782720.prometheus.lang_graph.nodes.context_extraction_node - INFO - Context extraction complete, returning context []
+2025-08-13 09:38:12,920 - thread-140487355782720.prometheus.lang_graph.nodes.context_extraction_node - INFO - Starting context extraction process
+2025-08-13 09:38:16,401 - thread-140487355782720.prometheus.lang_graph.nodes.context_extraction_node - ERROR - The file ISSUE_DESCRIPTION.md does not exist.
+2025-08-13 09:38:16,401 - thread-140487355782720.prometheus.lang_graph.nodes.context_extraction_node - INFO - Context extraction complete, returning context []
+2025-08-13 09:38:26,195 - thread-140487355782720.prometheus.lang_graph.nodes.context_extraction_node - INFO - Starting context extraction process
+2025-08-13 09:38:30,292 - thread-140487355782720.prometheus.lang_graph.nodes.context_extraction_node - ERROR - The file issue_description.md does not exist.
+2025-08-13 09:38:30,292 - thread-140487355782720.prometheus.lang_graph.nodes.context_extraction_node - INFO - Context extraction complete, returning context []
+2025-08-13 09:38:39,025 - thread-140487355782720.prometheus - ERROR - Error in answer_issue: 'ContextRefineStructuedOutput'
+Traceback (most recent call last):
+  File "/root/lh/Prometheus/prometheus/app/services/issue_service.py", line 126, in answer_issue
+    output_state = issue_graph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/root/lh/Prometheus/prometheus/lang_graph/graphs/issue_graph.py", line 125, in invoke
+    output_state = self.graph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/lh/Prometheus/prometheus/lang_graph/nodes/issue_classification_subgraph_node.py", line 36, in __call__
+    issue_type = self.issue_classification_subgraph.invoke(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/lh/Prometheus/prometheus/lang_graph/subgraphs/issue_classification_subgraph.py", line 68, in invoke
+    output_state = self.subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/lh/Prometheus/prometheus/lang_graph/nodes/context_retrieval_subgraph_node.py", line 39, in __call__
+    output_state = self.context_retrieval_subgraph.invoke(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/lh/Prometheus/prometheus/lang_graph/subgraphs/context_retrieval_subgraph.py", line 142, in invoke
+    output_state = self.subgraph.invoke(input_state, config)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/__init__.py", line 1600, in invoke
+    for chunk in self.stream(
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/__init__.py", line 1328, in stream
+    for _ in runner.tick(
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/runner.py", line 58, in tick
+    run_with_retry(t, retry_policy)
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/pregel/retry.py", line 29, in run_with_retry
+    task.proc.invoke(task.input, config)
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/utils/runnable.py", line 410, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langgraph/utils/runnable.py", line 184, in invoke
+    ret = context.run(self.func, input, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/lh/Prometheus/prometheus/lang_graph/nodes/context_refine_node.py", line 105, in __call__
+    response = self.model.invoke({"human_prompt": human_prompt})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langchain_core/runnables/base.py", line 3047, in invoke
+    input_ = context.run(step.invoke, input_, config)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langchain_core/output_parsers/base.py", line 196, in invoke
+    return self._call_with_config(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langchain_core/runnables/base.py", line 1940, in _call_with_config
+    context.run(
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langchain_core/runnables/config.py", line 428, in call_func_with_variable_args
+    return func(input, **kwargs)  # type: ignore[call-arg]
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langchain_core/output_parsers/base.py", line 197, in <lambda>
+    lambda inner_input: self.parse_result(
+                        ^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/prometheus_lh/lib/python3.12/site-packages/langchain_core/output_parsers/openai_tools.py", line 306, in parse_result
+    pydantic_objects.append(name_dict[res["type"]](**res["args"]))
+                            ~~~~~~~~~^^^^^^^^^^^^^
+KeyError: 'ContextRefineStructuedOutput'
+

@@ -1,0 +1,10 @@
+{"version": 2, "width": 160, "height": 40, "timestamp": 1755049114, "env": {"SHELL": "/bin/bash", "TERM": "tmux-256color"}}
+[0.002364, "o", "\u001b[?2004hroot@e743d91a668c:/app# "]
+[0.958744, "i", "clear\r"]
+[0.958941, "o", "clear\r\n\u001b[?2004l\r"]
+[0.959728, "o", "\u001b[H\u001b[J\u001b[3J"]
+[0.959946, "m", "prometheus_start"]
+[0.959946, "m", "task_complexity: complex"]
+[0.959946, "m", "complex_task_start"]
+[0.959946, "m", "prometheus_error: {code: Neo.ClientError.Schema.ConstraintValidationFailed} {message: Node(35822) already exists with label `FileNode` and property `node_id` = 50134}"]
+[0.959946, "o", "\u001b[?2004hroot@e743d91a668c:/app# "]

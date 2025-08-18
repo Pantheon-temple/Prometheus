@@ -9,4 +9,4 @@ data_postgres/
 config.json
 __pycache__/
 settings.toml
-working_dir/
+working_dir//runs/

@@ -1,0 +1,1070 @@
+[?2004hroot@aa964add3208:/app# asciinema rec --stdin /logs/tests.cast
+[?2004l[0;32masciinema: recording asciicast to /logs/tests.cast[0m
+[0;32masciinema: press <ctrl-d> or type "exit" when you're done[0m
+[?2004hroot@aa964add3208:/app# clear
+[?2004l[H[J[3J[?2004hroot@aa964add3208:/app# bash /tests/run-tests.sh; tmux wait -S done
+[?2004l[33mWARNING: Skipping /usr/lib/python3.12/dist-packages/asciinema-2.4.0.dist-info due to invalid metadata entry 'name'[0m[33m
+[0mCollecting pytest
+  Downloading pytest-8.4.1-py3-none-any.whl.metadata (7.7 kB)
+Collecting iniconfig>=1 (from pytest)
+  Downloading iniconfig-2.1.0-py3-none-any.whl.metadata (2.7 kB)
+Collecting packaging>=20 (from pytest)
+  Downloading packaging-25.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting pluggy<2,>=1.5 (from pytest)
+  Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+Collecting pygments>=2.7.2 (from pytest)
+  Downloading pygments-2.19.2-py3-none-any.whl.metadata (2.5 kB)
+Downloading pytest-8.4.1-py3-none-any.whl (365 kB)
+[?25l   [38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/365.5 kB[0m [31m?[0m eta [36m-:--:--[0m[2K   [38;5;70m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m365.5/365.5 kB[0m [31m15.5 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading iniconfig-2.1.0-py3-none-any.whl (6.0 kB)
+Downloading packaging-25.0-py3-none-any.whl (66 kB)
+[?25l   [38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/66.5 kB[0m [31m?[0m eta [36m-:--:--[0m[2K   [38;5;70m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m66.5/66.5 kB[0m [31m14.1 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+Downloading pygments-2.19.2-py3-none-any.whl (1.2 MB)
+[?25l   [38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/1.2 MB[0m [31m?[0m eta [36m-:--:--[0m[2K   [38;5;197m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;5;197m╸[0m[38;5;237m━━━━━━━━[0m [32m1.0/1.2 MB[0m [31m29.9 MB/s[0m eta [36m0:00:01[0m[2K   [38;5;70m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m1.2/1.2 MB[0m [31m26.5 MB/s[0m eta [36m0:00:00[0m
+[?25h[33mWARNING: Skipping /usr/lib/python3.12/dist-packages/asciinema-2.4.0.dist-info due to invalid metadata entry 'name'[0m[33m
+[0mInstalling collected packages: pygments, pluggy, packaging, iniconfig, pytest
+Successfully installed iniconfig-2.1.0 packaging-25.0 pluggy-1.6.0 pygments-2.19.2 pytest-8.4.1
+[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
+[0m[1m===================================================================== test session starts ======================================================================[0m
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+[1mcollecting ... [0m[1mcollected 11 items                                                                                                                                             [0m
+
+test_outputs.py [32m.[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[31mF[0m[32m.[0m[31mF[0m[32m.[0m[32m.[0m[31mF[0m[31m                                                                                                                              [100%][0m
+
+=========================================================================== FAILURES ===========================================================================
+[31m[1m_________________________________________________________________ test_lean_environment_setup __________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_lean_environment_setup[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Test that Lean environment is properly set up."""[39;49;00m[90m[39;49;00m
+        [90m# Check if lean command is available[39;49;00m[90m[39;49;00m
+>       result = subprocess.run([90m[39;49;00m
+            [[33m"[39;49;00m[33mlean[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33m--version[39;49;00m[33m"[39;49;00m],[90m[39;49;00m
+            capture_output=[94mTrue[39;49;00m,[90m[39;49;00m
+            text=[94mTrue[39;49;00m,[90m[39;49;00m
+            cwd=[33m"[39;49;00m[33m/app[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        )[90m[39;49;00m
+
+[1m[31mtest_outputs.py[0m:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+[1m[31m/usr/lib/python3.12/subprocess.py[0m:548: in run
+    [0m[94mwith[39;49;00m Popen(*popenargs, **kwargs) [94mas[39;49;00m process:[90m[39;49;00m
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31m/usr/lib/python3.12/subprocess.py[0m:1026: in __init__
+    [0m[96mself[39;49;00m._execute_child(args, executable, preexec_fn, close_fds,[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Popen: returncode: 255 args: ['lean', '--version']>, args = ['lean', '--version'], executable = b'lean', preexec_fn = None, close_fds = True
+pass_fds = (), cwd = '/app', env = None, startupinfo = None, creationflags = 0, shell = False, p2cread = -1, p2cwrite = -1, c2pread = 11, c2pwrite = 12
+errread = 13, errwrite = 14, restore_signals = True, gid = None, gids = None, uid = None, umask = -1, start_new_session = False, process_group = -1
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92m_execute_child[39;49;00m([96mself[39;49;00m, args, executable, preexec_fn, close_fds,[90m[39;49;00m
+                       pass_fds, cwd, env,[90m[39;49;00m
+                       startupinfo, creationflags, shell,[90m[39;49;00m
+                       p2cread, p2cwrite,[90m[39;49;00m
+                       c2pread, c2pwrite,[90m[39;49;00m
+                       errread, errwrite,[90m[39;49;00m
+                       restore_signals,[90m[39;49;00m
+                       gid, gids, uid, umask,[90m[39;49;00m
+                       start_new_session, process_group):[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Execute program (POSIX version)"""[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m [96misinstance[39;49;00m(args, ([96mstr[39;49;00m, [96mbytes[39;49;00m)):[90m[39;49;00m
+            args = [args][90m[39;49;00m
+        [94melif[39;49;00m [96misinstance[39;49;00m(args, os.PathLike):[90m[39;49;00m
+            [94mif[39;49;00m shell:[90m[39;49;00m
+                [94mraise[39;49;00m [96mTypeError[39;49;00m([33m'[39;49;00m[33mpath-like args is not allowed when [39;49;00m[33m'[39;49;00m[90m[39;49;00m
+                                [33m'[39;49;00m[33mshell is true[39;49;00m[33m'[39;49;00m)[90m[39;49;00m
+            args = [args][90m[39;49;00m
+        [94melse[39;49;00m:[90m[39;49;00m
+            args = [96mlist[39;49;00m(args)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m shell:[90m[39;49;00m
+            [90m# On Android the default shell is at '/system/bin/sh'.[39;49;00m[90m[39;49;00m
+            unix_shell = ([33m'[39;49;00m[33m/system/bin/sh[39;49;00m[33m'[39;49;00m [94mif[39;49;00m[90m[39;49;00m
+                      [96mhasattr[39;49;00m(sys, [33m'[39;49;00m[33mgetandroidapilevel[39;49;00m[33m'[39;49;00m) [94melse[39;49;00m [33m'[39;49;00m[33m/bin/sh[39;49;00m[33m'[39;49;00m)[90m[39;49;00m
+            args = [unix_shell, [33m"[39;49;00m[33m-c[39;49;00m[33m"[39;49;00m] + args[90m[39;49;00m
+            [94mif[39;49;00m executable:[90m[39;49;00m
+                args[[94m0[39;49;00m] = executable[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m executable [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            executable = args[[94m0[39;49;00m][90m[39;49;00m
+    [90m[39;49;00m
+        sys.audit([33m"[39;49;00m[33msubprocess.Popen[39;49;00m[33m"[39;49;00m, executable, args, cwd, env)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m (_USE_POSIX_SPAWN[90m[39;49;00m
+                [95mand[39;49;00m os.path.dirname(executable)[90m[39;49;00m
+                [95mand[39;49;00m preexec_fn [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m [95mnot[39;49;00m close_fds[90m[39;49;00m
+                [95mand[39;49;00m [95mnot[39;49;00m pass_fds[90m[39;49;00m
+                [95mand[39;49;00m cwd [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m (p2cread == -[94m1[39;49;00m [95mor[39;49;00m p2cread > [94m2[39;49;00m)[90m[39;49;00m
+                [95mand[39;49;00m (c2pwrite == -[94m1[39;49;00m [95mor[39;49;00m c2pwrite > [94m2[39;49;00m)[90m[39;49;00m
+                [95mand[39;49;00m (errwrite == -[94m1[39;49;00m [95mor[39;49;00m errwrite > [94m2[39;49;00m)[90m[39;49;00m
+                [95mand[39;49;00m [95mnot[39;49;00m start_new_session[90m[39;49;00m
+                [95mand[39;49;00m process_group == -[94m1[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m gid [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m gids [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m uid [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m umask < [94m0[39;49;00m):[90m[39;49;00m
+            [96mself[39;49;00m._posix_spawn(args, executable, env, restore_signals,[90m[39;49;00m
+                              p2cread, p2cwrite,[90m[39;49;00m
+                              c2pread, c2pwrite,[90m[39;49;00m
+                              errread, errwrite)[90m[39;49;00m
+            [94mreturn[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        orig_executable = executable[90m[39;49;00m
+    [90m[39;49;00m
+        [90m# For transferring possible exec failure from child to parent.[39;49;00m[90m[39;49;00m
+        [90m# Data format: "exception name:hex errno:description"[39;49;00m[90m[39;49;00m
+        [90m# Pickle is not used; it is complex and involves memory allocation.[39;49;00m[90m[39;49;00m
+        errpipe_read, errpipe_write = os.pipe()[90m[39;49;00m
+        [90m# errpipe_write must not be in the standard io 0, 1, or 2 fd range.[39;49;00m[90m[39;49;00m
+        low_fds_to_close = [][90m[39;49;00m
+        [94mwhile[39;49;00m errpipe_write < [94m3[39;49;00m:[90m[39;49;00m
+            low_fds_to_close.append(errpipe_write)[90m[39;49;00m
+            errpipe_write = os.dup(errpipe_write)[90m[39;49;00m
+        [94mfor[39;49;00m low_fd [95min[39;49;00m low_fds_to_close:[90m[39;49;00m
+            os.close(low_fd)[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                [90m# We must avoid complex work that could involve[39;49;00m[90m[39;49;00m
+                [90m# malloc or free in the child process to avoid[39;49;00m[90m[39;49;00m
+                [90m# potential deadlocks, thus we do all this here.[39;49;00m[90m[39;49;00m
+                [90m# and pass it to fork_exec()[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+                [94mif[39;49;00m env [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+                    env_list = [][90m[39;49;00m
+                    [94mfor[39;49;00m k, v [95min[39;49;00m env.items():[90m[39;49;00m
+                        k = os.fsencode(k)[90m[39;49;00m
+                        [94mif[39;49;00m [33mb[39;49;00m[33m'[39;49;00m[33m=[39;49;00m[33m'[39;49;00m [95min[39;49;00m k:[90m[39;49;00m
+                            [94mraise[39;49;00m [96mValueError[39;49;00m([33m"[39;49;00m[33millegal environment variable name[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+                        env_list.append(k + [33mb[39;49;00m[33m'[39;49;00m[33m=[39;49;00m[33m'[39;49;00m + os.fsencode(v))[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    env_list = [94mNone[39;49;00m  [90m# Use execv instead of execve.[39;49;00m[90m[39;49;00m
+                executable = os.fsencode(executable)[90m[39;49;00m
+                [94mif[39;49;00m os.path.dirname(executable):[90m[39;49;00m
+                    executable_list = (executable,)[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    [90m# This matches the behavior of os._execvpe().[39;49;00m[90m[39;49;00m
+                    executable_list = [96mtuple[39;49;00m([90m[39;49;00m
+                        os.path.join(os.fsencode([96mdir[39;49;00m), executable)[90m[39;49;00m
+                        [94mfor[39;49;00m [96mdir[39;49;00m [95min[39;49;00m os.get_exec_path(env))[90m[39;49;00m
+                fds_to_keep = [96mset[39;49;00m(pass_fds)[90m[39;49;00m
+                fds_to_keep.add(errpipe_write)[90m[39;49;00m
+                [96mself[39;49;00m.pid = _fork_exec([90m[39;49;00m
+                        args, executable_list,[90m[39;49;00m
+                        close_fds, [96mtuple[39;49;00m([96msorted[39;49;00m([96mmap[39;49;00m([96mint[39;49;00m, fds_to_keep))),[90m[39;49;00m
+                        cwd, env_list,[90m[39;49;00m
+                        p2cread, p2cwrite, c2pread, c2pwrite,[90m[39;49;00m
+                        errread, errwrite,[90m[39;49;00m
+                        errpipe_read, errpipe_write,[90m[39;49;00m
+                        restore_signals, start_new_session,[90m[39;49;00m
+                        process_group, gid, gids, uid, umask,[90m[39;49;00m
+                        preexec_fn, _USE_VFORK)[90m[39;49;00m
+                [96mself[39;49;00m._child_created = [94mTrue[39;49;00m[90m[39;49;00m
+            [94mfinally[39;49;00m:[90m[39;49;00m
+                [90m# be sure the FD is closed no matter what[39;49;00m[90m[39;49;00m
+                os.close(errpipe_write)[90m[39;49;00m
+    [90m[39;49;00m
+            [96mself[39;49;00m._close_pipe_fds(p2cread, p2cwrite,[90m[39;49;00m
+                                 c2pread, c2pwrite,[90m[39;49;00m
+                                 errread, errwrite)[90m[39;49;00m
+    [90m[39;49;00m
+            [90m# Wait for exec to fail or succeed; possibly raising an[39;49;00m[90m[39;49;00m
+            [90m# exception (limited in size)[39;49;00m[90m[39;49;00m
+            errpipe_data = [96mbytearray[39;49;00m()[90m[39;49;00m
+            [94mwhile[39;49;00m [94mTrue[39;49;00m:[90m[39;49;00m
+                part = os.read(errpipe_read, [94m50000[39;49;00m)[90m[39;49;00m
+                errpipe_data += part[90m[39;49;00m
+                [94mif[39;49;00m [95mnot[39;49;00m part [95mor[39;49;00m [96mlen[39;49;00m(errpipe_data) > [94m50000[39;49;00m:[90m[39;49;00m
+                    [94mbreak[39;49;00m[90m[39;49;00m
+        [94mfinally[39;49;00m:[90m[39;49;00m
+            [90m# be sure the FD is closed no matter what[39;49;00m[90m[39;49;00m
+            os.close(errpipe_read)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m errpipe_data:[90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                pid, sts = os.waitpid([96mself[39;49;00m.pid, [94m0[39;49;00m)[90m[39;49;00m
+                [94mif[39;49;00m pid == [96mself[39;49;00m.pid:[90m[39;49;00m
+                    [96mself[39;49;00m._handle_exitstatus(sts)[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    [96mself[39;49;00m.returncode = sys.maxsize[90m[39;49;00m
+            [94mexcept[39;49;00m [96mChildProcessError[39;49;00m:[90m[39;49;00m
+                [94mpass[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                exception_name, hex_errno, err_msg = ([90m[39;49;00m
+                        errpipe_data.split([33mb[39;49;00m[33m'[39;49;00m[33m:[39;49;00m[33m'[39;49;00m, [94m2[39;49;00m))[90m[39;49;00m
+                [90m# The encoding here should match the encoding[39;49;00m[90m[39;49;00m
+                [90m# written in by the subprocess implementations[39;49;00m[90m[39;49;00m
+                [90m# like _posixsubprocess[39;49;00m[90m[39;49;00m
+                err_msg = err_msg.decode()[90m[39;49;00m
+            [94mexcept[39;49;00m [96mValueError[39;49;00m:[90m[39;49;00m
+                exception_name = [33mb[39;49;00m[33m'[39;49;00m[33mSubprocessError[39;49;00m[33m'[39;49;00m[90m[39;49;00m
+                hex_errno = [33mb[39;49;00m[33m'[39;49;00m[33m0[39;49;00m[33m'[39;49;00m[90m[39;49;00m
+                err_msg = [33m'[39;49;00m[33mBad exception data from child: [39;49;00m[33m{!r}[39;49;00m[33m'[39;49;00m.format([90m[39;49;00m
+                              [96mbytes[39;49;00m(errpipe_data))[90m[39;49;00m
+            child_exception_type = [96mgetattr[39;49;00m([90m[39;49;00m
+                    builtins, exception_name.decode([33m'[39;49;00m[33mascii[39;49;00m[33m'[39;49;00m),[90m[39;49;00m
+                    SubprocessError)[90m[39;49;00m
+            [94mif[39;49;00m [96missubclass[39;49;00m(child_exception_type, [96mOSError[39;49;00m) [95mand[39;49;00m hex_errno:[90m[39;49;00m
+                errno_num = [96mint[39;49;00m(hex_errno, [94m16[39;49;00m)[90m[39;49;00m
+                [94mif[39;49;00m err_msg == [33m"[39;49;00m[33mnoexec:chdir[39;49;00m[33m"[39;49;00m:[90m[39;49;00m
+                    err_msg = [33m"[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                    [90m# The error must be from chdir(cwd).[39;49;00m[90m[39;49;00m
+                    err_filename = cwd[90m[39;49;00m
+                [94melif[39;49;00m err_msg == [33m"[39;49;00m[33mnoexec[39;49;00m[33m"[39;49;00m:[90m[39;49;00m
+                    err_msg = [33m"[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                    err_filename = [94mNone[39;49;00m[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    err_filename = orig_executable[90m[39;49;00m
+                [94mif[39;49;00m errno_num != [94m0[39;49;00m:[90m[39;49;00m
+                    err_msg = os.strerror(errno_num)[90m[39;49;00m
+                [94mif[39;49;00m err_filename [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+>                   [94mraise[39;49;00m child_exception_type(errno_num, err_msg, err_filename)[90m[39;49;00m
+[1m[31mE                   FileNotFoundError: [Errno 2] No such file or directory: 'lean'[0m
+
+[1m[31m/usr/lib/python3.12/subprocess.py[0m:1955: FileNotFoundError
+[31m[1m__________________________________________________________________ test_mathlib_project_setup __________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_mathlib_project_setup[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Test that Mathlib project is properly configured."""[39;49;00m[90m[39;49;00m
+        [90m# Check if lakefile.toml exists in the project directory[39;49;00m[90m[39;49;00m
+        lakefile_path = Path([33m"[39;49;00m[33m/app/lean_project/lakefile.toml[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+>       [94massert[39;49;00m lakefile_path.exists(), [33m"[39;49;00m[33mLakefile not found in lean_project directory[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: Lakefile not found in lean_project directory[0m
+[1m[31mE       assert False[0m
+[1m[31mE        +  where False = exists()[0m
+[1m[31mE        +    where exists = PosixPath('/app/lean_project/lakefile.toml').exists[0m
+
+[1m[31mtest_outputs.py[0m:113: AssertionError
+[31m[1m_________________________________________________________________ test_lean_files_syntax_valid _________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_lean_files_syntax_valid[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Test that all .lean files have valid syntax and can be parsed."""[39;49;00m[90m[39;49;00m
+        lean_files = get_lean_files()[90m[39;49;00m
+    [90m[39;49;00m
+        [94mfor[39;49;00m filename [95min[39;49;00m lean_files:[90m[39;49;00m
+>           compilation = get_compilation_result(filename)[90m[39;49;00m
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+
+[1m[31mtest_outputs.py[0m:127: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+[1m[31mtest_outputs.py[0m:62: in get_compilation_result
+    [0mresult = subprocess.run([90m[39;49;00m
+[1m[31m/usr/lib/python3.12/subprocess.py[0m:548: in run
+    [0m[94mwith[39;49;00m Popen(*popenargs, **kwargs) [94mas[39;49;00m process:[90m[39;49;00m
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31m/usr/lib/python3.12/subprocess.py[0m:1026: in __init__
+    [0m[96mself[39;49;00m._execute_child(args, executable, preexec_fn, close_fds,[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Popen: returncode: 255 args: ['lake', 'env', 'lean', '/app/data/p3.lean']>, args = ['lake', 'env', 'lean', '/app/data/p3.lean'], executable = b'lake'
+preexec_fn = None, close_fds = True, pass_fds = (), cwd = '/app/lean_project', env = None, startupinfo = None, creationflags = 0, shell = False, p2cread = -1
+p2cwrite = -1, c2pread = 11, c2pwrite = 12, errread = 13, errwrite = 14, restore_signals = True, gid = None, gids = None, uid = None, umask = -1
+start_new_session = False, process_group = -1
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92m_execute_child[39;49;00m([96mself[39;49;00m, args, executable, preexec_fn, close_fds,[90m[39;49;00m
+                       pass_fds, cwd, env,[90m[39;49;00m
+                       startupinfo, creationflags, shell,[90m[39;49;00m
+                       p2cread, p2cwrite,[90m[39;49;00m
+                       c2pread, c2pwrite,[90m[39;49;00m
+                       errread, errwrite,[90m[39;49;00m
+                       restore_signals,[90m[39;49;00m
+                       gid, gids, uid, umask,[90m[39;49;00m
+                       start_new_session, process_group):[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Execute program (POSIX version)"""[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m [96misinstance[39;49;00m(args, ([96mstr[39;49;00m, [96mbytes[39;49;00m)):[90m[39;49;00m
+            args = [args][90m[39;49;00m
+        [94melif[39;49;00m [96misinstance[39;49;00m(args, os.PathLike):[90m[39;49;00m
+            [94mif[39;49;00m shell:[90m[39;49;00m
+                [94mraise[39;49;00m [96mTypeError[39;49;00m([33m'[39;49;00m[33mpath-like args is not allowed when [39;49;00m[33m'[39;49;00m[90m[39;49;00m
+                                [33m'[39;49;00m[33mshell is true[39;49;00m[33m'[39;49;00m)[90m[39;49;00m
+            args = [args][90m[39;49;00m
+        [94melse[39;49;00m:[90m[39;49;00m
+            args = [96mlist[39;49;00m(args)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m shell:[90m[39;49;00m
+            [90m# On Android the default shell is at '/system/bin/sh'.[39;49;00m[90m[39;49;00m
+            unix_shell = ([33m'[39;49;00m[33m/system/bin/sh[39;49;00m[33m'[39;49;00m [94mif[39;49;00m[90m[39;49;00m
+                      [96mhasattr[39;49;00m(sys, [33m'[39;49;00m[33mgetandroidapilevel[39;49;00m[33m'[39;49;00m) [94melse[39;49;00m [33m'[39;49;00m[33m/bin/sh[39;49;00m[33m'[39;49;00m)[90m[39;49;00m
+            args = [unix_shell, [33m"[39;49;00m[33m-c[39;49;00m[33m"[39;49;00m] + args[90m[39;49;00m
+            [94mif[39;49;00m executable:[90m[39;49;00m
+                args[[94m0[39;49;00m] = executable[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m executable [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            executable = args[[94m0[39;49;00m][90m[39;49;00m
+    [90m[39;49;00m
+        sys.audit([33m"[39;49;00m[33msubprocess.Popen[39;49;00m[33m"[39;49;00m, executable, args, cwd, env)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m (_USE_POSIX_SPAWN[90m[39;49;00m
+                [95mand[39;49;00m os.path.dirname(executable)[90m[39;49;00m
+                [95mand[39;49;00m preexec_fn [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m [95mnot[39;49;00m close_fds[90m[39;49;00m
+                [95mand[39;49;00m [95mnot[39;49;00m pass_fds[90m[39;49;00m
+                [95mand[39;49;00m cwd [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m (p2cread == -[94m1[39;49;00m [95mor[39;49;00m p2cread > [94m2[39;49;00m)[90m[39;49;00m
+                [95mand[39;49;00m (c2pwrite == -[94m1[39;49;00m [95mor[39;49;00m c2pwrite > [94m2[39;49;00m)[90m[39;49;00m
+                [95mand[39;49;00m (errwrite == -[94m1[39;49;00m [95mor[39;49;00m errwrite > [94m2[39;49;00m)[90m[39;49;00m
+                [95mand[39;49;00m [95mnot[39;49;00m start_new_session[90m[39;49;00m
+                [95mand[39;49;00m process_group == -[94m1[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m gid [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m gids [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m uid [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m umask < [94m0[39;49;00m):[90m[39;49;00m
+            [96mself[39;49;00m._posix_spawn(args, executable, env, restore_signals,[90m[39;49;00m
+                              p2cread, p2cwrite,[90m[39;49;00m
+                              c2pread, c2pwrite,[90m[39;49;00m
+                              errread, errwrite)[90m[39;49;00m
+            [94mreturn[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        orig_executable = executable[90m[39;49;00m
+    [90m[39;49;00m
+        [90m# For transferring possible exec failure from child to parent.[39;49;00m[90m[39;49;00m
+        [90m# Data format: "exception name:hex errno:description"[39;49;00m[90m[39;49;00m
+        [90m# Pickle is not used; it is complex and involves memory allocation.[39;49;00m[90m[39;49;00m
+        errpipe_read, errpipe_write = os.pipe()[90m[39;49;00m
+        [90m# errpipe_write must not be in the standard io 0, 1, or 2 fd range.[39;49;00m[90m[39;49;00m
+        low_fds_to_close = [][90m[39;49;00m
+        [94mwhile[39;49;00m errpipe_write < [94m3[39;49;00m:[90m[39;49;00m
+            low_fds_to_close.append(errpipe_write)[90m[39;49;00m
+            errpipe_write = os.dup(errpipe_write)[90m[39;49;00m
+        [94mfor[39;49;00m low_fd [95min[39;49;00m low_fds_to_close:[90m[39;49;00m
+            os.close(low_fd)[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                [90m# We must avoid complex work that could involve[39;49;00m[90m[39;49;00m
+                [90m# malloc or free in the child process to avoid[39;49;00m[90m[39;49;00m
+                [90m# potential deadlocks, thus we do all this here.[39;49;00m[90m[39;49;00m
+                [90m# and pass it to fork_exec()[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+                [94mif[39;49;00m env [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+                    env_list = [][90m[39;49;00m
+                    [94mfor[39;49;00m k, v [95min[39;49;00m env.items():[90m[39;49;00m
+                        k = os.fsencode(k)[90m[39;49;00m
+                        [94mif[39;49;00m [33mb[39;49;00m[33m'[39;49;00m[33m=[39;49;00m[33m'[39;49;00m [95min[39;49;00m k:[90m[39;49;00m
+                            [94mraise[39;49;00m [96mValueError[39;49;00m([33m"[39;49;00m[33millegal environment variable name[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+                        env_list.append(k + [33mb[39;49;00m[33m'[39;49;00m[33m=[39;49;00m[33m'[39;49;00m + os.fsencode(v))[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    env_list = [94mNone[39;49;00m  [90m# Use execv instead of execve.[39;49;00m[90m[39;49;00m
+                executable = os.fsencode(executable)[90m[39;49;00m
+                [94mif[39;49;00m os.path.dirname(executable):[90m[39;49;00m
+                    executable_list = (executable,)[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    [90m# This matches the behavior of os._execvpe().[39;49;00m[90m[39;49;00m
+                    executable_list = [96mtuple[39;49;00m([90m[39;49;00m
+                        os.path.join(os.fsencode([96mdir[39;49;00m), executable)[90m[39;49;00m
+                        [94mfor[39;49;00m [96mdir[39;49;00m [95min[39;49;00m os.get_exec_path(env))[90m[39;49;00m
+                fds_to_keep = [96mset[39;49;00m(pass_fds)[90m[39;49;00m
+                fds_to_keep.add(errpipe_write)[90m[39;49;00m
+                [96mself[39;49;00m.pid = _fork_exec([90m[39;49;00m
+                        args, executable_list,[90m[39;49;00m
+                        close_fds, [96mtuple[39;49;00m([96msorted[39;49;00m([96mmap[39;49;00m([96mint[39;49;00m, fds_to_keep))),[90m[39;49;00m
+                        cwd, env_list,[90m[39;49;00m
+                        p2cread, p2cwrite, c2pread, c2pwrite,[90m[39;49;00m
+                        errread, errwrite,[90m[39;49;00m
+                        errpipe_read, errpipe_write,[90m[39;49;00m
+                        restore_signals, start_new_session,[90m[39;49;00m
+                        process_group, gid, gids, uid, umask,[90m[39;49;00m
+                        preexec_fn, _USE_VFORK)[90m[39;49;00m
+                [96mself[39;49;00m._child_created = [94mTrue[39;49;00m[90m[39;49;00m
+            [94mfinally[39;49;00m:[90m[39;49;00m
+                [90m# be sure the FD is closed no matter what[39;49;00m[90m[39;49;00m
+                os.close(errpipe_write)[90m[39;49;00m
+    [90m[39;49;00m
+            [96mself[39;49;00m._close_pipe_fds(p2cread, p2cwrite,[90m[39;49;00m
+                                 c2pread, c2pwrite,[90m[39;49;00m
+                                 errread, errwrite)[90m[39;49;00m
+    [90m[39;49;00m
+            [90m# Wait for exec to fail or succeed; possibly raising an[39;49;00m[90m[39;49;00m
+            [90m# exception (limited in size)[39;49;00m[90m[39;49;00m
+            errpipe_data = [96mbytearray[39;49;00m()[90m[39;49;00m
+            [94mwhile[39;49;00m [94mTrue[39;49;00m:[90m[39;49;00m
+                part = os.read(errpipe_read, [94m50000[39;49;00m)[90m[39;49;00m
+                errpipe_data += part[90m[39;49;00m
+                [94mif[39;49;00m [95mnot[39;49;00m part [95mor[39;49;00m [96mlen[39;49;00m(errpipe_data) > [94m50000[39;49;00m:[90m[39;49;00m
+                    [94mbreak[39;49;00m[90m[39;49;00m
+        [94mfinally[39;49;00m:[90m[39;49;00m
+            [90m# be sure the FD is closed no matter what[39;49;00m[90m[39;49;00m
+            os.close(errpipe_read)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m errpipe_data:[90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                pid, sts = os.waitpid([96mself[39;49;00m.pid, [94m0[39;49;00m)[90m[39;49;00m
+                [94mif[39;49;00m pid == [96mself[39;49;00m.pid:[90m[39;49;00m
+                    [96mself[39;49;00m._handle_exitstatus(sts)[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    [96mself[39;49;00m.returncode = sys.maxsize[90m[39;49;00m
+            [94mexcept[39;49;00m [96mChildProcessError[39;49;00m:[90m[39;49;00m
+                [94mpass[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                exception_name, hex_errno, err_msg = ([90m[39;49;00m
+                        errpipe_data.split([33mb[39;49;00m[33m'[39;49;00m[33m:[39;49;00m[33m'[39;49;00m, [94m2[39;49;00m))[90m[39;49;00m
+                [90m# The encoding here should match the encoding[39;49;00m[90m[39;49;00m
+                [90m# written in by the subprocess implementations[39;49;00m[90m[39;49;00m
+                [90m# like _posixsubprocess[39;49;00m[90m[39;49;00m
+                err_msg = err_msg.decode()[90m[39;49;00m
+            [94mexcept[39;49;00m [96mValueError[39;49;00m:[90m[39;49;00m
+                exception_name = [33mb[39;49;00m[33m'[39;49;00m[33mSubprocessError[39;49;00m[33m'[39;49;00m[90m[39;49;00m
+                hex_errno = [33mb[39;49;00m[33m'[39;49;00m[33m0[39;49;00m[33m'[39;49;00m[90m[39;49;00m
+                err_msg = [33m'[39;49;00m[33mBad exception data from child: [39;49;00m[33m{!r}[39;49;00m[33m'[39;49;00m.format([90m[39;49;00m
+                              [96mbytes[39;49;00m(errpipe_data))[90m[39;49;00m
+            child_exception_type = [96mgetattr[39;49;00m([90m[39;49;00m
+                    builtins, exception_name.decode([33m'[39;49;00m[33mascii[39;49;00m[33m'[39;49;00m),[90m[39;49;00m
+                    SubprocessError)[90m[39;49;00m
+            [94mif[39;49;00m [96missubclass[39;49;00m(child_exception_type, [96mOSError[39;49;00m) [95mand[39;49;00m hex_errno:[90m[39;49;00m
+                errno_num = [96mint[39;49;00m(hex_errno, [94m16[39;49;00m)[90m[39;49;00m
+                [94mif[39;49;00m err_msg == [33m"[39;49;00m[33mnoexec:chdir[39;49;00m[33m"[39;49;00m:[90m[39;49;00m
+                    err_msg = [33m"[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                    [90m# The error must be from chdir(cwd).[39;49;00m[90m[39;49;00m
+                    err_filename = cwd[90m[39;49;00m
+                [94melif[39;49;00m err_msg == [33m"[39;49;00m[33mnoexec[39;49;00m[33m"[39;49;00m:[90m[39;49;00m
+                    err_msg = [33m"[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                    err_filename = [94mNone[39;49;00m[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    err_filename = orig_executable[90m[39;49;00m
+                [94mif[39;49;00m errno_num != [94m0[39;49;00m:[90m[39;49;00m
+                    err_msg = os.strerror(errno_num)[90m[39;49;00m
+                [94mif[39;49;00m err_filename [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+>                   [94mraise[39;49;00m child_exception_type(errno_num, err_msg, err_filename)[90m[39;49;00m
+[1m[31mE                   FileNotFoundError: [Errno 2] No such file or directory: '/app/lean_project'[0m
+
+[1m[31m/usr/lib/python3.12/subprocess.py[0m:1955: FileNotFoundError
+[31m[1m________________________________________________________________ test_proofs_complete_no_sorry _________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_proofs_complete_no_sorry[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Test that all .lean files are complete with no sorry statements."""[39;49;00m[90m[39;49;00m
+        lean_files = get_lean_files()[90m[39;49;00m
+    [90m[39;49;00m
+        [94mfor[39;49;00m filename [95min[39;49;00m lean_files:[90m[39;49;00m
+            [94mwith[39;49;00m [96mopen[39;49;00m([33mf[39;49;00m[33m"[39;49;00m[33m/app/data/[39;49;00m[33m{[39;49;00mfilename[33m}[39;49;00m[33m"[39;49;00m, [33m'[39;49;00m[33mr[39;49;00m[33m'[39;49;00m) [94mas[39;49;00m f:[90m[39;49;00m
+                content = f.read()[90m[39;49;00m
+    [90m[39;49;00m
+            [90m# Check for sorry in the actual file content[39;49;00m[90m[39;49;00m
+            [90m# This is a basic check - the compilation test below is more thorough[39;49;00m[90m[39;49;00m
+>           [94massert[39;49;00m [33m"[39;49;00m[33msorry[39;49;00m[33m"[39;49;00m [95mnot[39;49;00m [95min[39;49;00m content, ([90m[39;49;00m
+                [33mf[39;49;00m[33m"[39;49;00m[33mFile [39;49;00m[33m{[39;49;00mfilename[33m}[39;49;00m[33m still contains [39;49;00m[33m'[39;49;00m[33msorry[39;49;00m[33m'[39;49;00m[33m - proof incomplete[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            )[90m[39;49;00m
+[1m[31mE           AssertionError: File p3.lean still contains 'sorry' - proof incomplete[0m
+[1m[31mE           assert 'sorry' not in 'import Math...y\n  sorry\n'[0m
+[1m[31mE             [0m
+[1m[31mE             'sorry' is contained here:[0m
+[1m[31mE                 := by[0m
+[1m[31mE                 sorry[0m
+[1m[31mE               [0m
+[1m[31mE               theorem p3_right (a0 k n : ℕ)[0m
+[1m[31mE                 (hn : Nat.Coprime n 10)...[0m
+[1m[31mE             [0m
+[1m[31mE             ...Full output truncated (3 lines hidden), use '-vv' to show[0m
+
+[1m[31mtest_outputs.py[0m:176: AssertionError
+[31m[1m_____________________________________________________________ test_proofs_compile_without_warnings _____________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_proofs_compile_without_warnings[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Test that all .lean files compile successfully without any warnings."""[39;49;00m[90m[39;49;00m
+        lean_files = get_lean_files()[90m[39;49;00m
+    [90m[39;49;00m
+        [94mfor[39;49;00m filename [95min[39;49;00m lean_files:[90m[39;49;00m
+>           compilation = get_compilation_result(filename)[90m[39;49;00m
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+
+[1m[31mtest_outputs.py[0m:186: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+[1m[31mtest_outputs.py[0m:62: in get_compilation_result
+    [0mresult = subprocess.run([90m[39;49;00m
+[1m[31m/usr/lib/python3.12/subprocess.py[0m:548: in run
+    [0m[94mwith[39;49;00m Popen(*popenargs, **kwargs) [94mas[39;49;00m process:[90m[39;49;00m
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31m/usr/lib/python3.12/subprocess.py[0m:1026: in __init__
+    [0m[96mself[39;49;00m._execute_child(args, executable, preexec_fn, close_fds,[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Popen: returncode: 255 args: ['lake', 'env', 'lean', '/app/data/p3.lean']>, args = ['lake', 'env', 'lean', '/app/data/p3.lean'], executable = b'lake'
+preexec_fn = None, close_fds = True, pass_fds = (), cwd = '/app/lean_project', env = None, startupinfo = None, creationflags = 0, shell = False, p2cread = -1
+p2cwrite = -1, c2pread = 11, c2pwrite = 12, errread = 13, errwrite = 14, restore_signals = True, gid = None, gids = None, uid = None, umask = -1
+start_new_session = False, process_group = -1
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92m_execute_child[39;49;00m([96mself[39;49;00m, args, executable, preexec_fn, close_fds,[90m[39;49;00m
+                       pass_fds, cwd, env,[90m[39;49;00m
+                       startupinfo, creationflags, shell,[90m[39;49;00m
+                       p2cread, p2cwrite,[90m[39;49;00m
+                       c2pread, c2pwrite,[90m[39;49;00m
+                       errread, errwrite,[90m[39;49;00m
+                       restore_signals,[90m[39;49;00m
+                       gid, gids, uid, umask,[90m[39;49;00m
+                       start_new_session, process_group):[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Execute program (POSIX version)"""[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m [96misinstance[39;49;00m(args, ([96mstr[39;49;00m, [96mbytes[39;49;00m)):[90m[39;49;00m
+            args = [args][90m[39;49;00m
+        [94melif[39;49;00m [96misinstance[39;49;00m(args, os.PathLike):[90m[39;49;00m
+            [94mif[39;49;00m shell:[90m[39;49;00m
+                [94mraise[39;49;00m [96mTypeError[39;49;00m([33m'[39;49;00m[33mpath-like args is not allowed when [39;49;00m[33m'[39;49;00m[90m[39;49;00m
+                                [33m'[39;49;00m[33mshell is true[39;49;00m[33m'[39;49;00m)[90m[39;49;00m
+            args = [args][90m[39;49;00m
+        [94melse[39;49;00m:[90m[39;49;00m
+            args = [96mlist[39;49;00m(args)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m shell:[90m[39;49;00m
+            [90m# On Android the default shell is at '/system/bin/sh'.[39;49;00m[90m[39;49;00m
+            unix_shell = ([33m'[39;49;00m[33m/system/bin/sh[39;49;00m[33m'[39;49;00m [94mif[39;49;00m[90m[39;49;00m
+                      [96mhasattr[39;49;00m(sys, [33m'[39;49;00m[33mgetandroidapilevel[39;49;00m[33m'[39;49;00m) [94melse[39;49;00m [33m'[39;49;00m[33m/bin/sh[39;49;00m[33m'[39;49;00m)[90m[39;49;00m
+            args = [unix_shell, [33m"[39;49;00m[33m-c[39;49;00m[33m"[39;49;00m] + args[90m[39;49;00m
+            [94mif[39;49;00m executable:[90m[39;49;00m
+                args[[94m0[39;49;00m] = executable[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m executable [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            executable = args[[94m0[39;49;00m][90m[39;49;00m
+    [90m[39;49;00m
+        sys.audit([33m"[39;49;00m[33msubprocess.Popen[39;49;00m[33m"[39;49;00m, executable, args, cwd, env)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m (_USE_POSIX_SPAWN[90m[39;49;00m
+                [95mand[39;49;00m os.path.dirname(executable)[90m[39;49;00m
+                [95mand[39;49;00m preexec_fn [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m [95mnot[39;49;00m close_fds[90m[39;49;00m
+                [95mand[39;49;00m [95mnot[39;49;00m pass_fds[90m[39;49;00m
+                [95mand[39;49;00m cwd [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m (p2cread == -[94m1[39;49;00m [95mor[39;49;00m p2cread > [94m2[39;49;00m)[90m[39;49;00m
+                [95mand[39;49;00m (c2pwrite == -[94m1[39;49;00m [95mor[39;49;00m c2pwrite > [94m2[39;49;00m)[90m[39;49;00m
+                [95mand[39;49;00m (errwrite == -[94m1[39;49;00m [95mor[39;49;00m errwrite > [94m2[39;49;00m)[90m[39;49;00m
+                [95mand[39;49;00m [95mnot[39;49;00m start_new_session[90m[39;49;00m
+                [95mand[39;49;00m process_group == -[94m1[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m gid [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m gids [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m uid [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m umask < [94m0[39;49;00m):[90m[39;49;00m
+            [96mself[39;49;00m._posix_spawn(args, executable, env, restore_signals,[90m[39;49;00m
+                              p2cread, p2cwrite,[90m[39;49;00m
+                              c2pread, c2pwrite,[90m[39;49;00m
+                              errread, errwrite)[90m[39;49;00m
+            [94mreturn[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        orig_executable = executable[90m[39;49;00m
+    [90m[39;49;00m
+        [90m# For transferring possible exec failure from child to parent.[39;49;00m[90m[39;49;00m
+        [90m# Data format: "exception name:hex errno:description"[39;49;00m[90m[39;49;00m
+        [90m# Pickle is not used; it is complex and involves memory allocation.[39;49;00m[90m[39;49;00m
+        errpipe_read, errpipe_write = os.pipe()[90m[39;49;00m
+        [90m# errpipe_write must not be in the standard io 0, 1, or 2 fd range.[39;49;00m[90m[39;49;00m
+        low_fds_to_close = [][90m[39;49;00m
+        [94mwhile[39;49;00m errpipe_write < [94m3[39;49;00m:[90m[39;49;00m
+            low_fds_to_close.append(errpipe_write)[90m[39;49;00m
+            errpipe_write = os.dup(errpipe_write)[90m[39;49;00m
+        [94mfor[39;49;00m low_fd [95min[39;49;00m low_fds_to_close:[90m[39;49;00m
+            os.close(low_fd)[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                [90m# We must avoid complex work that could involve[39;49;00m[90m[39;49;00m
+                [90m# malloc or free in the child process to avoid[39;49;00m[90m[39;49;00m
+                [90m# potential deadlocks, thus we do all this here.[39;49;00m[90m[39;49;00m
+                [90m# and pass it to fork_exec()[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+                [94mif[39;49;00m env [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+                    env_list = [][90m[39;49;00m
+                    [94mfor[39;49;00m k, v [95min[39;49;00m env.items():[90m[39;49;00m
+                        k = os.fsencode(k)[90m[39;49;00m
+                        [94mif[39;49;00m [33mb[39;49;00m[33m'[39;49;00m[33m=[39;49;00m[33m'[39;49;00m [95min[39;49;00m k:[90m[39;49;00m
+                            [94mraise[39;49;00m [96mValueError[39;49;00m([33m"[39;49;00m[33millegal environment variable name[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+                        env_list.append(k + [33mb[39;49;00m[33m'[39;49;00m[33m=[39;49;00m[33m'[39;49;00m + os.fsencode(v))[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    env_list = [94mNone[39;49;00m  [90m# Use execv instead of execve.[39;49;00m[90m[39;49;00m
+                executable = os.fsencode(executable)[90m[39;49;00m
+                [94mif[39;49;00m os.path.dirname(executable):[90m[39;49;00m
+                    executable_list = (executable,)[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    [90m# This matches the behavior of os._execvpe().[39;49;00m[90m[39;49;00m
+                    executable_list = [96mtuple[39;49;00m([90m[39;49;00m
+                        os.path.join(os.fsencode([96mdir[39;49;00m), executable)[90m[39;49;00m
+                        [94mfor[39;49;00m [96mdir[39;49;00m [95min[39;49;00m os.get_exec_path(env))[90m[39;49;00m
+                fds_to_keep = [96mset[39;49;00m(pass_fds)[90m[39;49;00m
+                fds_to_keep.add(errpipe_write)[90m[39;49;00m
+                [96mself[39;49;00m.pid = _fork_exec([90m[39;49;00m
+                        args, executable_list,[90m[39;49;00m
+                        close_fds, [96mtuple[39;49;00m([96msorted[39;49;00m([96mmap[39;49;00m([96mint[39;49;00m, fds_to_keep))),[90m[39;49;00m
+                        cwd, env_list,[90m[39;49;00m
+                        p2cread, p2cwrite, c2pread, c2pwrite,[90m[39;49;00m
+                        errread, errwrite,[90m[39;49;00m
+                        errpipe_read, errpipe_write,[90m[39;49;00m
+                        restore_signals, start_new_session,[90m[39;49;00m
+                        process_group, gid, gids, uid, umask,[90m[39;49;00m
+                        preexec_fn, _USE_VFORK)[90m[39;49;00m
+                [96mself[39;49;00m._child_created = [94mTrue[39;49;00m[90m[39;49;00m
+            [94mfinally[39;49;00m:[90m[39;49;00m
+                [90m# be sure the FD is closed no matter what[39;49;00m[90m[39;49;00m
+                os.close(errpipe_write)[90m[39;49;00m
+    [90m[39;49;00m
+            [96mself[39;49;00m._close_pipe_fds(p2cread, p2cwrite,[90m[39;49;00m
+                                 c2pread, c2pwrite,[90m[39;49;00m
+                                 errread, errwrite)[90m[39;49;00m
+    [90m[39;49;00m
+            [90m# Wait for exec to fail or succeed; possibly raising an[39;49;00m[90m[39;49;00m
+            [90m# exception (limited in size)[39;49;00m[90m[39;49;00m
+            errpipe_data = [96mbytearray[39;49;00m()[90m[39;49;00m
+            [94mwhile[39;49;00m [94mTrue[39;49;00m:[90m[39;49;00m
+                part = os.read(errpipe_read, [94m50000[39;49;00m)[90m[39;49;00m
+                errpipe_data += part[90m[39;49;00m
+                [94mif[39;49;00m [95mnot[39;49;00m part [95mor[39;49;00m [96mlen[39;49;00m(errpipe_data) > [94m50000[39;49;00m:[90m[39;49;00m
+                    [94mbreak[39;49;00m[90m[39;49;00m
+        [94mfinally[39;49;00m:[90m[39;49;00m
+            [90m# be sure the FD is closed no matter what[39;49;00m[90m[39;49;00m
+            os.close(errpipe_read)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m errpipe_data:[90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                pid, sts = os.waitpid([96mself[39;49;00m.pid, [94m0[39;49;00m)[90m[39;49;00m
+                [94mif[39;49;00m pid == [96mself[39;49;00m.pid:[90m[39;49;00m
+                    [96mself[39;49;00m._handle_exitstatus(sts)[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    [96mself[39;49;00m.returncode = sys.maxsize[90m[39;49;00m
+            [94mexcept[39;49;00m [96mChildProcessError[39;49;00m:[90m[39;49;00m
+                [94mpass[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                exception_name, hex_errno, err_msg = ([90m[39;49;00m
+                        errpipe_data.split([33mb[39;49;00m[33m'[39;49;00m[33m:[39;49;00m[33m'[39;49;00m, [94m2[39;49;00m))[90m[39;49;00m
+                [90m# The encoding here should match the encoding[39;49;00m[90m[39;49;00m
+                [90m# written in by the subprocess implementations[39;49;00m[90m[39;49;00m
+                [90m# like _posixsubprocess[39;49;00m[90m[39;49;00m
+                err_msg = err_msg.decode()[90m[39;49;00m
+            [94mexcept[39;49;00m [96mValueError[39;49;00m:[90m[39;49;00m
+                exception_name = [33mb[39;49;00m[33m'[39;49;00m[33mSubprocessError[39;49;00m[33m'[39;49;00m[90m[39;49;00m
+                hex_errno = [33mb[39;49;00m[33m'[39;49;00m[33m0[39;49;00m[33m'[39;49;00m[90m[39;49;00m
+                err_msg = [33m'[39;49;00m[33mBad exception data from child: [39;49;00m[33m{!r}[39;49;00m[33m'[39;49;00m.format([90m[39;49;00m
+                              [96mbytes[39;49;00m(errpipe_data))[90m[39;49;00m
+            child_exception_type = [96mgetattr[39;49;00m([90m[39;49;00m
+                    builtins, exception_name.decode([33m'[39;49;00m[33mascii[39;49;00m[33m'[39;49;00m),[90m[39;49;00m
+                    SubprocessError)[90m[39;49;00m
+            [94mif[39;49;00m [96missubclass[39;49;00m(child_exception_type, [96mOSError[39;49;00m) [95mand[39;49;00m hex_errno:[90m[39;49;00m
+                errno_num = [96mint[39;49;00m(hex_errno, [94m16[39;49;00m)[90m[39;49;00m
+                [94mif[39;49;00m err_msg == [33m"[39;49;00m[33mnoexec:chdir[39;49;00m[33m"[39;49;00m:[90m[39;49;00m
+                    err_msg = [33m"[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                    [90m# The error must be from chdir(cwd).[39;49;00m[90m[39;49;00m
+                    err_filename = cwd[90m[39;49;00m
+                [94melif[39;49;00m err_msg == [33m"[39;49;00m[33mnoexec[39;49;00m[33m"[39;49;00m:[90m[39;49;00m
+                    err_msg = [33m"[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                    err_filename = [94mNone[39;49;00m[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    err_filename = orig_executable[90m[39;49;00m
+                [94mif[39;49;00m errno_num != [94m0[39;49;00m:[90m[39;49;00m
+                    err_msg = os.strerror(errno_num)[90m[39;49;00m
+                [94mif[39;49;00m err_filename [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+>                   [94mraise[39;49;00m child_exception_type(errno_num, err_msg, err_filename)[90m[39;49;00m
+[1m[31mE                   FileNotFoundError: [Errno 2] No such file or directory: '/app/lean_project'[0m
+
+[1m[31m/usr/lib/python3.12/subprocess.py[0m:1955: FileNotFoundError
+[31m[1m_______________________________________________________________ test_project_builds_successfully _______________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_project_builds_successfully[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Test that the entire Lake project builds without errors."""[39;49;00m[90m[39;49;00m
+>       result = subprocess.run([90m[39;49;00m
+            [[33m"[39;49;00m[33mlake[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mbuild[39;49;00m[33m"[39;49;00m],[90m[39;49;00m
+            capture_output=[94mTrue[39;49;00m,[90m[39;49;00m
+            text=[94mTrue[39;49;00m,[90m[39;49;00m
+            cwd=[33m"[39;49;00m[33m/app/lean_project[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        )[90m[39;49;00m
+
+[1m[31mtest_outputs.py[0m:264: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+[1m[31m/usr/lib/python3.12/subprocess.py[0m:548: in run
+    [0m[94mwith[39;49;00m Popen(*popenargs, **kwargs) [94mas[39;49;00m process:[90m[39;49;00m
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31m/usr/lib/python3.12/subprocess.py[0m:1026: in __init__
+    [0m[96mself[39;49;00m._execute_child(args, executable, preexec_fn, close_fds,[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Popen: returncode: 255 args: ['lake', 'build']>, args = ['lake', 'build'], executable = b'lake', preexec_fn = None, close_fds = True, pass_fds = ()
+cwd = '/app/lean_project', env = None, startupinfo = None, creationflags = 0, shell = False, p2cread = -1, p2cwrite = -1, c2pread = 11, c2pwrite = 12
+errread = 13, errwrite = 14, restore_signals = True, gid = None, gids = None, uid = None, umask = -1, start_new_session = False, process_group = -1
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92m_execute_child[39;49;00m([96mself[39;49;00m, args, executable, preexec_fn, close_fds,[90m[39;49;00m
+                       pass_fds, cwd, env,[90m[39;49;00m
+                       startupinfo, creationflags, shell,[90m[39;49;00m
+                       p2cread, p2cwrite,[90m[39;49;00m
+                       c2pread, c2pwrite,[90m[39;49;00m
+                       errread, errwrite,[90m[39;49;00m
+                       restore_signals,[90m[39;49;00m
+                       gid, gids, uid, umask,[90m[39;49;00m
+                       start_new_session, process_group):[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Execute program (POSIX version)"""[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m [96misinstance[39;49;00m(args, ([96mstr[39;49;00m, [96mbytes[39;49;00m)):[90m[39;49;00m
+            args = [args][90m[39;49;00m
+        [94melif[39;49;00m [96misinstance[39;49;00m(args, os.PathLike):[90m[39;49;00m
+            [94mif[39;49;00m shell:[90m[39;49;00m
+                [94mraise[39;49;00m [96mTypeError[39;49;00m([33m'[39;49;00m[33mpath-like args is not allowed when [39;49;00m[33m'[39;49;00m[90m[39;49;00m
+                                [33m'[39;49;00m[33mshell is true[39;49;00m[33m'[39;49;00m)[90m[39;49;00m
+            args = [args][90m[39;49;00m
+        [94melse[39;49;00m:[90m[39;49;00m
+            args = [96mlist[39;49;00m(args)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m shell:[90m[39;49;00m
+            [90m# On Android the default shell is at '/system/bin/sh'.[39;49;00m[90m[39;49;00m
+            unix_shell = ([33m'[39;49;00m[33m/system/bin/sh[39;49;00m[33m'[39;49;00m [94mif[39;49;00m[90m[39;49;00m
+                      [96mhasattr[39;49;00m(sys, [33m'[39;49;00m[33mgetandroidapilevel[39;49;00m[33m'[39;49;00m) [94melse[39;49;00m [33m'[39;49;00m[33m/bin/sh[39;49;00m[33m'[39;49;00m)[90m[39;49;00m
+            args = [unix_shell, [33m"[39;49;00m[33m-c[39;49;00m[33m"[39;49;00m] + args[90m[39;49;00m
+            [94mif[39;49;00m executable:[90m[39;49;00m
+                args[[94m0[39;49;00m] = executable[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m executable [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            executable = args[[94m0[39;49;00m][90m[39;49;00m
+    [90m[39;49;00m
+        sys.audit([33m"[39;49;00m[33msubprocess.Popen[39;49;00m[33m"[39;49;00m, executable, args, cwd, env)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m (_USE_POSIX_SPAWN[90m[39;49;00m
+                [95mand[39;49;00m os.path.dirname(executable)[90m[39;49;00m
+                [95mand[39;49;00m preexec_fn [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m [95mnot[39;49;00m close_fds[90m[39;49;00m
+                [95mand[39;49;00m [95mnot[39;49;00m pass_fds[90m[39;49;00m
+                [95mand[39;49;00m cwd [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m (p2cread == -[94m1[39;49;00m [95mor[39;49;00m p2cread > [94m2[39;49;00m)[90m[39;49;00m
+                [95mand[39;49;00m (c2pwrite == -[94m1[39;49;00m [95mor[39;49;00m c2pwrite > [94m2[39;49;00m)[90m[39;49;00m
+                [95mand[39;49;00m (errwrite == -[94m1[39;49;00m [95mor[39;49;00m errwrite > [94m2[39;49;00m)[90m[39;49;00m
+                [95mand[39;49;00m [95mnot[39;49;00m start_new_session[90m[39;49;00m
+                [95mand[39;49;00m process_group == -[94m1[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m gid [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m gids [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m uid [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m umask < [94m0[39;49;00m):[90m[39;49;00m
+            [96mself[39;49;00m._posix_spawn(args, executable, env, restore_signals,[90m[39;49;00m
+                              p2cread, p2cwrite,[90m[39;49;00m
+                              c2pread, c2pwrite,[90m[39;49;00m
+                              errread, errwrite)[90m[39;49;00m
+            [94mreturn[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        orig_executable = executable[90m[39;49;00m
+    [90m[39;49;00m
+        [90m# For transferring possible exec failure from child to parent.[39;49;00m[90m[39;49;00m
+        [90m# Data format: "exception name:hex errno:description"[39;49;00m[90m[39;49;00m
+        [90m# Pickle is not used; it is complex and involves memory allocation.[39;49;00m[90m[39;49;00m
+        errpipe_read, errpipe_write = os.pipe()[90m[39;49;00m
+        [90m# errpipe_write must not be in the standard io 0, 1, or 2 fd range.[39;49;00m[90m[39;49;00m
+        low_fds_to_close = [][90m[39;49;00m
+        [94mwhile[39;49;00m errpipe_write < [94m3[39;49;00m:[90m[39;49;00m
+            low_fds_to_close.append(errpipe_write)[90m[39;49;00m
+            errpipe_write = os.dup(errpipe_write)[90m[39;49;00m
+        [94mfor[39;49;00m low_fd [95min[39;49;00m low_fds_to_close:[90m[39;49;00m
+            os.close(low_fd)[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                [90m# We must avoid complex work that could involve[39;49;00m[90m[39;49;00m
+                [90m# malloc or free in the child process to avoid[39;49;00m[90m[39;49;00m
+                [90m# potential deadlocks, thus we do all this here.[39;49;00m[90m[39;49;00m
+                [90m# and pass it to fork_exec()[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+                [94mif[39;49;00m env [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+                    env_list = [][90m[39;49;00m
+                    [94mfor[39;49;00m k, v [95min[39;49;00m env.items():[90m[39;49;00m
+                        k = os.fsencode(k)[90m[39;49;00m
+                        [94mif[39;49;00m [33mb[39;49;00m[33m'[39;49;00m[33m=[39;49;00m[33m'[39;49;00m [95min[39;49;00m k:[90m[39;49;00m
+                            [94mraise[39;49;00m [96mValueError[39;49;00m([33m"[39;49;00m[33millegal environment variable name[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+                        env_list.append(k + [33mb[39;49;00m[33m'[39;49;00m[33m=[39;49;00m[33m'[39;49;00m + os.fsencode(v))[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    env_list = [94mNone[39;49;00m  [90m# Use execv instead of execve.[39;49;00m[90m[39;49;00m
+                executable = os.fsencode(executable)[90m[39;49;00m
+                [94mif[39;49;00m os.path.dirname(executable):[90m[39;49;00m
+                    executable_list = (executable,)[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    [90m# This matches the behavior of os._execvpe().[39;49;00m[90m[39;49;00m
+                    executable_list = [96mtuple[39;49;00m([90m[39;49;00m
+                        os.path.join(os.fsencode([96mdir[39;49;00m), executable)[90m[39;49;00m
+                        [94mfor[39;49;00m [96mdir[39;49;00m [95min[39;49;00m os.get_exec_path(env))[90m[39;49;00m
+                fds_to_keep = [96mset[39;49;00m(pass_fds)[90m[39;49;00m
+                fds_to_keep.add(errpipe_write)[90m[39;49;00m
+                [96mself[39;49;00m.pid = _fork_exec([90m[39;49;00m
+                        args, executable_list,[90m[39;49;00m
+                        close_fds, [96mtuple[39;49;00m([96msorted[39;49;00m([96mmap[39;49;00m([96mint[39;49;00m, fds_to_keep))),[90m[39;49;00m
+                        cwd, env_list,[90m[39;49;00m
+                        p2cread, p2cwrite, c2pread, c2pwrite,[90m[39;49;00m
+                        errread, errwrite,[90m[39;49;00m
+                        errpipe_read, errpipe_write,[90m[39;49;00m
+                        restore_signals, start_new_session,[90m[39;49;00m
+                        process_group, gid, gids, uid, umask,[90m[39;49;00m
+                        preexec_fn, _USE_VFORK)[90m[39;49;00m
+                [96mself[39;49;00m._child_created = [94mTrue[39;49;00m[90m[39;49;00m
+            [94mfinally[39;49;00m:[90m[39;49;00m
+                [90m# be sure the FD is closed no matter what[39;49;00m[90m[39;49;00m
+                os.close(errpipe_write)[90m[39;49;00m
+    [90m[39;49;00m
+            [96mself[39;49;00m._close_pipe_fds(p2cread, p2cwrite,[90m[39;49;00m
+                                 c2pread, c2pwrite,[90m[39;49;00m
+                                 errread, errwrite)[90m[39;49;00m
+    [90m[39;49;00m
+            [90m# Wait for exec to fail or succeed; possibly raising an[39;49;00m[90m[39;49;00m
+            [90m# exception (limited in size)[39;49;00m[90m[39;49;00m
+            errpipe_data = [96mbytearray[39;49;00m()[90m[39;49;00m
+            [94mwhile[39;49;00m [94mTrue[39;49;00m:[90m[39;49;00m
+                part = os.read(errpipe_read, [94m50000[39;49;00m)[90m[39;49;00m
+                errpipe_data += part[90m[39;49;00m
+                [94mif[39;49;00m [95mnot[39;49;00m part [95mor[39;49;00m [96mlen[39;49;00m(errpipe_data) > [94m50000[39;49;00m:[90m[39;49;00m
+                    [94mbreak[39;49;00m[90m[39;49;00m
+        [94mfinally[39;49;00m:[90m[39;49;00m
+            [90m# be sure the FD is closed no matter what[39;49;00m[90m[39;49;00m
+            os.close(errpipe_read)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m errpipe_data:[90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                pid, sts = os.waitpid([96mself[39;49;00m.pid, [94m0[39;49;00m)[90m[39;49;00m
+                [94mif[39;49;00m pid == [96mself[39;49;00m.pid:[90m[39;49;00m
+                    [96mself[39;49;00m._handle_exitstatus(sts)[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    [96mself[39;49;00m.returncode = sys.maxsize[90m[39;49;00m
+            [94mexcept[39;49;00m [96mChildProcessError[39;49;00m:[90m[39;49;00m
+                [94mpass[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                exception_name, hex_errno, err_msg = ([90m[39;49;00m
+                        errpipe_data.split([33mb[39;49;00m[33m'[39;49;00m[33m:[39;49;00m[33m'[39;49;00m, [94m2[39;49;00m))[90m[39;49;00m
+                [90m# The encoding here should match the encoding[39;49;00m[90m[39;49;00m
+                [90m# written in by the subprocess implementations[39;49;00m[90m[39;49;00m
+                [90m# like _posixsubprocess[39;49;00m[90m[39;49;00m
+                err_msg = err_msg.decode()[90m[39;49;00m
+            [94mexcept[39;49;00m [96mValueError[39;49;00m:[90m[39;49;00m
+                exception_name = [33mb[39;49;00m[33m'[39;49;00m[33mSubprocessError[39;49;00m[33m'[39;49;00m[90m[39;49;00m
+                hex_errno = [33mb[39;49;00m[33m'[39;49;00m[33m0[39;49;00m[33m'[39;49;00m[90m[39;49;00m
+                err_msg = [33m'[39;49;00m[33mBad exception data from child: [39;49;00m[33m{!r}[39;49;00m[33m'[39;49;00m.format([90m[39;49;00m
+                              [96mbytes[39;49;00m(errpipe_data))[90m[39;49;00m
+            child_exception_type = [96mgetattr[39;49;00m([90m[39;49;00m
+                    builtins, exception_name.decode([33m'[39;49;00m[33mascii[39;49;00m[33m'[39;49;00m),[90m[39;49;00m
+                    SubprocessError)[90m[39;49;00m
+            [94mif[39;49;00m [96missubclass[39;49;00m(child_exception_type, [96mOSError[39;49;00m) [95mand[39;49;00m hex_errno:[90m[39;49;00m
+                errno_num = [96mint[39;49;00m(hex_errno, [94m16[39;49;00m)[90m[39;49;00m
+                [94mif[39;49;00m err_msg == [33m"[39;49;00m[33mnoexec:chdir[39;49;00m[33m"[39;49;00m:[90m[39;49;00m
+                    err_msg = [33m"[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                    [90m# The error must be from chdir(cwd).[39;49;00m[90m[39;49;00m
+                    err_filename = cwd[90m[39;49;00m
+                [94melif[39;49;00m err_msg == [33m"[39;49;00m[33mnoexec[39;49;00m[33m"[39;49;00m:[90m[39;49;00m
+                    err_msg = [33m"[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                    err_filename = [94mNone[39;49;00m[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    err_filename = orig_executable[90m[39;49;00m
+                [94mif[39;49;00m errno_num != [94m0[39;49;00m:[90m[39;49;00m
+                    err_msg = os.strerror(errno_num)[90m[39;49;00m
+                [94mif[39;49;00m err_filename [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+>                   [94mraise[39;49;00m child_exception_type(errno_num, err_msg, err_filename)[90m[39;49;00m
+[1m[31mE                   FileNotFoundError: [Errno 2] No such file or directory: '/app/lean_project'[0m
+
+[1m[31m/usr/lib/python3.12/subprocess.py[0m:1955: FileNotFoundError
+[31m[1m_____________________________________________________________ test_all_required_files_compilation ______________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_all_required_files_compilation[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Test that all three required files compile as specified in task instruction."""[39;49;00m[90m[39;49;00m
+        required_files = [[33m"[39;49;00m[33mp1.lean[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mp2.lean[39;49;00m[33m"[39;49;00m, [33m"[39;49;00m[33mp3.lean[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+    [90m[39;49;00m
+        [94mfor[39;49;00m filename [95min[39;49;00m required_files:[90m[39;49;00m
+            file_path = [33mf[39;49;00m[33m"[39;49;00m[33m/app/data/[39;49;00m[33m{[39;49;00mfilename[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            [94massert[39;49;00m Path(file_path).exists(), ([90m[39;49;00m
+                [33mf[39;49;00m[33m"[39;49;00m[33mRequired file [39;49;00m[33m{[39;49;00mfilename[33m}[39;49;00m[33m missing. [39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                [33mf[39;49;00m[33m"[39;49;00m[33mTask instruction requires all three files.[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            )[90m[39;49;00m
+    [90m[39;49;00m
+            [90m# Test compilation with specific command mentioned in task[39;49;00m[90m[39;49;00m
+>           compilation = get_compilation_result(filename)[90m[39;49;00m
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+
+[1m[31mtest_outputs.py[0m:336: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+[1m[31mtest_outputs.py[0m:62: in get_compilation_result
+    [0mresult = subprocess.run([90m[39;49;00m
+[1m[31m/usr/lib/python3.12/subprocess.py[0m:548: in run
+    [0m[94mwith[39;49;00m Popen(*popenargs, **kwargs) [94mas[39;49;00m process:[90m[39;49;00m
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31m/usr/lib/python3.12/subprocess.py[0m:1026: in __init__
+    [0m[96mself[39;49;00m._execute_child(args, executable, preexec_fn, close_fds,[90m[39;49;00m
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Popen: returncode: 255 args: ['lake', 'env', 'lean', '/app/data/p1.lean']>, args = ['lake', 'env', 'lean', '/app/data/p1.lean'], executable = b'lake'
+preexec_fn = None, close_fds = True, pass_fds = (), cwd = '/app/lean_project', env = None, startupinfo = None, creationflags = 0, shell = False, p2cread = -1
+p2cwrite = -1, c2pread = 11, c2pwrite = 12, errread = 13, errwrite = 14, restore_signals = True, gid = None, gids = None, uid = None, umask = -1
+start_new_session = False, process_group = -1
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92m_execute_child[39;49;00m([96mself[39;49;00m, args, executable, preexec_fn, close_fds,[90m[39;49;00m
+                       pass_fds, cwd, env,[90m[39;49;00m
+                       startupinfo, creationflags, shell,[90m[39;49;00m
+                       p2cread, p2cwrite,[90m[39;49;00m
+                       c2pread, c2pwrite,[90m[39;49;00m
+                       errread, errwrite,[90m[39;49;00m
+                       restore_signals,[90m[39;49;00m
+                       gid, gids, uid, umask,[90m[39;49;00m
+                       start_new_session, process_group):[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Execute program (POSIX version)"""[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m [96misinstance[39;49;00m(args, ([96mstr[39;49;00m, [96mbytes[39;49;00m)):[90m[39;49;00m
+            args = [args][90m[39;49;00m
+        [94melif[39;49;00m [96misinstance[39;49;00m(args, os.PathLike):[90m[39;49;00m
+            [94mif[39;49;00m shell:[90m[39;49;00m
+                [94mraise[39;49;00m [96mTypeError[39;49;00m([33m'[39;49;00m[33mpath-like args is not allowed when [39;49;00m[33m'[39;49;00m[90m[39;49;00m
+                                [33m'[39;49;00m[33mshell is true[39;49;00m[33m'[39;49;00m)[90m[39;49;00m
+            args = [args][90m[39;49;00m
+        [94melse[39;49;00m:[90m[39;49;00m
+            args = [96mlist[39;49;00m(args)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m shell:[90m[39;49;00m
+            [90m# On Android the default shell is at '/system/bin/sh'.[39;49;00m[90m[39;49;00m
+            unix_shell = ([33m'[39;49;00m[33m/system/bin/sh[39;49;00m[33m'[39;49;00m [94mif[39;49;00m[90m[39;49;00m
+                      [96mhasattr[39;49;00m(sys, [33m'[39;49;00m[33mgetandroidapilevel[39;49;00m[33m'[39;49;00m) [94melse[39;49;00m [33m'[39;49;00m[33m/bin/sh[39;49;00m[33m'[39;49;00m)[90m[39;49;00m
+            args = [unix_shell, [33m"[39;49;00m[33m-c[39;49;00m[33m"[39;49;00m] + args[90m[39;49;00m
+            [94mif[39;49;00m executable:[90m[39;49;00m
+                args[[94m0[39;49;00m] = executable[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m executable [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            executable = args[[94m0[39;49;00m][90m[39;49;00m
+    [90m[39;49;00m
+        sys.audit([33m"[39;49;00m[33msubprocess.Popen[39;49;00m[33m"[39;49;00m, executable, args, cwd, env)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m (_USE_POSIX_SPAWN[90m[39;49;00m
+                [95mand[39;49;00m os.path.dirname(executable)[90m[39;49;00m
+                [95mand[39;49;00m preexec_fn [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m [95mnot[39;49;00m close_fds[90m[39;49;00m
+                [95mand[39;49;00m [95mnot[39;49;00m pass_fds[90m[39;49;00m
+                [95mand[39;49;00m cwd [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m (p2cread == -[94m1[39;49;00m [95mor[39;49;00m p2cread > [94m2[39;49;00m)[90m[39;49;00m
+                [95mand[39;49;00m (c2pwrite == -[94m1[39;49;00m [95mor[39;49;00m c2pwrite > [94m2[39;49;00m)[90m[39;49;00m
+                [95mand[39;49;00m (errwrite == -[94m1[39;49;00m [95mor[39;49;00m errwrite > [94m2[39;49;00m)[90m[39;49;00m
+                [95mand[39;49;00m [95mnot[39;49;00m start_new_session[90m[39;49;00m
+                [95mand[39;49;00m process_group == -[94m1[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m gid [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m gids [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m uid [95mis[39;49;00m [94mNone[39;49;00m[90m[39;49;00m
+                [95mand[39;49;00m umask < [94m0[39;49;00m):[90m[39;49;00m
+            [96mself[39;49;00m._posix_spawn(args, executable, env, restore_signals,[90m[39;49;00m
+                              p2cread, p2cwrite,[90m[39;49;00m
+                              c2pread, c2pwrite,[90m[39;49;00m
+                              errread, errwrite)[90m[39;49;00m
+            [94mreturn[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+        orig_executable = executable[90m[39;49;00m
+    [90m[39;49;00m
+        [90m# For transferring possible exec failure from child to parent.[39;49;00m[90m[39;49;00m
+        [90m# Data format: "exception name:hex errno:description"[39;49;00m[90m[39;49;00m
+        [90m# Pickle is not used; it is complex and involves memory allocation.[39;49;00m[90m[39;49;00m
+        errpipe_read, errpipe_write = os.pipe()[90m[39;49;00m
+        [90m# errpipe_write must not be in the standard io 0, 1, or 2 fd range.[39;49;00m[90m[39;49;00m
+        low_fds_to_close = [][90m[39;49;00m
+        [94mwhile[39;49;00m errpipe_write < [94m3[39;49;00m:[90m[39;49;00m
+            low_fds_to_close.append(errpipe_write)[90m[39;49;00m
+            errpipe_write = os.dup(errpipe_write)[90m[39;49;00m
+        [94mfor[39;49;00m low_fd [95min[39;49;00m low_fds_to_close:[90m[39;49;00m
+            os.close(low_fd)[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                [90m# We must avoid complex work that could involve[39;49;00m[90m[39;49;00m
+                [90m# malloc or free in the child process to avoid[39;49;00m[90m[39;49;00m
+                [90m# potential deadlocks, thus we do all this here.[39;49;00m[90m[39;49;00m
+                [90m# and pass it to fork_exec()[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+                [94mif[39;49;00m env [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+                    env_list = [][90m[39;49;00m
+                    [94mfor[39;49;00m k, v [95min[39;49;00m env.items():[90m[39;49;00m
+                        k = os.fsencode(k)[90m[39;49;00m
+                        [94mif[39;49;00m [33mb[39;49;00m[33m'[39;49;00m[33m=[39;49;00m[33m'[39;49;00m [95min[39;49;00m k:[90m[39;49;00m
+                            [94mraise[39;49;00m [96mValueError[39;49;00m([33m"[39;49;00m[33millegal environment variable name[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+                        env_list.append(k + [33mb[39;49;00m[33m'[39;49;00m[33m=[39;49;00m[33m'[39;49;00m + os.fsencode(v))[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    env_list = [94mNone[39;49;00m  [90m# Use execv instead of execve.[39;49;00m[90m[39;49;00m
+                executable = os.fsencode(executable)[90m[39;49;00m
+                [94mif[39;49;00m os.path.dirname(executable):[90m[39;49;00m
+                    executable_list = (executable,)[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    [90m# This matches the behavior of os._execvpe().[39;49;00m[90m[39;49;00m
+                    executable_list = [96mtuple[39;49;00m([90m[39;49;00m
+                        os.path.join(os.fsencode([96mdir[39;49;00m), executable)[90m[39;49;00m
+                        [94mfor[39;49;00m [96mdir[39;49;00m [95min[39;49;00m os.get_exec_path(env))[90m[39;49;00m
+                fds_to_keep = [96mset[39;49;00m(pass_fds)[90m[39;49;00m
+                fds_to_keep.add(errpipe_write)[90m[39;49;00m
+                [96mself[39;49;00m.pid = _fork_exec([90m[39;49;00m
+                        args, executable_list,[90m[39;49;00m
+                        close_fds, [96mtuple[39;49;00m([96msorted[39;49;00m([96mmap[39;49;00m([96mint[39;49;00m, fds_to_keep))),[90m[39;49;00m
+                        cwd, env_list,[90m[39;49;00m
+                        p2cread, p2cwrite, c2pread, c2pwrite,[90m[39;49;00m
+                        errread, errwrite,[90m[39;49;00m
+                        errpipe_read, errpipe_write,[90m[39;49;00m
+                        restore_signals, start_new_session,[90m[39;49;00m
+                        process_group, gid, gids, uid, umask,[90m[39;49;00m
+                        preexec_fn, _USE_VFORK)[90m[39;49;00m
+                [96mself[39;49;00m._child_created = [94mTrue[39;49;00m[90m[39;49;00m
+            [94mfinally[39;49;00m:[90m[39;49;00m
+                [90m# be sure the FD is closed no matter what[39;49;00m[90m[39;49;00m
+                os.close(errpipe_write)[90m[39;49;00m
+    [90m[39;49;00m
+            [96mself[39;49;00m._close_pipe_fds(p2cread, p2cwrite,[90m[39;49;00m
+                                 c2pread, c2pwrite,[90m[39;49;00m
+                                 errread, errwrite)[90m[39;49;00m
+    [90m[39;49;00m
+            [90m# Wait for exec to fail or succeed; possibly raising an[39;49;00m[90m[39;49;00m
+            [90m# exception (limited in size)[39;49;00m[90m[39;49;00m
+            errpipe_data = [96mbytearray[39;49;00m()[90m[39;49;00m
+            [94mwhile[39;49;00m [94mTrue[39;49;00m:[90m[39;49;00m
+                part = os.read(errpipe_read, [94m50000[39;49;00m)[90m[39;49;00m
+                errpipe_data += part[90m[39;49;00m
+                [94mif[39;49;00m [95mnot[39;49;00m part [95mor[39;49;00m [96mlen[39;49;00m(errpipe_data) > [94m50000[39;49;00m:[90m[39;49;00m
+                    [94mbreak[39;49;00m[90m[39;49;00m
+        [94mfinally[39;49;00m:[90m[39;49;00m
+            [90m# be sure the FD is closed no matter what[39;49;00m[90m[39;49;00m
+            os.close(errpipe_read)[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m errpipe_data:[90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                pid, sts = os.waitpid([96mself[39;49;00m.pid, [94m0[39;49;00m)[90m[39;49;00m
+                [94mif[39;49;00m pid == [96mself[39;49;00m.pid:[90m[39;49;00m
+                    [96mself[39;49;00m._handle_exitstatus(sts)[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    [96mself[39;49;00m.returncode = sys.maxsize[90m[39;49;00m
+            [94mexcept[39;49;00m [96mChildProcessError[39;49;00m:[90m[39;49;00m
+                [94mpass[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+            [94mtry[39;49;00m:[90m[39;49;00m
+                exception_name, hex_errno, err_msg = ([90m[39;49;00m
+                        errpipe_data.split([33mb[39;49;00m[33m'[39;49;00m[33m:[39;49;00m[33m'[39;49;00m, [94m2[39;49;00m))[90m[39;49;00m
+                [90m# The encoding here should match the encoding[39;49;00m[90m[39;49;00m
+                [90m# written in by the subprocess implementations[39;49;00m[90m[39;49;00m
+                [90m# like _posixsubprocess[39;49;00m[90m[39;49;00m
+                err_msg = err_msg.decode()[90m[39;49;00m
+            [94mexcept[39;49;00m [96mValueError[39;49;00m:[90m[39;49;00m
+                exception_name = [33mb[39;49;00m[33m'[39;49;00m[33mSubprocessError[39;49;00m[33m'[39;49;00m[90m[39;49;00m
+                hex_errno = [33mb[39;49;00m[33m'[39;49;00m[33m0[39;49;00m[33m'[39;49;00m[90m[39;49;00m
+                err_msg = [33m'[39;49;00m[33mBad exception data from child: [39;49;00m[33m{!r}[39;49;00m[33m'[39;49;00m.format([90m[39;49;00m
+                              [96mbytes[39;49;00m(errpipe_data))[90m[39;49;00m
+            child_exception_type = [96mgetattr[39;49;00m([90m[39;49;00m
+                    builtins, exception_name.decode([33m'[39;49;00m[33mascii[39;49;00m[33m'[39;49;00m),[90m[39;49;00m
+                    SubprocessError)[90m[39;49;00m
+            [94mif[39;49;00m [96missubclass[39;49;00m(child_exception_type, [96mOSError[39;49;00m) [95mand[39;49;00m hex_errno:[90m[39;49;00m
+                errno_num = [96mint[39;49;00m(hex_errno, [94m16[39;49;00m)[90m[39;49;00m
+                [94mif[39;49;00m err_msg == [33m"[39;49;00m[33mnoexec:chdir[39;49;00m[33m"[39;49;00m:[90m[39;49;00m
+                    err_msg = [33m"[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                    [90m# The error must be from chdir(cwd).[39;49;00m[90m[39;49;00m
+                    err_filename = cwd[90m[39;49;00m
+                [94melif[39;49;00m err_msg == [33m"[39;49;00m[33mnoexec[39;49;00m[33m"[39;49;00m:[90m[39;49;00m
+                    err_msg = [33m"[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                    err_filename = [94mNone[39;49;00m[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    err_filename = orig_executable[90m[39;49;00m
+                [94mif[39;49;00m errno_num != [94m0[39;49;00m:[90m[39;49;00m
+                    err_msg = os.strerror(errno_num)[90m[39;49;00m
+                [94mif[39;49;00m err_filename [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+>                   [94mraise[39;49;00m child_exception_type(errno_num, err_msg, err_filename)[90m[39;49;00m
+[1m[31mE                   FileNotFoundError: [Errno 2] No such file or directory: '/app/lean_project'[0m
+
+[1m[31m/usr/lib/python3.12/subprocess.py[0m:1955: FileNotFoundError
+============================================================================ PASSES ============================================================================
+[36m[1m=================================================================== short test summary info ====================================================================[0m
+[32mPASSED[0m test_outputs.py::[1mtest_lean_files_exist[0m
+[32mPASSED[0m test_outputs.py::[1mtest_all_expected_theorems_present[0m
+[32mPASSED[0m test_outputs.py::[1mtest_no_prohibited_tactics[0m
+[32mPASSED[0m test_outputs.py::[1mtest_theorem_statements_unchanged[0m
+[31mFAILED[0m test_outputs.py::[1mtest_lean_environment_setup[0m - FileNotFoundError: [Errno 2] No such file or directory: 'lean'
+[31mFAILED[0m test_outputs.py::[1mtest_mathlib_project_setup[0m - AssertionError: Lakefile not found in lean_project directory
+[31mFAILED[0m test_outputs.py::[1mtest_lean_files_syntax_valid[0m - FileNotFoundError: [Errno 2] No such file or directory: '/app/lean_project'
+[31mFAILED[0m test_outputs.py::[1mtest_proofs_complete_no_sorry[0m - AssertionError: File p3.lean still contains 'sorry' - proof incomplete
+[31mFAILED[0m test_outputs.py::[1mtest_proofs_compile_without_warnings[0m - FileNotFoundError: [Errno 2] No such file or directory: '/app/lean_project'
+[31mFAILED[0m test_outputs.py::[1mtest_project_builds_successfully[0m - FileNotFoundError: [Errno 2] No such file or directory: '/app/lean_project'
+[31mFAILED[0m test_outputs.py::[1mtest_all_required_files_compilation[0m - FileNotFoundError: [Errno 2] No such file or directory: '/app/lean_project'
+[31m================================================================= [31m[1m7 failed[0m, [32m4 passed[0m[31m in 0.24s[0m[31m ==================================================================[0m
+[?2004hroot@aa964add3208:/app# [?2004l
+exit
+[0;32masciinema: recording finished[0m
+[0;32masciinema: asciicast saved to /logs/tests.cast[0m
+[?2004hroot@aa964add3208:/app# 

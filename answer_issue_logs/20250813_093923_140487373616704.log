@@ -1,0 +1,5 @@
+2025-08-13 09:39:24,066 - thread-140487373616704.prometheus.docker.general_container.GeneralContainer - INFO - Created temporary project directory: /tmp/tmpfkillq3r/Prometheus
+2025-08-13 09:39:24,211 - thread-140487373616704.prometheus.lang_graph.nodes.issue_classification_subgraph_node - INFO - Enter IssueClassificationSubgraphNode
+2025-08-13 09:39:24,212 - thread-140487373616704.prometheus.lang_graph.nodes.context_retrieval_subgraph_node - INFO - Enter context retrieval subgraph
+2025-08-13 09:39:31,273 - thread-140487373616704.prometheus.lang_graph.nodes.context_extraction_node - INFO - Starting context extraction process
+2025-08-13 09:39:32,283 - thread-140487373616704.prometheus.lang_graph.nodes.context_extraction_node - INFO - Context extraction complete, returning context []

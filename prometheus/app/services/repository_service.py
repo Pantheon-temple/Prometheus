@@ -103,6 +103,11 @@ class RepositoryService(BaseService):
         Returns:
             The ID of the newly created repository in the database.
         """
+        # If a repository already exists for this playground_path, reuse it
+        existing = self.get_repository_by_playground_path(playground_path)
+        if existing:
+            return existing.id
+
         with Session(self.engine) as session:
             repository = Repository(
                 url=url,
@@ -148,6 +153,12 @@ class RepositoryService(BaseService):
             statement = select(Repository).where(
                 Repository.url == url, Repository.commit_id == commit_id
             )
+            return session.exec(statement).first()
+
+    def get_repository_by_playground_path(self, playground_path: str) -> Optional[Repository]:
+        """Retrieve a repository by its playground path (unique)."""
+        with Session(self.engine) as session:
+            statement = select(Repository).where(Repository.playground_path == playground_path)
             return session.exec(statement).first()
 
     def update_repository_status(self, repository_id: int, is_working: bool):
