@@ -1,5 +1,5 @@
 import logging
-from typing import Optional
+from typing import Optional, Sequence
 
 from argon2 import PasswordHasher
 from argon2.exceptions import VerifyMismatchError
@@ -45,10 +45,10 @@ class UserService(BaseService):
         with Session(self.engine) as session:
             statement = select(User).where(User.username == username)
             if session.exec(statement).first():
-                raise ValueError(f"Username '{username}' already exists")
+                raise ServerException(400, f"Username '{username}' already exists")
             statement = select(User).where(User.email == email)
             if session.exec(statement).first():
-                raise ValueError(f"Email '{email}' already exists")
+                raise ServerException(400, f"Email '{email}' already exists")
 
             hashed_password = self.ph.hash(password)
 
@@ -150,3 +150,21 @@ class UserService(BaseService):
             user.issue_credit = new_issue_credit
             session.add(user)
             session.commit()
+
+    def is_admin(self, user_id):
+        """
+        Check if a user is an admin (superuser) by their ID.
+        """
+        with Session(self.engine) as session:
+            statement = select(User).where(User.id == user_id)
+            user = session.exec(statement).first()
+            return user.is_superuser if user else False
+
+    def list_users(self) -> Sequence[User]:
+        """
+        List all users in the database.
+        """
+        with Session(self.engine) as session:
+            statement = select(User)
+            users = session.exec(statement).all()
+            return users

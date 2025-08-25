@@ -57,28 +57,40 @@ async def upload_github_repository(
 ):
     # Get the repository and knowledge graph services
     repository_service: RepositoryService = request.app.state.service["repository_service"]
-    repository = repository_service.get_repository_by_url_and_commit_id(
-        upload_repository_request.https_url, commit_id=upload_repository_request.commit_id
-    )
-    if settings.ENABLE_AUTHENTICATION:
-        if repository and request.state.user_id == repository.user_id:
-            return Response(
-                message="Repository already exists", data={"repository_id": repository.id}
-            )
-    else:
-        if repository:
-            # If the repository already exists, return its ID
-            return Response(
-                message="Repository already exists", data={"repository_id": repository.id}
-            )
-
     knowledge_graph_service: KnowledgeGraphService = request.app.state.service[
         "knowledge_graph_service"
     ]
+
+    # Check if the repository already exists
+    if settings.ENABLE_AUTHENTICATION:
+        repository = repository_service.get_repository_by_url_commit_id_and_user_id(
+            upload_repository_request.https_url,
+            upload_repository_request.commit_id,
+            request.state.user_id,
+        )
+    else:
+        repository = repository_service.get_repository_by_url_and_commit_id(
+            upload_repository_request.https_url, commit_id=upload_repository_request.commit_id
+        )
+
+    # If the repository already exists, return its ID
+    if repository:
+        return Response(message="Repository already exists", data={"repository_id": repository.id})
+
+    # Check if the number of repositories exceeds the limit
+    if settings.ENABLE_AUTHENTICATION:
+        user_repositories = repository_service.get_repositories_by_user_id(request.state.user_id)
+        if len(user_repositories) >= settings.DEFAULT_USER_REPOSITORY_LIMIT:
+            raise ServerException(
+                code=400,
+                message=f"You have reached the maximum number of repositories ({settings.DEFAULT_USER_REPOSITORY_LIMIT}). Please delete some repositories before uploading new ones.",
+            )
+
+    # Get the GitHub token
     github_token = get_github_token(request, upload_repository_request.github_token)
 
+    # Clone the repository
     try:
-        # Clone the repository
         saved_path = await repository_service.clone_github_repo(
             github_token, upload_repository_request.https_url, upload_repository_request.commit_id
         )
@@ -86,6 +98,7 @@ async def upload_github_repository(
         raise ServerException(
             code=400, message=f"Unable to clone {upload_repository_request.https_url}."
         )
+
     # Build and save the knowledge graph from the cloned repository
     root_node_id = await knowledge_graph_service.build_and_save_knowledge_graph(saved_path)
     repository_id = repository_service.create_new_repository(

@@ -36,3 +36,18 @@ def test_login(mock_service):
         "message": "success",
         "data": {"access_token": "your_access_token"},
     }
+
+
+def test_register(mock_service):
+    mock_service["invitation_code_service"].check_invitation_code.return_value = True
+    response = client.post(
+        "/auth/register",
+        json={
+            "username": "testuser",
+            "email": "test@gmail.com",
+            "password": "passwordpassword",
+            "invitation_code": "f23ee204-ff33-401d-8291-1f128d0db08a",
+        },
+    )
+    assert response.status_code == 200
+    assert response.json() == {"code": 200, "message": "User registered successfully", "data": None}

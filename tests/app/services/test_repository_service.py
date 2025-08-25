@@ -168,7 +168,7 @@ def test_get_repository_returns_git_repo_instance(service):
     assert result == mock_git_repo_instance
 
 
-def test_create_superuser(service):
+def test_create_new_repository(service):
     # Exercise
     service.create_new_repository(
         url="https://github.com/test/repo",
@@ -177,3 +177,10 @@ def test_create_superuser(service):
         user_id=None,
         kg_root_node_id=0,
     )
+
+
+def test_get_all_repositories(service):
+    # Exercise
+    repos = service.get_all_repositories()
+    # Verify
+    assert len(repos) == 1

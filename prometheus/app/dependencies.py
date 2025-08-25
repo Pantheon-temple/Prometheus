@@ -2,6 +2,7 @@
 
 from prometheus.app.services.base_service import BaseService
 from prometheus.app.services.database_service import DatabaseService
+from prometheus.app.services.invitation_code_service import InvitationCodeService
 from prometheus.app.services.issue_service import IssueService
 from prometheus.app.services.knowledge_graph_service import KnowledgeGraphService
 from prometheus.app.services.llm_service import LLMService
@@ -69,6 +70,7 @@ def initialize_services() -> dict[str, BaseService]:
     )
 
     user_service = UserService(database_service)
+    invitation_code_service = InvitationCodeService(database_service)
 
     return {
         "neo4j_service": neo4j_service,
@@ -78,4 +80,5 @@ def initialize_services() -> dict[str, BaseService]:
         "issue_service": issue_service,
         "database_service": database_service,
         "user_service": user_service,
+        "invitation_code_service": invitation_code_service,
     }

@@ -150,6 +150,28 @@ class RepositoryService(BaseService):
             )
             return session.exec(statement).first()
 
+    def get_repository_by_url_commit_id_and_user_id(
+        self, url: str, commit_id: str, user_id: int
+    ) -> Optional[Repository]:
+        """
+        Retrieves a repository by its URL commit ID and User ID.
+
+        Args:
+            url: The URL of the repository.
+            commit_id: The commit ID of the repository.
+            user_id: The user ID of the repository.
+
+        Returns:
+            The Repository instance if found, otherwise None.
+        """
+        with Session(self.engine) as session:
+            statement = select(Repository).where(
+                Repository.url == url,
+                Repository.commit_id == commit_id,
+                Repository.user_id == user_id,
+            )
+            return session.exec(statement).first()
+
     def update_repository_status(self, repository_id: int, is_working: bool):
         """
         Updates the working status of a repository.

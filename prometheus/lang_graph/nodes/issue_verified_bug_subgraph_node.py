@@ -65,13 +65,14 @@ class IssueVerifiedBugSubgraphNode:
             )
         except GraphRecursionError:
             self._logger.info("Recursion limit reached")
-            self.git_repo.reset_repository()
             return {
                 "edit_patch": None,
                 "passed_reproducing_test": False,
                 "passed_build": False,
                 "passed_existing_test": False,
             }
+        finally:
+            self.git_repo.reset_repository()
         # if all the tests passed
         passed_reproducing_test = not bool(output_state["reproducing_test_fail_log"])
         # if the build passed

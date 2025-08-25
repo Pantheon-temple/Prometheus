@@ -162,6 +162,10 @@ I have generated the following patches, now please select the best patch among t
         if not patches:
             self._logger.warning("No candidate patches available for selection.")
             return {"final_patch": ""}
+        # Handle the case with only one candidate patch
+        elif len(patches) == 1:
+            self._logger.info("Only one candidate patch available, selecting it by default.")
+            return {"final_patch": patches[0]}
 
         # Formalize Human Message
         human_prompt = self.format_human_message(patches, state)
